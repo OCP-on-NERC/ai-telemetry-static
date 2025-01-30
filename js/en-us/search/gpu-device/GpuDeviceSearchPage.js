@@ -110,6 +110,17 @@ Promise.all([
   document.querySelector('#htmButton_searchpageGpuDevice')?.addEventListener('click', (event) => {
     document.querySelector('#searchpageGpuDeviceDialog').open = true;
   });
+
+  document.querySelector('#htmButton_deletefilterGpuDevice')?.addEventListener('click', (event) => {
+    var confirmResponse = confirm('Are you sure you want to delete that?'); 
+    if(confirmResponse) { 
+      deletefilterGpuDevice(
+          event.currentTarget
+          , function(response, target) { addGlow(target); }
+          , function(response, target) { addError(target); }
+          );
+    }
+  });
           document.querySelector('#fqGpuDevice_created')?.addEventListener('wa-change', (event) => {
             fqChange('GpuDevice', event.currentTarget);
           });
