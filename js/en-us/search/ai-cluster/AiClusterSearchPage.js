@@ -80,6 +80,17 @@ Promise.all([
   document.querySelector('#htmButton_searchpageAiCluster')?.addEventListener('click', (event) => {
     document.querySelector('#searchpageAiClusterDialog').open = true;
   });
+
+  document.querySelector('#htmButton_deletefilterAiCluster')?.addEventListener('click', (event) => {
+    var confirmResponse = confirm('Are you sure you want to delete that?'); 
+    if(confirmResponse) { 
+      deletefilterAiCluster(
+          event.currentTarget
+          , function(response, target) { addGlow(target); }
+          , function(response, target) { addError(target); }
+          );
+    }
+  });
           document.querySelector('#fqAiCluster_created')?.addEventListener('wa-change', (event) => {
             fqChange('AiCluster', event.currentTarget);
           });
