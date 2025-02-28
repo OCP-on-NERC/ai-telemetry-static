@@ -80,6 +80,17 @@ Promise.all([
   document.querySelector('#htmButton_searchpageGpuSlice')?.addEventListener('click', (event) => {
     document.querySelector('#searchpageGpuSliceDialog').open = true;
   });
+
+  document.querySelector('#htmButton_deletefilterGpuSlice')?.addEventListener('click', (event) => {
+    var confirmResponse = confirm('Are you sure you want to delete that?'); 
+    if(confirmResponse) { 
+      deletefilterGpuSlice(
+          event.currentTarget
+          , function(response, target) { addGlow(target); }
+          , function(response, target) { addError(target); }
+          );
+    }
+  });
           document.querySelector('#fqGpuSlice_created')?.addEventListener('wa-change', (event) => {
             fqChange('GpuSlice', event.currentTarget);
           });

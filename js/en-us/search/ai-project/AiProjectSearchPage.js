@@ -80,6 +80,17 @@ Promise.all([
   document.querySelector('#htmButton_searchpageAiProject')?.addEventListener('click', (event) => {
     document.querySelector('#searchpageAiProjectDialog').open = true;
   });
+
+  document.querySelector('#htmButton_deletefilterAiProject')?.addEventListener('click', (event) => {
+    var confirmResponse = confirm('Are you sure you want to delete that?'); 
+    if(confirmResponse) { 
+      deletefilterAiProject(
+          event.currentTarget
+          , function(response, target) { addGlow(target); }
+          , function(response, target) { addError(target); }
+          );
+    }
+  });
           document.querySelector('#fqAiProject_created')?.addEventListener('wa-change', (event) => {
             fqChange('AiProject', event.currentTarget);
           });
