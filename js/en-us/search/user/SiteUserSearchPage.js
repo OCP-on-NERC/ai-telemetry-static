@@ -3,11 +3,11 @@ Promise.all([
     , customElements.whenDefined('wa-input')
     ]).then(() => {
 
-  document.querySelector('#pageFacetRangeSiteUser')?.addEventListener('wa-change', (event) => {
+  document.querySelector('#pageFacetRangeSiteUser')?.addEventListener('change', (event) => {
     facetRangeChange('SiteUser', event.target.value);
   });
 
-  document.querySelector('#htmDropdown-userFullName')?.addEventListener('wa-select', (event) => {
+  document.querySelector('#htmDropdown-userFullName')?.addEventListener('select', (event) => {
     const item = event.detail.item;
     const action = item.getAttribute('data-action');
     const order = item.getAttribute('data-order');
@@ -18,11 +18,11 @@ Promise.all([
     }
   });
 
-  document.querySelector('#pageFacetSortSiteUser_userFullName')?.addEventListener('wa-change', (event) => {
+  document.querySelector('#pageFacetSortSiteUser_userFullName')?.addEventListener('change', (event) => {
     sort('SiteUser', 'userFullName', event.currentTarget.value);
   });
 
-  document.querySelector('#htmDropdown-userName')?.addEventListener('wa-select', (event) => {
+  document.querySelector('#htmDropdown-userName')?.addEventListener('select', (event) => {
     const item = event.detail.item;
     const action = item.getAttribute('data-action');
     const order = item.getAttribute('data-order');
@@ -33,11 +33,11 @@ Promise.all([
     }
   });
 
-  document.querySelector('#pageFacetSortSiteUser_userName')?.addEventListener('wa-change', (event) => {
+  document.querySelector('#pageFacetSortSiteUser_userName')?.addEventListener('change', (event) => {
     sort('SiteUser', 'userName', event.currentTarget.value);
   });
 
-  document.querySelector('#htmDropdown-editPage')?.addEventListener('wa-select', (event) => {
+  document.querySelector('#htmDropdown-editPage')?.addEventListener('select', (event) => {
     const item = event.detail.item;
     const action = item.getAttribute('data-action');
     const order = item.getAttribute('data-order');
@@ -48,7 +48,7 @@ Promise.all([
     }
   });
 
-  document.querySelector('#pageFacetSortSiteUser_editPage')?.addEventListener('wa-change', (event) => {
+  document.querySelector('#pageFacetSortSiteUser_editPage')?.addEventListener('change', (event) => {
     sort('SiteUser', 'editPage', event.currentTarget.value);
   });
 
@@ -63,31 +63,31 @@ Promise.all([
   document.querySelector('#htmButton_searchpageSiteUser')?.addEventListener('click', (event) => {
     document.querySelector('#searchpageSiteUserDialog').open = true;
   });
-          document.querySelector('#fqSiteUser_created')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqSiteUser_created')?.addEventListener('change', (event) => {
             fqChange('SiteUser', event.currentTarget);
           });
           document.querySelector('#buttonFacetSiteUser_created')?.addEventListener('click', (event) => {
             facetFieldChange('SiteUser', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotSiteUser_created')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotSiteUser_created')?.addEventListener('change', (event) => {
             facetPivotChange('SiteUser', event.currentTarget);
           });
-          document.querySelector('#fqSiteUser_archived')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqSiteUser_archived')?.addEventListener('change', (event) => {
             fqChange('SiteUser', event.currentTarget);
           });
           document.querySelector('#buttonFacetSiteUser_archived')?.addEventListener('click', (event) => {
             facetFieldChange('SiteUser', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotSiteUser_archived')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotSiteUser_archived')?.addEventListener('change', (event) => {
             facetPivotChange('SiteUser', event.currentTarget);
           });
-          document.querySelector('#fqSiteUser_displayPage')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqSiteUser_displayPage')?.addEventListener('change', (event) => {
             fqChange('SiteUser', event.currentTarget);
           });
           document.querySelector('#buttonFacetSiteUser_displayPage')?.addEventListener('click', (event) => {
             facetFieldChange('SiteUser', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotSiteUser_displayPage')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotSiteUser_displayPage')?.addEventListener('change', (event) => {
             facetPivotChange('SiteUser', event.currentTarget);
           });
 });

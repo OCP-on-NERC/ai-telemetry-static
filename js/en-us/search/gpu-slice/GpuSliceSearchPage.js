@@ -3,11 +3,11 @@ Promise.all([
     , customElements.whenDefined('wa-input')
     ]).then(() => {
 
-  document.querySelector('#pageFacetRangeGpuSlice')?.addEventListener('wa-change', (event) => {
+  document.querySelector('#pageFacetRangeGpuSlice')?.addEventListener('change', (event) => {
     facetRangeChange('GpuSlice', event.target.value);
   });
 
-  document.querySelector('#htmDropdown-sliceName')?.addEventListener('wa-select', (event) => {
+  document.querySelector('#htmDropdown-sliceName')?.addEventListener('select', (event) => {
     const item = event.detail.item;
     const action = item.getAttribute('data-action');
     const order = item.getAttribute('data-order');
@@ -18,11 +18,11 @@ Promise.all([
     }
   });
 
-  document.querySelector('#pageFacetSortGpuSlice_sliceName')?.addEventListener('wa-change', (event) => {
+  document.querySelector('#pageFacetSortGpuSlice_sliceName')?.addEventListener('change', (event) => {
     sort('GpuSlice', 'sliceName', event.currentTarget.value);
   });
 
-  document.querySelector('#htmDropdown-description')?.addEventListener('wa-select', (event) => {
+  document.querySelector('#htmDropdown-description')?.addEventListener('select', (event) => {
     const item = event.detail.item;
     const action = item.getAttribute('data-action');
     const order = item.getAttribute('data-order');
@@ -33,11 +33,11 @@ Promise.all([
     }
   });
 
-  document.querySelector('#pageFacetSortGpuSlice_description')?.addEventListener('wa-change', (event) => {
+  document.querySelector('#pageFacetSortGpuSlice_description')?.addEventListener('change', (event) => {
     sort('GpuSlice', 'description', event.currentTarget.value);
   });
 
-  document.querySelector('#htmDropdown-editPage')?.addEventListener('wa-select', (event) => {
+  document.querySelector('#htmDropdown-editPage')?.addEventListener('select', (event) => {
     const item = event.detail.item;
     const action = item.getAttribute('data-action');
     const order = item.getAttribute('data-order');
@@ -48,7 +48,7 @@ Promise.all([
     }
   });
 
-  document.querySelector('#pageFacetSortGpuSlice_editPage')?.addEventListener('wa-change', (event) => {
+  document.querySelector('#pageFacetSortGpuSlice_editPage')?.addEventListener('change', (event) => {
     sort('GpuSlice', 'editPage', event.currentTarget.value);
   });
 
@@ -91,103 +91,103 @@ Promise.all([
           );
     }
   });
-          document.querySelector('#fqGpuSlice_created')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqGpuSlice_created')?.addEventListener('change', (event) => {
             fqChange('GpuSlice', event.currentTarget);
           });
           document.querySelector('#buttonFacetGpuSlice_created')?.addEventListener('click', (event) => {
             facetFieldChange('GpuSlice', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotGpuSlice_created')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotGpuSlice_created')?.addEventListener('change', (event) => {
             facetPivotChange('GpuSlice', event.currentTarget);
           });
-          document.querySelector('#fqGpuSlice_archived')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqGpuSlice_archived')?.addEventListener('change', (event) => {
             fqChange('GpuSlice', event.currentTarget);
           });
           document.querySelector('#buttonFacetGpuSlice_archived')?.addEventListener('click', (event) => {
             facetFieldChange('GpuSlice', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotGpuSlice_archived')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotGpuSlice_archived')?.addEventListener('change', (event) => {
             facetPivotChange('GpuSlice', event.currentTarget);
           });
-          document.querySelector('#fqGpuSlice_sliceName')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqGpuSlice_sliceName')?.addEventListener('change', (event) => {
             fqChange('GpuSlice', event.currentTarget);
           });
           document.querySelector('#buttonFacetGpuSlice_sliceName')?.addEventListener('click', (event) => {
             facetFieldChange('GpuSlice', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotGpuSlice_sliceName')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotGpuSlice_sliceName')?.addEventListener('change', (event) => {
             facetPivotChange('GpuSlice', event.currentTarget);
           });
-          document.querySelector('#fqGpuSlice_description')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqGpuSlice_description')?.addEventListener('change', (event) => {
             fqChange('GpuSlice', event.currentTarget);
           });
           document.querySelector('#buttonFacetGpuSlice_description')?.addEventListener('click', (event) => {
             facetFieldChange('GpuSlice', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotGpuSlice_description')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotGpuSlice_description')?.addEventListener('change', (event) => {
             facetPivotChange('GpuSlice', event.currentTarget);
           });
-          document.querySelector('#fqGpuSlice_id')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqGpuSlice_id')?.addEventListener('change', (event) => {
             fqChange('GpuSlice', event.currentTarget);
           });
           document.querySelector('#buttonFacetGpuSlice_id')?.addEventListener('click', (event) => {
             facetFieldChange('GpuSlice', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotGpuSlice_id')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotGpuSlice_id')?.addEventListener('change', (event) => {
             facetPivotChange('GpuSlice', event.currentTarget);
           });
-          document.querySelector('#fqGpuSlice_ngsildTenant')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqGpuSlice_ngsildTenant')?.addEventListener('change', (event) => {
             fqChange('GpuSlice', event.currentTarget);
           });
           document.querySelector('#buttonFacetGpuSlice_ngsildTenant')?.addEventListener('click', (event) => {
             facetFieldChange('GpuSlice', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotGpuSlice_ngsildTenant')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotGpuSlice_ngsildTenant')?.addEventListener('change', (event) => {
             facetPivotChange('GpuSlice', event.currentTarget);
           });
-          document.querySelector('#fqGpuSlice_ngsildPath')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqGpuSlice_ngsildPath')?.addEventListener('change', (event) => {
             fqChange('GpuSlice', event.currentTarget);
           });
           document.querySelector('#buttonFacetGpuSlice_ngsildPath')?.addEventListener('click', (event) => {
             facetFieldChange('GpuSlice', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotGpuSlice_ngsildPath')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotGpuSlice_ngsildPath')?.addEventListener('change', (event) => {
             facetPivotChange('GpuSlice', event.currentTarget);
           });
-          document.querySelector('#fqGpuSlice_ngsildContext')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqGpuSlice_ngsildContext')?.addEventListener('change', (event) => {
             fqChange('GpuSlice', event.currentTarget);
           });
           document.querySelector('#buttonFacetGpuSlice_ngsildContext')?.addEventListener('click', (event) => {
             facetFieldChange('GpuSlice', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotGpuSlice_ngsildContext')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotGpuSlice_ngsildContext')?.addEventListener('change', (event) => {
             facetPivotChange('GpuSlice', event.currentTarget);
           });
-          document.querySelector('#fqGpuSlice_ngsildData')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqGpuSlice_ngsildData')?.addEventListener('change', (event) => {
             fqChange('GpuSlice', event.currentTarget);
           });
           document.querySelector('#buttonFacetGpuSlice_ngsildData')?.addEventListener('click', (event) => {
             facetFieldChange('GpuSlice', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotGpuSlice_ngsildData')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotGpuSlice_ngsildData')?.addEventListener('change', (event) => {
             facetPivotChange('GpuSlice', event.currentTarget);
           });
-          document.querySelector('#fqGpuSlice_location')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqGpuSlice_location')?.addEventListener('change', (event) => {
             fqChange('GpuSlice', event.currentTarget);
           });
           document.querySelector('#buttonFacetGpuSlice_location')?.addEventListener('click', (event) => {
             facetFieldChange('GpuSlice', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotGpuSlice_location')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotGpuSlice_location')?.addEventListener('change', (event) => {
             facetPivotChange('GpuSlice', event.currentTarget);
           });
-          document.querySelector('#fqGpuSlice_displayPage')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqGpuSlice_displayPage')?.addEventListener('change', (event) => {
             fqChange('GpuSlice', event.currentTarget);
           });
           document.querySelector('#buttonFacetGpuSlice_displayPage')?.addEventListener('click', (event) => {
             facetFieldChange('GpuSlice', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotGpuSlice_displayPage')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotGpuSlice_displayPage')?.addEventListener('change', (event) => {
             facetPivotChange('GpuSlice', event.currentTarget);
           });
 });

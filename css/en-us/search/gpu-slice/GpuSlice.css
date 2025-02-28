@@ -1,6 +1,6 @@
 #site-results-grid {
   display: grid;
-  row-gap: var(--site-secondary-space);
+  gap: var(--site-secondary-space);
   background-color: var(--wa-color-surface-lowered);
   > * {
     display: grid;

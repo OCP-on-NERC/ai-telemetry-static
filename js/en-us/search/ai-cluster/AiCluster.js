@@ -1447,6 +1447,12 @@ function pageGraphAiCluster(apiRequest) {
 
     // Graph Location
     window.mapLayers = {};
+    window.bounds = null;
+    if(listAiCluster.filter(o => o.location)) {
+      window.bounds = L.latLngBounds(listAiCluster.filter(o => o.location).map((c) => {
+        return [c.location.coordinates[1], c.location.coordinates[0]];
+      }));
+    }
     function onEachFeature(feature, layer) {
       let popupContent = htmTooltipAiCluster(feature, layer);
       layer.bindPopup(popupContent);
@@ -1483,6 +1489,7 @@ function pageGraphAiCluster(apiRequest) {
       window.mapAiCluster = L.map('htmBodyGraphLocationAiClusterPage', {
         position: 'topright'
         , zoomControl: true
+        , scrollWheelZoom: false
         , closePopupOnClick: false
         , contextmenu: true
         , contextmenuWidth: 140
@@ -1509,12 +1516,20 @@ function pageGraphAiCluster(apiRequest) {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(window.mapAiCluster);
 
-      if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-        window.mapAiCluster.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]], window['DEFAULT_MAP_ZOOM']);
-      else if(window['DEFAULT_MAP_ZOOM'])
-        window.mapAiCluster.setView(null, window['DEFAULT_MAP_ZOOM']);
-      else if(window['DEFAULT_MAP_LOCATION'])
-        window.mapAiCluster.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]]);
+      if(window.bounds && window['DEFAULT_MAP_ZOOM']) {
+        if(listAiCluster.length == 1) {
+          window.mapAiCluster.setView(window.bounds.getNorthEast(), window['DEFAULT_MAP_ZOOM']);
+        } else {
+          window.mapAiCluster.fitBounds(window.bounds);
+        }
+      } else {
+        if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+          window.mapAiCluster.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]], window['DEFAULT_MAP_ZOOM']);
+        else if(window['DEFAULT_MAP_ZOOM'])
+          window.mapAiCluster.setView(null, window['DEFAULT_MAP_ZOOM']);
+        else if(window['DEFAULT_MAP_LOCATION'])
+          window.mapAiCluster.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]]);
+      }
 
       layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
       window.geoJSONAiCluster = L.geoJSON().addTo(window.mapAiCluster);

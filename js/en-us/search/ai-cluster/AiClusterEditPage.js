@@ -4,7 +4,7 @@ Promise.all([
     ]).then(() => {
 
           // PATCH created
-          document.querySelector('#Page_created')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_created')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_created');
             const valid = form.checkValidity();
             if(valid) {
@@ -25,10 +25,10 @@ Promise.all([
               }
             }
           });
-          document.querySelector('#Page_created')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_created')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_created')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_created')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_created');
             const valid = form.reportValidity();
           });
@@ -49,16 +49,16 @@ Promise.all([
               }
             }
           });
-          document.querySelector('#Page_archived')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_archived')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_archived')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_archived')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_archived');
             const valid = form.reportValidity();
           });
 
           // PATCH clusterName
-          document.querySelector('#Page_clusterName')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_clusterName')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_clusterName');
             const valid = form.checkValidity();
             if(valid) {
@@ -70,16 +70,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_clusterName')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_clusterName')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_clusterName')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_clusterName')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_clusterName');
             const valid = form.reportValidity();
           });
 
           // PATCH description
-          document.querySelector('#Page_description')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_description')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_description');
             const valid = form.checkValidity();
             if(valid) {
@@ -91,16 +91,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_description')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_description')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_description')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_description')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_description');
             const valid = form.reportValidity();
           });
 
           // PATCH id
-          document.querySelector('#Page_id')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_id')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_id');
             const valid = form.checkValidity();
             if(valid) {
@@ -112,16 +112,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_id')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_id')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_id')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_id')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_id');
             const valid = form.reportValidity();
           });
 
           // PATCH location
-          document.querySelector('#Page_location')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_location')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_location');
             const valid = form.checkValidity();
             if(valid) {
@@ -133,16 +133,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_location')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_location')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_location')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_location')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_location');
             const valid = form.reportValidity();
           });
 
           // PATCH aiNodesTotal
-          document.querySelector('#Page_aiNodesTotal')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_aiNodesTotal')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_aiNodesTotal');
             const valid = form.checkValidity();
             if(valid) {
@@ -154,16 +154,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_aiNodesTotal')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_aiNodesTotal')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_aiNodesTotal')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_aiNodesTotal')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_aiNodesTotal');
             const valid = form.reportValidity();
           });
 
           // PATCH gpuDevicesTotal
-          document.querySelector('#Page_gpuDevicesTotal')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_gpuDevicesTotal')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_gpuDevicesTotal');
             const valid = form.checkValidity();
             if(valid) {
@@ -175,16 +175,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_gpuDevicesTotal')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_gpuDevicesTotal')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_gpuDevicesTotal')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_gpuDevicesTotal')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_gpuDevicesTotal');
             const valid = form.reportValidity();
           });
 
           // PATCH ngsildTenant
-          document.querySelector('#Page_ngsildTenant')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_ngsildTenant')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_ngsildTenant');
             const valid = form.checkValidity();
             if(valid) {
@@ -196,16 +196,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_ngsildTenant')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_ngsildTenant')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_ngsildTenant')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_ngsildTenant')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_ngsildTenant');
             const valid = form.reportValidity();
           });
 
           // PATCH ngsildPath
-          document.querySelector('#Page_ngsildPath')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_ngsildPath')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_ngsildPath');
             const valid = form.checkValidity();
             if(valid) {
@@ -217,16 +217,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_ngsildPath')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_ngsildPath')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_ngsildPath')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_ngsildPath')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_ngsildPath');
             const valid = form.reportValidity();
           });
 
           // PATCH ngsildContext
-          document.querySelector('#Page_ngsildContext')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_ngsildContext')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_ngsildContext');
             const valid = form.checkValidity();
             if(valid) {
@@ -238,16 +238,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_ngsildContext')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_ngsildContext')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_ngsildContext')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_ngsildContext')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_ngsildContext');
             const valid = form.reportValidity();
           });
 
           // PATCH ngsildData
-          document.querySelector('#Page_ngsildData')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_ngsildData')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_ngsildData');
             const valid = form.checkValidity();
             if(valid) {
@@ -259,16 +259,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_ngsildData')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_ngsildData')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_ngsildData')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_ngsildData')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_ngsildData');
             const valid = form.reportValidity();
           });
 
           // PATCH sessionId
-          document.querySelector('#Page_sessionId')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_sessionId')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_sessionId');
             const valid = form.checkValidity();
             if(valid) {
@@ -280,16 +280,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_sessionId')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_sessionId')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_sessionId')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_sessionId')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_sessionId');
             const valid = form.reportValidity();
           });
 
           // PATCH userKey
-          document.querySelector('#Page_userKey')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_userKey')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_userKey');
             const valid = form.checkValidity();
             if(valid) {
@@ -301,16 +301,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_userKey')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_userKey')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_userKey')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_userKey')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_userKey');
             const valid = form.reportValidity();
           });
 
           // PATCH title
-          document.querySelector('#Page_title')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_title')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_title');
             const valid = form.checkValidity();
             if(valid) {
@@ -322,16 +322,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_title')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_title')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_title')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_title')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_title');
             const valid = form.reportValidity();
           });
 
           // PATCH displayPage
-          document.querySelector('#Page_displayPage')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_displayPage')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_displayPage');
             const valid = form.checkValidity();
             if(valid) {
@@ -343,10 +343,10 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_displayPage')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_displayPage')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_displayPage')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_displayPage')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_displayPage');
             const valid = form.reportValidity();
           });

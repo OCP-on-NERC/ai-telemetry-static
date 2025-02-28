@@ -4,7 +4,7 @@ Promise.all([
     ]).then(() => {
 
           // PATCH created
-          document.querySelector('#Page_created')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_created')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_created');
             const valid = form.checkValidity();
             if(valid) {
@@ -25,10 +25,10 @@ Promise.all([
               }
             }
           });
-          document.querySelector('#Page_created')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_created')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_created')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_created')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_created');
             const valid = form.reportValidity();
           });
@@ -49,16 +49,37 @@ Promise.all([
               }
             }
           });
-          document.querySelector('#Page_archived')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_archived')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_archived')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_archived')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_archived');
             const valid = form.reportValidity();
           });
 
+          // PATCH clusterName
+          document.querySelector('#Page_clusterName')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_clusterName');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchAiProjectVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'projectId:' + event.currentTarget.getAttribute('data-projectId') }]
+                  , 'setClusterName', event.currentTarget.value
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_clusterName')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_clusterName')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_clusterName');
+            const valid = form.reportValidity();
+          });
+
           // PATCH projectName
-          document.querySelector('#Page_projectName')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_projectName')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_projectName');
             const valid = form.checkValidity();
             if(valid) {
@@ -70,37 +91,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_projectName')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_projectName')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_projectName')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_projectName')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_projectName');
             const valid = form.reportValidity();
           });
 
-          // PATCH projectId
-          document.querySelector('#Page_projectId')?.addEventListener('wa-change', (event) => {
-            const form = document.querySelector('#PageForm_projectId');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchAiProjectVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'projectId:' + event.currentTarget.getAttribute('data-projectId') }]
-                  , 'setProjectId', event.currentTarget.value
-                  , event.currentTarget
-                  , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_projectId')?.addEventListener('wa-focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_projectId')?.addEventListener('wa-blur', (event) => {
-            const form = document.querySelector('#PageForm_projectId');
-            const valid = form.reportValidity();
-          });
-
           // PATCH description
-          document.querySelector('#Page_description')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_description')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_description');
             const valid = form.checkValidity();
             if(valid) {
@@ -112,16 +112,37 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_description')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_description')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_description')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_description')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_description');
             const valid = form.reportValidity();
           });
 
+          // PATCH projectId
+          document.querySelector('#Page_projectId')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_projectId');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchAiProjectVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'projectId:' + event.currentTarget.getAttribute('data-projectId') }]
+                  , 'setProjectId', event.currentTarget.value
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_projectId')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_projectId')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_projectId');
+            const valid = form.reportValidity();
+          });
+
           // PATCH sessionId
-          document.querySelector('#Page_sessionId')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_sessionId')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_sessionId');
             const valid = form.checkValidity();
             if(valid) {
@@ -133,16 +154,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_sessionId')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_sessionId')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_sessionId')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_sessionId')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_sessionId');
             const valid = form.reportValidity();
           });
 
           // PATCH userKey
-          document.querySelector('#Page_userKey')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_userKey')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_userKey');
             const valid = form.checkValidity();
             if(valid) {
@@ -154,16 +175,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_userKey')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_userKey')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_userKey')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_userKey')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_userKey');
             const valid = form.reportValidity();
           });
 
           // PATCH title
-          document.querySelector('#Page_title')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_title')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_title');
             const valid = form.checkValidity();
             if(valid) {
@@ -175,16 +196,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_title')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_title')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_title')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_title')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_title');
             const valid = form.reportValidity();
           });
 
           // PATCH displayPage
-          document.querySelector('#Page_displayPage')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#Page_displayPage')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_displayPage');
             const valid = form.checkValidity();
             if(valid) {
@@ -196,10 +217,10 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_displayPage')?.addEventListener('wa-focus', (event) => {
+          document.querySelector('#Page_displayPage')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_displayPage')?.addEventListener('wa-blur', (event) => {
+          document.querySelector('#Page_displayPage')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_displayPage');
             const valid = form.reportValidity();
           });

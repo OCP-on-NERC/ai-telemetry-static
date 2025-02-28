@@ -113,13 +113,13 @@ function searchGpuSliceFilters($formFilters) {
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
-    var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
-    if(filterObjectText != null && filterObjectText !== '')
-      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
+    if(filterObjectText != null && filterObjectText !== '')
+      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
     var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
     if(filterLocationColors != null && filterLocationColors !== '')
@@ -513,13 +513,13 @@ function patchGpuSliceFilters($formFilters) {
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
-    var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
-    if(filterObjectText != null && filterObjectText !== '')
-      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
+    if(filterObjectText != null && filterObjectText !== '')
+      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
     var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
     if(filterLocationColors != null && filterLocationColors !== '')
@@ -867,8 +867,8 @@ async function websocketGpuSliceInner(apiRequest) {
         var inputEditPage = null;
         var inputUserPage = null;
         var inputObjectSuggest = null;
-        var inputObjectText = null;
         var inputSolrId = null;
+        var inputObjectText = null;
         var inputLocationColors = null;
         var inputLocationTitles = null;
         var inputLocationLinks = null;
@@ -920,10 +920,10 @@ async function websocketGpuSliceInner(apiRequest) {
           inputUserPage = $response.querySelector('.Page_userPage');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
-        if(vars.includes('objectText'))
-          inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
+        if(vars.includes('objectText'))
+          inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('locationColors'))
           inputLocationColors = $response.querySelector('.Page_locationColors');
         if(vars.includes('locationTitles'))
@@ -1168,16 +1168,6 @@ async function websocketGpuSliceInner(apiRequest) {
           addGlow(document.querySelector('.Page_objectSuggest'));
         }
 
-        if(inputObjectText) {
-          document.querySelectorAll('.Page_objectText').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputObjectText.getAttribute('value');
-            else
-              item.textContent = inputObjectText.textContent;
-          });
-          addGlow(document.querySelector('.Page_objectText'));
-        }
-
         if(inputSolrId) {
           document.querySelectorAll('.Page_solrId').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1186,6 +1176,16 @@ async function websocketGpuSliceInner(apiRequest) {
               item.textContent = inputSolrId.textContent;
           });
           addGlow(document.querySelector('.Page_solrId'));
+        }
+
+        if(inputObjectText) {
+          document.querySelectorAll('.Page_objectText').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputObjectText.getAttribute('value');
+            else
+              item.textContent = inputObjectText.textContent;
+          });
+          addGlow(document.querySelector('.Page_objectText'));
         }
 
         if(inputLocationColors) {
@@ -1336,6 +1336,12 @@ function pageGraphGpuSlice(apiRequest) {
 
     // Graph Location
     window.mapLayers = {};
+    window.bounds = null;
+    if(listGpuSlice.filter(o => o.location)) {
+      window.bounds = L.latLngBounds(listGpuSlice.filter(o => o.location).map((c) => {
+        return [c.location.coordinates[1], c.location.coordinates[0]];
+      }));
+    }
     function onEachFeature(feature, layer) {
       let popupContent = htmTooltipGpuSlice(feature, layer);
       layer.bindPopup(popupContent);
@@ -1372,6 +1378,7 @@ function pageGraphGpuSlice(apiRequest) {
       window.mapGpuSlice = L.map('htmBodyGraphLocationGpuSlicePage', {
         position: 'topright'
         , zoomControl: true
+        , scrollWheelZoom: false
         , closePopupOnClick: false
         , contextmenu: true
         , contextmenuWidth: 140
@@ -1398,12 +1405,16 @@ function pageGraphGpuSlice(apiRequest) {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(window.mapGpuSlice);
 
-      if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-        window.mapGpuSlice.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]], window['DEFAULT_MAP_ZOOM']);
-      else if(window['DEFAULT_MAP_ZOOM'])
-        window.mapGpuSlice.setView(null, window['DEFAULT_MAP_ZOOM']);
-      else if(window['DEFAULT_MAP_LOCATION'])
-        window.mapGpuSlice.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]]);
+      if(window.bounds) {
+        window.mapGpuSlice.fitBounds(window.bounds);
+      } else {
+        if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+          window.mapGpuSlice.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]], window['DEFAULT_MAP_ZOOM']);
+        else if(window['DEFAULT_MAP_ZOOM'])
+          window.mapGpuSlice.setView(null, window['DEFAULT_MAP_ZOOM']);
+        else if(window['DEFAULT_MAP_LOCATION'])
+          window.mapGpuSlice.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]]);
+      }
 
       layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
       window.geoJSONGpuSlice = L.geoJSON().addTo(window.mapGpuSlice);

@@ -37,17 +37,21 @@ function searchAiProjectFilters($formFilters) {
     if(filterArchived != null && filterArchived === true)
       filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
+    var filterClusterName = $formFilters.querySelector('.valueClusterName')?.value;
+    if(filterClusterName != null && filterClusterName !== '')
+      filters.push({ name: 'fq', value: 'clusterName:' + filterClusterName });
+
     var filterProjectName = $formFilters.querySelector('.valueProjectName')?.value;
     if(filterProjectName != null && filterProjectName !== '')
       filters.push({ name: 'fq', value: 'projectName:' + filterProjectName });
 
-    var filterProjectId = $formFilters.querySelector('.valueProjectId')?.value;
-    if(filterProjectId != null && filterProjectId !== '')
-      filters.push({ name: 'fq', value: 'projectId:' + filterProjectId });
-
     var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
     if(filterDescription != null && filterDescription !== '')
       filters.push({ name: 'fq', value: 'description:' + filterDescription });
+
+    var filterProjectId = $formFilters.querySelector('.valueProjectId')?.value;
+    if(filterProjectId != null && filterProjectId !== '')
+      filters.push({ name: 'fq', value: 'projectId:' + filterProjectId });
 
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -93,13 +97,17 @@ function searchAiProjectFilters($formFilters) {
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
+    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
+    if(filterSolrId != null && filterSolrId !== '')
+      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
     var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
-    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
-    if(filterSolrId != null && filterSolrId !== '')
-      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+    var filterProjectDisplayName = $formFilters.querySelector('.valueProjectDisplayName')?.value;
+    if(filterProjectDisplayName != null && filterProjectDisplayName !== '')
+      filters.push({ name: 'fq', value: 'projectDisplayName:' + filterProjectDisplayName });
   }
   return filters;
 }
@@ -215,6 +223,18 @@ async function patchAiProject($formFilters, $formValues, target, projectId, succ
   if(removeArchived != null && removeArchived !== '')
     vals['removeArchived'] = removeArchived;
 
+  var valueClusterName = $formValues.querySelector('.valueClusterName')?.value;
+  var removeClusterName = $formValues.querySelector('.removeClusterName')?.value === 'true';
+  var setClusterName = removeClusterName ? null : $formValues.querySelector('.setClusterName')?.value;
+  var addClusterName = $formValues.querySelector('.addClusterName')?.value;
+  if(removeClusterName || setClusterName != null && setClusterName !== '')
+    vals['setClusterName'] = setClusterName;
+  if(addClusterName != null && addClusterName !== '')
+    vals['addClusterName'] = addClusterName;
+  var removeClusterName = $formValues.querySelector('.removeClusterName')?.value;
+  if(removeClusterName != null && removeClusterName !== '')
+    vals['removeClusterName'] = removeClusterName;
+
   var valueProjectName = $formValues.querySelector('.valueProjectName')?.value;
   var removeProjectName = $formValues.querySelector('.removeProjectName')?.value === 'true';
   var setProjectName = removeProjectName ? null : $formValues.querySelector('.setProjectName')?.value;
@@ -227,18 +247,6 @@ async function patchAiProject($formFilters, $formValues, target, projectId, succ
   if(removeProjectName != null && removeProjectName !== '')
     vals['removeProjectName'] = removeProjectName;
 
-  var valueProjectId = $formValues.querySelector('.valueProjectId')?.value;
-  var removeProjectId = $formValues.querySelector('.removeProjectId')?.value === 'true';
-  var setProjectId = removeProjectId ? null : $formValues.querySelector('.setProjectId')?.value;
-  var addProjectId = $formValues.querySelector('.addProjectId')?.value;
-  if(removeProjectId || setProjectId != null && setProjectId !== '')
-    vals['setProjectId'] = setProjectId;
-  if(addProjectId != null && addProjectId !== '')
-    vals['addProjectId'] = addProjectId;
-  var removeProjectId = $formValues.querySelector('.removeProjectId')?.value;
-  if(removeProjectId != null && removeProjectId !== '')
-    vals['removeProjectId'] = removeProjectId;
-
   var valueDescription = $formValues.querySelector('.valueDescription')?.value;
   var removeDescription = $formValues.querySelector('.removeDescription')?.value === 'true';
   var setDescription = removeDescription ? null : $formValues.querySelector('.setDescription')?.value;
@@ -250,6 +258,18 @@ async function patchAiProject($formFilters, $formValues, target, projectId, succ
   var removeDescription = $formValues.querySelector('.removeDescription')?.value;
   if(removeDescription != null && removeDescription !== '')
     vals['removeDescription'] = removeDescription;
+
+  var valueProjectId = $formValues.querySelector('.valueProjectId')?.value;
+  var removeProjectId = $formValues.querySelector('.removeProjectId')?.value === 'true';
+  var setProjectId = removeProjectId ? null : $formValues.querySelector('.setProjectId')?.value;
+  var addProjectId = $formValues.querySelector('.addProjectId')?.value;
+  if(removeProjectId || setProjectId != null && setProjectId !== '')
+    vals['setProjectId'] = setProjectId;
+  if(addProjectId != null && addProjectId !== '')
+    vals['addProjectId'] = addProjectId;
+  var removeProjectId = $formValues.querySelector('.removeProjectId')?.value;
+  if(removeProjectId != null && removeProjectId !== '')
+    vals['removeProjectId'] = removeProjectId;
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   var removeSessionId = $formValues.querySelector('.removeSessionId')?.value === 'true';
@@ -341,17 +361,21 @@ function patchAiProjectFilters($formFilters) {
     if(filterArchived != null && filterArchived === true)
       filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
+    var filterClusterName = $formFilters.querySelector('.valueClusterName')?.value;
+    if(filterClusterName != null && filterClusterName !== '')
+      filters.push({ name: 'fq', value: 'clusterName:' + filterClusterName });
+
     var filterProjectName = $formFilters.querySelector('.valueProjectName')?.value;
     if(filterProjectName != null && filterProjectName !== '')
       filters.push({ name: 'fq', value: 'projectName:' + filterProjectName });
 
-    var filterProjectId = $formFilters.querySelector('.valueProjectId')?.value;
-    if(filterProjectId != null && filterProjectId !== '')
-      filters.push({ name: 'fq', value: 'projectId:' + filterProjectId });
-
     var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
     if(filterDescription != null && filterDescription !== '')
       filters.push({ name: 'fq', value: 'description:' + filterDescription });
+
+    var filterProjectId = $formFilters.querySelector('.valueProjectId')?.value;
+    if(filterProjectId != null && filterProjectId !== '')
+      filters.push({ name: 'fq', value: 'projectId:' + filterProjectId });
 
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -397,13 +421,17 @@ function patchAiProjectFilters($formFilters) {
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
+    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
+    if(filterSolrId != null && filterSolrId !== '')
+      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
     var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
-    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
-    if(filterSolrId != null && filterSolrId !== '')
-      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+    var filterProjectDisplayName = $formFilters.querySelector('.valueProjectDisplayName')?.value;
+    if(filterProjectDisplayName != null && filterProjectDisplayName !== '')
+      filters.push({ name: 'fq', value: 'projectDisplayName:' + filterProjectDisplayName });
   }
   return filters;
 }
@@ -464,17 +492,21 @@ async function postAiProject($formValues, target, success, error) {
   if(valueArchived != null && valueArchived !== '')
     vals['archived'] = valueArchived == 'true';
 
+  var valueClusterName = $formValues.querySelector('.valueClusterName')?.value;
+  if(valueClusterName != null && valueClusterName !== '')
+    vals['clusterName'] = valueClusterName;
+
   var valueProjectName = $formValues.querySelector('.valueProjectName')?.value;
   if(valueProjectName != null && valueProjectName !== '')
     vals['projectName'] = valueProjectName;
 
-  var valueProjectId = $formValues.querySelector('.valueProjectId')?.value;
-  if(valueProjectId != null && valueProjectId !== '')
-    vals['projectId'] = valueProjectId;
-
   var valueDescription = $formValues.querySelector('.valueDescription')?.value;
   if(valueDescription != null && valueDescription !== '')
     vals['description'] = valueDescription;
+
+  var valueProjectId = $formValues.querySelector('.valueProjectId')?.value;
+  if(valueProjectId != null && valueProjectId !== '')
+    vals['projectId'] = valueProjectId;
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   if(valueSessionId != null && valueSessionId !== '')
@@ -696,9 +728,10 @@ async function websocketAiProjectInner(apiRequest) {
         var inputCreated = null;
         var inputModified = null;
         var inputArchived = null;
+        var inputClusterName = null;
         var inputProjectName = null;
-        var inputProjectId = null;
         var inputDescription = null;
+        var inputProjectId = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -710,8 +743,9 @@ async function websocketAiProjectInner(apiRequest) {
         var inputEditPage = null;
         var inputUserPage = null;
         var inputObjectSuggest = null;
-        var inputObjectText = null;
         var inputSolrId = null;
+        var inputObjectText = null;
+        var inputProjectDisplayName = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Page_pk');
@@ -721,12 +755,14 @@ async function websocketAiProjectInner(apiRequest) {
           inputModified = $response.querySelector('.Page_modified');
         if(vars.includes('archived'))
           inputArchived = $response.querySelector('.Page_archived');
+        if(vars.includes('clusterName'))
+          inputClusterName = $response.querySelector('.Page_clusterName');
         if(vars.includes('projectName'))
           inputProjectName = $response.querySelector('.Page_projectName');
-        if(vars.includes('projectId'))
-          inputProjectId = $response.querySelector('.Page_projectId');
         if(vars.includes('description'))
           inputDescription = $response.querySelector('.Page_description');
+        if(vars.includes('projectId'))
+          inputProjectId = $response.querySelector('.Page_projectId');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -749,10 +785,12 @@ async function websocketAiProjectInner(apiRequest) {
           inputUserPage = $response.querySelector('.Page_userPage');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
-        if(vars.includes('objectText'))
-          inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
+        if(vars.includes('objectText'))
+          inputObjectText = $response.querySelector('.Page_objectText');
+        if(vars.includes('projectDisplayName'))
+          inputProjectDisplayName = $response.querySelector('.Page_projectDisplayName');
 
         jsWebsocketAiProject(projectId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -799,6 +837,16 @@ async function websocketAiProjectInner(apiRequest) {
           addGlow(document.querySelector('.Page_archived'));
         }
 
+        if(inputClusterName) {
+          document.querySelectorAll('.Page_clusterName').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputClusterName.getAttribute('value');
+            else
+              item.textContent = inputClusterName.textContent;
+          });
+          addGlow(document.querySelector('.Page_clusterName'));
+        }
+
         if(inputProjectName) {
           document.querySelectorAll('.Page_projectName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -809,16 +857,6 @@ async function websocketAiProjectInner(apiRequest) {
           addGlow(document.querySelector('.Page_projectName'));
         }
 
-        if(inputProjectId) {
-          document.querySelectorAll('.Page_projectId').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputProjectId.getAttribute('value');
-            else
-              item.textContent = inputProjectId.textContent;
-          });
-          addGlow(document.querySelector('.Page_projectId'));
-        }
-
         if(inputDescription) {
           document.querySelectorAll('.Page_description').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -827,6 +865,16 @@ async function websocketAiProjectInner(apiRequest) {
               item.textContent = inputDescription.textContent;
           });
           addGlow(document.querySelector('.Page_description'));
+        }
+
+        if(inputProjectId) {
+          document.querySelectorAll('.Page_projectId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputProjectId.getAttribute('value');
+            else
+              item.textContent = inputProjectId.textContent;
+          });
+          addGlow(document.querySelector('.Page_projectId'));
         }
 
         if(inputClassCanonicalName) {
@@ -939,6 +987,16 @@ async function websocketAiProjectInner(apiRequest) {
           addGlow(document.querySelector('.Page_objectSuggest'));
         }
 
+        if(inputSolrId) {
+          document.querySelectorAll('.Page_solrId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSolrId.getAttribute('value');
+            else
+              item.textContent = inputSolrId.textContent;
+          });
+          addGlow(document.querySelector('.Page_solrId'));
+        }
+
         if(inputObjectText) {
           document.querySelectorAll('.Page_objectText').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -949,14 +1007,14 @@ async function websocketAiProjectInner(apiRequest) {
           addGlow(document.querySelector('.Page_objectText'));
         }
 
-        if(inputSolrId) {
-          document.querySelectorAll('.Page_solrId').forEach((item, index) => {
+        if(inputProjectDisplayName) {
+          document.querySelectorAll('.Page_projectDisplayName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
-              item.value = inputSolrId.getAttribute('value');
+              item.value = inputProjectDisplayName.getAttribute('value');
             else
-              item.textContent = inputSolrId.textContent;
+              item.textContent = inputProjectDisplayName.textContent;
           });
-          addGlow(document.querySelector('.Page_solrId'));
+          addGlow(document.querySelector('.Page_projectDisplayName'));
         }
 
           pageGraphAiProject();

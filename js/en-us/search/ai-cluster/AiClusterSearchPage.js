@@ -3,11 +3,11 @@ Promise.all([
     , customElements.whenDefined('wa-input')
     ]).then(() => {
 
-  document.querySelector('#pageFacetRangeAiCluster')?.addEventListener('wa-change', (event) => {
+  document.querySelector('#pageFacetRangeAiCluster')?.addEventListener('change', (event) => {
     facetRangeChange('AiCluster', event.target.value);
   });
 
-  document.querySelector('#htmDropdown-clusterName')?.addEventListener('wa-select', (event) => {
+  document.querySelector('#htmDropdown-clusterName')?.addEventListener('select', (event) => {
     const item = event.detail.item;
     const action = item.getAttribute('data-action');
     const order = item.getAttribute('data-order');
@@ -18,11 +18,11 @@ Promise.all([
     }
   });
 
-  document.querySelector('#pageFacetSortAiCluster_clusterName')?.addEventListener('wa-change', (event) => {
+  document.querySelector('#pageFacetSortAiCluster_clusterName')?.addEventListener('change', (event) => {
     sort('AiCluster', 'clusterName', event.currentTarget.value);
   });
 
-  document.querySelector('#htmDropdown-description')?.addEventListener('wa-select', (event) => {
+  document.querySelector('#htmDropdown-description')?.addEventListener('select', (event) => {
     const item = event.detail.item;
     const action = item.getAttribute('data-action');
     const order = item.getAttribute('data-order');
@@ -33,11 +33,26 @@ Promise.all([
     }
   });
 
-  document.querySelector('#pageFacetSortAiCluster_description')?.addEventListener('wa-change', (event) => {
+  document.querySelector('#pageFacetSortAiCluster_description')?.addEventListener('change', (event) => {
     sort('AiCluster', 'description', event.currentTarget.value);
   });
 
-  document.querySelector('#htmDropdown-editPage')?.addEventListener('wa-select', (event) => {
+  document.querySelector('#htmDropdown-modified')?.addEventListener('select', (event) => {
+    const item = event.detail.item;
+    const action = item.getAttribute('data-action');
+    const order = item.getAttribute('data-order');
+    const checked = !(document.querySelector('#pageSearchVal-pageSort-AiCluster-modified').innerText == undefined);
+    if (action === 'sort') {
+      sort('AiCluster', 'modified', checked ? order : '');
+      document.querySelector('#pageFacetSortAiCluster_modified').value = checked ? order : '';
+    }
+  });
+
+  document.querySelector('#pageFacetSortAiCluster_modified')?.addEventListener('change', (event) => {
+    sort('AiCluster', 'modified', event.currentTarget.value);
+  });
+
+  document.querySelector('#htmDropdown-editPage')?.addEventListener('select', (event) => {
     const item = event.detail.item;
     const action = item.getAttribute('data-action');
     const order = item.getAttribute('data-order');
@@ -48,7 +63,7 @@ Promise.all([
     }
   });
 
-  document.querySelector('#pageFacetSortAiCluster_editPage')?.addEventListener('wa-change', (event) => {
+  document.querySelector('#pageFacetSortAiCluster_editPage')?.addEventListener('change', (event) => {
     sort('AiCluster', 'editPage', event.currentTarget.value);
   });
 
@@ -91,112 +106,112 @@ Promise.all([
           );
     }
   });
-          document.querySelector('#fqAiCluster_created')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiCluster_created')?.addEventListener('change', (event) => {
             fqChange('AiCluster', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiCluster_created')?.addEventListener('click', (event) => {
             facetFieldChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiCluster_created')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiCluster_created')?.addEventListener('change', (event) => {
             facetPivotChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#fqAiCluster_archived')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiCluster_archived')?.addEventListener('change', (event) => {
             fqChange('AiCluster', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiCluster_archived')?.addEventListener('click', (event) => {
             facetFieldChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiCluster_archived')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiCluster_archived')?.addEventListener('change', (event) => {
             facetPivotChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#fqAiCluster_clusterName')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiCluster_clusterName')?.addEventListener('change', (event) => {
             fqChange('AiCluster', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiCluster_clusterName')?.addEventListener('click', (event) => {
             facetFieldChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiCluster_clusterName')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiCluster_clusterName')?.addEventListener('change', (event) => {
             facetPivotChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#fqAiCluster_id')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiCluster_id')?.addEventListener('change', (event) => {
             fqChange('AiCluster', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiCluster_id')?.addEventListener('click', (event) => {
             facetFieldChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiCluster_id')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiCluster_id')?.addEventListener('change', (event) => {
             facetPivotChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#fqAiCluster_location')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiCluster_location')?.addEventListener('change', (event) => {
             fqChange('AiCluster', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiCluster_location')?.addEventListener('click', (event) => {
             facetFieldChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiCluster_location')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiCluster_location')?.addEventListener('change', (event) => {
             facetPivotChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#fqAiCluster_aiNodesTotal')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiCluster_aiNodesTotal')?.addEventListener('change', (event) => {
             fqChange('AiCluster', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiCluster_aiNodesTotal')?.addEventListener('click', (event) => {
             facetFieldChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiCluster_aiNodesTotal')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiCluster_aiNodesTotal')?.addEventListener('change', (event) => {
             facetPivotChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#fqAiCluster_gpuDevicesTotal')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiCluster_gpuDevicesTotal')?.addEventListener('change', (event) => {
             fqChange('AiCluster', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiCluster_gpuDevicesTotal')?.addEventListener('click', (event) => {
             facetFieldChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiCluster_gpuDevicesTotal')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiCluster_gpuDevicesTotal')?.addEventListener('change', (event) => {
             facetPivotChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#fqAiCluster_ngsildTenant')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiCluster_ngsildTenant')?.addEventListener('change', (event) => {
             fqChange('AiCluster', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiCluster_ngsildTenant')?.addEventListener('click', (event) => {
             facetFieldChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiCluster_ngsildTenant')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiCluster_ngsildTenant')?.addEventListener('change', (event) => {
             facetPivotChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#fqAiCluster_ngsildPath')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiCluster_ngsildPath')?.addEventListener('change', (event) => {
             fqChange('AiCluster', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiCluster_ngsildPath')?.addEventListener('click', (event) => {
             facetFieldChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiCluster_ngsildPath')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiCluster_ngsildPath')?.addEventListener('change', (event) => {
             facetPivotChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#fqAiCluster_ngsildContext')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiCluster_ngsildContext')?.addEventListener('change', (event) => {
             fqChange('AiCluster', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiCluster_ngsildContext')?.addEventListener('click', (event) => {
             facetFieldChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiCluster_ngsildContext')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiCluster_ngsildContext')?.addEventListener('change', (event) => {
             facetPivotChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#fqAiCluster_ngsildData')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiCluster_ngsildData')?.addEventListener('change', (event) => {
             fqChange('AiCluster', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiCluster_ngsildData')?.addEventListener('click', (event) => {
             facetFieldChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiCluster_ngsildData')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiCluster_ngsildData')?.addEventListener('change', (event) => {
             facetPivotChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#fqAiCluster_displayPage')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiCluster_displayPage')?.addEventListener('change', (event) => {
             fqChange('AiCluster', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiCluster_displayPage')?.addEventListener('click', (event) => {
             facetFieldChange('AiCluster', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiCluster_displayPage')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiCluster_displayPage')?.addEventListener('change', (event) => {
             facetPivotChange('AiCluster', event.currentTarget);
           });
 });

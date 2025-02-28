@@ -3,11 +3,11 @@ Promise.all([
     , customElements.whenDefined('wa-input')
     ]).then(() => {
 
-  document.querySelector('#pageFacetRangeAiNode')?.addEventListener('wa-change', (event) => {
+  document.querySelector('#pageFacetRangeAiNode')?.addEventListener('change', (event) => {
     facetRangeChange('AiNode', event.target.value);
   });
 
-  document.querySelector('#htmDropdown-clusterName')?.addEventListener('wa-select', (event) => {
+  document.querySelector('#htmDropdown-clusterName')?.addEventListener('select', (event) => {
     const item = event.detail.item;
     const action = item.getAttribute('data-action');
     const order = item.getAttribute('data-order');
@@ -18,11 +18,11 @@ Promise.all([
     }
   });
 
-  document.querySelector('#pageFacetSortAiNode_clusterName')?.addEventListener('wa-change', (event) => {
+  document.querySelector('#pageFacetSortAiNode_clusterName')?.addEventListener('change', (event) => {
     sort('AiNode', 'clusterName', event.currentTarget.value);
   });
 
-  document.querySelector('#htmDropdown-nodeName')?.addEventListener('wa-select', (event) => {
+  document.querySelector('#htmDropdown-nodeName')?.addEventListener('select', (event) => {
     const item = event.detail.item;
     const action = item.getAttribute('data-action');
     const order = item.getAttribute('data-order');
@@ -33,11 +33,11 @@ Promise.all([
     }
   });
 
-  document.querySelector('#pageFacetSortAiNode_nodeName')?.addEventListener('wa-change', (event) => {
+  document.querySelector('#pageFacetSortAiNode_nodeName')?.addEventListener('change', (event) => {
     sort('AiNode', 'nodeName', event.currentTarget.value);
   });
 
-  document.querySelector('#htmDropdown-description')?.addEventListener('wa-select', (event) => {
+  document.querySelector('#htmDropdown-description')?.addEventListener('select', (event) => {
     const item = event.detail.item;
     const action = item.getAttribute('data-action');
     const order = item.getAttribute('data-order');
@@ -48,11 +48,11 @@ Promise.all([
     }
   });
 
-  document.querySelector('#pageFacetSortAiNode_description')?.addEventListener('wa-change', (event) => {
+  document.querySelector('#pageFacetSortAiNode_description')?.addEventListener('change', (event) => {
     sort('AiNode', 'description', event.currentTarget.value);
   });
 
-  document.querySelector('#htmDropdown-editPage')?.addEventListener('wa-select', (event) => {
+  document.querySelector('#htmDropdown-editPage')?.addEventListener('select', (event) => {
     const item = event.detail.item;
     const action = item.getAttribute('data-action');
     const order = item.getAttribute('data-order');
@@ -63,7 +63,7 @@ Promise.all([
     }
   });
 
-  document.querySelector('#pageFacetSortAiNode_editPage')?.addEventListener('wa-change', (event) => {
+  document.querySelector('#pageFacetSortAiNode_editPage')?.addEventListener('change', (event) => {
     sort('AiNode', 'editPage', event.currentTarget.value);
   });
 
@@ -106,121 +106,121 @@ Promise.all([
           );
     }
   });
-          document.querySelector('#fqAiNode_created')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiNode_created')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiNode_created')?.addEventListener('click', (event) => {
             facetFieldChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiNode_created')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiNode_created')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#fqAiNode_archived')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiNode_archived')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiNode_archived')?.addEventListener('click', (event) => {
             facetFieldChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiNode_archived')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiNode_archived')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#fqAiNode_clusterName')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiNode_clusterName')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiNode_clusterName')?.addEventListener('click', (event) => {
             facetFieldChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiNode_clusterName')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiNode_clusterName')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#fqAiNode_nodeName')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiNode_nodeName')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiNode_nodeName')?.addEventListener('click', (event) => {
             facetFieldChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiNode_nodeName')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiNode_nodeName')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#fqAiNode_nodeId')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiNode_nodeId')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiNode_nodeId')?.addEventListener('click', (event) => {
             facetFieldChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiNode_nodeId')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiNode_nodeId')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#fqAiNode_id')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiNode_id')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiNode_id')?.addEventListener('click', (event) => {
             facetFieldChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiNode_id')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiNode_id')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#fqAiNode_gpuDevicesTotal')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiNode_gpuDevicesTotal')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiNode_gpuDevicesTotal')?.addEventListener('click', (event) => {
             facetFieldChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiNode_gpuDevicesTotal')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiNode_gpuDevicesTotal')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#fqAiNode_ngsildTenant')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiNode_ngsildTenant')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiNode_ngsildTenant')?.addEventListener('click', (event) => {
             facetFieldChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiNode_ngsildTenant')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiNode_ngsildTenant')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#fqAiNode_ngsildPath')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiNode_ngsildPath')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiNode_ngsildPath')?.addEventListener('click', (event) => {
             facetFieldChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiNode_ngsildPath')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiNode_ngsildPath')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#fqAiNode_ngsildContext')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiNode_ngsildContext')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiNode_ngsildContext')?.addEventListener('click', (event) => {
             facetFieldChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiNode_ngsildContext')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiNode_ngsildContext')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#fqAiNode_ngsildData')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiNode_ngsildData')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiNode_ngsildData')?.addEventListener('click', (event) => {
             facetFieldChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiNode_ngsildData')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiNode_ngsildData')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#fqAiNode_location')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiNode_location')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiNode_location')?.addEventListener('click', (event) => {
             facetFieldChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiNode_location')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiNode_location')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#fqAiNode_displayPage')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#fqAiNode_displayPage')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
           });
           document.querySelector('#buttonFacetAiNode_displayPage')?.addEventListener('click', (event) => {
             facetFieldChange('AiNode', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAiNode_displayPage')?.addEventListener('wa-change', (event) => {
+          document.querySelector('#pageFacetPivotAiNode_displayPage')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
           });
 });
