@@ -14,6 +14,11 @@ footer > a > wa-card {
 wa-dropdown {
   z-index: 1;
 }
+.display-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* @media stuff */
 @media (max-width: 767px) {
   /* Mobile mode */
@@ -39,9 +44,9 @@ main, footer {
       max-width: 300px;
     }
   }
-main, footer {
-  padding-inline: var(--content-padding-inline);
-}
+  main, footer {
+    padding-inline: var(--content-padding-inline);
+  }
 }
 
 /********/
