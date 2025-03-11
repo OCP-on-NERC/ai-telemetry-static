@@ -37,36 +37,6 @@ Promise.all([
     sort('AiCluster', 'description', event.currentTarget.value);
   });
 
-  document.querySelector('#htmDropdown-modified')?.addEventListener('select', (event) => {
-    const item = event.detail.item;
-    const action = item.getAttribute('data-action');
-    const order = item.getAttribute('data-order');
-    const checked = !(document.querySelector('#pageSearchVal-pageSort-AiCluster-modified').innerText == undefined);
-    if (action === 'sort') {
-      sort('AiCluster', 'modified', checked ? order : '');
-      document.querySelector('#pageFacetSortAiCluster_modified').value = checked ? order : '';
-    }
-  });
-
-  document.querySelector('#pageFacetSortAiCluster_modified')?.addEventListener('change', (event) => {
-    sort('AiCluster', 'modified', event.currentTarget.value);
-  });
-
-  document.querySelector('#htmDropdown-editPage')?.addEventListener('select', (event) => {
-    const item = event.detail.item;
-    const action = item.getAttribute('data-action');
-    const order = item.getAttribute('data-order');
-    const checked = !(document.querySelector('#pageSearchVal-pageSort-AiCluster-editPage').innerText == undefined);
-    if (action === 'sort') {
-      sort('AiCluster', 'editPage', checked ? order : '');
-      document.querySelector('#pageFacetSortAiCluster_editPage').value = checked ? order : '';
-    }
-  });
-
-  document.querySelector('#pageFacetSortAiCluster_editPage')?.addEventListener('change', (event) => {
-    sort('AiCluster', 'editPage', event.currentTarget.value);
-  });
-
   document.querySelector('#htmButton_patchAiCluster')?.addEventListener('click', (event) => {
     document.querySelector('#patchAiClusterDialog').open = true;
   });

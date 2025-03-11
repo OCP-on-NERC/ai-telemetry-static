@@ -121,17 +121,21 @@ function searchGpuDeviceFilters($formFilters) {
     if(filterUserPage != null && filterUserPage !== '')
       filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
 
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
     var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
-    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
-    if(filterSolrId != null && filterSolrId !== '')
-      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
     var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
+    if(filterSolrId != null && filterSolrId !== '')
+      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
     var filterGpuDeviceId = $formFilters.querySelector('.valueGpuDeviceId')?.value;
     if(filterGpuDeviceId != null && filterGpuDeviceId !== '')
@@ -585,17 +589,21 @@ function patchGpuDeviceFilters($formFilters) {
     if(filterUserPage != null && filterUserPage !== '')
       filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
 
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
     var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
-    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
-    if(filterSolrId != null && filterSolrId !== '')
-      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
     var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
+    if(filterSolrId != null && filterSolrId !== '')
+      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
     var filterGpuDeviceId = $formFilters.querySelector('.valueGpuDeviceId')?.value;
     if(filterGpuDeviceId != null && filterGpuDeviceId !== '')
@@ -965,9 +973,10 @@ async function websocketGpuDeviceInner(apiRequest) {
         var inputDisplayPage = null;
         var inputEditPage = null;
         var inputUserPage = null;
+        var inputDownload = null;
         var inputObjectSuggest = null;
-        var inputSolrId = null;
         var inputObjectText = null;
+        var inputSolrId = null;
         var inputGpuDeviceId = null;
         var inputLocationColors = null;
         var inputLocationTitles = null;
@@ -1024,12 +1033,14 @@ async function websocketGpuDeviceInner(apiRequest) {
           inputEditPage = $response.querySelector('.Page_editPage');
         if(vars.includes('userPage'))
           inputUserPage = $response.querySelector('.Page_userPage');
+        if(vars.includes('download'))
+          inputDownload = $response.querySelector('.Page_download');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
-        if(vars.includes('solrId'))
-          inputSolrId = $response.querySelector('.Page_solrId');
         if(vars.includes('objectText'))
           inputObjectText = $response.querySelector('.Page_objectText');
+        if(vars.includes('solrId'))
+          inputSolrId = $response.querySelector('.Page_solrId');
         if(vars.includes('gpuDeviceId'))
           inputGpuDeviceId = $response.querySelector('.Page_gpuDeviceId');
         if(vars.includes('locationColors'))
@@ -1296,6 +1307,16 @@ async function websocketGpuDeviceInner(apiRequest) {
           addGlow(document.querySelector('.Page_userPage'));
         }
 
+        if(inputDownload) {
+          document.querySelectorAll('.Page_download').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDownload.getAttribute('value');
+            else
+              item.textContent = inputDownload.textContent;
+          });
+          addGlow(document.querySelector('.Page_download'));
+        }
+
         if(inputObjectSuggest) {
           document.querySelectorAll('.Page_objectSuggest').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1306,16 +1327,6 @@ async function websocketGpuDeviceInner(apiRequest) {
           addGlow(document.querySelector('.Page_objectSuggest'));
         }
 
-        if(inputSolrId) {
-          document.querySelectorAll('.Page_solrId').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputSolrId.getAttribute('value');
-            else
-              item.textContent = inputSolrId.textContent;
-          });
-          addGlow(document.querySelector('.Page_solrId'));
-        }
-
         if(inputObjectText) {
           document.querySelectorAll('.Page_objectText').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1324,6 +1335,16 @@ async function websocketGpuDeviceInner(apiRequest) {
               item.textContent = inputObjectText.textContent;
           });
           addGlow(document.querySelector('.Page_objectText'));
+        }
+
+        if(inputSolrId) {
+          document.querySelectorAll('.Page_solrId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSolrId.getAttribute('value');
+            else
+              item.textContent = inputSolrId.textContent;
+          });
+          addGlow(document.querySelector('.Page_solrId'));
         }
 
         if(inputGpuDeviceId) {
@@ -1522,7 +1543,7 @@ function pageGraphGpuDevice(apiRequest) {
           });
         }
       });
-    } else {
+    } else if(document.getElementById(('htmBodyGraphLocationGpuDevicePage')) {
       window.mapGpuDevice = L.map('htmBodyGraphLocationGpuDevicePage', {
         position: 'topright'
         , zoomControl: true
@@ -1553,8 +1574,12 @@ function pageGraphGpuDevice(apiRequest) {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(window.mapGpuDevice);
 
-      if(window.bounds) {
-        window.mapGpuDevice.fitBounds(window.bounds);
+      if(window.bounds && window['DEFAULT_MAP_ZOOM']) {
+        if(listGpuDevice.length == 1) {
+          window.mapGpuDevice.setView(window.bounds.getNorthEast(), window['DEFAULT_MAP_ZOOM']);
+        } else {
+          window.mapGpuDevice.fitBounds(window.bounds);
+        }
       } else {
         if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
           window.mapGpuDevice.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]], window['DEFAULT_MAP_ZOOM']);

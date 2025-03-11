@@ -99,27 +99,6 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH description
-          document.querySelector('#Page_description')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_description');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchAiProjectVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'projectId:' + event.currentTarget.getAttribute('data-projectId') }]
-                  , 'setDescription', event.currentTarget.value
-                  , event.currentTarget
-                  , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_description')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_description')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_description');
-            const valid = form.reportValidity();
-          });
-
           // PATCH projectId
           document.querySelector('#Page_projectId')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_projectId');
@@ -138,6 +117,27 @@ Promise.all([
           });
           document.querySelector('#Page_projectId')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_projectId');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH description
+          document.querySelector('#Page_description')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_description');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchAiProjectVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'projectId:' + event.currentTarget.getAttribute('data-projectId') }]
+                  , 'setDescription', event.currentTarget.value
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_description')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_description')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_description');
             const valid = form.reportValidity();
           });
 

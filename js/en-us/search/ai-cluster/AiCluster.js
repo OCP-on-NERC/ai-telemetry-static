@@ -89,10 +89,6 @@ function searchAiClusterFilters($formFilters) {
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
       filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
 
-    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
     var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
     if(filterSessionId != null && filterSessionId !== '')
       filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
@@ -121,6 +117,10 @@ function searchAiClusterFilters($formFilters) {
     if(filterUserPage != null && filterUserPage !== '')
       filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
 
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
     var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -133,6 +133,10 @@ function searchAiClusterFilters($formFilters) {
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
+    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
     var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
     if(filterLocationColors != null && filterLocationColors !== '')
       filters.push({ name: 'fq', value: 'locationColors:' + filterLocationColors });
@@ -144,10 +148,6 @@ function searchAiClusterFilters($formFilters) {
     var filterLocationLinks = $formFilters.querySelector('.valueLocationLinks')?.value;
     if(filterLocationLinks != null && filterLocationLinks !== '')
       filters.push({ name: 'fq', value: 'locationLinks:' + filterLocationLinks });
-
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
   }
   return filters;
 }
@@ -537,10 +537,6 @@ function patchAiClusterFilters($formFilters) {
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
       filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
 
-    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
     var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
     if(filterSessionId != null && filterSessionId !== '')
       filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
@@ -569,6 +565,10 @@ function patchAiClusterFilters($formFilters) {
     if(filterUserPage != null && filterUserPage !== '')
       filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
 
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
     var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -581,6 +581,10 @@ function patchAiClusterFilters($formFilters) {
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
+    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
     var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
     if(filterLocationColors != null && filterLocationColors !== '')
       filters.push({ name: 'fq', value: 'locationColors:' + filterLocationColors });
@@ -592,10 +596,6 @@ function patchAiClusterFilters($formFilters) {
     var filterLocationLinks = $formFilters.querySelector('.valueLocationLinks')?.value;
     if(filterLocationLinks != null && filterLocationLinks !== '')
       filters.push({ name: 'fq', value: 'locationLinks:' + filterLocationLinks });
-
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
   }
   return filters;
 }
@@ -933,7 +933,6 @@ async function websocketAiClusterInner(apiRequest) {
         var inputNgsildData = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
-        var inputClassCanonicalNames = null;
         var inputSessionId = null;
         var inputUserKey = null;
         var inputSaves = null;
@@ -941,13 +940,14 @@ async function websocketAiClusterInner(apiRequest) {
         var inputDisplayPage = null;
         var inputEditPage = null;
         var inputUserPage = null;
+        var inputDownload = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
+        var inputClassCanonicalNames = null;
         var inputLocationColors = null;
         var inputLocationTitles = null;
         var inputLocationLinks = null;
-        var inputEntityShortId = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Page_pk');
@@ -983,8 +983,6 @@ async function websocketAiClusterInner(apiRequest) {
           inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
           inputClassSimpleName = $response.querySelector('.Page_classSimpleName');
-        if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.querySelector('.Page_classCanonicalNames');
         if(vars.includes('sessionId'))
           inputSessionId = $response.querySelector('.Page_sessionId');
         if(vars.includes('userKey'))
@@ -999,20 +997,22 @@ async function websocketAiClusterInner(apiRequest) {
           inputEditPage = $response.querySelector('.Page_editPage');
         if(vars.includes('userPage'))
           inputUserPage = $response.querySelector('.Page_userPage');
+        if(vars.includes('download'))
+          inputDownload = $response.querySelector('.Page_download');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
         if(vars.includes('objectText'))
           inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.querySelector('.Page_classCanonicalNames');
         if(vars.includes('locationColors'))
           inputLocationColors = $response.querySelector('.Page_locationColors');
         if(vars.includes('locationTitles'))
           inputLocationTitles = $response.querySelector('.Page_locationTitles');
         if(vars.includes('locationLinks'))
           inputLocationLinks = $response.querySelector('.Page_locationLinks');
-        if(vars.includes('entityShortId'))
-          inputEntityShortId = $response.querySelector('.Page_entityShortId');
 
         jsWebsocketAiCluster(clusterName, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -1189,16 +1189,6 @@ async function websocketAiClusterInner(apiRequest) {
           addGlow(document.querySelector('.Page_classSimpleName'));
         }
 
-        if(inputClassCanonicalNames) {
-          document.querySelectorAll('.Page_classCanonicalNames').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputClassCanonicalNames.getAttribute('value');
-            else
-              item.textContent = inputClassCanonicalNames.textContent;
-          });
-          addGlow(document.querySelector('.Page_classCanonicalNames'));
-        }
-
         if(inputSessionId) {
           document.querySelectorAll('.Page_sessionId').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1269,6 +1259,16 @@ async function websocketAiClusterInner(apiRequest) {
           addGlow(document.querySelector('.Page_userPage'));
         }
 
+        if(inputDownload) {
+          document.querySelectorAll('.Page_download').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDownload.getAttribute('value');
+            else
+              item.textContent = inputDownload.textContent;
+          });
+          addGlow(document.querySelector('.Page_download'));
+        }
+
         if(inputObjectSuggest) {
           document.querySelectorAll('.Page_objectSuggest').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1299,6 +1299,16 @@ async function websocketAiClusterInner(apiRequest) {
           addGlow(document.querySelector('.Page_solrId'));
         }
 
+        if(inputClassCanonicalNames) {
+          document.querySelectorAll('.Page_classCanonicalNames').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputClassCanonicalNames.getAttribute('value');
+            else
+              item.textContent = inputClassCanonicalNames.textContent;
+          });
+          addGlow(document.querySelector('.Page_classCanonicalNames'));
+        }
+
         if(inputLocationColors) {
           document.querySelectorAll('.Page_locationColors').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1327,16 +1337,6 @@ async function websocketAiClusterInner(apiRequest) {
               item.textContent = inputLocationLinks.textContent;
           });
           addGlow(document.querySelector('.Page_locationLinks'));
-        }
-
-        if(inputEntityShortId) {
-          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputEntityShortId.getAttribute('value');
-            else
-              item.textContent = inputEntityShortId.textContent;
-          });
-          addGlow(document.querySelector('.Page_entityShortId'));
         }
 
           pageGraphAiCluster();
@@ -1485,7 +1485,7 @@ function pageGraphAiCluster(apiRequest) {
           });
         }
       });
-    } else {
+    } else if(document.getElementById('htmBodyGraphLocationAiClusterPage')) {
       window.mapAiCluster = L.map('htmBodyGraphLocationAiClusterPage', {
         position: 'topright'
         , zoomControl: true

@@ -47,16 +47,6 @@ function searchSiteUserFilters($formFilters) {
     if(filterSeeArchived != null && filterSeeArchived === true)
       filters.push({ name: 'fq', value: 'seeArchived:' + filterSeeArchived });
 
-    var $filterSeeDeletedCheckbox = $formFilters.querySelector('input.valueSeeDeleted[type = "checkbox"]');
-    var $filterSeeDeletedSelect = $formFilters.querySelector('select.valueSeeDeleted');
-    var filterSeeDeleted = $filterSeeDeletedSelect.length ? $filterSeeDeletedSelect.value : $filterSeeDeletedCheckbox.checked;
-    var filterSeeDeletedSelectVal = $formFilters.querySelector('select.filterSeeDeleted')?.value;
-    var filterSeeDeleted = null;
-    if(filterSeeDeletedSelectVal !== '')
-      filterSeeDeleted = filterSeeDeletedSelectVal == 'true';
-    if(filterSeeDeleted != null && filterSeeDeleted === true)
-      filters.push({ name: 'fq', value: 'seeDeleted:' + filterSeeDeleted });
-
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -64,10 +54,6 @@ function searchSiteUserFilters($formFilters) {
     var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
       filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
     var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
     if(filterSessionId != null && filterSessionId !== '')
@@ -97,6 +83,10 @@ function searchSiteUserFilters($formFilters) {
     if(filterUserPage != null && filterUserPage !== '')
       filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
 
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
     var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -108,6 +98,10 @@ function searchSiteUserFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
     var filterUserKeys = $formFilters.querySelector('.valueUserKeys')?.value;
     if(filterUserKeys != null && filterUserKeys !== '')
@@ -257,25 +251,6 @@ async function patchSiteUser($formFilters, $formValues, target, userId, success,
   var removeSeeArchived = $formValues.querySelector('.removeSeeArchived')?.checked;
   if(removeSeeArchived != null && removeSeeArchived !== '')
     vals['removeSeeArchived'] = removeSeeArchived;
-
-  var valueSeeDeleted = $formValues.querySelector('.valueSeeDeleted')?.value;
-  var removeSeeDeleted = $formValues.querySelector('.removeSeeDeleted')?.value === 'true';
-  if(valueSeeDeleted != null)
-    valueSeeDeleted = valueSeeDeleted === 'true';
-  var valueSeeDeletedSelectVal = $formValues.querySelector('select.setSeeDeleted')?.value;
-  if(valueSeeDeletedSelectVal != null)
-    valueSeeDeletedSelectVal = valueSeeDeletedSelectVal === 'true';
-  if(valueSeeDeletedSelectVal != null && valueSeeDeletedSelectVal !== '')
-    valueSeeDeleted = valueSeeDeletedSelectVal == 'true';
-  var setSeeDeleted = removeSeeDeleted ? null : valueSeeDeleted;
-  var addSeeDeleted = $formValues.querySelector('.addSeeDeleted')?.checked;
-  if(removeSeeDeleted || setSeeDeleted != null && setSeeDeleted !== '')
-    vals['setSeeDeleted'] = setSeeDeleted;
-  if(addSeeDeleted != null && addSeeDeleted !== '')
-    vals['addSeeDeleted'] = addSeeDeleted;
-  var removeSeeDeleted = $formValues.querySelector('.removeSeeDeleted')?.checked;
-  if(removeSeeDeleted != null && removeSeeDeleted !== '')
-    vals['removeSeeDeleted'] = removeSeeDeleted;
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   var removeSessionId = $formValues.querySelector('.removeSessionId')?.value === 'true';
@@ -461,16 +436,6 @@ function patchSiteUserFilters($formFilters) {
     if(filterSeeArchived != null && filterSeeArchived === true)
       filters.push({ name: 'fq', value: 'seeArchived:' + filterSeeArchived });
 
-    var $filterSeeDeletedCheckbox = $formFilters.querySelector('input.valueSeeDeleted[type = "checkbox"]');
-    var $filterSeeDeletedSelect = $formFilters.querySelector('select.valueSeeDeleted');
-    var filterSeeDeleted = $filterSeeDeletedSelect.length ? $filterSeeDeletedSelect.value : $filterSeeDeletedCheckbox.checked;
-    var filterSeeDeletedSelectVal = $formFilters.querySelector('select.filterSeeDeleted')?.value;
-    var filterSeeDeleted = null;
-    if(filterSeeDeletedSelectVal !== '')
-      filterSeeDeleted = filterSeeDeletedSelectVal == 'true';
-    if(filterSeeDeleted != null && filterSeeDeleted === true)
-      filters.push({ name: 'fq', value: 'seeDeleted:' + filterSeeDeleted });
-
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -478,10 +443,6 @@ function patchSiteUserFilters($formFilters) {
     var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
       filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
     var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
     if(filterSessionId != null && filterSessionId !== '')
@@ -511,6 +472,10 @@ function patchSiteUserFilters($formFilters) {
     if(filterUserPage != null && filterUserPage !== '')
       filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
 
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
     var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -522,6 +487,10 @@ function patchSiteUserFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
     var filterUserKeys = $formFilters.querySelector('.valueUserKeys')?.value;
     if(filterUserKeys != null && filterUserKeys !== '')
@@ -617,10 +586,6 @@ async function postSiteUser($formValues, target, success, error) {
   var valueSeeArchived = $formValues.querySelector('.valueSeeArchived')?.value;
   if(valueSeeArchived != null && valueSeeArchived !== '')
     vals['seeArchived'] = valueSeeArchived == 'true';
-
-  var valueSeeDeleted = $formValues.querySelector('.valueSeeDeleted')?.value;
-  if(valueSeeDeleted != null && valueSeeDeleted !== '')
-    vals['seeDeleted'] = valueSeeDeleted == 'true';
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   if(valueSessionId != null && valueSessionId !== '')
@@ -785,10 +750,8 @@ async function websocketSiteUserInner(apiRequest) {
         var inputModified = null;
         var inputArchived = null;
         var inputSeeArchived = null;
-        var inputSeeDeleted = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
-        var inputClassCanonicalNames = null;
         var inputSessionId = null;
         var inputUserKey = null;
         var inputSaves = null;
@@ -796,9 +759,11 @@ async function websocketSiteUserInner(apiRequest) {
         var inputDisplayPage = null;
         var inputEditPage = null;
         var inputUserPage = null;
+        var inputDownload = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
+        var inputClassCanonicalNames = null;
         var inputUserKeys = null;
         var inputUserId = null;
         var inputUserName = null;
@@ -818,14 +783,10 @@ async function websocketSiteUserInner(apiRequest) {
           inputArchived = $response.querySelector('.Page_archived');
         if(vars.includes('seeArchived'))
           inputSeeArchived = $response.querySelector('.Page_seeArchived');
-        if(vars.includes('seeDeleted'))
-          inputSeeDeleted = $response.querySelector('.Page_seeDeleted');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
           inputClassSimpleName = $response.querySelector('.Page_classSimpleName');
-        if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.querySelector('.Page_classCanonicalNames');
         if(vars.includes('sessionId'))
           inputSessionId = $response.querySelector('.Page_sessionId');
         if(vars.includes('userKey'))
@@ -840,12 +801,16 @@ async function websocketSiteUserInner(apiRequest) {
           inputEditPage = $response.querySelector('.Page_editPage');
         if(vars.includes('userPage'))
           inputUserPage = $response.querySelector('.Page_userPage');
+        if(vars.includes('download'))
+          inputDownload = $response.querySelector('.Page_download');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
         if(vars.includes('objectText'))
           inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.querySelector('.Page_classCanonicalNames');
         if(vars.includes('userKeys'))
           inputUserKeys = $response.querySelector('.Page_userKeys');
         if(vars.includes('userId'))
@@ -918,16 +883,6 @@ async function websocketSiteUserInner(apiRequest) {
           addGlow(document.querySelector('.Page_seeArchived'));
         }
 
-        if(inputSeeDeleted) {
-          document.querySelectorAll('.Page_seeDeleted').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputSeeDeleted.getAttribute('value');
-            else
-              item.textContent = inputSeeDeleted.textContent;
-          });
-          addGlow(document.querySelector('.Page_seeDeleted'));
-        }
-
         if(inputClassCanonicalName) {
           document.querySelectorAll('.Page_classCanonicalName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -946,16 +901,6 @@ async function websocketSiteUserInner(apiRequest) {
               item.textContent = inputClassSimpleName.textContent;
           });
           addGlow(document.querySelector('.Page_classSimpleName'));
-        }
-
-        if(inputClassCanonicalNames) {
-          document.querySelectorAll('.Page_classCanonicalNames').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputClassCanonicalNames.getAttribute('value');
-            else
-              item.textContent = inputClassCanonicalNames.textContent;
-          });
-          addGlow(document.querySelector('.Page_classCanonicalNames'));
         }
 
         if(inputSessionId) {
@@ -1028,6 +973,16 @@ async function websocketSiteUserInner(apiRequest) {
           addGlow(document.querySelector('.Page_userPage'));
         }
 
+        if(inputDownload) {
+          document.querySelectorAll('.Page_download').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDownload.getAttribute('value');
+            else
+              item.textContent = inputDownload.textContent;
+          });
+          addGlow(document.querySelector('.Page_download'));
+        }
+
         if(inputObjectSuggest) {
           document.querySelectorAll('.Page_objectSuggest').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1056,6 +1011,16 @@ async function websocketSiteUserInner(apiRequest) {
               item.textContent = inputSolrId.textContent;
           });
           addGlow(document.querySelector('.Page_solrId'));
+        }
+
+        if(inputClassCanonicalNames) {
+          document.querySelectorAll('.Page_classCanonicalNames').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputClassCanonicalNames.getAttribute('value');
+            else
+              item.textContent = inputClassCanonicalNames.textContent;
+          });
+          addGlow(document.querySelector('.Page_classCanonicalNames'));
         }
 
         if(inputUserKeys) {

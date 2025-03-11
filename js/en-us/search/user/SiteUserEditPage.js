@@ -78,27 +78,6 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH seeDeleted
-          document.querySelector('#Page_seeDeleted')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_seeDeleted');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchSiteUserVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'userId:' + event.currentTarget.getAttribute('data-userId') }]
-                  , 'setSeeDeleted', event.currentTarget.checked
-                  , event.currentTarget
-                  , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_seeDeleted')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_seeDeleted')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_seeDeleted');
-            const valid = form.reportValidity();
-          });
-
           // PATCH sessionId
           document.querySelector('#Page_sessionId')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_sessionId');

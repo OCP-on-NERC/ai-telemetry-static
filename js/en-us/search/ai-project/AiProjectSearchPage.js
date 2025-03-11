@@ -142,15 +142,6 @@ Promise.all([
           document.querySelector('#pageFacetPivotAiProject_projectName')?.addEventListener('change', (event) => {
             facetPivotChange('AiProject', event.currentTarget);
           });
-          document.querySelector('#fqAiProject_description')?.addEventListener('change', (event) => {
-            fqChange('AiProject', event.currentTarget);
-          });
-          document.querySelector('#buttonFacetAiProject_description')?.addEventListener('click', (event) => {
-            facetFieldChange('AiProject', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotAiProject_description')?.addEventListener('change', (event) => {
-            facetPivotChange('AiProject', event.currentTarget);
-          });
           document.querySelector('#fqAiProject_projectId')?.addEventListener('change', (event) => {
             fqChange('AiProject', event.currentTarget);
           });
@@ -158,6 +149,15 @@ Promise.all([
             facetFieldChange('AiProject', event.currentTarget);
           });
           document.querySelector('#pageFacetPivotAiProject_projectId')?.addEventListener('change', (event) => {
+            facetPivotChange('AiProject', event.currentTarget);
+          });
+          document.querySelector('#fqAiProject_description')?.addEventListener('change', (event) => {
+            fqChange('AiProject', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetAiProject_description')?.addEventListener('click', (event) => {
+            facetFieldChange('AiProject', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotAiProject_description')?.addEventListener('change', (event) => {
             facetPivotChange('AiProject', event.currentTarget);
           });
           document.querySelector('#fqAiProject_displayPage')?.addEventListener('change', (event) => {
