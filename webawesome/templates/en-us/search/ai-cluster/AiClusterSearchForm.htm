@@ -11,14 +11,14 @@ The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
   {%- if "Page" == classApiMethodMethod %}
                       data-clusterName={{ result.clusterName | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_pk setPk classAiCluster inputAiCluster{{clusterName}}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classAiCluster inputAiCluster{{ result.clusterName }}Pk "
                       name="setPk"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_pk setPk classAiCluster inputAiCluster{{clusterName}}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classAiCluster inputAiCluster{{ result.clusterName }}Pk "
                       name="setPk"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_pk valuePk classAiCluster inputAiCluster{{clusterName}}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk valuePk classAiCluster inputAiCluster{{ result.clusterName }}Pk "
                       name="pk"
     {%- endif %}
   {%- endif %}
@@ -44,7 +44,7 @@ The primary key of this object in the database"
                       readonly
                       hint="A created timestamp for this record in the database"
                       label="created"
-                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classAiCluster inputAiCluster{{clusterName}}Created "
+                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classAiCluster inputAiCluster{{ result.clusterName }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
@@ -71,7 +71,7 @@ The primary key of this object in the database"
                       readonly
                       hint="A modified timestamp for this record in the database"
                       label="modified"
-                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classAiCluster inputAiCluster{{clusterName}}Modified "
+                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classAiCluster inputAiCluster{{ result.clusterName }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
@@ -99,7 +99,7 @@ The primary key of this object in the database"
                       placeholder="archive"
                       label="archive"
                       hint="For archiving this record"
-                      class="label-on-left {{classApiMethodMethod}}_archived classAiCluster inputAiCluster{{clusterName}}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classAiCluster inputAiCluster{{ result.clusterName }}Archived "
                       name="setArchived"
                       data-clusterName={{ result.clusterName | tojson }}
                       data-val="{{ result.archived | e }}"
@@ -118,14 +118,14 @@ The primary key of this object in the database"
                       label="archive"
                       hint="For archiving this record"
   {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_archived classAiCluster inputAiCluster{{clusterName}}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classAiCluster inputAiCluster{{ result.clusterName }}Archived "
                       name="setArchived"
   {%- else %}
     {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_archived classAiCluster inputAiCluster{{clusterName}}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classAiCluster inputAiCluster{{ result.clusterName }}Archived "
                       name="setArchived"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classAiCluster inputAiCluster{{clusterName}}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classAiCluster inputAiCluster{{ result.clusterName }}Archived "
                       name="setArchived"
     {%- endif %}
   {%- endif %}
@@ -164,14 +164,14 @@ The name of this cluster"
                       id="{{classApiMethodMethod}}_clusterName"
   {%- if "Page" == classApiMethodMethod %}
                       data-clusterName={{ result.clusterName | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_clusterName setClusterName classAiCluster inputAiCluster{{clusterName}}ClusterName "
+                      class="label-on-left {{classApiMethodMethod}}_clusterName setClusterName classAiCluster inputAiCluster{{ result.clusterName }}ClusterName "
                       name="setClusterName"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_clusterName setClusterName classAiCluster inputAiCluster{{clusterName}}ClusterName "
+                      class="label-on-left {{classApiMethodMethod}}_clusterName setClusterName classAiCluster inputAiCluster{{ result.clusterName }}ClusterName "
                       name="setClusterName"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_clusterName valueClusterName classAiCluster inputAiCluster{{clusterName}}ClusterName "
+                      class="label-on-left {{classApiMethodMethod}}_clusterName valueClusterName classAiCluster inputAiCluster{{ result.clusterName }}ClusterName "
                       name="clusterName"
     {%- endif %}
   {%- endif %}
@@ -201,14 +201,14 @@ A description of this cluster"
                       id="{{classApiMethodMethod}}_description"
   {%- if "Page" == classApiMethodMethod %}
                       data-clusterName={{ result.clusterName | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classAiCluster inputAiCluster{{clusterName}}Description "
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classAiCluster inputAiCluster{{ result.clusterName }}Description "
                       name="setDescription"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classAiCluster inputAiCluster{{clusterName}}Description "
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classAiCluster inputAiCluster{{ result.clusterName }}Description "
                       name="setDescription"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classAiCluster inputAiCluster{{clusterName}}Description "
+                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classAiCluster inputAiCluster{{ result.clusterName }}Description "
                       name="description"
     {%- endif %}
   {%- endif %}
@@ -238,14 +238,14 @@ A unique ID for this Smart Data Model"
                       id="{{classApiMethodMethod}}_id"
   {%- if "Page" == classApiMethodMethod %}
                       data-clusterName={{ result.clusterName | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_id setId classAiCluster inputAiCluster{{clusterName}}Id "
+                      class="label-on-left {{classApiMethodMethod}}_id setId classAiCluster inputAiCluster{{ result.clusterName }}Id "
                       name="setId"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_id setId classAiCluster inputAiCluster{{clusterName}}Id "
+                      class="label-on-left {{classApiMethodMethod}}_id setId classAiCluster inputAiCluster{{ result.clusterName }}Id "
                       name="setId"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_id valueId classAiCluster inputAiCluster{{clusterName}}Id "
+                      class="label-on-left {{classApiMethodMethod}}_id valueId classAiCluster inputAiCluster{{ result.clusterName }}Id "
                       name="id"
     {%- endif %}
   {%- endif %}
@@ -275,14 +275,14 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                       id="{{classApiMethodMethod}}_location"
   {%- if "Page" == classApiMethodMethod %}
                       data-clusterName={{ result.clusterName | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_location setLocation classAiCluster inputAiCluster{{clusterName}}Location "
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classAiCluster inputAiCluster{{ result.clusterName }}Location "
                       name="setLocation"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_location setLocation classAiCluster inputAiCluster{{clusterName}}Location "
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classAiCluster inputAiCluster{{ result.clusterName }}Location "
                       name="setLocation"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_location valueLocation classAiCluster inputAiCluster{{clusterName}}Location "
+                      class="label-on-left {{classApiMethodMethod}}_location valueLocation classAiCluster inputAiCluster{{ result.clusterName }}Location "
                       name="location"
     {%- endif %}
   {%- endif %}
@@ -312,14 +312,14 @@ The total number of AI nodes on this cluster. "
                       id="{{classApiMethodMethod}}_aiNodesTotal"
   {%- if "Page" == classApiMethodMethod %}
                       data-clusterName={{ result.clusterName | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_aiNodesTotal setAiNodesTotal classAiCluster inputAiCluster{{clusterName}}AiNodesTotal "
+                      class="label-on-left {{classApiMethodMethod}}_aiNodesTotal setAiNodesTotal classAiCluster inputAiCluster{{ result.clusterName }}AiNodesTotal "
                       name="setAiNodesTotal"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_aiNodesTotal setAiNodesTotal classAiCluster inputAiCluster{{clusterName}}AiNodesTotal "
+                      class="label-on-left {{classApiMethodMethod}}_aiNodesTotal setAiNodesTotal classAiCluster inputAiCluster{{ result.clusterName }}AiNodesTotal "
                       name="setAiNodesTotal"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_aiNodesTotal valueAiNodesTotal classAiCluster inputAiCluster{{clusterName}}AiNodesTotal "
+                      class="label-on-left {{classApiMethodMethod}}_aiNodesTotal valueAiNodesTotal classAiCluster inputAiCluster{{ result.clusterName }}AiNodesTotal "
                       name="aiNodesTotal"
     {%- endif %}
   {%- endif %}
@@ -349,14 +349,14 @@ The total number of GPU devices on this cluster. "
                       id="{{classApiMethodMethod}}_gpuDevicesTotal"
   {%- if "Page" == classApiMethodMethod %}
                       data-clusterName={{ result.clusterName | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_gpuDevicesTotal setGpuDevicesTotal classAiCluster inputAiCluster{{clusterName}}GpuDevicesTotal "
+                      class="label-on-left {{classApiMethodMethod}}_gpuDevicesTotal setGpuDevicesTotal classAiCluster inputAiCluster{{ result.clusterName }}GpuDevicesTotal "
                       name="setGpuDevicesTotal"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_gpuDevicesTotal setGpuDevicesTotal classAiCluster inputAiCluster{{clusterName}}GpuDevicesTotal "
+                      class="label-on-left {{classApiMethodMethod}}_gpuDevicesTotal setGpuDevicesTotal classAiCluster inputAiCluster{{ result.clusterName }}GpuDevicesTotal "
                       name="setGpuDevicesTotal"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_gpuDevicesTotal valueGpuDevicesTotal classAiCluster inputAiCluster{{clusterName}}GpuDevicesTotal "
+                      class="label-on-left {{classApiMethodMethod}}_gpuDevicesTotal valueGpuDevicesTotal classAiCluster inputAiCluster{{ result.clusterName }}GpuDevicesTotal "
                       name="gpuDevicesTotal"
     {%- endif %}
   {%- endif %}
@@ -373,59 +373,24 @@ The total number of GPU devices on this cluster. "
 {%- macro htmGpuDevicesTotalAiClusterPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputGpuDevicesTotalAiClusterPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputNgsildTenantAiClusterPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
-  {%- if 'Page' == classApiMethodMethod %}
-                <form class="subgrid-2col " id="PageForm_ngsildTenant">
-  {%- endif %}
-                  <wa-input
-                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] NGSILD-Tenant"
-                      label="NGSILD-Tenant"
-                      hint="
-The NGSILD-Tenant or Fiware-Service"
-                      id="{{classApiMethodMethod}}_ngsildTenant"
-  {%- if "Page" == classApiMethodMethod %}
-                      data-clusterName={{ result.clusterName | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classAiCluster inputAiCluster{{clusterName}}NgsildTenant "
-                      name="setNgsildTenant"
-  {%- else %}
-    {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classAiCluster inputAiCluster{{clusterName}}NgsildTenant "
-                      name="setNgsildTenant"
-    {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant valueNgsildTenant classAiCluster inputAiCluster{{clusterName}}NgsildTenant "
-                      name="ngsildTenant"
-    {%- endif %}
-  {%- endif %}
-  {%- if "Page" == classApiMethodMethod %}
-                      value="{{result.ngsildTenant | e }}"
-  {%- endif %}
-                      ></wa-input>
-
-  {%- if 'Page' == classApiMethodMethod %}
-                </form>
-  {%- endif %}
-{%- endmacro %}
-
-{%- macro htmNgsildTenantAiClusterPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
-                            {{ inputNgsildTenantAiClusterPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
-{%- endmacro %}
 {%- macro inputGrafanaUrlAiClusterPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_grafanaUrl">
   {%- endif %}
   {%- if 'Page' == classApiMethodMethod %}
-                  <wa-button variant="brand"
-                      id="{{classApiMethodMethod}}_grafanaUrl"
-                      placeholder="[String] Grafana GPU utilization"
-                      label="Grafana GPU utilization"
-                      hint="Explore this cluster's GPU utilization in Grafana. "
-                      class="button-on-left {{classApiMethodMethod}}_grafanaUrl classAiCluster inputAiCluster{{clusterName}}GrafanaUrl "
-                      name="setGrafanaUrl"
-                      href="{{ result.grafanaUrl | e }}"
-                      >
-                    Grafana GPU utilization
-                  </wa-button>
+                  <div class="button-on-left ">
+                    <wa-button variant="brand"
+                        id="{{classApiMethodMethod}}_grafanaUrl"
+                        placeholder="[String] Grafana GPU utilization"
+                        label="Grafana GPU utilization"
+                        hint="Explore this cluster's GPU utilization in Grafana. "
+                        class="button-on-left {{classApiMethodMethod}}_grafanaUrl classAiCluster inputAiCluster{{ result.clusterName }}GrafanaUrl "
+                        name="setGrafanaUrl"
+                        href="{{ result.grafanaUrl | e }}"
+                        >
+                      Grafana GPU utilization
+                    </wa-button>
+                  </div>
                   <div class="button-description-on-right ">Explore this cluster's GPU utilization in Grafana. </div>
   {%- else %}
                   <wa-input
@@ -437,14 +402,14 @@ Explore this cluster's GPU utilization in Grafana. "
                       id="{{classApiMethodMethod}}_grafanaUrl"
   {%- if "Page" == classApiMethodMethod %}
                       data-clusterName={{ result.clusterName | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_grafanaUrl setGrafanaUrl classAiCluster inputAiCluster{{clusterName}}GrafanaUrl "
+                      class="label-on-left {{classApiMethodMethod}}_grafanaUrl setGrafanaUrl classAiCluster inputAiCluster{{ result.clusterName }}GrafanaUrl "
                       name="setGrafanaUrl"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_grafanaUrl setGrafanaUrl classAiCluster inputAiCluster{{clusterName}}GrafanaUrl "
+                      class="label-on-left {{classApiMethodMethod}}_grafanaUrl setGrafanaUrl classAiCluster inputAiCluster{{ result.clusterName }}GrafanaUrl "
                       name="setGrafanaUrl"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_grafanaUrl valueGrafanaUrl classAiCluster inputAiCluster{{clusterName}}GrafanaUrl "
+                      class="label-on-left {{classApiMethodMethod}}_grafanaUrl valueGrafanaUrl classAiCluster inputAiCluster{{ result.clusterName }}GrafanaUrl "
                       name="grafanaUrl"
     {%- endif %}
   {%- endif %}
@@ -462,6 +427,43 @@ Explore this cluster's GPU utilization in Grafana. "
 {%- macro htmGrafanaUrlAiClusterPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputGrafanaUrlAiClusterPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputNgsildTenantAiClusterPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_ngsildTenant">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] NGSILD-Tenant"
+                      label="NGSILD-Tenant"
+                      hint="
+The NGSILD-Tenant or Fiware-Service"
+                      id="{{classApiMethodMethod}}_ngsildTenant"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-clusterName={{ result.clusterName | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classAiCluster inputAiCluster{{ result.clusterName }}NgsildTenant "
+                      name="setNgsildTenant"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classAiCluster inputAiCluster{{ result.clusterName }}NgsildTenant "
+                      name="setNgsildTenant"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant valueNgsildTenant classAiCluster inputAiCluster{{ result.clusterName }}NgsildTenant "
+                      name="ngsildTenant"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.ngsildTenant | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNgsildTenantAiClusterPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputNgsildTenantAiClusterPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
 {%- macro inputNgsildPathAiClusterPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_ngsildPath">
@@ -475,14 +477,14 @@ The NGSILD-Path or Fiware-ServicePath"
                       id="{{classApiMethodMethod}}_ngsildPath"
   {%- if "Page" == classApiMethodMethod %}
                       data-clusterName={{ result.clusterName | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classAiCluster inputAiCluster{{clusterName}}NgsildPath "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classAiCluster inputAiCluster{{ result.clusterName }}NgsildPath "
                       name="setNgsildPath"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classAiCluster inputAiCluster{{clusterName}}NgsildPath "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classAiCluster inputAiCluster{{ result.clusterName }}NgsildPath "
                       name="setNgsildPath"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildPath valueNgsildPath classAiCluster inputAiCluster{{clusterName}}NgsildPath "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath valueNgsildPath classAiCluster inputAiCluster{{ result.clusterName }}NgsildPath "
                       name="ngsildPath"
     {%- endif %}
   {%- endif %}
@@ -512,14 +514,14 @@ The NGSILD context URL for @context data"
                       id="{{classApiMethodMethod}}_ngsildContext"
   {%- if "Page" == classApiMethodMethod %}
                       data-clusterName={{ result.clusterName | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classAiCluster inputAiCluster{{clusterName}}NgsildContext "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classAiCluster inputAiCluster{{ result.clusterName }}NgsildContext "
                       name="setNgsildContext"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classAiCluster inputAiCluster{{clusterName}}NgsildContext "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classAiCluster inputAiCluster{{ result.clusterName }}NgsildContext "
                       name="setNgsildContext"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildContext valueNgsildContext classAiCluster inputAiCluster{{clusterName}}NgsildContext "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext valueNgsildContext classAiCluster inputAiCluster{{ result.clusterName }}NgsildContext "
                       name="ngsildContext"
     {%- endif %}
   {%- endif %}
@@ -549,14 +551,14 @@ The NGSILD data with @context from the context broker"
                       id="{{classApiMethodMethod}}_ngsildData"
   {%- if "Page" == classApiMethodMethod %}
                       data-clusterName={{ result.clusterName | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classAiCluster inputAiCluster{{clusterName}}NgsildData "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classAiCluster inputAiCluster{{ result.clusterName }}NgsildData "
                       name="setNgsildData"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classAiCluster inputAiCluster{{clusterName}}NgsildData "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classAiCluster inputAiCluster{{ result.clusterName }}NgsildData "
                       name="setNgsildData"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildData valueNgsildData classAiCluster inputAiCluster{{clusterName}}NgsildData "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData valueNgsildData classAiCluster inputAiCluster{{ result.clusterName }}NgsildData "
                       name="ngsildData"
     {%- endif %}
   {%- endif %}
@@ -704,6 +706,21 @@ The NGSILD data with @context from the context broker"
                   {{ htmGpuDevicesTotalAiClusterPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmGrafanaUrlAiClusterPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmGrafanaUrlAiClusterPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmGrafanaUrlAiClusterPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="ngsi-ld-data">
+              <div slot="summary">
+                <span>NGSI-LD data</span>
               </div>
               <div class="grid-with-subgrid-2col ">
 
@@ -714,16 +731,6 @@ The NGSILD data with @context from the context broker"
                   {{ htmNgsildTenantAiClusterPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmNgsildTenantAiClusterPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmGrafanaUrlAiClusterPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmGrafanaUrlAiClusterPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmGrafanaUrlAiClusterPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -894,6 +901,21 @@ The NGSILD data with @context from the context broker"
                   {{ htmGpuDevicesTotalAiClusterPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmGrafanaUrlAiClusterPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmGrafanaUrlAiClusterPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmGrafanaUrlAiClusterPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="ngsi-ld-data">
+              <div slot="summary">
+                <span>NGSI-LD data</span>
               </div>
               <div class="grid-with-subgrid-2col ">
 
@@ -904,16 +926,6 @@ The NGSILD data with @context from the context broker"
                   {{ htmNgsildTenantAiClusterPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmNgsildTenantAiClusterPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmGrafanaUrlAiClusterPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmGrafanaUrlAiClusterPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmGrafanaUrlAiClusterPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -1119,6 +1131,21 @@ The NGSILD data with @context from the context broker"
                   {{ htmGpuDevicesTotalAiClusterPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmGrafanaUrlAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmGrafanaUrlAiClusterPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmGrafanaUrlAiClusterPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="ngsi-ld-data">
+              <div slot="summary">
+                <span>NGSI-LD data</span>
               </div>
               <div class="grid-with-subgrid-2col ">
 
@@ -1129,16 +1156,6 @@ The NGSILD data with @context from the context broker"
                   {{ htmNgsildTenantAiClusterPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmNgsildTenantAiClusterPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmGrafanaUrlAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmGrafanaUrlAiClusterPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmGrafanaUrlAiClusterPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -1197,7 +1214,7 @@ The NGSILD data with @context from the context broker"
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
               <wa-button variant="brand" id="refreshThisAiClusterGenPage"
-                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'clusterName:{{clusterName}}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisAiClusterGenPage')); }, function() { addError(document.querySelector('#refreshThisAiClusterGenPage')); }); return false; ">
+                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'clusterName:{{ result.clusterName }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisAiClusterGenPage')); }, function() { addError(document.querySelector('#refreshThisAiClusterGenPage')); }); return false; ">
                 <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
                 refresh
               </wa-button>

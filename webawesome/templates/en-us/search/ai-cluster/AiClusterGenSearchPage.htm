@@ -159,7 +159,7 @@
           var o = document.querySelector('.pageForm .result')?.value;
           if(o)
             window.result = JSON.parse(o);
-        {% if clusterName is defined %}
+        {% if result.clusterName is defined %}
         {% endif %}
         }
         var l = document.querySelector('.pageForm .listAiCluster')?.value;
@@ -201,7 +201,11 @@
         });
         document.querySelector('#htmFormButton_postAiCluster')?.addEventListener('click', event => {
           event.preventDefault();
-          postAiCluster(document.querySelector('#htmForm_postAiCluster'), document.querySelector('#htmFormButton_postAiCluster'), (response, target) => { response.json().then((json) => { window.location.href = json.editPage; }); });
+          postAiCluster(document.querySelector('#htmForm_postAiCluster')
+          , document.querySelector('#htmFormButton_postAiCluster')
+          , (json, target) => {
+            window.location.href = json.editPage;
+          });
           return false;
         });
 
@@ -251,9 +255,11 @@
 
 {%- block websocketPageLayout %}
 {%- block websocketAiClusterPage %}
+{% if resultCount > 0 %}
         window.eventBus = new EventBus('/eventbus');
         window.eventBus.enableReconnect(true);
         websocketAiCluster(websocketAiClusterInner);
+{% endif %}
 {%- endblock websocketAiClusterPage %}
 {%- endblock websocketPageLayout %}
 
@@ -274,15 +280,18 @@
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleAiClusterPage %}
 {% if resultCount == 0 %}
-        {% if varsFqCount > 0 %}
-        <wa-tooltip for="return-to-AiCluster">back to all AI clusters</wa-tooltip>
+        <div class="wa-flank">
+          <div>
+          {% if varsFqCount > 1 %}
+          <wa-tooltip for="return-to-AiCluster">back to all AI clusters</wa-tooltip></wa-tooltip>
           <wa-button id="return-to-AiCluster" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
             <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
             all AI clusters
           </wa-button>
-        </wa-tooltip>
-        {% endif %}
-        <h1><i class="fa-regular fa-server"></i> <span>AI clusters</span></h1>
+          {% endif %}
+        </div>
+          <h1><i class="fa-regular fa-server"></i> <span>AI clusters</span></h1>
+        </div>
 {% include en-us/search/ai-cluster/AiClusterSearchButtons.htm %}
 {% include en-us/search/ai-cluster/AiClusterSearchForm.htm %}
         <h2>
@@ -304,7 +313,7 @@
           <div id="site-calendar-box">
             <div id="site-calendar"><!-- // --></div>
           </div>
-          {% if varsFqCount > 0 %}
+          {% if varsFqCount > 1 %}
           <div class="margin-block">
             <wa-tooltip for="return-to-AiCluster">back to all AI clusters</wa-tooltip>
             <wa-button id="return-to-AiCluster" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">

@@ -61,13 +61,13 @@ function searchAiClusterFilters($formFilters) {
     if(filterGpuDevicesTotal != null && filterGpuDevicesTotal !== '')
       filters.push({ name: 'fq', value: 'gpuDevicesTotal:' + filterGpuDevicesTotal });
 
-    var filterNgsildTenant = $formFilters.querySelector('.valueNgsildTenant')?.value;
-    if(filterNgsildTenant != null && filterNgsildTenant !== '')
-      filters.push({ name: 'fq', value: 'ngsildTenant:' + filterNgsildTenant });
-
     var filterGrafanaUrl = $formFilters.querySelector('.valueGrafanaUrl')?.value;
     if(filterGrafanaUrl != null && filterGrafanaUrl !== '')
       filters.push({ name: 'fq', value: 'grafanaUrl:' + filterGrafanaUrl });
+
+    var filterNgsildTenant = $formFilters.querySelector('.valueNgsildTenant')?.value;
+    if(filterNgsildTenant != null && filterNgsildTenant !== '')
+      filters.push({ name: 'fq', value: 'ngsildTenant:' + filterNgsildTenant });
 
     var filterNgsildPath = $formFilters.querySelector('.valueNgsildPath')?.value;
     if(filterNgsildPath != null && filterNgsildPath !== '')
@@ -159,17 +159,20 @@ function searchAiClusterVals(filters, target, success, error) {
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
 
 function suggestAiClusterObjectSuggest($formFilters, $list, target) {
   success = function( data, textStatus, jQxhr ) {
-    $list.empty();
+    $list.innerHTML = '';
     data['list'].forEach((o, i) => {
       var $i = document.querySelector('<i class="fa-regular fa-server"></i>');
       var $span = document.createElement('span');      $span.setAttribute('class', '');      $span.innerText = o['objectTitle'];
@@ -193,10 +196,13 @@ async function getAiCluster(pk) {
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -335,18 +341,6 @@ async function patchAiCluster($formFilters, $formValues, target, clusterName, su
   if(removeGpuDevicesTotal != null && removeGpuDevicesTotal !== '')
     vals['removeGpuDevicesTotal'] = removeGpuDevicesTotal;
 
-  var valueNgsildTenant = $formValues.querySelector('.valueNgsildTenant')?.value;
-  var removeNgsildTenant = $formValues.querySelector('.removeNgsildTenant')?.value === 'true';
-  var setNgsildTenant = removeNgsildTenant ? null : $formValues.querySelector('.setNgsildTenant')?.value;
-  var addNgsildTenant = $formValues.querySelector('.addNgsildTenant')?.value;
-  if(removeNgsildTenant || setNgsildTenant != null && setNgsildTenant !== '')
-    vals['setNgsildTenant'] = setNgsildTenant;
-  if(addNgsildTenant != null && addNgsildTenant !== '')
-    vals['addNgsildTenant'] = addNgsildTenant;
-  var removeNgsildTenant = $formValues.querySelector('.removeNgsildTenant')?.value;
-  if(removeNgsildTenant != null && removeNgsildTenant !== '')
-    vals['removeNgsildTenant'] = removeNgsildTenant;
-
   var valueGrafanaUrl = $formValues.querySelector('.valueGrafanaUrl')?.value;
   var removeGrafanaUrl = $formValues.querySelector('.removeGrafanaUrl')?.value === 'true';
   var setGrafanaUrl = removeGrafanaUrl ? null : $formValues.querySelector('.setGrafanaUrl')?.value;
@@ -358,6 +352,18 @@ async function patchAiCluster($formFilters, $formValues, target, clusterName, su
   var removeGrafanaUrl = $formValues.querySelector('.removeGrafanaUrl')?.value;
   if(removeGrafanaUrl != null && removeGrafanaUrl !== '')
     vals['removeGrafanaUrl'] = removeGrafanaUrl;
+
+  var valueNgsildTenant = $formValues.querySelector('.valueNgsildTenant')?.value;
+  var removeNgsildTenant = $formValues.querySelector('.removeNgsildTenant')?.value === 'true';
+  var setNgsildTenant = removeNgsildTenant ? null : $formValues.querySelector('.setNgsildTenant')?.value;
+  var addNgsildTenant = $formValues.querySelector('.addNgsildTenant')?.value;
+  if(removeNgsildTenant || setNgsildTenant != null && setNgsildTenant !== '')
+    vals['setNgsildTenant'] = setNgsildTenant;
+  if(addNgsildTenant != null && addNgsildTenant !== '')
+    vals['addNgsildTenant'] = addNgsildTenant;
+  var removeNgsildTenant = $formValues.querySelector('.removeNgsildTenant')?.value;
+  if(removeNgsildTenant != null && removeNgsildTenant !== '')
+    vals['removeNgsildTenant'] = removeNgsildTenant;
 
   var valueNgsildPath = $formValues.querySelector('.valueNgsildPath')?.value;
   var removeNgsildPath = $formValues.querySelector('.removeNgsildPath')?.value === 'true';
@@ -509,13 +515,13 @@ function patchAiClusterFilters($formFilters) {
     if(filterGpuDevicesTotal != null && filterGpuDevicesTotal !== '')
       filters.push({ name: 'fq', value: 'gpuDevicesTotal:' + filterGpuDevicesTotal });
 
-    var filterNgsildTenant = $formFilters.querySelector('.valueNgsildTenant')?.value;
-    if(filterNgsildTenant != null && filterNgsildTenant !== '')
-      filters.push({ name: 'fq', value: 'ngsildTenant:' + filterNgsildTenant });
-
     var filterGrafanaUrl = $formFilters.querySelector('.valueGrafanaUrl')?.value;
     if(filterGrafanaUrl != null && filterGrafanaUrl !== '')
       filters.push({ name: 'fq', value: 'grafanaUrl:' + filterGrafanaUrl });
+
+    var filterNgsildTenant = $formFilters.querySelector('.valueNgsildTenant')?.value;
+    if(filterNgsildTenant != null && filterNgsildTenant !== '')
+      filters.push({ name: 'fq', value: 'ngsildTenant:' + filterNgsildTenant });
 
     var filterNgsildPath = $formFilters.querySelector('.valueNgsildPath')?.value;
     if(filterNgsildPath != null && filterNgsildPath !== '')
@@ -614,10 +620,13 @@ function patchAiClusterVals(filters, vals, target, success, error) {
       , method: 'PATCH'
       , body: JSON.stringify(vals)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -680,13 +689,13 @@ async function postAiCluster($formValues, target, success, error) {
   if(valueGpuDevicesTotal != null && valueGpuDevicesTotal !== '')
     vals['gpuDevicesTotal'] = valueGpuDevicesTotal;
 
-  var valueNgsildTenant = $formValues.querySelector('.valueNgsildTenant')?.value;
-  if(valueNgsildTenant != null && valueNgsildTenant !== '')
-    vals['ngsildTenant'] = valueNgsildTenant;
-
   var valueGrafanaUrl = $formValues.querySelector('.valueGrafanaUrl')?.value;
   if(valueGrafanaUrl != null && valueGrafanaUrl !== '')
     vals['grafanaUrl'] = valueGrafanaUrl;
+
+  var valueNgsildTenant = $formValues.querySelector('.valueNgsildTenant')?.value;
+  if(valueNgsildTenant != null && valueNgsildTenant !== '')
+    vals['ngsildTenant'] = valueNgsildTenant;
 
   var valueNgsildPath = $formValues.querySelector('.valueNgsildPath')?.value;
   if(valueNgsildPath != null && valueNgsildPath !== '')
@@ -727,10 +736,13 @@ async function postAiCluster($formValues, target, success, error) {
       , method: 'POST'
       , body: JSON.stringify(vals)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -743,10 +755,13 @@ function postAiClusterVals(vals, target, success, error) {
       , method: 'POST'
       , body: JSON.stringify(vals)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -774,10 +789,11 @@ async function deleteAiCluster(target, clusterName, success, error) {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'DELETE'
     }).then(response => {
-      if(response.ok)
+      if(response.ok) {
         success(response, target);
-      else
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -798,10 +814,13 @@ function putimportAiClusterVals(json, target, success, error) {
       , method: 'PUT'
       , body: JSON.stringify(json)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -829,10 +848,11 @@ async function deletefilterAiCluster(target, success, error) {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'DELETE'
     }).then(response => {
-      if(response.ok)
+      if(response.ok) {
         success(response, target);
-      else
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -926,8 +946,8 @@ async function websocketAiClusterInner(apiRequest) {
         var inputLocation = null;
         var inputAiNodesTotal = null;
         var inputGpuDevicesTotal = null;
-        var inputNgsildTenant = null;
         var inputGrafanaUrl = null;
+        var inputNgsildTenant = null;
         var inputNgsildPath = null;
         var inputNgsildContext = null;
         var inputNgsildData = null;
@@ -969,10 +989,10 @@ async function websocketAiClusterInner(apiRequest) {
           inputAiNodesTotal = $response.querySelector('.Page_aiNodesTotal');
         if(vars.includes('gpuDevicesTotal'))
           inputGpuDevicesTotal = $response.querySelector('.Page_gpuDevicesTotal');
-        if(vars.includes('ngsildTenant'))
-          inputNgsildTenant = $response.querySelector('.Page_ngsildTenant');
         if(vars.includes('grafanaUrl'))
           inputGrafanaUrl = $response.querySelector('.Page_grafanaUrl');
+        if(vars.includes('ngsildTenant'))
+          inputNgsildTenant = $response.querySelector('.Page_ngsildTenant');
         if(vars.includes('ngsildPath'))
           inputNgsildPath = $response.querySelector('.Page_ngsildPath');
         if(vars.includes('ngsildContext'))
@@ -1119,16 +1139,6 @@ async function websocketAiClusterInner(apiRequest) {
           addGlow(document.querySelector('.Page_gpuDevicesTotal'));
         }
 
-        if(inputNgsildTenant) {
-          document.querySelectorAll('.Page_ngsildTenant').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputNgsildTenant.getAttribute('value');
-            else
-              item.textContent = inputNgsildTenant.textContent;
-          });
-          addGlow(document.querySelector('.Page_ngsildTenant'));
-        }
-
         if(inputGrafanaUrl) {
           document.querySelectorAll('.Page_grafanaUrl').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1137,6 +1147,16 @@ async function websocketAiClusterInner(apiRequest) {
               item.textContent = inputGrafanaUrl.textContent;
           });
           addGlow(document.querySelector('.Page_grafanaUrl'));
+        }
+
+        if(inputNgsildTenant) {
+          document.querySelectorAll('.Page_ngsildTenant').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNgsildTenant.getAttribute('value');
+            else
+              item.textContent = inputNgsildTenant.textContent;
+          });
+          addGlow(document.querySelector('.Page_ngsildTenant'));
         }
 
         if(inputNgsildPath) {
