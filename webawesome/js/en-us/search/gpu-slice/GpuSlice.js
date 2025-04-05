@@ -93,9 +93,9 @@ function searchGpuSliceFilters($formFilters) {
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
-    var filterTitle = $formFilters.querySelector('.valueTitle')?.value;
-    if(filterTitle != null && filterTitle !== '')
-      filters.push({ name: 'fq', value: 'title:' + filterTitle });
+    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
     var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
     if(filterDisplayPage != null && filterDisplayPage !== '')
@@ -113,10 +113,6 @@ function searchGpuSliceFilters($formFilters) {
     if(filterDownload != null && filterDownload !== '')
       filters.push({ name: 'fq', value: 'download:' + filterDownload });
 
-    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
-    if(filterSolrId != null && filterSolrId !== '')
-      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
     var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -124,6 +120,10 @@ function searchGpuSliceFilters($formFilters) {
     var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
+    if(filterSolrId != null && filterSolrId !== '')
+      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
     var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
     if(filterLocationColors != null && filterLocationColors !== '')
@@ -164,7 +164,7 @@ function suggestGpuSliceObjectSuggest($formFilters, $list, target) {
     $list.empty();
     data['list'].forEach((o, i) => {
       var $i = document.querySelector('<i class="fa-regular fa-cake-slice"></i>');
-      var $span = document.createElement('span');      $span.setAttribute('class', '');      $span.innerText = o['title'];
+      var $span = document.createElement('span');      $span.setAttribute('class', '');      $span.innerText = o['objectTitle'];
       var $li = document.createElement('li');
       var $a = document.createElement('a').setAttribute('href', o['editPage']);
       $a.append($i);
@@ -375,17 +375,17 @@ async function patchGpuSlice($formFilters, $formValues, target, sliceName, succe
   if(removeUserKey != null && removeUserKey !== '')
     vals['removeUserKey'] = removeUserKey;
 
-  var valueTitle = $formValues.querySelector('.valueTitle')?.value;
-  var removeTitle = $formValues.querySelector('.removeTitle')?.value === 'true';
-  var setTitle = removeTitle ? null : $formValues.querySelector('.setTitle')?.value;
-  var addTitle = $formValues.querySelector('.addTitle')?.value;
-  if(removeTitle || setTitle != null && setTitle !== '')
-    vals['setTitle'] = setTitle;
-  if(addTitle != null && addTitle !== '')
-    vals['addTitle'] = addTitle;
-  var removeTitle = $formValues.querySelector('.removeTitle')?.value;
-  if(removeTitle != null && removeTitle !== '')
-    vals['removeTitle'] = removeTitle;
+  var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
+  var removeObjectTitle = $formValues.querySelector('.removeObjectTitle')?.value === 'true';
+  var setObjectTitle = removeObjectTitle ? null : $formValues.querySelector('.setObjectTitle')?.value;
+  var addObjectTitle = $formValues.querySelector('.addObjectTitle')?.value;
+  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
+    vals['setObjectTitle'] = setObjectTitle;
+  if(addObjectTitle != null && addObjectTitle !== '')
+    vals['addObjectTitle'] = addObjectTitle;
+  var removeObjectTitle = $formValues.querySelector('.removeObjectTitle')?.value;
+  if(removeObjectTitle != null && removeObjectTitle !== '')
+    vals['removeObjectTitle'] = removeObjectTitle;
 
   var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
   var removeDisplayPage = $formValues.querySelector('.removeDisplayPage')?.value === 'true';
@@ -497,9 +497,9 @@ function patchGpuSliceFilters($formFilters) {
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
-    var filterTitle = $formFilters.querySelector('.valueTitle')?.value;
-    if(filterTitle != null && filterTitle !== '')
-      filters.push({ name: 'fq', value: 'title:' + filterTitle });
+    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
     var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
     if(filterDisplayPage != null && filterDisplayPage !== '')
@@ -517,10 +517,6 @@ function patchGpuSliceFilters($formFilters) {
     if(filterDownload != null && filterDownload !== '')
       filters.push({ name: 'fq', value: 'download:' + filterDownload });
 
-    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
-    if(filterSolrId != null && filterSolrId !== '')
-      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
     var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -528,6 +524,10 @@ function patchGpuSliceFilters($formFilters) {
     var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
+    if(filterSolrId != null && filterSolrId !== '')
+      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
     var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
     if(filterLocationColors != null && filterLocationColors !== '')
@@ -644,9 +644,9 @@ async function postGpuSlice($formValues, target, success, error) {
   if(valueUserKey != null && valueUserKey !== '')
     vals['userKey'] = valueUserKey;
 
-  var valueTitle = $formValues.querySelector('.valueTitle')?.value;
-  if(valueTitle != null && valueTitle !== '')
-    vals['title'] = valueTitle;
+  var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
+  if(valueObjectTitle != null && valueObjectTitle !== '')
+    vals['objectTitle'] = valueObjectTitle;
 
   var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
   if(valueDisplayPage != null && valueDisplayPage !== '')
@@ -870,14 +870,14 @@ async function websocketGpuSliceInner(apiRequest) {
         var inputSessionId = null;
         var inputUserKey = null;
         var inputSaves = null;
-        var inputTitle = null;
+        var inputObjectTitle = null;
         var inputDisplayPage = null;
         var inputEditPage = null;
         var inputUserPage = null;
         var inputDownload = null;
-        var inputSolrId = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
+        var inputSolrId = null;
         var inputLocationColors = null;
         var inputLocationTitles = null;
         var inputLocationLinks = null;
@@ -919,8 +919,8 @@ async function websocketGpuSliceInner(apiRequest) {
           inputUserKey = $response.querySelector('.Page_userKey');
         if(vars.includes('saves'))
           inputSaves = $response.querySelector('.Page_saves');
-        if(vars.includes('title'))
-          inputTitle = $response.querySelector('.Page_title');
+        if(vars.includes('objectTitle'))
+          inputObjectTitle = $response.querySelector('.Page_objectTitle');
         if(vars.includes('displayPage'))
           inputDisplayPage = $response.querySelector('.Page_displayPage');
         if(vars.includes('editPage'))
@@ -929,12 +929,12 @@ async function websocketGpuSliceInner(apiRequest) {
           inputUserPage = $response.querySelector('.Page_userPage');
         if(vars.includes('download'))
           inputDownload = $response.querySelector('.Page_download');
-        if(vars.includes('solrId'))
-          inputSolrId = $response.querySelector('.Page_solrId');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
         if(vars.includes('objectText'))
           inputObjectText = $response.querySelector('.Page_objectText');
+        if(vars.includes('solrId'))
+          inputSolrId = $response.querySelector('.Page_solrId');
         if(vars.includes('locationColors'))
           inputLocationColors = $response.querySelector('.Page_locationColors');
         if(vars.includes('locationTitles'))
@@ -1129,14 +1129,14 @@ async function websocketGpuSliceInner(apiRequest) {
           addGlow(document.querySelector('.Page_saves'));
         }
 
-        if(inputTitle) {
-          document.querySelectorAll('.Page_title').forEach((item, index) => {
+        if(inputObjectTitle) {
+          document.querySelectorAll('.Page_objectTitle').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
-              item.value = inputTitle.getAttribute('value');
+              item.value = inputObjectTitle.getAttribute('value');
             else
-              item.textContent = inputTitle.textContent;
+              item.textContent = inputObjectTitle.textContent;
           });
-          addGlow(document.querySelector('.Page_title'));
+          addGlow(document.querySelector('.Page_objectTitle'));
         }
 
         if(inputDisplayPage) {
@@ -1179,16 +1179,6 @@ async function websocketGpuSliceInner(apiRequest) {
           addGlow(document.querySelector('.Page_download'));
         }
 
-        if(inputSolrId) {
-          document.querySelectorAll('.Page_solrId').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputSolrId.getAttribute('value');
-            else
-              item.textContent = inputSolrId.textContent;
-          });
-          addGlow(document.querySelector('.Page_solrId'));
-        }
-
         if(inputObjectSuggest) {
           document.querySelectorAll('.Page_objectSuggest').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1207,6 +1197,16 @@ async function websocketGpuSliceInner(apiRequest) {
               item.textContent = inputObjectText.textContent;
           });
           addGlow(document.querySelector('.Page_objectText'));
+        }
+
+        if(inputSolrId) {
+          document.querySelectorAll('.Page_solrId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSolrId.getAttribute('value');
+            else
+              item.textContent = inputSolrId.textContent;
+          });
+          addGlow(document.querySelector('.Page_solrId'));
         }
 
         if(inputLocationColors) {
@@ -1495,7 +1495,7 @@ function pageGraphGpuSlice(apiRequest) {
         var contextmenuItems = [];
         if(event.layerType == 'marker') {
           contextmenuItems.push({
-            text: 'Set location of ' + result.title
+            text: 'Set location of ' + result.objectTitle
             , callback: function(event2) {
               patchLocation(event.layer, { coordinates: [event.layer.getLatLng()['lng'], event.layer.getLatLng()['lat']], type: "Point" });
             }

@@ -1182,19 +1182,19 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
     {% endif %}
   {% endif %}
 {% endif %}
-{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+{%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
     {{ htmButton_patchAiNode() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmButton_postAiNode() }}
   {%- else %}
     {{ htmButton_postAiNode() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'DELETE' in scopes %}
   {%- if resultCount == 1 %}
     {{ htmButton_deleteAiNode() }}
   {%- endif %}
@@ -1202,7 +1202,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {{ htmButton_putimportAiNode() }}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'DELETE' in scopes %}
   {%- if resultCount > 1 %}
     {{ htmButton_deletefilterAiNode() }}
   {%- endif %}
@@ -1210,19 +1210,18 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 
             </div>
           </div>
-{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
-  {%- if resultCount > 0 %}
+{%- if 'DELETE' in scopes %}
     {{ htmForm_patchAiNode() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmForm_postAiNode() }}
   {%- else %}
     {{ htmForm_postAiNode() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'DELETE' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmForm_deleteAiNode() }}
   {%- else %}
@@ -1231,7 +1230,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {{ htmForm_putimportAiNode() }}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'DELETE' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmForm_deletefilterAiNode() }}
   {%- else %}

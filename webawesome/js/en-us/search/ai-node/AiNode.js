@@ -89,6 +89,10 @@ function searchAiNodeFilters($formFilters) {
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
       filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
 
+    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
     var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
     if(filterSessionId != null && filterSessionId !== '')
       filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
@@ -101,9 +105,9 @@ function searchAiNodeFilters($formFilters) {
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
-    var filterTitle = $formFilters.querySelector('.valueTitle')?.value;
-    if(filterTitle != null && filterTitle !== '')
-      filters.push({ name: 'fq', value: 'title:' + filterTitle });
+    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
     var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
     if(filterDisplayPage != null && filterDisplayPage !== '')
@@ -132,10 +136,6 @@ function searchAiNodeFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
-    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
     var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
     if(filterLocationColors != null && filterLocationColors !== '')
@@ -176,7 +176,7 @@ function suggestAiNodeObjectSuggest($formFilters, $list, target) {
     $list.empty();
     data['list'].forEach((o, i) => {
       var $i = document.querySelector('<i class="fa-regular fa-computer"></i>');
-      var $span = document.createElement('span');      $span.setAttribute('class', '');      $span.innerText = o['title'];
+      var $span = document.createElement('span');      $span.setAttribute('class', '');      $span.innerText = o['objectTitle'];
       var $li = document.createElement('li');
       var $a = document.createElement('a').setAttribute('href', o['editPage']);
       $a.append($i);
@@ -423,17 +423,17 @@ async function patchAiNode($formFilters, $formValues, target, nodeId, success, e
   if(removeUserKey != null && removeUserKey !== '')
     vals['removeUserKey'] = removeUserKey;
 
-  var valueTitle = $formValues.querySelector('.valueTitle')?.value;
-  var removeTitle = $formValues.querySelector('.removeTitle')?.value === 'true';
-  var setTitle = removeTitle ? null : $formValues.querySelector('.setTitle')?.value;
-  var addTitle = $formValues.querySelector('.addTitle')?.value;
-  if(removeTitle || setTitle != null && setTitle !== '')
-    vals['setTitle'] = setTitle;
-  if(addTitle != null && addTitle !== '')
-    vals['addTitle'] = addTitle;
-  var removeTitle = $formValues.querySelector('.removeTitle')?.value;
-  if(removeTitle != null && removeTitle !== '')
-    vals['removeTitle'] = removeTitle;
+  var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
+  var removeObjectTitle = $formValues.querySelector('.removeObjectTitle')?.value === 'true';
+  var setObjectTitle = removeObjectTitle ? null : $formValues.querySelector('.setObjectTitle')?.value;
+  var addObjectTitle = $formValues.querySelector('.addObjectTitle')?.value;
+  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
+    vals['setObjectTitle'] = setObjectTitle;
+  if(addObjectTitle != null && addObjectTitle !== '')
+    vals['addObjectTitle'] = addObjectTitle;
+  var removeObjectTitle = $formValues.querySelector('.removeObjectTitle')?.value;
+  if(removeObjectTitle != null && removeObjectTitle !== '')
+    vals['removeObjectTitle'] = removeObjectTitle;
 
   var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
   var removeDisplayPage = $formValues.querySelector('.removeDisplayPage')?.value === 'true';
@@ -541,6 +541,10 @@ function patchAiNodeFilters($formFilters) {
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
       filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
 
+    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
     var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
     if(filterSessionId != null && filterSessionId !== '')
       filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
@@ -553,9 +557,9 @@ function patchAiNodeFilters($formFilters) {
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
-    var filterTitle = $formFilters.querySelector('.valueTitle')?.value;
-    if(filterTitle != null && filterTitle !== '')
-      filters.push({ name: 'fq', value: 'title:' + filterTitle });
+    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
     var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
     if(filterDisplayPage != null && filterDisplayPage !== '')
@@ -584,10 +588,6 @@ function patchAiNodeFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
-    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
     var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
     if(filterLocationColors != null && filterLocationColors !== '')
@@ -716,9 +716,9 @@ async function postAiNode($formValues, target, success, error) {
   if(valueUserKey != null && valueUserKey !== '')
     vals['userKey'] = valueUserKey;
 
-  var valueTitle = $formValues.querySelector('.valueTitle')?.value;
-  if(valueTitle != null && valueTitle !== '')
-    vals['title'] = valueTitle;
+  var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
+  if(valueObjectTitle != null && valueObjectTitle !== '')
+    vals['objectTitle'] = valueObjectTitle;
 
   var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
   if(valueDisplayPage != null && valueDisplayPage !== '')
@@ -941,10 +941,11 @@ async function websocketAiNodeInner(apiRequest) {
         var inputLocation = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
+        var inputClassCanonicalNames = null;
         var inputSessionId = null;
         var inputUserKey = null;
         var inputSaves = null;
-        var inputTitle = null;
+        var inputObjectTitle = null;
         var inputDisplayPage = null;
         var inputEditPage = null;
         var inputUserPage = null;
@@ -952,7 +953,6 @@ async function websocketAiNodeInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
-        var inputClassCanonicalNames = null;
         var inputLocationColors = null;
         var inputLocationTitles = null;
         var inputLocationLinks = null;
@@ -992,14 +992,16 @@ async function websocketAiNodeInner(apiRequest) {
           inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
           inputClassSimpleName = $response.querySelector('.Page_classSimpleName');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.querySelector('.Page_classCanonicalNames');
         if(vars.includes('sessionId'))
           inputSessionId = $response.querySelector('.Page_sessionId');
         if(vars.includes('userKey'))
           inputUserKey = $response.querySelector('.Page_userKey');
         if(vars.includes('saves'))
           inputSaves = $response.querySelector('.Page_saves');
-        if(vars.includes('title'))
-          inputTitle = $response.querySelector('.Page_title');
+        if(vars.includes('objectTitle'))
+          inputObjectTitle = $response.querySelector('.Page_objectTitle');
         if(vars.includes('displayPage'))
           inputDisplayPage = $response.querySelector('.Page_displayPage');
         if(vars.includes('editPage'))
@@ -1014,8 +1016,6 @@ async function websocketAiNodeInner(apiRequest) {
           inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
-        if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.querySelector('.Page_classCanonicalNames');
         if(vars.includes('locationColors'))
           inputLocationColors = $response.querySelector('.Page_locationColors');
         if(vars.includes('locationTitles'))
@@ -1200,6 +1200,16 @@ async function websocketAiNodeInner(apiRequest) {
           addGlow(document.querySelector('.Page_classSimpleName'));
         }
 
+        if(inputClassCanonicalNames) {
+          document.querySelectorAll('.Page_classCanonicalNames').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputClassCanonicalNames.getAttribute('value');
+            else
+              item.textContent = inputClassCanonicalNames.textContent;
+          });
+          addGlow(document.querySelector('.Page_classCanonicalNames'));
+        }
+
         if(inputSessionId) {
           document.querySelectorAll('.Page_sessionId').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1230,14 +1240,14 @@ async function websocketAiNodeInner(apiRequest) {
           addGlow(document.querySelector('.Page_saves'));
         }
 
-        if(inputTitle) {
-          document.querySelectorAll('.Page_title').forEach((item, index) => {
+        if(inputObjectTitle) {
+          document.querySelectorAll('.Page_objectTitle').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
-              item.value = inputTitle.getAttribute('value');
+              item.value = inputObjectTitle.getAttribute('value');
             else
-              item.textContent = inputTitle.textContent;
+              item.textContent = inputObjectTitle.textContent;
           });
-          addGlow(document.querySelector('.Page_title'));
+          addGlow(document.querySelector('.Page_objectTitle'));
         }
 
         if(inputDisplayPage) {
@@ -1308,16 +1318,6 @@ async function websocketAiNodeInner(apiRequest) {
               item.textContent = inputSolrId.textContent;
           });
           addGlow(document.querySelector('.Page_solrId'));
-        }
-
-        if(inputClassCanonicalNames) {
-          document.querySelectorAll('.Page_classCanonicalNames').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputClassCanonicalNames.getAttribute('value');
-            else
-              item.textContent = inputClassCanonicalNames.textContent;
-          });
-          addGlow(document.querySelector('.Page_classCanonicalNames'));
         }
 
         if(inputLocationColors) {
@@ -1606,7 +1606,7 @@ function pageGraphAiNode(apiRequest) {
         var contextmenuItems = [];
         if(event.layerType == 'marker') {
           contextmenuItems.push({
-            text: 'Set location of ' + result.title
+            text: 'Set location of ' + result.objectTitle
             , callback: function(event2) {
               patchLocation(event.layer, { coordinates: [event.layer.getLatLng()['lng'], event.layer.getLatLng()['lat']], type: "Point" });
             }

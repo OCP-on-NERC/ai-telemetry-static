@@ -98,6 +98,8 @@
           <wa-tooltip for="site-aside-left-model-button-GpuDevice" placement="right" hoist>A Red Hat OpenShift GPU device containing GPUs</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-GpuSlice" placement="right" hoist>A GPU slice inside a GPU</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-AiProject" placement="right" hoist>A research project using AI and GPUs</wa-tooltip>
+          <wa-tooltip for="site-aside-left-model-button-ClusterTemplate" placement="right" hoist>An OpenShift cluster template</wa-tooltip>
+          <wa-tooltip for="site-aside-left-model-button-ClusterRequest" placement="right" hoist>An OpenShift cluster request</wa-tooltip>
           <div class="flex flex-column round-row primary-smart-border-radius margin-block">
 {%- if userName is defined %}
             <wa-details>
@@ -150,6 +152,14 @@
             <wa-button variant="brand" id="site-aside-left-model-button-AiProject" href="{{ SITE_BASE_URL }}/en-us/search/ai-project">
               <i class="fa-regular fa-school"></i>
               AI projects
+            </wa-button>
+            <wa-button variant="brand" id="site-aside-left-model-button-ClusterTemplate" href="{{ SITE_BASE_URL }}/en-us/search/cluster-template">
+              <i class="fa-regular fa-server"></i>
+              cluster templates
+            </wa-button>
+            <wa-button variant="brand" id="site-aside-left-model-button-ClusterRequest" href="{{ SITE_BASE_URL }}/en-us/search/cluster-request">
+              <i class="fa-regular fa-server"></i>
+              cluster requests
             </wa-button>
           </div>
         </nav>

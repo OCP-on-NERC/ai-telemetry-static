@@ -1212,19 +1212,19 @@ The NGSILD data with @context from the context broker"
     {% endif %}
   {% endif %}
 {% endif %}
-{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+{%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
     {{ htmButton_patchAiCluster() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmButton_postAiCluster() }}
   {%- else %}
     {{ htmButton_postAiCluster() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'DELETE' in scopes %}
   {%- if resultCount == 1 %}
     {{ htmButton_deleteAiCluster() }}
   {%- endif %}
@@ -1232,7 +1232,7 @@ The NGSILD data with @context from the context broker"
 {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {{ htmButton_putimportAiCluster() }}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'DELETE' in scopes %}
   {%- if resultCount > 1 %}
     {{ htmButton_deletefilterAiCluster() }}
   {%- endif %}
@@ -1240,19 +1240,18 @@ The NGSILD data with @context from the context broker"
 
             </div>
           </div>
-{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
-  {%- if resultCount > 0 %}
+{%- if 'DELETE' in scopes %}
     {{ htmForm_patchAiCluster() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmForm_postAiCluster() }}
   {%- else %}
     {{ htmForm_postAiCluster() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'DELETE' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmForm_deleteAiCluster() }}
   {%- else %}
@@ -1261,7 +1260,7 @@ The NGSILD data with @context from the context broker"
 {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {{ htmForm_putimportAiCluster() }}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'DELETE' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmForm_deletefilterAiCluster() }}
   {%- else %}

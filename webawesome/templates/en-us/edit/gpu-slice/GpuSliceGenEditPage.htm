@@ -1,7 +1,7 @@
 {% extends "en-us/PageLayout.htm" %}
 {%- block htmTitlePageLayout %}
 {%- block htmTitleGpuSlicePage %}
-    <title>{{ result.title }}</title>
+    <title>{{ result.objectTitle }}</title>
 {%- endblock htmTitleGpuSlicePage %}
 {%- endblock htmTitlePageLayout %}
 
@@ -41,7 +41,7 @@
 
       function htmTooltipGpuSlice(feature, layer) {
         return `{%- block htmTooltipGpuSlicePage %}
-<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.title}</a></h3>
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipGpuSlicePage %}`;
       }
 
@@ -269,7 +269,7 @@
               <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
               all GPU slices
             </wa-button>
-            <h1 class="Page_title"><i class="fa-regular fa-cake-slice"></i> {{ result.title | e }}</h1>
+            <h1 class="Page_objectTitle"><i class="fa-regular fa-cake-slice"></i> {{ result.objectTitle | e }}</h1>
           </div>
           <div class="margin-block">
           </div>

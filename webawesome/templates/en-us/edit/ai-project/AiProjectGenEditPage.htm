@@ -1,7 +1,7 @@
 {% extends "en-us/PageLayout.htm" %}
 {%- block htmTitlePageLayout %}
 {%- block htmTitleAiProjectPage %}
-    <title>{{ result.title }}</title>
+    <title>{{ result.objectTitle }}</title>
 {%- endblock htmTitleAiProjectPage %}
 {%- endblock htmTitlePageLayout %}
 
@@ -41,7 +41,7 @@
 
       function htmTooltipAiProject(feature, layer) {
         return `{%- block htmTooltipAiProjectPage %}
-<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.title}</a></h3>
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipAiProjectPage %}`;
       }
     </script>
@@ -187,7 +187,7 @@
               <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
               all AI projects
             </wa-button>
-            <h1 class="Page_title"><i class="fa-regular fa-school"></i> {{ result.title | e }}</h1>
+            <h1 class="Page_objectTitle"><i class="fa-regular fa-school"></i> {{ result.objectTitle | e }}</h1>
           </div>
           <div class="margin-block">
           </div>

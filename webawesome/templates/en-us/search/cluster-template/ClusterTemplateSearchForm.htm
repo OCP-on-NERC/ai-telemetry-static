@@ -1,0 +1,757 @@
+{%- macro inputPkClusterTemplatePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_pk">
+  {%- endif %}
+                  <wa-input
+                      readonly
+                      placeholder="[Long] primary key"
+                      label="primary key"
+                      hint="
+The primary key of this object in the database"
+                      id="{{classApiMethodMethod}}_pk"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-title={{ result.title | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classClusterTemplate inputClusterTemplate{{ result.title }}Pk "
+                      name="setPk"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classClusterTemplate inputClusterTemplate{{ result.title }}Pk "
+                      name="setPk"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_pk valuePk classClusterTemplate inputClusterTemplate{{ result.title }}Pk "
+                      name="pk"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.pk | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmPkClusterTemplatePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputPkClusterTemplatePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputCreatedClusterTemplatePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_created">
+  {%- endif %}
+                  <wa-input
+                      type="text"
+                      readonly
+                      hint="A created timestamp for this record in the database"
+                      label="created"
+                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classClusterTemplate inputClusterTemplate{{ result.title }}Created "
+                      placeholder="MM/dd/yyyy h:mm a '['VV']'"
+                      data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
+                      id="{{classApiMethodMethod}}_created"
+                      value="{%- if result.created is defined %}{{ formatZonedDateTime(result.created, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+  {%- if 'Page' == classApiMethodMethod %}
+  {%- endif %}
+                      data-title={{ result.title | tojson }}
+                      >
+                  </wa-input>
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmCreatedClusterTemplatePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputCreatedClusterTemplatePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputModifiedClusterTemplatePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_modified">
+  {%- endif %}
+                  <wa-input
+                      type="text"
+                      readonly
+                      hint="A modified timestamp for this record in the database"
+                      label="modified"
+                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classClusterTemplate inputClusterTemplate{{ result.title }}Modified "
+                      placeholder="MM/dd/yyyy h:mm a '['VV']'"
+                      data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
+                      id="{{classApiMethodMethod}}_modified"
+                      value="{%- if result.modified is defined %}{{ formatZonedDateTime(result.modified, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+  {%- if 'Page' == classApiMethodMethod %}
+  {%- endif %}
+                      data-title={{ result.title | tojson }}
+                      >
+                  </wa-input>
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmModifiedClusterTemplatePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputModifiedClusterTemplatePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputArchivedClusterTemplatePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_archived">
+  {%- endif %}
+  {%- if 'Page' == classApiMethodMethod %}
+                  <wa-button variant="brand"
+                      id="{{classApiMethodMethod}}_archived"
+                      placeholder="archive"
+                      label="archive"
+                      hint="For archiving this record"
+                      class="label-on-left {{classApiMethodMethod}}_archived classClusterTemplate inputClusterTemplate{{ result.title }}Archived "
+                      name="setArchived"
+                      data-title={{ result.title | tojson }}
+                      data-val="{{ result.archived | e }}"
+                      >archive</wa-button>
+  {%- else %}
+  {%- if 'Page' == classApiMethodMethod %}
+                  <wa-checkbox
+                      id="{{classApiMethodMethod}}_archived"
+                      value="true"
+  {%- else %}
+                  <wa-select
+                      id="{{classApiMethodMethod}}_archived"
+  {%- endif %}
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="archive"
+                      label="archive"
+                      hint="For archiving this record"
+  {%- if 'Page' == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_archived classClusterTemplate inputClusterTemplate{{ result.title }}Archived "
+                      name="setArchived"
+  {%- else %}
+    {%- if 'Page' == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_archived classClusterTemplate inputClusterTemplate{{ result.title }}Archived "
+                      name="setArchived"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classClusterTemplate inputClusterTemplate{{ result.title }}Archived "
+                      name="setArchived"
+    {%- endif %}
+  {%- endif %}
+  {%- if 'Page' == classApiMethodMethod %}
+    {%- if result.archived == true %}
+                      checked
+    {%- endif %}
+                      data-title={{ result.title | tojson }}
+                      >archive</wa-checkbox>
+  {%- else %}
+                      >
+                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value="true">true</wa-option>
+                    <wa-option value="false">false</wa-option>
+                  </wa-select>
+  {%- endif %}
+  {%- endif %}
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmArchivedClusterTemplatePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputArchivedClusterTemplatePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputIdClusterTemplatePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_id">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] template ID"
+                      label="template ID"
+                      hint="
+The ID of this template"
+                      id="{{classApiMethodMethod}}_id"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-title={{ result.title | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_id setId classClusterTemplate inputClusterTemplate{{ result.title }}Id "
+                      name="setId"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_id setId classClusterTemplate inputClusterTemplate{{ result.title }}Id "
+                      name="setId"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_id valueId classClusterTemplate inputClusterTemplate{{ result.title }}Id "
+                      name="id"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.id | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmIdClusterTemplatePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputIdClusterTemplatePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputTitleClusterTemplatePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_title">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] template title"
+                      label="template title"
+                      hint="
+The title of this template"
+                      id="{{classApiMethodMethod}}_title"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-title={{ result.title | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_title setTitle classClusterTemplate inputClusterTemplate{{ result.title }}Title "
+                      name="setTitle"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_title setTitle classClusterTemplate inputClusterTemplate{{ result.title }}Title "
+                      name="setTitle"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_title valueTitle classClusterTemplate inputClusterTemplate{{ result.title }}Title "
+                      name="title"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.title | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmTitleClusterTemplatePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputTitleClusterTemplatePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputDescriptionClusterTemplatePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_description">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] template description"
+                      label="template description"
+                      hint="
+The description of this template"
+                      id="{{classApiMethodMethod}}_description"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-title={{ result.title | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classClusterTemplate inputClusterTemplate{{ result.title }}Description "
+                      name="setDescription"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classClusterTemplate inputClusterTemplate{{ result.title }}Description "
+                      name="setDescription"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classClusterTemplate inputClusterTemplate{{ result.title }}Description "
+                      name="description"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.description | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmDescriptionClusterTemplatePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputDescriptionClusterTemplatePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputParametersClusterTemplatePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_parameters">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[JsonArray] template parameters"
+                      label="template parameters"
+                      hint="
+The parameters of this template"
+                      id="{{classApiMethodMethod}}_parameters"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-title={{ result.title | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_parameters setParameters classClusterTemplate inputClusterTemplate{{ result.title }}Parameters "
+                      name="setParameters"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_parameters setParameters classClusterTemplate inputClusterTemplate{{ result.title }}Parameters "
+                      name="setParameters"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_parameters valueParameters classClusterTemplate inputClusterTemplate{{ result.title }}Parameters "
+                      name="parameters"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{ toJsonArrayString(result.parameters) | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmParametersClusterTemplatePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputParametersClusterTemplatePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+
+{%- macro htmButton_patchClusterTemplate() %}<wa-button variant="brand" id="htmButton_patchClusterTemplate" data-title={{ result.title | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
+
+{%- macro htmFormButton_patchClusterTemplate() %}
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchClusterTemplate">Modify cluster template</wa-button>
+{%- endmacro %}
+
+{%- macro htmForm_patchClusterTemplate() %}
+        <wa-dialog with-footer id="patchClusterTemplateDialog" label="Modify cluster template">
+          <form id="htmForm_patchClusterTemplate" class="round-row primary-smart-border-radius ">
+            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
+              <div slot="summary">
+                <span>primary key, ID, created, modified, archive details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmPkClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmPkClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmPkClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmCreatedClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmCreatedClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmCreatedClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmModifiedClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmModifiedClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmModifiedClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmArchivedClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmArchivedClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmArchivedClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="cluster-template-details">
+              <div slot="summary">
+                <span>cluster template details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmIdClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmIdClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmIdClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmTitleClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmTitleClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmTitleClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmDescriptionClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmDescriptionClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmDescriptionClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmParametersClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmParametersClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmParametersClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+          </form>
+          {{ htmFormButton_patchClusterTemplate() }}
+        </wa-dialog>
+{%- endmacro %}
+
+{%- macro htmButton_postClusterTemplate() %}<wa-button variant="brand" id="htmButton_postClusterTemplate" data-title={{ result.title | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
+
+{%- macro htmFormButton_postClusterTemplate() %}
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postClusterTemplate">Create a cluster template</wa-button>
+{%- endmacro %}
+
+{%- macro htmForm_postClusterTemplate() %}
+        <wa-dialog with-footer id="postClusterTemplateDialog" label="Create a cluster template">
+          <form id="htmForm_postClusterTemplate" class="round-row primary-smart-border-radius ">
+            <div>You can override any default values below: </div>
+            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
+              <div slot="summary">
+                <span>primary key, ID, created, modified, archive details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmPkClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmPkClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmPkClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmCreatedClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmCreatedClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmCreatedClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmModifiedClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmModifiedClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmModifiedClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmArchivedClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmArchivedClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmArchivedClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="cluster-template-details">
+              <div slot="summary">
+                <span>cluster template details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmIdClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmIdClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmIdClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmTitleClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmTitleClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmTitleClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmDescriptionClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmDescriptionClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmDescriptionClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmParametersClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmParametersClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmParametersClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+          </form>
+          {{ htmFormButton_postClusterTemplate() }}
+        </wa-dialog>
+{%- endmacro %}
+
+{%- macro htmButton_deleteClusterTemplate() %}<wa-button variant="brand" id="htmButton_deleteClusterTemplate" data-title={{ result.title | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
+
+{%- macro htmFormButton_deleteClusterTemplate() %}
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deleteClusterTemplate">Delete cluster template</wa-button>
+{%- endmacro %}
+
+{%- macro htmForm_deleteClusterTemplate() %}
+        <wa-dialog with-footer id="deleteClusterTemplateDialog" label="Delete cluster template">
+          <form id="htmForm_deleteClusterTemplate" class="round-row primary-smart-border-radius ">
+          </form>
+          {{ htmFormButton_deleteClusterTemplate() }}
+        </wa-dialog>
+{%- endmacro %}
+
+{%- macro htmButton_putimportClusterTemplate() %}<wa-button variant="brand" id="htmButton_putimportClusterTemplate" data-title={{ result.title | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
+
+{%- macro htmFormButton_putimportClusterTemplate() %}
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_putimportClusterTemplate">Import cluster templates</wa-button>
+{%- endmacro %}
+
+{%- macro htmForm_putimportClusterTemplate() %}
+        <wa-dialog with-footer id="putimportClusterTemplateDialog" label="Import cluster templates">
+          <form id="htmForm_putimportClusterTemplate" class="round-row primary-smart-border-radius ">
+            <div>
+              <wa-textarea
+                  class="PUTImport_searchList "
+                  style="height: 300px; "
+                  placeholder="{ 'searchList': [ { 'title': ... , 'saves': [ ... ] }, ... ] }"
+                  >
+              </wa-textarea>
+            </div>
+          </form>
+          {{ htmFormButton_putimportClusterTemplate() }}
+        </wa-dialog>
+{%- endmacro %}
+
+{%- macro htmButton_searchpageClusterTemplate() %}{%- endmacro %}
+
+{%- macro htmFormButton_searchpageClusterTemplate() %}
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageClusterTemplate">Search cluster templates</wa-button>
+{%- endmacro %}
+
+{%- macro htmForm_searchpageClusterTemplate() %}
+        <div with-footer id="searchpageClusterTemplateDialog" label="Search cluster templates">
+          <div id="htmForm_searchpageClusterTemplate" class="round-row primary-smart-border-radius ">
+            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
+              <div slot="summary">
+                <span>primary key, ID, created, modified, archive details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmPkClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmPkClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmPkClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmCreatedClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmCreatedClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmCreatedClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmModifiedClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmModifiedClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmModifiedClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmArchivedClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmArchivedClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmArchivedClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="cluster-template-details">
+              <div slot="summary">
+                <span>cluster template details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmIdClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmIdClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmIdClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmTitleClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmTitleClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmTitleClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmDescriptionClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmDescriptionClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmDescriptionClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmParametersClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmParametersClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmParametersClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+          </div>
+        </div>
+{%- endmacro %}
+
+{%- macro htmButton_deletefilterClusterTemplate() %}<wa-button variant="brand" id="htmButton_deletefilterClusterTemplate" data-title={{ result.title | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
+
+{%- macro htmFormButton_deletefilterClusterTemplate() %}
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deletefilterClusterTemplate">Delete cluster template</wa-button>
+{%- endmacro %}
+
+{%- macro htmForm_deletefilterClusterTemplate() %}
+        <wa-dialog with-footer id="deletefilterClusterTemplateDialog" label="Delete cluster template">
+          <form id="htmForm_deletefilterClusterTemplate" class="round-row primary-smart-border-radius ">
+          </form>
+          {{ htmFormButton_deletefilterClusterTemplate() }}
+        </wa-dialog>
+{%- endmacro %}
+          <wa-divider></wa-divider>
+          <div id="htmButtonGroup">
+            <div class="flex flex-wrap round-column pill-smart-border-radius ">
+{% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+  {% if "PATCH" in scopes %}
+    {% if resultCount >= 1 %}
+              <wa-button variant="brand" id="refreshThisClusterTemplateGenPage"
+                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'title:{{ result.title }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisClusterTemplateGenPage')); }, function() { addError(document.querySelector('#refreshThisClusterTemplateGenPage')); }); return false; ">
+                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
+                refresh
+              </wa-button>
+    {% endif %}
+    {% if resultCount > 0 %}
+              <wa-button variant="brand" id="refreshAllClusterTemplateGenPage{{ result.title | e }}"
+                   onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllClusterTemplateGenPage{{ result.title | e }}')); }, function() { addError(document.querySelector('#refreshAllClusterTemplateGenPage{{ result.title | e }}')); }); "
+                  >
+                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
+                Refresh all 
+              </wa-button>
+    {% endif %}
+  {% endif %}
+{% endif %}
+{%- if 'PATCH' in scopes %}
+  {%- if resultCount > 0 %}
+    {{ htmButton_patchClusterTemplate() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'POST' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmButton_postClusterTemplate() }}
+  {%- else %}
+    {{ htmButton_postClusterTemplate() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount == 1 %}
+    {{ htmButton_deleteClusterTemplate() }}
+  {%- endif %}
+{%- endif %}
+{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+  {{ htmButton_putimportClusterTemplate() }}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount > 1 %}
+    {{ htmButton_deletefilterClusterTemplate() }}
+  {%- endif %}
+{%- endif %}
+
+            </div>
+          </div>
+{%- if 'DELETE' in scopes %}
+    {{ htmForm_patchClusterTemplate() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'POST' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_postClusterTemplate() }}
+  {%- else %}
+    {{ htmForm_postClusterTemplate() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deleteClusterTemplate() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}
+{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+  {{ htmForm_putimportClusterTemplate() }}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deletefilterClusterTemplate() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}
