@@ -467,7 +467,6 @@ main, footer {
   }
 }
 
-
 /* label-on-left */
 
 .display-grid {
@@ -539,7 +538,7 @@ main, footer {
     grid-column: 1 / span 2;
     grid-row: 2;
   }
-  .label-on-left::part(form-control-label) {
+  .label-on-left::part(label) {
     text-align: right;
     grid-column: 1;
     grid-row: 2;
