@@ -159,7 +159,7 @@
           var o = document.querySelector('.pageForm .result')?.value;
           if(o)
             window.result = JSON.parse(o);
-        {% if gpuDeviceId is defined %}
+        {% if result.gpuDeviceId is defined %}
         {% endif %}
         }
         var l = document.querySelector('.pageForm .listGpuDevice')?.value;
@@ -201,7 +201,11 @@
         });
         document.querySelector('#htmFormButton_postGpuDevice')?.addEventListener('click', event => {
           event.preventDefault();
-          postGpuDevice(document.querySelector('#htmForm_postGpuDevice'), document.querySelector('#htmFormButton_postGpuDevice'), (response, target) => { response.json().then((json) => { window.location.href = json.editPage; }); });
+          postGpuDevice(document.querySelector('#htmForm_postGpuDevice')
+          , document.querySelector('#htmFormButton_postGpuDevice')
+          , (json, target) => {
+            window.location.href = json.editPage;
+          });
           return false;
         });
 
@@ -251,9 +255,11 @@
 
 {%- block websocketPageLayout %}
 {%- block websocketGpuDevicePage %}
+{% if resultCount > 0 %}
         window.eventBus = new EventBus('/eventbus');
         window.eventBus.enableReconnect(true);
         websocketGpuDevice(websocketGpuDeviceInner);
+{% endif %}
 {%- endblock websocketGpuDevicePage %}
 {%- endblock websocketPageLayout %}
 
@@ -273,8 +279,9 @@
           </div>
           <div class="margin-block">
           </div>
-{% include en-us/search/gpu-device/GpuDeviceSearchButtons.htm %}
 {% include en-us/search/gpu-device/GpuDeviceSearchForm.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/gpu-device/GpuDeviceSearchButtons.htm %}
 {% endif %}
 {%- endblock htmBodyStartGpuDevicePage %}
 {%- endblock htmBodyStartPageLayout %}
@@ -283,17 +290,21 @@
 {%- block htmBodyMiddleGpuDevicePage %}
         <div>
 {% if resultCount == 0 %}
-        {% if varsFqCount > 0 %}
-        <wa-tooltip for="return-to-GpuDevice">back to all GPU devices</wa-tooltip>
+        <div class="wa-flank">
+          <div>
+          {% if varsFqCount > 1 %}
+          <wa-tooltip for="return-to-GpuDevice">back to all GPU devices</wa-tooltip></wa-tooltip>
           <wa-button id="return-to-GpuDevice" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
             <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
             all GPU devices
           </wa-button>
-        </wa-tooltip>
-        {% endif %}
-        <h1><i class="fa-regular fa-memory"></i> <span>GPU devices</span></h1>
-{% include en-us/search/gpu-device/GpuDeviceSearchButtons.htm %}
+          {% endif %}
+        </div>
+          <h1><i class="fa-regular fa-memory"></i> <span>GPU devices</span></h1>
+        </div>
 {% include en-us/search/gpu-device/GpuDeviceSearchForm.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/gpu-device/GpuDeviceSearchButtons.htm %}
         <h2>
           <span>
   {% if classIconCssClasses is defined %}
@@ -308,8 +319,8 @@
 {% endif %}
 {%- block htmFormGpuDevicePage %}
           <form action="/en-us/api/gpu-device" id="GpuDeviceForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-{% if gpuDeviceId is defined %}
-            <input name="gpuDeviceId" class="valueGpuDeviceId" type="hidden" value="{{gpuDeviceId}}"/>
+{% if result.gpuDeviceId is defined %}
+            <input name="gpuDeviceId" class="valueGpuDeviceId" type="hidden" value="{{ result.gpuDeviceId }}"/>
             {% endif %}
             <input name="focusId" type="hidden"/>
             <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>

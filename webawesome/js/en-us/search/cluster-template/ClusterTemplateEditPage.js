@@ -1,9 +1,6 @@
 Promise.all([
     customElements.whenDefined('wa-button')
     , customElements.whenDefined('wa-input')
-        , customElements.whenDefined('wa-checkbox')
-        , customElements.whenDefined('wa-option')
-        , customElements.whenDefined('wa-textarea')
     ]).then(() => {
 
           // PATCH created

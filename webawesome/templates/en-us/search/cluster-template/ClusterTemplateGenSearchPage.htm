@@ -189,7 +189,7 @@
 {% if resultCount > 0 %}
           <h1><a href="{{pageUri}}"><i class="fa-regular fa-server"></i> <span>cluster templates</span></a></h1>
 {%- include en-us/search/cluster-template/ClusterTemplateSuggestedSearch.htm %}
-{% include en-us/search/cluster-template/ClusterTemplateSearchButtons.htm %}
+          <wa-divider></wa-divider>
 {% include en-us/search/cluster-template/ClusterTemplateSearchForm.htm %}
 {% endif %}
 {%- endblock htmBodyStartClusterTemplatePage %}
@@ -210,8 +210,9 @@
         </div>
           <h1><i class="fa-regular fa-server"></i> <span>cluster templates</span></h1>
         </div>
-{% include en-us/search/cluster-template/ClusterTemplateSearchButtons.htm %}
 {% include en-us/search/cluster-template/ClusterTemplateSearchForm.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/cluster-template/ClusterTemplateSearchButtons.htm %}
         <h2>
           <span>
   {% if classIconCssClasses is defined %}
@@ -240,17 +241,20 @@
             </wa-button>
           </div>
           {% endif %}
+          <div class="wa-flank wa-align-items-baseline margin-block-start ">
 {% include en-us/search/cluster-template/ClusterTemplatePaginationButtons.htm %}
+{% include en-us/search/cluster-template/ClusterTemplateSearchButtons.htm %}
+          </div>
           <div class="card-like-thing background-color-surface-border" id="site-results-grid">
             <div>
               <wa-dropdown id="htmDropdown-title">
                 <wa-button variant="brand" slot="trigger" caret>template title</wa-button>
                 <wa-menu>
-                  <wa-menu-item data-action="sort" data-order="asc" id="htmDropdown-title-asc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortClusterTemplate_title'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-ClusterTemplate').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-title-asc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
                     sort by template title ascending
                   </wa-menu-item>
-                  <wa-menu-item data-action="sort" data-order="desc" id="htmDropdown-title-desc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortClusterTemplate_title'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-ClusterTemplate').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-title-desc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
                     sort by template title descending
                   </wa-menu-item>
@@ -259,11 +263,11 @@
               <wa-dropdown id="htmDropdown-description">
                 <wa-button variant="brand" slot="trigger" caret>template description</wa-button>
                 <wa-menu>
-                  <wa-menu-item data-action="sort" data-order="asc" id="htmDropdown-description-asc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortClusterTemplate_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-ClusterTemplate').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-description-asc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
                     sort by template description ascending
                   </wa-menu-item>
-                  <wa-menu-item data-action="sort" data-order="desc" id="htmDropdown-description-desc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortClusterTemplate_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-ClusterTemplate').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-description-desc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
                     sort by template description descending
                   </wa-menu-item>

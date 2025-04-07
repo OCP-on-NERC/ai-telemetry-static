@@ -125,35 +125,37 @@
       var response = await fetch( '/prom-keycloak-proxy/api/v1/query?' + new URLSearchParams(query).toString(), { method: 'GET' });
       if(response.ok) {
         response.json().then(function(responseJson) {
-          var panelId = 'visualization-cluster-gpu-devices-by-cluster';
-          responseJson.data.result.forEach((result, i) => {
-            var elemId = 'visualization-cluster-gpu-devices-by-cluster-' + result.metric.cluster;
+          if(responseJson && responseJson.data) {
+            var panelId = 'visualization-cluster-gpu-devices-by-cluster';
+            responseJson.data.result.forEach((result, i) => {
+              var elemId = 'visualization-cluster-gpu-devices-by-cluster-' + result.metric.cluster;
 
-            var a = document.createElement('a');
-            a.setAttribute('href', '/en-us/edit/ai-cluster/' + result.metric.cluster);
-            document.querySelector('#' + panelId).append(a);
+              var a = document.createElement('a');
+              a.setAttribute('href', '/en-us/edit/ai-cluster/' + result.metric.cluster);
+              document.querySelector('#' + panelId).append(a);
 
-            var callout = document.createElement('wa-callout');
-            callout.setAttribute('id', elemId);
-            callout.setAttribute('appearance', 'outlined');
-            callout.setAttribute('variant', 'neutral');
-            callout.setAttribute('class', 'pill');
-            a.append(callout);
+              var callout = document.createElement('wa-callout');
+              callout.setAttribute('id', elemId);
+              callout.setAttribute('appearance', 'outlined');
+              callout.setAttribute('variant', 'neutral');
+              callout.setAttribute('class', 'pill');
+              a.append(callout);
 
-            var avatar = document.createElement('wa-avatar');
-            avatar.setAttribute('initials', result.value[1])
-            avatar.setAttribute('class', 'wa-accent wa-brand ');
-            avatar.setAttribute('slot', 'icon');
-            callout.append(avatar);
+              var avatar = document.createElement('wa-avatar');
+              avatar.setAttribute('initials', result.value[1])
+              avatar.setAttribute('class', 'wa-accent wa-brand ');
+              avatar.setAttribute('slot', 'icon');
+              callout.append(avatar);
 
-            var stack = document.createElement('div');
-            stack.setAttribute('class', 'wa-stack wa-gap-s ')
-            callout.append(stack);
+              var stack = document.createElement('div');
+              stack.setAttribute('class', 'wa-stack wa-gap-s ')
+              callout.append(stack);
 
-            var elem0 = document.createElement('div');
-            elem0.innerText = result.metric.cluster;
-            stack.append(elem0);
-          });
+              var elem0 = document.createElement('div');
+              elem0.innerText = result.metric.cluster;
+              stack.append(elem0);
+            });
+          }
         });
       } else {
         throw new Error(`Failed to query GPU nodes total: ${response.status}`);
@@ -210,38 +212,40 @@
       if(response.ok) {
         response.json().then(function(responseJson) {
           var panelId = 'visualization-gpu-nodes-not-ready';
-          responseJson.data.result.forEach((result, i) => {
-            var elemId = 'visualization-gpu-nodes-not-ready-' + result.metric.cluster + '-' + result.metric.node;
+          if(responseJson && responseJson.data) {
+            responseJson.data.result.forEach((result, i) => {
+              var elemId = 'visualization-gpu-nodes-not-ready-' + result.metric.cluster + '-' + result.metric.node;
 
-            var a = document.createElement('a');
-            a.setAttribute('href', '/en-us/edit/ai-node/' + result.metric.cluster + '-' + result.metric.node);
-            document.querySelector('#' + panelId).append(a);
+              var a = document.createElement('a');
+              a.setAttribute('href', '/en-us/edit/ai-node/' + result.metric.cluster + '-' + result.metric.node);
+              document.querySelector('#' + panelId).append(a);
 
-            var callout = document.createElement('wa-callout');
-            callout.setAttribute('id', elemId);
-            callout.setAttribute('appearance', 'accent outlined');
-            callout.setAttribute('variant', 'danger');
-            callout.setAttribute('class', 'pill');
-            a.append(callout);
+              var callout = document.createElement('wa-callout');
+              callout.setAttribute('id', elemId);
+              callout.setAttribute('appearance', 'accent outlined');
+              callout.setAttribute('variant', 'danger');
+              callout.setAttribute('class', 'pill');
+              a.append(callout);
 
-            var icon = document.createElement('wa-icon');
-            icon.setAttribute('slot', 'icon')
-            icon.setAttribute('name', 'triangle-exclamation')
-            icon.setAttribute('variant', 'solid')
-            callout.append(icon);
+              var icon = document.createElement('wa-icon');
+              icon.setAttribute('slot', 'icon')
+              icon.setAttribute('name', 'triangle-exclamation')
+              icon.setAttribute('variant', 'solid')
+              callout.append(icon);
 
-            var stack = document.createElement('div');
-            stack.setAttribute('class', 'wa-stack wa-gap-s ')
-            callout.append(stack);
+              var stack = document.createElement('div');
+              stack.setAttribute('class', 'wa-stack wa-gap-s ')
+              callout.append(stack);
 
-            var elem0 = document.createElement('div');
-            elem0.innerText = result.metric.cluster;
-            stack.append(elem0);
+              var elem0 = document.createElement('div');
+              elem0.innerText = result.metric.cluster;
+              stack.append(elem0);
 
-            var elem1 = document.createElement('div');
-            elem1.innerText = result.metric.node;
-            stack.append(elem1);
-          });
+              var elem1 = document.createElement('div');
+              elem1.innerText = result.metric.node;
+              stack.append(elem1);
+            });
+          }
         });
       } else {
         throw new Error(`Failed to query nodes not ready: ${response.status}`);
