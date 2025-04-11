@@ -25,6 +25,7 @@
     <script type="module" src="{{staticBaseUrl}}/js/en-us/search/cluster-request/ClusterRequestSearchPage.js"></script>
     <script type="module" src="{{staticBaseUrl}}/js/en-us/search/cluster-request/ClusterRequestEditPage.js"></script>
     <script src="{{staticBaseUrl}}/js/en-us/search/cluster-template/ClusterTemplate.js"></script>
+    <script src="{{staticBaseUrl}}/js/en-us/search/user/SiteUser.js"></script>
 {%- endblock htmScriptsClusterRequestPage %}
 {%- endblock htmScriptsPageLayout %}
 
@@ -103,6 +104,32 @@
           suggestClusterRequestClusterTemplateTitle([{'name':'fq','value':'title:' + window.result.clusterTemplateTitle}], document.querySelector('#listClusterRequestClusterTemplateTitle_Page'), window.result.name, window.result.clusterTemplateTitle, true);
           {% else %}
           suggestClusterRequestClusterTemplateTitle([{'name':'fq','value':'title:' + window.result.clusterTemplateTitle}], document.querySelector('#listClusterRequestClusterTemplateTitle_Page'), window.result.name, window.result.clusterTemplateTitle, false);
+          {% endif %}
+          {% endif %}
+          function relate_userId(event) {
+            suggestClusterRequestUserId(
+                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + event.target.value }
+                , { 'name': 'rows', 'value': '10' }
+                , { 'name': 'fl', 'value': 'classCanonicalName,userId,pk,editPage,objectTitle' } ] : [{%- if result.userId is defined %}{'name':'fq','value':'userId:{{ result.userId }}'}{%- else %}{%- endif %}]
+                , document.querySelector('#' + event.target.getAttribute('data-list'))
+                , window.result.name
+                , window.result.userId
+                , true
+                );
+          }
+          document.querySelector('#POST_userId')?.addEventListener('input', relate_userId);
+          document.querySelector('#POST_userId')?.addEventListener('focus', relate_userId);
+          document.querySelector('#PATCH_userId')?.addEventListener('input', relate_userId);
+          document.querySelector('#PATCH_userId')?.addEventListener('focus', relate_userId);
+          document.querySelector('#Page_userId')?.addEventListener('input', relate_userId);
+          document.querySelector('#Page_userId')?.addEventListener('focus', relate_userId);
+          {% if "PATCH" in scopes %}
+          suggestClusterRequestUserId([{'name':'fq','value':'userId:' + window.result.userId}], document.querySelector('#listClusterRequestUserId_Page'), window.result.name, window.result.userId, true);
+          {% else %}
+          {% if "GET" in scopes %}
+          suggestClusterRequestUserId([{'name':'fq','value':'userId:' + window.result.userId}], document.querySelector('#listClusterRequestUserId_Page'), window.result.name, window.result.userId, true);
+          {% else %}
+          suggestClusterRequestUserId([{'name':'fq','value':'userId:' + window.result.userId}], document.querySelector('#listClusterRequestUserId_Page'), window.result.name, window.result.userId, false);
           {% endif %}
           {% endif %}
         {% endif %}
@@ -224,8 +251,9 @@
           </div>
           <div class="margin-block">
           </div>
-{% include en-us/search/cluster-request/ClusterRequestSearchButtons.htm %}
 {% include en-us/search/cluster-request/ClusterRequestSearchForm.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/cluster-request/ClusterRequestSearchButtons.htm %}
 {% endif %}
 {%- endblock htmBodyStartClusterRequestPage %}
 {%- endblock htmBodyStartPageLayout %}
@@ -246,8 +274,9 @@
         </div>
           <h1><i class="fa-regular fa-server"></i> <span>cluster requests</span></h1>
         </div>
-{% include en-us/search/cluster-request/ClusterRequestSearchButtons.htm %}
 {% include en-us/search/cluster-request/ClusterRequestSearchForm.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/cluster-request/ClusterRequestSearchButtons.htm %}
         <h2>
           <span>
   {% if classIconCssClasses is defined %}

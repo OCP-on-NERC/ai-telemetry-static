@@ -241,6 +241,59 @@ The name of this cluster"
                 {%- endif %}
                 {%- endif %}
 {%- endmacro %}
+{%- macro inputUserIdClusterRequestPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_userId">
+  {%- endif %}
+  {%- if 'PUTCopy' == classApiMethodMethod %}
+                  <div>
+                    <wa-checkbox 
+                        id="{{classApiMethodMethod}}_userId_clear"
+                        class="label-on-left classApiMethodMethod}}_userId_clear userId_clear "
+                        hint="clear"
+                        >
+                      clear
+                    </wa-checkbox>
+                  </div>
+  {%- endif %}
+                  <wa-input
+                      type="text"
+                      placeholder="user"
+                      label="user"
+                      hint="The user who requested the cluster"
+                      class="label-on-left {{classApiMethodMethod}}_userId valueObjectSuggest suggestUserId "
+                      name="setUserId"
+                      id="{{classApiMethodMethod}}_userId"
+                      data-list="listClusterRequestUserId_{{classApiMethodMethod}}"
+                      autocomplete="off"
+                      value="{{result.userId | e }}"
+                  >
+              </wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmUserIdClusterRequestPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                {{ inputUserIdClusterRequestPage(authForWrite=authForWrite, authForRead=authForRead) }}
+                <div class="label-on-left-ul-label ">
+                  <i class="{{ FONTAWESOME_STYLE }} fa-search "></i>
+                  relate a site user to this cluster request
+                </div>
+                <ul class="label-on-left-ul " id="listClusterRequestUserId_{{classApiMethodMethod}}">
+                </ul>
+                {%- if authForReadBool == true %}
+                {% if 'Page' == classApiMethodMethod %}
+                <div>
+                  <button
+                       id="{{classApiMethodMethod}}_userId_add"
+                       onclick="this.classList.add('w3-disabled'); this.disabled = true; this.innerHTML = 'Sending…'; postSiteUserVals({ userId: '{{ result.name }}' }, this, function(response, target) { document.querySelector('#{{classApiMethodMethod}}_userId_add').disabled = false; document.querySelector('#{{classApiMethodMethod}}_userId_add').innerHTML = 'add a site user'; }, this, function(response, target) { addError(document.querySelector('#{{classApiMethodMethod}}userId')); });"
+                      >add a site user</button>
+                  </div>
+                {%- endif %}
+                {%- endif %}
+{%- endmacro %}
 
 {%- macro htmButton_patchClusterRequest() %}<wa-button variant="brand" id="htmButton_patchClusterRequest" data-name={{ result.name | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
@@ -257,30 +310,30 @@ The name of this cluster"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if userKey in result.userKeys or "PATCH" in scopes or sessionId == result.sessionId %}
                 {{ htmPkClusterRequestPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
-                {%- if "GET" in scopes %}
+                {%- if userKey in result.userKeys or "GET" in scopes or sessionId == result.sessionId %}
                   {{ htmPkClusterRequestPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmPkClusterRequestPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if userKey in result.userKeys or "PATCH" in scopes or sessionId == result.sessionId %}
                 {{ htmCreatedClusterRequestPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
-                {%- if "GET" in scopes %}
+                {%- if userKey in result.userKeys or "GET" in scopes or sessionId == result.sessionId %}
                   {{ htmCreatedClusterRequestPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmCreatedClusterRequestPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if userKey in result.userKeys or "PATCH" in scopes or sessionId == result.sessionId %}
                 {{ htmModifiedClusterRequestPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
-                {%- if "GET" in scopes %}
+                {%- if userKey in result.userKeys or "GET" in scopes or sessionId == result.sessionId %}
                   {{ htmModifiedClusterRequestPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmModifiedClusterRequestPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
@@ -289,10 +342,10 @@ The name of this cluster"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if userKey in result.userKeys or "PATCH" in scopes or sessionId == result.sessionId %}
                 {{ htmArchivedClusterRequestPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
-                {%- if "GET" in scopes %}
+                {%- if userKey in result.userKeys or "GET" in scopes or sessionId == result.sessionId %}
                   {{ htmArchivedClusterRequestPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmArchivedClusterRequestPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
@@ -306,23 +359,33 @@ The name of this cluster"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if userKey in result.userKeys or "PATCH" in scopes or sessionId == result.sessionId %}
                 {{ htmNameClusterRequestPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
-                {%- if "GET" in scopes %}
+                {%- if userKey in result.userKeys or "GET" in scopes or sessionId == result.sessionId %}
                   {{ htmNameClusterRequestPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmNameClusterRequestPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if userKey in result.userKeys or "PATCH" in scopes or sessionId == result.sessionId %}
                 {{ htmClusterTemplateTitleClusterRequestPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
-                {%- if "GET" in scopes %}
+                {%- if userKey in result.userKeys or "GET" in scopes or sessionId == result.sessionId %}
                   {{ htmClusterTemplateTitleClusterRequestPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmClusterTemplateTitleClusterRequestPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if userKey in result.userKeys or "PATCH" in scopes or sessionId == result.sessionId %}
+                {{ htmUserIdClusterRequestPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if userKey in result.userKeys or "GET" in scopes or sessionId == result.sessionId %}
+                  {{ htmUserIdClusterRequestPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmUserIdClusterRequestPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -348,30 +411,30 @@ The name of this cluster"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if userKey in result.userKeys or "PATCH" in scopes or sessionId == result.sessionId %}
                 {{ htmPkClusterRequestPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
-                {%- if "GET" in scopes %}
+                {%- if userKey in result.userKeys or "GET" in scopes or sessionId == result.sessionId %}
                   {{ htmPkClusterRequestPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmPkClusterRequestPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if userKey in result.userKeys or "PATCH" in scopes or sessionId == result.sessionId %}
                 {{ htmCreatedClusterRequestPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
-                {%- if "GET" in scopes %}
+                {%- if userKey in result.userKeys or "GET" in scopes or sessionId == result.sessionId %}
                   {{ htmCreatedClusterRequestPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmCreatedClusterRequestPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if userKey in result.userKeys or "PATCH" in scopes or sessionId == result.sessionId %}
                 {{ htmModifiedClusterRequestPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
-                {%- if "GET" in scopes %}
+                {%- if userKey in result.userKeys or "GET" in scopes or sessionId == result.sessionId %}
                   {{ htmModifiedClusterRequestPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmModifiedClusterRequestPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
@@ -380,10 +443,10 @@ The name of this cluster"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if userKey in result.userKeys or "PATCH" in scopes or sessionId == result.sessionId %}
                 {{ htmArchivedClusterRequestPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
-                {%- if "GET" in scopes %}
+                {%- if userKey in result.userKeys or "GET" in scopes or sessionId == result.sessionId %}
                   {{ htmArchivedClusterRequestPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmArchivedClusterRequestPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
@@ -397,23 +460,33 @@ The name of this cluster"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if userKey in result.userKeys or "PATCH" in scopes or sessionId == result.sessionId %}
                 {{ htmNameClusterRequestPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
-                {%- if "GET" in scopes %}
+                {%- if userKey in result.userKeys or "GET" in scopes or sessionId == result.sessionId %}
                   {{ htmNameClusterRequestPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmNameClusterRequestPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if userKey in result.userKeys or "PATCH" in scopes or sessionId == result.sessionId %}
                 {{ htmClusterTemplateTitleClusterRequestPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
-                {%- if "GET" in scopes %}
+                {%- if userKey in result.userKeys or "GET" in scopes or sessionId == result.sessionId %}
                   {{ htmClusterTemplateTitleClusterRequestPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmClusterTemplateTitleClusterRequestPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if userKey in result.userKeys or "PATCH" in scopes or sessionId == result.sessionId %}
+                {{ htmUserIdClusterRequestPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if userKey in result.userKeys or "GET" in scopes or sessionId == result.sessionId %}
+                  {{ htmUserIdClusterRequestPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmUserIdClusterRequestPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -474,30 +547,30 @@ The name of this cluster"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if userKey in result.userKeys or "PATCH" in scopes or sessionId == result.sessionId %}
                 {{ htmPkClusterRequestPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
-                {%- if "GET" in scopes %}
+                {%- if userKey in result.userKeys or "GET" in scopes or sessionId == result.sessionId %}
                   {{ htmPkClusterRequestPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmPkClusterRequestPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if userKey in result.userKeys or "PATCH" in scopes or sessionId == result.sessionId %}
                 {{ htmCreatedClusterRequestPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
-                {%- if "GET" in scopes %}
+                {%- if userKey in result.userKeys or "GET" in scopes or sessionId == result.sessionId %}
                   {{ htmCreatedClusterRequestPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmCreatedClusterRequestPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if userKey in result.userKeys or "PATCH" in scopes or sessionId == result.sessionId %}
                 {{ htmModifiedClusterRequestPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
-                {%- if "GET" in scopes %}
+                {%- if userKey in result.userKeys or "GET" in scopes or sessionId == result.sessionId %}
                   {{ htmModifiedClusterRequestPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmModifiedClusterRequestPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
@@ -506,10 +579,10 @@ The name of this cluster"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if userKey in result.userKeys or "PATCH" in scopes or sessionId == result.sessionId %}
                 {{ htmArchivedClusterRequestPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
-                {%- if "GET" in scopes %}
+                {%- if userKey in result.userKeys or "GET" in scopes or sessionId == result.sessionId %}
                   {{ htmArchivedClusterRequestPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmArchivedClusterRequestPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
@@ -523,23 +596,33 @@ The name of this cluster"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if userKey in result.userKeys or "PATCH" in scopes or sessionId == result.sessionId %}
                 {{ htmNameClusterRequestPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
-                {%- if "GET" in scopes %}
+                {%- if userKey in result.userKeys or "GET" in scopes or sessionId == result.sessionId %}
                   {{ htmNameClusterRequestPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmNameClusterRequestPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if userKey in result.userKeys or "PATCH" in scopes or sessionId == result.sessionId %}
                 {{ htmClusterTemplateTitleClusterRequestPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
-                {%- if "GET" in scopes %}
+                {%- if userKey in result.userKeys or "GET" in scopes or sessionId == result.sessionId %}
                   {{ htmClusterTemplateTitleClusterRequestPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmClusterTemplateTitleClusterRequestPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if userKey in result.userKeys or "PATCH" in scopes or sessionId == result.sessionId %}
+                {{ htmUserIdClusterRequestPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if userKey in result.userKeys or "GET" in scopes or sessionId == result.sessionId %}
+                  {{ htmUserIdClusterRequestPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmUserIdClusterRequestPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -561,7 +644,6 @@ The name of this cluster"
           {{ htmFormButton_deletefilterClusterRequest() }}
         </wa-dialog>
 {%- endmacro %}
-          <wa-divider></wa-divider>
           <div id="htmButtonGroup">
             <div class="flex flex-wrap round-column pill-smart-border-radius ">
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}

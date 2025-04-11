@@ -3,4 +3,29 @@
 		<title>ai-telemetry</title>
 {% endblock %}
 {% block htmBodyMiddlePageLayout %}
+        <div class="wa-stack ">
+
+          <wa-card class="pink-purple-background wa-stack ">
+            <div class="wa-stack main-content ">
+              <div class="wa-flank">
+                <i class="fa-duotone fa-regular fa-conveyor-belt fa-5x "></i>
+                <div class="wa-heading-2xl ">
+                  I need resources to run an AI workload. 
+                </div>
+              </div>
+              <div class="wa-heading-l ">
+                Get your own bare metal or Red Hat OpenShift cluster here. 
+              </div>
+              <wa-card>
+                <div>
+                  <wa-button pill id="order-button" size="large" class="pink-purple-background" href="{{ SITE_BASE_URL }}/en-us/search/cluster-request">
+                    <i class="fa-duotone fa-regular fa-person-running-fast"></i>
+                    Get started
+                  </wa-button>
+                </div>
+              </wa-card>
+            </div>
+          </wa-card>
+
+		</div>
 {% endblock %}

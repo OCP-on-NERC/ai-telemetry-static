@@ -43,7 +43,7 @@
                 dropdownMenu.innerHTML = '';
                 body.list.forEach((o) => {
                   var menuItem = document.createElement('wa-menu-item');
-                  menuItem.innerText = o.title;
+                  menuItem.innerText = o.objectTitle;
                   menuItem.setAttribute('data-href', o.displayPage);
                   dropdownMenu.appendChild(menuItem);
                   menuItem.addEventListener('click', (event) => window.location.href = event.target.getAttribute('data-href') );
@@ -100,6 +100,7 @@
           <wa-tooltip for="site-aside-left-model-button-AiProject" placement="right" hoist>A research project using AI and GPUs</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-ClusterTemplate" placement="right" hoist>An OpenShift cluster template</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-ClusterRequest" placement="right" hoist>An OpenShift cluster request</wa-tooltip>
+          <wa-tooltip for="site-aside-left-model-button-BareMetalNetwork" placement="right" hoist>An OpenStack bare metal network</wa-tooltip>
           <div class="flex flex-column round-row primary-smart-border-radius margin-block">
 {%- if userName is defined %}
             <wa-details>
@@ -160,6 +161,10 @@
             <wa-button variant="brand" id="site-aside-left-model-button-ClusterRequest" href="{{ SITE_BASE_URL }}/en-us/search/cluster-request">
               <i class="fa-regular fa-server"></i>
               cluster requests
+            </wa-button>
+            <wa-button variant="brand" id="site-aside-left-model-button-BareMetalNetwork" href="{{ SITE_BASE_URL }}/en-us/search/bare-metal-network">
+              <i class="fa-duotone fa-regular fa-network-wired"></i>
+              bare metal networks
             </wa-button>
           </div>
         </nav>

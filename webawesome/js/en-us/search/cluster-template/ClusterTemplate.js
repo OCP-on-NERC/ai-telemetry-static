@@ -130,24 +130,6 @@ function searchClusterTemplateVals(filters, target, success, error) {
     .catch(response => error(response, target));
 }
 
-function suggestClusterTemplateObjectSuggest($formFilters, $list, target) {
-  success = function( data, textStatus, jQxhr ) {
-    $list.innerHTML = '';
-    data['list'].forEach((o, i) => {
-      var $i = document.querySelector('<i class="fa-regular fa-server"></i>');
-      var $span = document.createElement('span');      $span.setAttribute('class', '');      $span.innerText = o['objectTitle'];
-      var $li = document.createElement('li');
-      var $a = document.createElement('a').setAttribute('href', o['editPage']);
-      $a.append($i);
-      $a.append($span);
-      $li.append($a);
-      $list.append($li);
-    });
-  };
-  error = function( jqXhr, textStatus, errorThrown ) {};
-  searchClusterTemplateVals($formFilters, target, success, error);
-}
-
 // GET //
 
 async function getClusterTemplate(pk) {

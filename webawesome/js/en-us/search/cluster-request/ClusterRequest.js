@@ -45,6 +45,10 @@ function searchClusterRequestFilters($formFilters) {
     if(filterClusterTemplateTitle != null && filterClusterTemplateTitle !== '')
       filters.push({ name: 'fq', value: 'clusterTemplateTitle:' + filterClusterTemplateTitle });
 
+    var filterUserId = $formFilters.querySelector('.valueUserId')?.value;
+    if(filterUserId != null && filterUserId !== '')
+      filters.push({ name: 'fq', value: 'userId:' + filterUserId });
+
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -169,6 +173,53 @@ o['objectTitle'];
   searchClusterTemplateVals(filters, target, success, error);
 }
 
+function suggestClusterRequestUserId(filters, $list, name = null, userId = null, relate=true, target) {
+  success = function( data, textStatus, jQxhr ) {
+    $list.innerHTML = '';
+    data['list'].forEach((o, i) => {
+      var iTemplate = document.createElement('template');
+      iTemplate.innerHTML = '<i class="fa-duotone fa-solid fa-user-gear"></i>';
+      var $i = iTemplate.content;
+      var $span = document.createElement('span');
+      $span.setAttribute('class', '');
+      $span.innerText = 
+o['objectTitle'];
+      var $a = document.createElement('a');
+      $a.setAttribute('href', o['editPage']);
+      $a.append($i);
+      $a.append($span);
+      var val = o['userId'];
+      var checked = val == null ? false : (Array.isArray(val) ? val.includes(name.toString()) : val == userId);
+      var $input = document.createElement('wa-checkbox');
+      $input.setAttribute('id', 'GET_userId_' + name + '_userId_' + o['userId']);
+      $input.setAttribute('name', 'userId');
+      $input.setAttribute('value', o['userId']);
+      $input.setAttribute('class', 'valueUserId ');
+      if(name != null) {
+        $input.addEventListener('change', function(event) {
+          patchClusterRequestVals([{ name: 'fq', value: 'name:' + name }], { [(event.target.checked ? 'set' : 'remove') + 'UserId']: o['userId'] }
+              , target
+              , function(response, target) {
+                addGlow(target);
+                suggestClusterRequestUserId(filters, $list, name, userId, relate, target);
+              }
+              , function(response, target) { addError(target); }
+          );
+        });
+      }
+      if(checked)
+        $input.setAttribute('checked', 'checked');
+      var $li = document.createElement('li');
+      if(relate)
+        $li.append($input);
+      $li.append($a);
+      $list.append($li);
+    });
+  };
+  error = function( jqXhr, textStatus, errorThrown ) {};
+  searchSiteUserVals(filters, target, success, error);
+}
+
 function suggestClusterRequestObjectSuggest($formFilters, $list, target) {
   success = function( data, textStatus, jQxhr ) {
     $list.innerHTML = '';
@@ -284,6 +335,10 @@ async function patchClusterRequest($formFilters, $formValues, target, name, succ
   if(valueClusterTemplateTitle != null && valueClusterTemplateTitle !== '')
     vals['setClusterTemplateTitle'] = valueClusterTemplateTitle;
 
+  var valueUserId = (Array.from($formValues.querySelectorAll('.valueUserId')).filter(e => e.checked == true).find(() => true) ?? null)?.value;
+  if(valueUserId != null && valueUserId !== '')
+    vals['setUserId'] = valueUserId;
+
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   var removeSessionId = $formValues.querySelector('.removeSessionId')?.value === 'true';
   var setSessionId = removeSessionId ? null : $formValues.querySelector('.setSessionId')?.value;
@@ -381,6 +436,10 @@ function patchClusterRequestFilters($formFilters) {
     var filterClusterTemplateTitle = $formFilters.querySelector('.valueClusterTemplateTitle')?.value;
     if(filterClusterTemplateTitle != null && filterClusterTemplateTitle !== '')
       filters.push({ name: 'fq', value: 'clusterTemplateTitle:' + filterClusterTemplateTitle });
+
+    var filterUserId = $formFilters.querySelector('.valueUserId')?.value;
+    if(filterUserId != null && filterUserId !== '')
+      filters.push({ name: 'fq', value: 'userId:' + filterUserId });
 
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -507,6 +566,10 @@ async function postClusterRequest($formValues, target, success, error) {
   var valueClusterTemplateTitle = (Array.from($formValues.querySelectorAll('.valueClusterTemplateTitle')).filter(e => e.checked == true).find(() => true) ?? null)?.value;
   if(valueClusterTemplateTitle != null && valueClusterTemplateTitle !== '')
     vals['clusterTemplateTitle'] = valueClusterTemplateTitle;
+
+  var valueUserId = (Array.from($formValues.querySelectorAll('.valueUserId')).filter(e => e.checked == true).find(() => true) ?? null)?.value;
+  if(valueUserId != null && valueUserId !== '')
+    vals['userId'] = valueUserId;
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   if(valueSessionId != null && valueSessionId !== '')
@@ -728,6 +791,13 @@ async function websocketClusterRequest(success) {
       document.querySelector('.Page_clusterTemplateTitle_add').classList.remove('w3-disabled');
       document.querySelector('.Page_clusterTemplateTitle_add').setAttribute('disabled', false);
     });
+
+    window.eventBus.registerHandler('websocketSiteUser', function (error, message) {
+      document.querySelector('.Page_userId').trigger('oninput');
+      document.querySelector('.Page_userId_add').innerText = 'add a site user';
+      document.querySelector('.Page_userId_add').classList.remove('w3-disabled');
+      document.querySelector('.Page_userId_add').setAttribute('disabled', false);
+    });
   }
 }
 async function websocketClusterRequestInner(apiRequest) {
@@ -748,6 +818,7 @@ async function websocketClusterRequestInner(apiRequest) {
         var inputArchived = null;
         var inputName = null;
         var inputClusterTemplateTitle = null;
+        var inputUserId = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -775,6 +846,8 @@ async function websocketClusterRequestInner(apiRequest) {
           inputName = $response.querySelector('.Page_name');
         if(vars.includes('clusterTemplateTitle'))
           inputClusterTemplateTitle = $response.querySelector('.Page_clusterTemplateTitle');
+        if(vars.includes('userId'))
+          inputUserId = $response.querySelector('.Page_userId');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -867,6 +940,16 @@ async function websocketClusterRequestInner(apiRequest) {
               item.textContent = inputClusterTemplateTitle.textContent;
           });
           addGlow(document.querySelector('.Page_clusterTemplateTitle'));
+        }
+
+        if(inputUserId) {
+          document.querySelectorAll('.Page_userId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputUserId.getAttribute('value');
+            else
+              item.textContent = inputUserId.textContent;
+          });
+          addGlow(document.querySelector('.Page_userId'));
         }
 
         if(inputClassCanonicalName) {
