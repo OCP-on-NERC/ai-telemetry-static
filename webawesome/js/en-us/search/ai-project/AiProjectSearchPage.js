@@ -7,64 +7,96 @@ Promise.all([
     facetRangeChange('AiProject', event.target.value);
   });
 
-  document.querySelector('#htmDropdown-clusterName')?.addEventListener('select', (event) => {
-    const item = event.detail.item;
-    const action = item.getAttribute('data-action');
-    const order = item.getAttribute('data-order');
-    const checked = !(document.querySelector('#pageSearchVal-pageSort-AiProject-clusterName').innerText == undefined);
-    if (action === 'sort') {
-      sort('AiProject', 'clusterName', checked ? order : '');
-      document.querySelector('#pageFacetSortAiProject_clusterName').value = checked ? order : '';
-    }
+  document.querySelector('#pageFacetSortAiProject_pk')?.addEventListener('change', (event) => {
+    sort('AiProject', 'pk', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiProject_created')?.addEventListener('change', (event) => {
+    sort('AiProject', 'created', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiProject_modified')?.addEventListener('change', (event) => {
+    sort('AiProject', 'modified', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiProject_archived')?.addEventListener('change', (event) => {
+    sort('AiProject', 'archived', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortAiProject_clusterName')?.addEventListener('change', (event) => {
     sort('AiProject', 'clusterName', event.currentTarget.value);
   });
 
-  document.querySelector('#htmDropdown-projectName')?.addEventListener('select', (event) => {
-    const item = event.detail.item;
-    const action = item.getAttribute('data-action');
-    const order = item.getAttribute('data-order');
-    const checked = !(document.querySelector('#pageSearchVal-pageSort-AiProject-projectName').innerText == undefined);
-    if (action === 'sort') {
-      sort('AiProject', 'projectName', checked ? order : '');
-      document.querySelector('#pageFacetSortAiProject_projectName').value = checked ? order : '';
-    }
-  });
-
   document.querySelector('#pageFacetSortAiProject_projectName')?.addEventListener('change', (event) => {
     sort('AiProject', 'projectName', event.currentTarget.value);
   });
 
-  document.querySelector('#htmDropdown-description')?.addEventListener('select', (event) => {
-    const item = event.detail.item;
-    const action = item.getAttribute('data-action');
-    const order = item.getAttribute('data-order');
-    const checked = !(document.querySelector('#pageSearchVal-pageSort-AiProject-description').innerText == undefined);
-    if (action === 'sort') {
-      sort('AiProject', 'description', checked ? order : '');
-      document.querySelector('#pageFacetSortAiProject_description').value = checked ? order : '';
-    }
+  document.querySelector('#pageFacetSortAiProject_projectId')?.addEventListener('change', (event) => {
+    sort('AiProject', 'projectId', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortAiProject_description')?.addEventListener('change', (event) => {
     sort('AiProject', 'description', event.currentTarget.value);
   });
 
-  document.querySelector('#htmDropdown-editPage')?.addEventListener('select', (event) => {
-    const item = event.detail.item;
-    const action = item.getAttribute('data-action');
-    const order = item.getAttribute('data-order');
-    const checked = !(document.querySelector('#pageSearchVal-pageSort-AiProject-editPage').innerText == undefined);
-    if (action === 'sort') {
-      sort('AiProject', 'editPage', checked ? order : '');
-      document.querySelector('#pageFacetSortAiProject_editPage').value = checked ? order : '';
-    }
+  document.querySelector('#pageFacetSortAiProject_classCanonicalName')?.addEventListener('change', (event) => {
+    sort('AiProject', 'classCanonicalName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiProject_classSimpleName')?.addEventListener('change', (event) => {
+    sort('AiProject', 'classSimpleName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiProject_classCanonicalNames')?.addEventListener('change', (event) => {
+    sort('AiProject', 'classCanonicalNames', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiProject_sessionId')?.addEventListener('change', (event) => {
+    sort('AiProject', 'sessionId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiProject_userKey')?.addEventListener('change', (event) => {
+    sort('AiProject', 'userKey', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiProject_saves')?.addEventListener('change', (event) => {
+    sort('AiProject', 'saves', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiProject_objectTitle')?.addEventListener('change', (event) => {
+    sort('AiProject', 'objectTitle', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiProject_displayPage')?.addEventListener('change', (event) => {
+    sort('AiProject', 'displayPage', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortAiProject_editPage')?.addEventListener('change', (event) => {
     sort('AiProject', 'editPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiProject_userPage')?.addEventListener('change', (event) => {
+    sort('AiProject', 'userPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiProject_download')?.addEventListener('change', (event) => {
+    sort('AiProject', 'download', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiProject_objectSuggest')?.addEventListener('change', (event) => {
+    sort('AiProject', 'objectSuggest', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiProject_objectText')?.addEventListener('change', (event) => {
+    sort('AiProject', 'objectText', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiProject_solrId')?.addEventListener('change', (event) => {
+    sort('AiProject', 'solrId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiProject_projectDisplayName')?.addEventListener('change', (event) => {
+    sort('AiProject', 'projectDisplayName', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchAiProject')?.addEventListener('click', (event) => {

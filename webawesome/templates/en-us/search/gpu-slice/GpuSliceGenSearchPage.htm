@@ -159,7 +159,7 @@
           var o = document.querySelector('.pageForm .result')?.value;
           if(o)
             window.result = JSON.parse(o);
-        {% if sliceName is defined %}
+        {% if result.sliceName is defined %}
         {% endif %}
         }
         var l = document.querySelector('.pageForm .listGpuSlice')?.value;
@@ -201,7 +201,11 @@
         });
         document.querySelector('#htmFormButton_postGpuSlice')?.addEventListener('click', event => {
           event.preventDefault();
-          postGpuSlice(document.querySelector('#htmForm_postGpuSlice'), document.querySelector('#htmFormButton_postGpuSlice'), (response, target) => { response.json().then((json) => { window.location.href = json.editPage; }); });
+          postGpuSlice(document.querySelector('#htmForm_postGpuSlice')
+          , document.querySelector('#htmFormButton_postGpuSlice')
+          , (json, target) => {
+            window.location.href = json.editPage;
+          });
           return false;
         });
 
@@ -251,9 +255,11 @@
 
 {%- block websocketPageLayout %}
 {%- block websocketGpuSlicePage %}
+{% if resultCount > 0 %}
         window.eventBus = new EventBus('/eventbus');
         window.eventBus.enableReconnect(true);
         websocketGpuSlice(websocketGpuSliceInner);
+{% endif %}
 {%- endblock websocketGpuSlicePage %}
 {%- endblock websocketPageLayout %}
 
@@ -265,7 +271,7 @@
 {% if resultCount > 0 %}
           <h1><a href="{{pageUri}}"><i class="fa-regular fa-cake-slice"></i> <span>GPU slices</span></a></h1>
 {%- include en-us/search/gpu-slice/GpuSliceSuggestedSearch.htm %}
-{% include en-us/search/gpu-slice/GpuSliceSearchButtons.htm %}
+          <wa-divider></wa-divider>
 {% include en-us/search/gpu-slice/GpuSliceSearchForm.htm %}
 {% endif %}
 {%- endblock htmBodyStartGpuSlicePage %}
@@ -274,17 +280,21 @@
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleGpuSlicePage %}
 {% if resultCount == 0 %}
-        {% if varsFqCount > 0 %}
-        <wa-tooltip for="return-to-GpuSlice">back to all GPU slices</wa-tooltip>
+        <div class="wa-flank">
+          <div>
+          {% if varsFqCount > 1 %}
+          <wa-tooltip for="return-to-GpuSlice">back to all GPU slices</wa-tooltip></wa-tooltip>
           <wa-button id="return-to-GpuSlice" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
             <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
             all GPU slices
           </wa-button>
-        </wa-tooltip>
-        {% endif %}
-        <h1><i class="fa-regular fa-cake-slice"></i> <span>GPU slices</span></h1>
-{% include en-us/search/gpu-slice/GpuSliceSearchButtons.htm %}
+          {% endif %}
+        </div>
+          <h1><i class="fa-regular fa-cake-slice"></i> <span>GPU slices</span></h1>
+        </div>
 {% include en-us/search/gpu-slice/GpuSliceSearchForm.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/gpu-slice/GpuSliceSearchButtons.htm %}
         <h2>
           <span>
   {% if classIconCssClasses is defined %}
@@ -304,7 +314,7 @@
           <div id="site-calendar-box">
             <div id="site-calendar"><!-- // --></div>
           </div>
-          {% if varsFqCount > 0 %}
+          {% if varsFqCount > 1 %}
           <div class="margin-block">
             <wa-tooltip for="return-to-GpuSlice">back to all GPU slices</wa-tooltip>
             <wa-button id="return-to-GpuSlice" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
@@ -313,17 +323,20 @@
             </wa-button>
           </div>
           {% endif %}
+          <div class="wa-flank wa-align-items-baseline margin-block-start ">
 {% include en-us/search/gpu-slice/GpuSlicePaginationButtons.htm %}
+{% include en-us/search/gpu-slice/GpuSliceSearchButtons.htm %}
+          </div>
           <div class="card-like-thing background-color-surface-border" id="site-results-grid">
             <div>
               <wa-dropdown id="htmDropdown-sliceName">
                 <wa-button variant="brand" slot="trigger" caret>name</wa-button>
                 <wa-menu>
-                  <wa-menu-item data-action="sort" data-order="asc" id="htmDropdown-sliceName-asc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortGpuSlice_sliceName'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-GpuSlice').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-sliceName-asc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
                     sort by name ascending
                   </wa-menu-item>
-                  <wa-menu-item data-action="sort" data-order="desc" id="htmDropdown-sliceName-desc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortGpuSlice_sliceName'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-GpuSlice').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-sliceName-desc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
                     sort by name descending
                   </wa-menu-item>
@@ -332,11 +345,11 @@
               <wa-dropdown id="htmDropdown-description">
                 <wa-button variant="brand" slot="trigger" caret>description</wa-button>
                 <wa-menu>
-                  <wa-menu-item data-action="sort" data-order="asc" id="htmDropdown-description-asc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortGpuSlice_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-GpuSlice').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-description-asc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
                     sort by description ascending
                   </wa-menu-item>
-                  <wa-menu-item data-action="sort" data-order="desc" id="htmDropdown-description-desc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortGpuSlice_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-GpuSlice').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-description-desc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
                     sort by description descending
                   </wa-menu-item>
@@ -355,15 +368,15 @@
               </a>
               <wa-button variant="brand"
                   id="{{classApiMethodMethod}}_editPage"
-                  placeholder="[String] edit"
-                  label="edit"
-                  title="Edit this"
-                  class="button-on-left {{classApiMethodMethod}}_editPage classGpuSlice inputGpuSlice{{sliceName}}EditPage "
+                  placeholder="[String] manage"
+                  label="manage"
+                  title="Manage this"
+                  class="button-on-left {{classApiMethodMethod}}_editPage classGpuSlice inputGpuSlice{{ result.sliceName }}EditPage "
                   name="setEditPage"
                   href="{{ item.editPage | e }}"
                   >
                 <i class="fa-duotone fa-regular fa-pen-to-square"></i>
-                edit
+                manage
               </wa-button>
             </div>
             {% endfor %}

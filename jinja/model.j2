@@ -1,0 +1,76 @@
+{%- for varSnakeCased0, value0 in data.items() -%}
+{%- set varPascalCased0 = (varSnakeCased0.split('_') | map('capitalize') | join) -%}
+{%- set varCamelCased0 = (varPascalCased0[0] | lower) + varPascalCased0[1:] -%}
+{%- set varDisplayName0 = (varSnakeCased0.split('_') | join(' ')) %}
+{%- if value0 is string %}{%- set varClass0 = 'String' %}{%- endif %}
+{%- if value0 is boolean %}{%- set varClass0 = 'Boolean' %}{%- endif %}
+{%- if value0 is sequence %}{%- set varClass0 = 'JsonArray' %}{%- endif %}
+{%- if value0 is number and '.' in (value0 | string) %}{%- set varClass0 = 'BigDecimal' %}{%- endif %}
+{%- if value0 is number and '.' not in (value0 | string) %}{%- set varClass0 = 'Integer' %}{%- endif %}
+{%- if value0 is not mapping %}
+
+	/**
+	 * {@inheritDoc}
+	 * DocValues: true
+	 * Persist: true
+	 * DisplayName: {{ varDisplayName0 }}
+{%- if loop.index0 == 0 %}
+	 * HtmRowTitleOpen: details
+{%- endif %}
+	 * HtmRow: 3
+	 * HtmCell: {{ loop.index0 }}
+	 * Facet: true
+{%- if varCamelCased0 == 'id' %}
+	 * VarId: true
+{% endif %}
+{%- if varCamelCased0 == 'name' %}
+	 * VarName: true
+{% endif %}
+{%- if varCamelCased0 == 'description' %}
+	 * VarDescription: true
+{% endif %}
+	 * Val.ESI: {{ varSnakeCased0 }}
+	 **/
+	protected void _{{ varCamelCased0 }}(Wrap<{{ varClass0 }}> w) {}
+{%- endif %}
+{%- if value0 is mapping %}
+{%- for varSnakeCased1, value1 in value0.items() -%}
+{%- if value1 is not mapping %}
+{%- set varPascalCased1 = (varSnakeCased1.split('_') | map('capitalize') | join) -%}
+{%- set varCamelCased1 = (varPascalCased1[0] | lower) + varPascalCased1[1:] -%}
+{%- set varDisplayName1 = (varSnakeCased1.split('_') | join(' ')) %}
+{%- if value1 is string %}{%- set varClass1 = 'String' %}{%- endif %}
+{%- if value1 is boolean %}{%- set varClass1 = 'Boolean' %}{%- endif %}
+{%- if value1 is sequence %}{%- set varClass1 = 'JsonArray' %}{%- endif %}
+{%- if value1 is number and '.' in (value1 | string) %}{%- set varClass1 = 'BigDecimal' %}{%- endif %}
+{%- if value1 is number and '.' not in (value1 | string) %}{%- set varClass1 = 'Integer' %}{%- endif %}
+{%- if varClass1 is defined %}
+
+	/**
+	 * {@inheritDoc}
+	 * DocValues: true
+	 * Persist: true
+	 * DisplayName: {{ varDisplayName1 }}
+{%- if loop.index0 == 0 %}
+	 * HtmRowTitleOpen: details
+{%- endif %}
+	 * HtmRow: 3
+	 * HtmCell: {{ loop.index0 }}
+	 * Facet: true
+{%- if varCamelCased1 == 'id' %}
+	 * VarId: true
+{%- endif %}
+{%- if varCamelCased1 == 'name' %}
+	 * VarName: true
+{%- endif %}
+{%- if varCamelCased1 == 'description' %}
+	 * VarDescription: true
+{%- endif %}
+	 * Val.ESI: {{ varSnakeCased1 }}
+	 **/
+	protected void _{{ varCamelCased0 }}{{ varPascalCased1 }}(Wrap<{{ varClass1 }}> w) {}
+{%- endif %}
+{%- endif %}
+{%- endfor %}
+{%- endif %}
+{%- endfor %}

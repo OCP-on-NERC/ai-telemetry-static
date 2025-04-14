@@ -7,64 +7,136 @@ Promise.all([
     facetRangeChange('AiNode', event.target.value);
   });
 
-  document.querySelector('#htmDropdown-clusterName')?.addEventListener('select', (event) => {
-    const item = event.detail.item;
-    const action = item.getAttribute('data-action');
-    const order = item.getAttribute('data-order');
-    const checked = !(document.querySelector('#pageSearchVal-pageSort-AiNode-clusterName').innerText == undefined);
-    if (action === 'sort') {
-      sort('AiNode', 'clusterName', checked ? order : '');
-      document.querySelector('#pageFacetSortAiNode_clusterName').value = checked ? order : '';
-    }
+  document.querySelector('#pageFacetSortAiNode_pk')?.addEventListener('change', (event) => {
+    sort('AiNode', 'pk', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_created')?.addEventListener('change', (event) => {
+    sort('AiNode', 'created', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_modified')?.addEventListener('change', (event) => {
+    sort('AiNode', 'modified', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_archived')?.addEventListener('change', (event) => {
+    sort('AiNode', 'archived', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortAiNode_clusterName')?.addEventListener('change', (event) => {
     sort('AiNode', 'clusterName', event.currentTarget.value);
   });
 
-  document.querySelector('#htmDropdown-nodeName')?.addEventListener('select', (event) => {
-    const item = event.detail.item;
-    const action = item.getAttribute('data-action');
-    const order = item.getAttribute('data-order');
-    const checked = !(document.querySelector('#pageSearchVal-pageSort-AiNode-nodeName').innerText == undefined);
-    if (action === 'sort') {
-      sort('AiNode', 'nodeName', checked ? order : '');
-      document.querySelector('#pageFacetSortAiNode_nodeName').value = checked ? order : '';
-    }
-  });
-
   document.querySelector('#pageFacetSortAiNode_nodeName')?.addEventListener('change', (event) => {
     sort('AiNode', 'nodeName', event.currentTarget.value);
-  });
-
-  document.querySelector('#htmDropdown-description')?.addEventListener('select', (event) => {
-    const item = event.detail.item;
-    const action = item.getAttribute('data-action');
-    const order = item.getAttribute('data-order');
-    const checked = !(document.querySelector('#pageSearchVal-pageSort-AiNode-description').innerText == undefined);
-    if (action === 'sort') {
-      sort('AiNode', 'description', checked ? order : '');
-      document.querySelector('#pageFacetSortAiNode_description').value = checked ? order : '';
-    }
   });
 
   document.querySelector('#pageFacetSortAiNode_description')?.addEventListener('change', (event) => {
     sort('AiNode', 'description', event.currentTarget.value);
   });
 
-  document.querySelector('#htmDropdown-editPage')?.addEventListener('select', (event) => {
-    const item = event.detail.item;
-    const action = item.getAttribute('data-action');
-    const order = item.getAttribute('data-order');
-    const checked = !(document.querySelector('#pageSearchVal-pageSort-AiNode-editPage').innerText == undefined);
-    if (action === 'sort') {
-      sort('AiNode', 'editPage', checked ? order : '');
-      document.querySelector('#pageFacetSortAiNode_editPage').value = checked ? order : '';
-    }
+  document.querySelector('#pageFacetSortAiNode_nodeId')?.addEventListener('change', (event) => {
+    sort('AiNode', 'nodeId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_id')?.addEventListener('change', (event) => {
+    sort('AiNode', 'id', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_gpuDevicesTotal')?.addEventListener('change', (event) => {
+    sort('AiNode', 'gpuDevicesTotal', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_ngsildTenant')?.addEventListener('change', (event) => {
+    sort('AiNode', 'ngsildTenant', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_ngsildPath')?.addEventListener('change', (event) => {
+    sort('AiNode', 'ngsildPath', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_ngsildContext')?.addEventListener('change', (event) => {
+    sort('AiNode', 'ngsildContext', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_ngsildData')?.addEventListener('change', (event) => {
+    sort('AiNode', 'ngsildData', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_location')?.addEventListener('change', (event) => {
+    sort('AiNode', 'location', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_classCanonicalName')?.addEventListener('change', (event) => {
+    sort('AiNode', 'classCanonicalName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_classSimpleName')?.addEventListener('change', (event) => {
+    sort('AiNode', 'classSimpleName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_classCanonicalNames')?.addEventListener('change', (event) => {
+    sort('AiNode', 'classCanonicalNames', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_sessionId')?.addEventListener('change', (event) => {
+    sort('AiNode', 'sessionId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_userKey')?.addEventListener('change', (event) => {
+    sort('AiNode', 'userKey', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_saves')?.addEventListener('change', (event) => {
+    sort('AiNode', 'saves', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_objectTitle')?.addEventListener('change', (event) => {
+    sort('AiNode', 'objectTitle', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_displayPage')?.addEventListener('change', (event) => {
+    sort('AiNode', 'displayPage', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortAiNode_editPage')?.addEventListener('change', (event) => {
     sort('AiNode', 'editPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_userPage')?.addEventListener('change', (event) => {
+    sort('AiNode', 'userPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_download')?.addEventListener('change', (event) => {
+    sort('AiNode', 'download', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_objectSuggest')?.addEventListener('change', (event) => {
+    sort('AiNode', 'objectSuggest', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_objectText')?.addEventListener('change', (event) => {
+    sort('AiNode', 'objectText', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_solrId')?.addEventListener('change', (event) => {
+    sort('AiNode', 'solrId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_locationColors')?.addEventListener('change', (event) => {
+    sort('AiNode', 'locationColors', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_locationTitles')?.addEventListener('change', (event) => {
+    sort('AiNode', 'locationTitles', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_locationLinks')?.addEventListener('change', (event) => {
+    sort('AiNode', 'locationLinks', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_entityShortId')?.addEventListener('change', (event) => {
+    sort('AiNode', 'entityShortId', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchAiNode')?.addEventListener('click', (event) => {

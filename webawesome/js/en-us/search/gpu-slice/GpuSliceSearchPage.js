@@ -7,49 +7,124 @@ Promise.all([
     facetRangeChange('GpuSlice', event.target.value);
   });
 
-  document.querySelector('#htmDropdown-sliceName')?.addEventListener('select', (event) => {
-    const item = event.detail.item;
-    const action = item.getAttribute('data-action');
-    const order = item.getAttribute('data-order');
-    const checked = !(document.querySelector('#pageSearchVal-pageSort-GpuSlice-sliceName').innerText == undefined);
-    if (action === 'sort') {
-      sort('GpuSlice', 'sliceName', checked ? order : '');
-      document.querySelector('#pageFacetSortGpuSlice_sliceName').value = checked ? order : '';
-    }
+  document.querySelector('#pageFacetSortGpuSlice_pk')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'pk', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_created')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'created', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_modified')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'modified', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_archived')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'archived', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortGpuSlice_sliceName')?.addEventListener('change', (event) => {
     sort('GpuSlice', 'sliceName', event.currentTarget.value);
   });
 
-  document.querySelector('#htmDropdown-description')?.addEventListener('select', (event) => {
-    const item = event.detail.item;
-    const action = item.getAttribute('data-action');
-    const order = item.getAttribute('data-order');
-    const checked = !(document.querySelector('#pageSearchVal-pageSort-GpuSlice-description').innerText == undefined);
-    if (action === 'sort') {
-      sort('GpuSlice', 'description', checked ? order : '');
-      document.querySelector('#pageFacetSortGpuSlice_description').value = checked ? order : '';
-    }
-  });
-
   document.querySelector('#pageFacetSortGpuSlice_description')?.addEventListener('change', (event) => {
     sort('GpuSlice', 'description', event.currentTarget.value);
   });
 
-  document.querySelector('#htmDropdown-editPage')?.addEventListener('select', (event) => {
-    const item = event.detail.item;
-    const action = item.getAttribute('data-action');
-    const order = item.getAttribute('data-order');
-    const checked = !(document.querySelector('#pageSearchVal-pageSort-GpuSlice-editPage').innerText == undefined);
-    if (action === 'sort') {
-      sort('GpuSlice', 'editPage', checked ? order : '');
-      document.querySelector('#pageFacetSortGpuSlice_editPage').value = checked ? order : '';
-    }
+  document.querySelector('#pageFacetSortGpuSlice_id')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'id', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_ngsildTenant')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'ngsildTenant', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_ngsildPath')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'ngsildPath', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_ngsildContext')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'ngsildContext', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_ngsildData')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'ngsildData', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_location')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'location', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_classCanonicalName')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'classCanonicalName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_classSimpleName')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'classSimpleName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_classCanonicalNames')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'classCanonicalNames', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_sessionId')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'sessionId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_userKey')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'userKey', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_saves')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'saves', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_objectTitle')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'objectTitle', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_displayPage')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'displayPage', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortGpuSlice_editPage')?.addEventListener('change', (event) => {
     sort('GpuSlice', 'editPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_userPage')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'userPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_download')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'download', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_objectSuggest')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'objectSuggest', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_objectText')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'objectText', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_solrId')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'solrId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_locationColors')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'locationColors', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_locationTitles')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'locationTitles', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_locationLinks')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'locationLinks', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuSlice_entityShortId')?.addEventListener('change', (event) => {
+    sort('GpuSlice', 'entityShortId', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchGpuSlice')?.addEventListener('click', (event) => {

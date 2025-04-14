@@ -1,0 +1,363 @@
+{% extends "en-us/PageLayout.htm" %}
+
+{%- block htmTitlePageLayout %}
+{%- block htmTitleBareMetalNodePage %}
+    <title>{% if resultCount == 0 %}no bare metal node found{% else %}bare metal nodes{% endif %}</title>
+{%- endblock htmTitleBareMetalNodePage %}
+{%- endblock htmTitlePageLayout %}
+
+{%- block htmStylesPageLayout %}
+{{ super() }}
+    <link rel="stylesheet" href="{{ staticBaseUrl }}/css/en-us/search/bare-metal-node/BareMetalNode.css"/>
+{%- block htmStylesBareMetalNodePage %}
+{%- endblock htmStylesBareMetalNodePage %}
+{%- endblock htmStylesPageLayout %}
+
+{%- block htmStylePageLayout %}
+{{ super() }}
+{%- block htmStyleBareMetalNodePage %}
+{%- endblock htmStyleBareMetalNodePage %}
+{%- endblock htmStylePageLayout %}
+
+{%- block htmScriptsPageLayout %}
+{{ super() }}
+{%- block htmScriptsBareMetalNodePage %}
+    <script src="{{staticBaseUrl}}/js/en-us/search/bare-metal-node/BareMetalNode.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/en-us/search/bare-metal-node/BareMetalNodeSearchPage.js"></script>
+{%- endblock htmScriptsBareMetalNodePage %}
+{%- endblock htmScriptsPageLayout %}
+
+{%- block htmScriptPageLayout %}
+{%- block htmScriptBareMetalNodePage %}
+    <script>
+
+      function jsWebsocketBareMetalNode(nodeId, vars, $response) {
+{%- block jsWebsocketBareMetalNodePage %}{%- endblock %}
+      }
+
+      function jsTooltipBareMetalNode(e, feature) {
+{%- block jsTooltipBareMetalNodePage %}{%- endblock %}
+      }
+
+      function htmTooltipBareMetalNode(feature, layer) {
+        return `{%- block htmTooltipBareMetalNodePage %}
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
+{%- endblock htmTooltipBareMetalNodePage %}`;
+      }
+    </script>
+    <script type="module">
+{% if DEFAULT_MAP_LOCATION is defined %}
+      window.DEFAULT_MAP_LOCATION = { type: 'Point', coordinates: [ {{ DEFAULT_MAP_LOCATION.coordinates[0] }}, {{ DEFAULT_MAP_LOCATION.coordinates[1] }} ]};
+{% endif %}
+{% if DEFAULT_MAP_ZOOM is defined %}
+      window.DEFAULT_MAP_ZOOM = {{ DEFAULT_MAP_ZOOM }};
+{% endif %}
+      window.DEFAULT_ZONE_ID = '{{ defaultZoneId }}';
+      Promise.all([
+        customElements.whenDefined('wa-button')
+        , customElements.whenDefined('wa-input')
+      ]).then(() => {
+
+        var nodeId = {% if result.nodeId is defined %}{{ result.nodeId | tojson }}{% else %}null{% endif %};
+
+        if(nodeId == null) {
+          document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-details');
+          });
+          document.querySelector('#grid-toggle-list')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-list');
+          });
+          document.querySelector('#grid-toggle-card')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-list');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-card');
+          });
+        } else {
+          var o = document.querySelector('.pageForm .result')?.value;
+          if(o)
+            window.result = JSON.parse(o);
+        {% if result.nodeId is defined %}
+        {% endif %}
+        }
+        var l = document.querySelector('.pageForm .listBareMetalNode')?.value;
+        if(l)
+          window.listBareMetalNode = JSON.parse(l);
+        window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
+        window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
+        window.defaultRangeVar = '{{ defaultRangeVar }}';
+        pageGraphBareMetalNode();
+        {% for key, value in varsQ.items() %}
+
+        document.querySelector('#qBareMetalNode_{{ key }}')?.addEventListener('wa-{% if var == 'objectSuggest' %}keyup{% else %}change{% endif %}', event => {
+          qChange('BareMetalNode', event.target, document.querySelector('#qBareMetalNodeDiv_{{ key }}'));
+        });
+        {% endfor %}
+
+        document.querySelector('#qBareMetalNode_rows')?.addEventListener('change', event => {
+          paramChange('BareMetalNode', event.target, document.querySelector('#qBareMetalNodeDiv_rows'));
+        });
+
+        document.querySelector('#qBareMetalNode_start')?.addEventListener('change', event => {
+          paramChange('BareMetalNode', event.target, document.querySelector('#qBareMetalNodeDiv_start'));
+        });
+
+
+        var submitForm_patchBareMetalNode = document.querySelector('#htmForm_patchBareMetalNode')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_patchBareMetalNode')?.addEventListener('click', event => {
+          event.preventDefault();
+          patchBareMetalNode(null, document.querySelector('#htmForm_patchBareMetalNode'), document.querySelector('#htmFormButton_patchBareMetalNode'), event.target.getAttribute('data-nodeId'));
+          return false;
+        });
+
+        var submitForm_postBareMetalNode = document.querySelector('#htmForm_postBareMetalNode')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_postBareMetalNode')?.addEventListener('click', event => {
+          event.preventDefault();
+          postBareMetalNode(document.querySelector('#htmForm_postBareMetalNode')
+          , document.querySelector('#htmFormButton_postBareMetalNode')
+          , (json, target) => {
+            window.location.href = json.editPage;
+          });
+          return false;
+        });
+
+        var submitForm_deleteBareMetalNode = document.querySelector('#htmForm_deleteBareMetalNode')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deleteBareMetalNode')?.addEventListener('click', event => {
+          event.preventDefault();
+          deleteBareMetalNode(event.target, event.target.getAttribute('data-nodeId'));
+          return false;
+        });
+
+        var submitForm_putimportBareMetalNode = document.querySelector('#htmForm_putimportBareMetalNode')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_putimportBareMetalNode')?.addEventListener('click', event => {
+          event.preventDefault();
+          putimportBareMetalNode(document.querySelector('#htmForm_putimportBareMetalNode'), document.querySelector('#htmFormButton_putimportBareMetalNode'));
+          return false;
+        });
+
+        var submitForm_searchpageBareMetalNode = document.querySelector('#htmForm_searchpageBareMetalNode')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpageBareMetalNode')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpageBareMetalNode();
+          return false;
+        });
+
+        var submitForm_deletefilterBareMetalNode = document.querySelector('#htmForm_deletefilterBareMetalNode')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deletefilterBareMetalNode')?.addEventListener('click', event => {
+          event.preventDefault();
+          deletefilterBareMetalNode(event.target);
+          return false;
+        });
+      });
+    </script>
+{%- endblock htmScriptBareMetalNodePage %}
+{%- endblock htmScriptPageLayout %}
+
+{%- block websocketPageLayout %}
+{%- block websocketBareMetalNodePage %}
+{% if resultCount > 0 %}
+        window.eventBus = new EventBus('/eventbus');
+        window.eventBus.enableReconnect(true);
+        websocketBareMetalNode(websocketBareMetalNodeInner);
+{% endif %}
+{%- endblock websocketBareMetalNodePage %}
+{%- endblock websocketPageLayout %}
+
+{%- block htmUrlBareMetalNodePage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlBareMetalNodePage %}
+
+{%- block htmBodyStartPageLayout %}
+{{ super() }}
+{%- block htmBodyStartBareMetalNodePage %}
+{% if resultCount > 0 %}
+          <h1><a href="{{pageUri}}"><i class="fa-duotone fa-regular fa-hexagon-nodes"></i> <span>bare metal nodes</span></a></h1>
+{%- include en-us/search/bare-metal-node/BareMetalNodeSuggestedSearch.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/bare-metal-node/BareMetalNodeSearchForm.htm %}
+{% endif %}
+{%- endblock htmBodyStartBareMetalNodePage %}
+{%- endblock htmBodyStartPageLayout %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleBareMetalNodePage %}
+{% if resultCount == 0 %}
+        <div class="wa-flank">
+          <div>
+          {% if varsFqCount > 1 %}
+          <wa-tooltip for="return-to-BareMetalNode">back to all bare metal nodes</wa-tooltip></wa-tooltip>
+          <wa-button id="return-to-BareMetalNode" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
+            all bare metal nodes
+          </wa-button>
+          {% endif %}
+        </div>
+          <h1><i class="fa-duotone fa-regular fa-hexagon-nodes"></i> <span>bare metal nodes</span></h1>
+        </div>
+{% include en-us/search/bare-metal-node/BareMetalNodeSearchForm.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/bare-metal-node/BareMetalNodeSearchButtons.htm %}
+        <h2>
+          <span>
+  {% if classIconCssClasses is defined %}
+            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
+  {% endif %}
+            <span class="">no bare metal node found</span>
+          </span>
+        </h2>
+{% else %}
+{%- include en-us/search/bare-metal-node/BareMetalNodeSidebar.htm %}
+          <form action="/en-us/api/bare-metal-node" id="BareMetalNodeForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+            <input name="focusId" type="hidden"/>
+            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+            <input name="listBareMetalNode" id="listBareMetalNode" class="listBareMetalNode"  value='{{ toJsonArrayStringInApostrophes(listBareMetalNode) }}' type="hidden"/>
+          </form>
+        <div class="pageContent ">
+          <div id="site-calendar-box">
+            <div id="site-calendar"><!-- // --></div>
+          </div>
+          {% if varsFqCount > 1 %}
+          <div class="margin-block">
+            <wa-tooltip for="return-to-BareMetalNode">back to all bare metal nodes</wa-tooltip>
+            <wa-button id="return-to-BareMetalNode" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
+              all bare metal nodes
+            </wa-button>
+          </div>
+          {% endif %}
+          <div class="wa-flank wa-align-items-baseline margin-block-start ">
+{% include en-us/search/bare-metal-node/BareMetalNodePaginationButtons.htm %}
+{% include en-us/search/bare-metal-node/BareMetalNodeSearchButtons.htm %}
+          </div>
+          <div class="card-like-thing background-color-surface-border" id="site-results-grid">
+            <div>
+              <wa-dropdown id="htmDropdown-nodeId">
+                <wa-button variant="brand" slot="trigger" caret>id</wa-button>
+                <wa-menu>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNode_nodeId'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-nodeId-asc">
+                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                    sort by id ascending
+                  </wa-menu-item>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNode_nodeId'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-nodeId-desc">
+                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                    sort by id descending
+                  </wa-menu-item>
+                </wa-menu>
+              </wa-dropdown>
+              <wa-dropdown id="htmDropdown-nodeName">
+                <wa-button variant="brand" slot="trigger" caret>name</wa-button>
+                <wa-menu>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNode_nodeName'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-nodeName-asc">
+                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                    sort by name ascending
+                  </wa-menu-item>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNode_nodeName'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-nodeName-desc">
+                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                    sort by name descending
+                  </wa-menu-item>
+                </wa-menu>
+              </wa-dropdown>
+              <wa-dropdown id="htmDropdown-nodeProvisionState">
+                <wa-button variant="brand" slot="trigger" caret>provision state</wa-button>
+                <wa-menu>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNode_nodeProvisionState'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-nodeProvisionState-asc">
+                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                    sort by provision state ascending
+                  </wa-menu-item>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNode_nodeProvisionState'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-nodeProvisionState-desc">
+                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                    sort by provision state descending
+                  </wa-menu-item>
+                </wa-menu>
+              </wa-dropdown>
+              <wa-dropdown id="htmDropdown-nodePowerState">
+                <wa-button variant="brand" slot="trigger" caret>power state</wa-button>
+                <wa-menu>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNode_nodePowerState'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-nodePowerState-asc">
+                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                    sort by power state ascending
+                  </wa-menu-item>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNode_nodePowerState'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-nodePowerState-desc">
+                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                    sort by power state descending
+                  </wa-menu-item>
+                </wa-menu>
+              </wa-dropdown>
+              <div></div>
+            </div>
+            {% for item in listBareMetalNode%}
+            <div>
+              <a href="{{ item.displayPage }}">
+                <i class="fa-duotone fa-regular fa-hexagon-nodes"></i>
+              {{ item.nodeId }}
+              </a>
+              <a href="{{ item.displayPage }}">
+              {{ item.nodeName }}
+              </a>
+              <a href="{{ item.displayPage }}">
+              {{ item.nodeProvisionState }}
+              </a>
+              <a href="{{ item.displayPage }}">
+              {{ item.nodePowerState }}
+              </a>
+              <wa-button variant="brand"
+                  id="{{classApiMethodMethod}}_editPage"
+                  placeholder="[String] manage"
+                  label="manage"
+                  title="Manage this"
+                  class="button-on-left {{classApiMethodMethod}}_editPage classBareMetalNode inputBareMetalNode{{ result.nodeId }}EditPage "
+                  name="setEditPage"
+                  href="{{ item.editPage | e }}"
+                  >
+                <i class="fa-duotone fa-regular fa-pen-to-square"></i>
+                manage
+              </wa-button>
+            </div>
+            {% endfor %}
+              {% if getColumnNodeId is defined %}
+                <div>
+                </div>
+              {% endif %}
+              {% if getColumnNodeName is defined %}
+                <div>
+                </div>
+              {% endif %}
+              {% if getColumnNodeProvisionState is defined %}
+                <div>
+                </div>
+              {% endif %}
+              {% if getColumnNodePowerState is defined %}
+                <div>
+                </div>
+              {% endif %}
+              {% if getColumnEditPage is defined %}
+                <div>
+                </div>
+              {% endif %}
+          </div>
+        </div>
+{% endif %}
+{%- endblock htmBodyMiddleBareMetalNodePage %}
+{%- endblock htmBodyMiddlePageLayout %}
+
+{%- block htmBodyEndPageLayout %}
+  {{ super() }}
+{%- block htmBodyEndBareMetalNodePage %}
+{%- endblock htmBodyEndBareMetalNodePage %}
+{%- endblock htmBodyEndPageLayout %}

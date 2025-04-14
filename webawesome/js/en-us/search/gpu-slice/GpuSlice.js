@@ -151,17 +151,20 @@ function searchGpuSliceVals(filters, target, success, error) {
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
 
 function suggestGpuSliceObjectSuggest($formFilters, $list, target) {
   success = function( data, textStatus, jQxhr ) {
-    $list.empty();
+    $list.innerHTML = '';
     data['list'].forEach((o, i) => {
       var $i = document.querySelector('<i class="fa-regular fa-cake-slice"></i>');
       var $span = document.createElement('span');      $span.setAttribute('class', '');      $span.innerText = o['objectTitle'];
@@ -185,10 +188,13 @@ async function getGpuSlice(pk) {
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -562,10 +568,13 @@ function patchGpuSliceVals(filters, vals, target, success, error) {
       , method: 'PATCH'
       , body: JSON.stringify(vals)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -663,10 +672,13 @@ async function postGpuSlice($formValues, target, success, error) {
       , method: 'POST'
       , body: JSON.stringify(vals)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -679,10 +691,13 @@ function postGpuSliceVals(vals, target, success, error) {
       , method: 'POST'
       , body: JSON.stringify(vals)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -710,10 +725,11 @@ async function deleteGpuSlice(target, sliceName, success, error) {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'DELETE'
     }).then(response => {
-      if(response.ok)
+      if(response.ok) {
         success(response, target);
-      else
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -734,10 +750,13 @@ function putimportGpuSliceVals(json, target, success, error) {
       , method: 'PUT'
       , body: JSON.stringify(json)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -765,10 +784,11 @@ async function deletefilterGpuSlice(target, success, error) {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'DELETE'
     }).then(response => {
-      if(response.ok)
+      if(response.ok) {
         success(response, target);
-      else
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }

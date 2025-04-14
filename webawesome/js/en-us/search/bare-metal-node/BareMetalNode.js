@@ -1,17 +1,17 @@
 
 // Search //
 
-async function searchAiProject($formFilters, success, error) {
-  var filters = searchAiProjectFilters($formFilters);
+async function searchBareMetalNode($formFilters, success, error) {
+  var filters = searchBareMetalNodeFilters($formFilters);
   if(success == null)
     success = function( data, textStatus, jQxhr ) {};
   if(error == null)
     error = function( jqXhr, textStatus, errorThrown ) {};
 
-  searchAiProjectVals(filters, target, success, error);
+  searchBareMetalNodeVals(filters, target, success, error);
 }
 
-function searchAiProjectFilters($formFilters) {
+function searchBareMetalNodeFilters($formFilters) {
   var filters = [];
   if($formFilters) {
 
@@ -37,21 +37,37 @@ function searchAiProjectFilters($formFilters) {
     if(filterArchived != null && filterArchived === true)
       filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
-    var filterClusterName = $formFilters.querySelector('.valueClusterName')?.value;
-    if(filterClusterName != null && filterClusterName !== '')
-      filters.push({ name: 'fq', value: 'clusterName:' + filterClusterName });
+    var filterLeaseInfo = $formFilters.querySelector('.valueLeaseInfo')?.value;
+    if(filterLeaseInfo != null && filterLeaseInfo !== '')
+      filters.push({ name: 'fq', value: 'leaseInfo:' + filterLeaseInfo });
 
-    var filterProjectName = $formFilters.querySelector('.valueProjectName')?.value;
-    if(filterProjectName != null && filterProjectName !== '')
-      filters.push({ name: 'fq', value: 'projectName:' + filterProjectName });
+    var filterNetworkInfo = $formFilters.querySelector('.valueNetworkInfo')?.value;
+    if(filterNetworkInfo != null && filterNetworkInfo !== '')
+      filters.push({ name: 'fq', value: 'networkInfo:' + filterNetworkInfo });
 
-    var filterProjectId = $formFilters.querySelector('.valueProjectId')?.value;
-    if(filterProjectId != null && filterProjectId !== '')
-      filters.push({ name: 'fq', value: 'projectId:' + filterProjectId });
+    var filterNodeId = $formFilters.querySelector('.valueNodeId')?.value;
+    if(filterNodeId != null && filterNodeId !== '')
+      filters.push({ name: 'fq', value: 'nodeId:' + filterNodeId });
 
-    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
-    if(filterDescription != null && filterDescription !== '')
-      filters.push({ name: 'fq', value: 'description:' + filterDescription });
+    var filterNodeIsMaintenance = $formFilters.querySelector('.valueNodeIsMaintenance')?.value;
+    if(filterNodeIsMaintenance != null && filterNodeIsMaintenance !== '')
+      filters.push({ name: 'fq', value: 'nodeIsMaintenance:' + filterNodeIsMaintenance });
+
+    var filterNodeLinks = $formFilters.querySelector('.valueNodeLinks')?.value;
+    if(filterNodeLinks != null && filterNodeLinks !== '')
+      filters.push({ name: 'fq', value: 'nodeLinks:' + filterNodeLinks });
+
+    var filterNodeName = $formFilters.querySelector('.valueNodeName')?.value;
+    if(filterNodeName != null && filterNodeName !== '')
+      filters.push({ name: 'fq', value: 'nodeName:' + filterNodeName });
+
+    var filterNodePowerState = $formFilters.querySelector('.valueNodePowerState')?.value;
+    if(filterNodePowerState != null && filterNodePowerState !== '')
+      filters.push({ name: 'fq', value: 'nodePowerState:' + filterNodePowerState });
+
+    var filterNodeProvisionState = $formFilters.querySelector('.valueNodeProvisionState')?.value;
+    if(filterNodeProvisionState != null && filterNodeProvisionState !== '')
+      filters.push({ name: 'fq', value: 'nodeProvisionState:' + filterNodeProvisionState });
 
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -108,18 +124,14 @@ function searchAiProjectFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
-    var filterProjectDisplayName = $formFilters.querySelector('.valueProjectDisplayName')?.value;
-    if(filterProjectDisplayName != null && filterProjectDisplayName !== '')
-      filters.push({ name: 'fq', value: 'projectDisplayName:' + filterProjectDisplayName });
   }
   return filters;
 }
 
-function searchAiProjectVals(filters, target, success, error) {
+function searchBareMetalNodeVals(filters, target, success, error) {
 
   fetch(
-    '/en-us/api/ai-project?' + filters.map(function(m) { return m.name + '=' + encodeURIComponent(m.value) }).join('&')
+    '/en-us/api/bare-metal-node?' + filters.map(function(m) { return m.name + '=' + encodeURIComponent(m.value) }).join('&')
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
     }).then(response => {
@@ -134,11 +146,11 @@ function searchAiProjectVals(filters, target, success, error) {
     .catch(response => error(response, target));
 }
 
-function suggestAiProjectObjectSuggest($formFilters, $list, target) {
+function suggestBareMetalNodeObjectSuggest($formFilters, $list, target) {
   success = function( data, textStatus, jQxhr ) {
     $list.innerHTML = '';
     data['list'].forEach((o, i) => {
-      var $i = document.querySelector('<i class="fa-regular fa-school"></i>');
+      var $i = document.querySelector('<i class="fa-duotone fa-regular fa-hexagon-nodes"></i>');
       var $span = document.createElement('span');      $span.setAttribute('class', '');      $span.innerText = o['objectTitle'];
       var $li = document.createElement('li');
       var $a = document.createElement('a').setAttribute('href', o['editPage']);
@@ -149,14 +161,14 @@ function suggestAiProjectObjectSuggest($formFilters, $list, target) {
     });
   };
   error = function( jqXhr, textStatus, errorThrown ) {};
-  searchAiProjectVals($formFilters, target, success, error);
+  searchBareMetalNodeVals($formFilters, target, success, error);
 }
 
 // GET //
 
-async function getAiProject(pk) {
+async function getBareMetalNode(pk) {
   fetch(
-    '/en-us/api/ai-project/' + projectId
+    '/en-us/api/bare-metal-node/' + nodeId
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
     }).then(response => {
@@ -173,8 +185,8 @@ async function getAiProject(pk) {
 
 // PATCH //
 
-async function patchAiProject($formFilters, $formValues, target, projectId, success, error) {
-  var filters = patchAiProjectFilters($formFilters);
+async function patchBareMetalNode($formFilters, $formValues, target, nodeId, success, error) {
+  var filters = patchBareMetalNodeFilters($formFilters);
 
   var vals = {};
 
@@ -233,53 +245,101 @@ async function patchAiProject($formFilters, $formValues, target, projectId, succ
   if(removeArchived != null && removeArchived !== '')
     vals['removeArchived'] = removeArchived;
 
-  var valueClusterName = $formValues.querySelector('.valueClusterName')?.value;
-  var removeClusterName = $formValues.querySelector('.removeClusterName')?.value === 'true';
-  var setClusterName = removeClusterName ? null : $formValues.querySelector('.setClusterName')?.value;
-  var addClusterName = $formValues.querySelector('.addClusterName')?.value;
-  if(removeClusterName || setClusterName != null && setClusterName !== '')
-    vals['setClusterName'] = setClusterName;
-  if(addClusterName != null && addClusterName !== '')
-    vals['addClusterName'] = addClusterName;
-  var removeClusterName = $formValues.querySelector('.removeClusterName')?.value;
-  if(removeClusterName != null && removeClusterName !== '')
-    vals['removeClusterName'] = removeClusterName;
+  var valueLeaseInfo = $formValues.querySelector('.valueLeaseInfo')?.value;
+  var removeLeaseInfo = $formValues.querySelector('.removeLeaseInfo')?.value === 'true';
+  var setLeaseInfo = removeLeaseInfo ? null : $formValues.querySelector('.setLeaseInfo')?.value;
+  var addLeaseInfo = $formValues.querySelector('.addLeaseInfo')?.value;
+  if(removeLeaseInfo || setLeaseInfo != null && setLeaseInfo !== '')
+    vals['setLeaseInfo'] = JSON.parse(setLeaseInfo);
+  if(addLeaseInfo != null && addLeaseInfo !== '')
+    vals['addLeaseInfo'] = addLeaseInfo;
+  var removeLeaseInfo = $formValues.querySelector('.removeLeaseInfo')?.value;
+  if(removeLeaseInfo != null && removeLeaseInfo !== '')
+    vals['removeLeaseInfo'] = removeLeaseInfo;
 
-  var valueProjectName = $formValues.querySelector('.valueProjectName')?.value;
-  var removeProjectName = $formValues.querySelector('.removeProjectName')?.value === 'true';
-  var setProjectName = removeProjectName ? null : $formValues.querySelector('.setProjectName')?.value;
-  var addProjectName = $formValues.querySelector('.addProjectName')?.value;
-  if(removeProjectName || setProjectName != null && setProjectName !== '')
-    vals['setProjectName'] = setProjectName;
-  if(addProjectName != null && addProjectName !== '')
-    vals['addProjectName'] = addProjectName;
-  var removeProjectName = $formValues.querySelector('.removeProjectName')?.value;
-  if(removeProjectName != null && removeProjectName !== '')
-    vals['removeProjectName'] = removeProjectName;
+  var valueNetworkInfo = $formValues.querySelector('.valueNetworkInfo')?.value;
+  var removeNetworkInfo = $formValues.querySelector('.removeNetworkInfo')?.value === 'true';
+  var setNetworkInfo = removeNetworkInfo ? null : $formValues.querySelector('.setNetworkInfo')?.value;
+  var addNetworkInfo = $formValues.querySelector('.addNetworkInfo')?.value;
+  if(removeNetworkInfo || setNetworkInfo != null && setNetworkInfo !== '')
+    vals['setNetworkInfo'] = JSON.parse(setNetworkInfo);
+  if(addNetworkInfo != null && addNetworkInfo !== '')
+    vals['addNetworkInfo'] = addNetworkInfo;
+  var removeNetworkInfo = $formValues.querySelector('.removeNetworkInfo')?.value;
+  if(removeNetworkInfo != null && removeNetworkInfo !== '')
+    vals['removeNetworkInfo'] = removeNetworkInfo;
 
-  var valueProjectId = $formValues.querySelector('.valueProjectId')?.value;
-  var removeProjectId = $formValues.querySelector('.removeProjectId')?.value === 'true';
-  var setProjectId = removeProjectId ? null : $formValues.querySelector('.setProjectId')?.value;
-  var addProjectId = $formValues.querySelector('.addProjectId')?.value;
-  if(removeProjectId || setProjectId != null && setProjectId !== '')
-    vals['setProjectId'] = setProjectId;
-  if(addProjectId != null && addProjectId !== '')
-    vals['addProjectId'] = addProjectId;
-  var removeProjectId = $formValues.querySelector('.removeProjectId')?.value;
-  if(removeProjectId != null && removeProjectId !== '')
-    vals['removeProjectId'] = removeProjectId;
+  var valueNodeId = $formValues.querySelector('.valueNodeId')?.value;
+  var removeNodeId = $formValues.querySelector('.removeNodeId')?.value === 'true';
+  var setNodeId = removeNodeId ? null : $formValues.querySelector('.setNodeId')?.value;
+  var addNodeId = $formValues.querySelector('.addNodeId')?.value;
+  if(removeNodeId || setNodeId != null && setNodeId !== '')
+    vals['setNodeId'] = setNodeId;
+  if(addNodeId != null && addNodeId !== '')
+    vals['addNodeId'] = addNodeId;
+  var removeNodeId = $formValues.querySelector('.removeNodeId')?.value;
+  if(removeNodeId != null && removeNodeId !== '')
+    vals['removeNodeId'] = removeNodeId;
 
-  var valueDescription = $formValues.querySelector('.valueDescription')?.value;
-  var removeDescription = $formValues.querySelector('.removeDescription')?.value === 'true';
-  var setDescription = removeDescription ? null : $formValues.querySelector('.setDescription')?.value;
-  var addDescription = $formValues.querySelector('.addDescription')?.value;
-  if(removeDescription || setDescription != null && setDescription !== '')
-    vals['setDescription'] = setDescription;
-  if(addDescription != null && addDescription !== '')
-    vals['addDescription'] = addDescription;
-  var removeDescription = $formValues.querySelector('.removeDescription')?.value;
-  if(removeDescription != null && removeDescription !== '')
-    vals['removeDescription'] = removeDescription;
+  var valueNodeIsMaintenance = $formValues.querySelector('.valueNodeIsMaintenance')?.value;
+  var removeNodeIsMaintenance = $formValues.querySelector('.removeNodeIsMaintenance')?.value === 'true';
+  var setNodeIsMaintenance = removeNodeIsMaintenance ? null : $formValues.querySelector('.setNodeIsMaintenance')?.value;
+  var addNodeIsMaintenance = $formValues.querySelector('.addNodeIsMaintenance')?.value;
+  if(removeNodeIsMaintenance || setNodeIsMaintenance != null && setNodeIsMaintenance !== '')
+    vals['setNodeIsMaintenance'] = setNodeIsMaintenance;
+  if(addNodeIsMaintenance != null && addNodeIsMaintenance !== '')
+    vals['addNodeIsMaintenance'] = addNodeIsMaintenance;
+  var removeNodeIsMaintenance = $formValues.querySelector('.removeNodeIsMaintenance')?.value;
+  if(removeNodeIsMaintenance != null && removeNodeIsMaintenance !== '')
+    vals['removeNodeIsMaintenance'] = removeNodeIsMaintenance;
+
+  var valueNodeLinks = $formValues.querySelector('.valueNodeLinks')?.value;
+  var removeNodeLinks = $formValues.querySelector('.removeNodeLinks')?.value === 'true';
+  var setNodeLinks = removeNodeLinks ? null : $formValues.querySelector('.setNodeLinks')?.value;
+  var addNodeLinks = $formValues.querySelector('.addNodeLinks')?.value;
+  if(removeNodeLinks || setNodeLinks != null && setNodeLinks !== '')
+    vals['setNodeLinks'] = JSON.parse(setNodeLinks);
+  if(addNodeLinks != null && addNodeLinks !== '')
+    vals['addNodeLinks'] = addNodeLinks;
+  var removeNodeLinks = $formValues.querySelector('.removeNodeLinks')?.value;
+  if(removeNodeLinks != null && removeNodeLinks !== '')
+    vals['removeNodeLinks'] = removeNodeLinks;
+
+  var valueNodeName = $formValues.querySelector('.valueNodeName')?.value;
+  var removeNodeName = $formValues.querySelector('.removeNodeName')?.value === 'true';
+  var setNodeName = removeNodeName ? null : $formValues.querySelector('.setNodeName')?.value;
+  var addNodeName = $formValues.querySelector('.addNodeName')?.value;
+  if(removeNodeName || setNodeName != null && setNodeName !== '')
+    vals['setNodeName'] = setNodeName;
+  if(addNodeName != null && addNodeName !== '')
+    vals['addNodeName'] = addNodeName;
+  var removeNodeName = $formValues.querySelector('.removeNodeName')?.value;
+  if(removeNodeName != null && removeNodeName !== '')
+    vals['removeNodeName'] = removeNodeName;
+
+  var valueNodePowerState = $formValues.querySelector('.valueNodePowerState')?.value;
+  var removeNodePowerState = $formValues.querySelector('.removeNodePowerState')?.value === 'true';
+  var setNodePowerState = removeNodePowerState ? null : $formValues.querySelector('.setNodePowerState')?.value;
+  var addNodePowerState = $formValues.querySelector('.addNodePowerState')?.value;
+  if(removeNodePowerState || setNodePowerState != null && setNodePowerState !== '')
+    vals['setNodePowerState'] = setNodePowerState;
+  if(addNodePowerState != null && addNodePowerState !== '')
+    vals['addNodePowerState'] = addNodePowerState;
+  var removeNodePowerState = $formValues.querySelector('.removeNodePowerState')?.value;
+  if(removeNodePowerState != null && removeNodePowerState !== '')
+    vals['removeNodePowerState'] = removeNodePowerState;
+
+  var valueNodeProvisionState = $formValues.querySelector('.valueNodeProvisionState')?.value;
+  var removeNodeProvisionState = $formValues.querySelector('.removeNodeProvisionState')?.value === 'true';
+  var setNodeProvisionState = removeNodeProvisionState ? null : $formValues.querySelector('.setNodeProvisionState')?.value;
+  var addNodeProvisionState = $formValues.querySelector('.addNodeProvisionState')?.value;
+  if(removeNodeProvisionState || setNodeProvisionState != null && setNodeProvisionState !== '')
+    vals['setNodeProvisionState'] = setNodeProvisionState;
+  if(addNodeProvisionState != null && addNodeProvisionState !== '')
+    vals['addNodeProvisionState'] = addNodeProvisionState;
+  var removeNodeProvisionState = $formValues.querySelector('.removeNodeProvisionState')?.value;
+  if(removeNodeProvisionState != null && removeNodeProvisionState !== '')
+    vals['removeNodeProvisionState'] = removeNodeProvisionState;
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   var removeSessionId = $formValues.querySelector('.removeSessionId')?.value === 'true';
@@ -341,10 +401,10 @@ async function patchAiProject($formFilters, $formValues, target, projectId, succ
   if(removeEditPage != null && removeEditPage !== '')
     vals['removeEditPage'] = removeEditPage;
 
-  patchAiProjectVals(projectId == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'projectId:' + projectId}], vals, target, success, error);
+  patchBareMetalNodeVals(nodeId == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'nodeId:' + nodeId}], vals, target, success, error);
 }
 
-function patchAiProjectFilters($formFilters) {
+function patchBareMetalNodeFilters($formFilters) {
   var filters = [];
   if($formFilters) {
     filters.push({ name: 'softCommit', value: 'true' });
@@ -371,21 +431,37 @@ function patchAiProjectFilters($formFilters) {
     if(filterArchived != null && filterArchived === true)
       filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
-    var filterClusterName = $formFilters.querySelector('.valueClusterName')?.value;
-    if(filterClusterName != null && filterClusterName !== '')
-      filters.push({ name: 'fq', value: 'clusterName:' + filterClusterName });
+    var filterLeaseInfo = $formFilters.querySelector('.valueLeaseInfo')?.value;
+    if(filterLeaseInfo != null && filterLeaseInfo !== '')
+      filters.push({ name: 'fq', value: 'leaseInfo:' + filterLeaseInfo });
 
-    var filterProjectName = $formFilters.querySelector('.valueProjectName')?.value;
-    if(filterProjectName != null && filterProjectName !== '')
-      filters.push({ name: 'fq', value: 'projectName:' + filterProjectName });
+    var filterNetworkInfo = $formFilters.querySelector('.valueNetworkInfo')?.value;
+    if(filterNetworkInfo != null && filterNetworkInfo !== '')
+      filters.push({ name: 'fq', value: 'networkInfo:' + filterNetworkInfo });
 
-    var filterProjectId = $formFilters.querySelector('.valueProjectId')?.value;
-    if(filterProjectId != null && filterProjectId !== '')
-      filters.push({ name: 'fq', value: 'projectId:' + filterProjectId });
+    var filterNodeId = $formFilters.querySelector('.valueNodeId')?.value;
+    if(filterNodeId != null && filterNodeId !== '')
+      filters.push({ name: 'fq', value: 'nodeId:' + filterNodeId });
 
-    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
-    if(filterDescription != null && filterDescription !== '')
-      filters.push({ name: 'fq', value: 'description:' + filterDescription });
+    var filterNodeIsMaintenance = $formFilters.querySelector('.valueNodeIsMaintenance')?.value;
+    if(filterNodeIsMaintenance != null && filterNodeIsMaintenance !== '')
+      filters.push({ name: 'fq', value: 'nodeIsMaintenance:' + filterNodeIsMaintenance });
+
+    var filterNodeLinks = $formFilters.querySelector('.valueNodeLinks')?.value;
+    if(filterNodeLinks != null && filterNodeLinks !== '')
+      filters.push({ name: 'fq', value: 'nodeLinks:' + filterNodeLinks });
+
+    var filterNodeName = $formFilters.querySelector('.valueNodeName')?.value;
+    if(filterNodeName != null && filterNodeName !== '')
+      filters.push({ name: 'fq', value: 'nodeName:' + filterNodeName });
+
+    var filterNodePowerState = $formFilters.querySelector('.valueNodePowerState')?.value;
+    if(filterNodePowerState != null && filterNodePowerState !== '')
+      filters.push({ name: 'fq', value: 'nodePowerState:' + filterNodePowerState });
+
+    var filterNodeProvisionState = $formFilters.querySelector('.valueNodeProvisionState')?.value;
+    if(filterNodeProvisionState != null && filterNodeProvisionState !== '')
+      filters.push({ name: 'fq', value: 'nodeProvisionState:' + filterNodeProvisionState });
 
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -442,23 +518,19 @@ function patchAiProjectFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
-    var filterProjectDisplayName = $formFilters.querySelector('.valueProjectDisplayName')?.value;
-    if(filterProjectDisplayName != null && filterProjectDisplayName !== '')
-      filters.push({ name: 'fq', value: 'projectDisplayName:' + filterProjectDisplayName });
   }
   return filters;
 }
 
-function patchAiProjectVal(filters, v, val, target, success, error) {
+function patchBareMetalNodeVal(filters, v, val, target, success, error) {
   var vals = {};
   vals[v] = val;
-  patchAiProjectVals(filters, vals, target, success, error);
+  patchBareMetalNodeVals(filters, vals, target, success, error);
 }
 
-function patchAiProjectVals(filters, vals, target, success, error) {
+function patchBareMetalNodeVals(filters, vals, target, success, error) {
   fetch(
-    '/en-us/api/ai-project?' + filters.map(function(m) { return m.name + '=' + encodeURIComponent(m.value) }).join('&')
+    '/en-us/api/bare-metal-node?' + filters.map(function(m) { return m.name + '=' + encodeURIComponent(m.value) }).join('&')
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'PATCH'
@@ -477,7 +549,7 @@ function patchAiProjectVals(filters, vals, target, success, error) {
 
 // POST //
 
-async function postAiProject($formValues, target, success, error) {
+async function postBareMetalNode($formValues, target, success, error) {
   var vals = {};
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
@@ -509,21 +581,37 @@ async function postAiProject($formValues, target, success, error) {
   if(valueArchived != null && valueArchived !== '')
     vals['archived'] = valueArchived == 'true';
 
-  var valueClusterName = $formValues.querySelector('.valueClusterName')?.value;
-  if(valueClusterName != null && valueClusterName !== '')
-    vals['clusterName'] = valueClusterName;
+  var valueLeaseInfo = $formValues.querySelector('.valueLeaseInfo')?.value;
+  if(valueLeaseInfo != null && valueLeaseInfo !== '')
+    vals['leaseInfo'] = JSON.parse(valueLeaseInfo);
 
-  var valueProjectName = $formValues.querySelector('.valueProjectName')?.value;
-  if(valueProjectName != null && valueProjectName !== '')
-    vals['projectName'] = valueProjectName;
+  var valueNetworkInfo = $formValues.querySelector('.valueNetworkInfo')?.value;
+  if(valueNetworkInfo != null && valueNetworkInfo !== '')
+    vals['networkInfo'] = JSON.parse(valueNetworkInfo);
 
-  var valueProjectId = $formValues.querySelector('.valueProjectId')?.value;
-  if(valueProjectId != null && valueProjectId !== '')
-    vals['projectId'] = valueProjectId;
+  var valueNodeId = $formValues.querySelector('.valueNodeId')?.value;
+  if(valueNodeId != null && valueNodeId !== '')
+    vals['nodeId'] = valueNodeId;
 
-  var valueDescription = $formValues.querySelector('.valueDescription')?.value;
-  if(valueDescription != null && valueDescription !== '')
-    vals['description'] = valueDescription;
+  var valueNodeIsMaintenance = $formValues.querySelector('.valueNodeIsMaintenance')?.value;
+  if(valueNodeIsMaintenance != null && valueNodeIsMaintenance !== '')
+    vals['nodeIsMaintenance'] = valueNodeIsMaintenance;
+
+  var valueNodeLinks = $formValues.querySelector('.valueNodeLinks')?.value;
+  if(valueNodeLinks != null && valueNodeLinks !== '')
+    vals['nodeLinks'] = JSON.parse(valueNodeLinks);
+
+  var valueNodeName = $formValues.querySelector('.valueNodeName')?.value;
+  if(valueNodeName != null && valueNodeName !== '')
+    vals['nodeName'] = valueNodeName;
+
+  var valueNodePowerState = $formValues.querySelector('.valueNodePowerState')?.value;
+  if(valueNodePowerState != null && valueNodePowerState !== '')
+    vals['nodePowerState'] = valueNodePowerState;
+
+  var valueNodeProvisionState = $formValues.querySelector('.valueNodeProvisionState')?.value;
+  if(valueNodeProvisionState != null && valueNodeProvisionState !== '')
+    vals['nodeProvisionState'] = valueNodeProvisionState;
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   if(valueSessionId != null && valueSessionId !== '')
@@ -546,7 +634,7 @@ async function postAiProject($formValues, target, success, error) {
     vals['editPage'] = valueEditPage;
 
   fetch(
-    '/en-us/api/ai-project'
+    '/en-us/api/bare-metal-node'
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'POST'
@@ -563,9 +651,9 @@ async function postAiProject($formValues, target, success, error) {
     .catch(response => error(response, target));
 }
 
-function postAiProjectVals(vals, target, success, error) {
+function postBareMetalNodeVals(vals, target, success, error) {
   fetch(
-    '/en-us/api/ai-project'
+    '/en-us/api/bare-metal-node'
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'POST'
@@ -584,7 +672,7 @@ function postAiProjectVals(vals, target, success, error) {
 
 // DELETE //
 
-async function deleteAiProject(target, projectId, success, error) {
+async function deleteBareMetalNode(target, nodeId, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
       addGlow(target);
@@ -600,7 +688,7 @@ async function deleteAiProject(target, projectId, success, error) {
   }
 
   fetch(
-    '/en-us/api/ai-project/' + encodeURIComponent(projectId)
+    '/en-us/api/bare-metal-node/' + encodeURIComponent(nodeId)
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'DELETE'
@@ -616,15 +704,15 @@ async function deleteAiProject(target, projectId, success, error) {
 
 // PUTImport //
 
-async function putimportAiProject($formValues, target, projectId, success, error) {
+async function putimportBareMetalNode($formValues, target, nodeId, success, error) {
   var json = $formValues.querySelector('.PUTImport_searchList')?.value;
   if(json != null && json !== '')
-    putimportAiProjectVals(JSON.parse(json), target, success, error);
+    putimportBareMetalNodeVals(JSON.parse(json), target, success, error);
 }
 
-function putimportAiProjectVals(json, target, success, error) {
+function putimportBareMetalNodeVals(json, target, success, error) {
   fetch(
-    '/en-us/api/ai-project-import'
+    '/en-us/api/bare-metal-node-import'
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'PUT'
@@ -643,7 +731,7 @@ function putimportAiProjectVals(json, target, success, error) {
 
 // DELETEFilter //
 
-async function deletefilterAiProject(target, success, error) {
+async function deletefilterBareMetalNode(target, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
       addGlow(target);
@@ -659,7 +747,7 @@ async function deletefilterAiProject(target, success, error) {
   }
 
   fetch(
-    '/en-us/api/ai-project'
+    '/en-us/api/bare-metal-node'
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'DELETE'
@@ -673,51 +761,51 @@ async function deletefilterAiProject(target, success, error) {
     .catch(response => error(response, target));
 }
 
-async function websocketAiProject(success) {
+async function websocketBareMetalNode(success) {
   window.eventBus.onopen = function () {
 
-    window.eventBus.registerHandler('websocketAiProject', function (error, message) {
+    window.eventBus.registerHandler('websocketBareMetalNode', function (error, message) {
       var json = JSON.parse(message['body']);
-      var projectId = json['id'];
+      var nodeId = json['id'];
       var pks = json['pks'];
       var empty = json['empty'];
       var numFound = parseInt(json['numFound']);
       var numPATCH = parseInt(json['numPATCH']);
       var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
       var $box = document.createElement('div');
-      $box.setAttribute('class', 'w3-quarter box-' + projectId + ' ');
-      $box.setAttribute('id', 'box-' + projectId);
+      $box.setAttribute('class', 'w3-quarter box-' + nodeId + ' ');
+      $box.setAttribute('id', 'box-' + nodeId);
       $box.setAttribute('data-numPATCH', numPATCH);
       var $margin = document.createElement('div');
       $margin.setAttribute('class', 'w3-margin ');
-      $margin.setAttribute('id', 'margin-' + projectId);
+      $margin.setAttribute('id', 'margin-' + nodeId);
       var $card = document.createElement('div');
       $card.setAttribute('class', 'w3-card w3-white ');
-      $card.setAttribute('id', 'card-' + projectId);
+      $card.setAttribute('id', 'card-' + nodeId);
       var $header = document.createElement('div');
       $header.setAttribute('class', 'w3-container fa- ');
-      $header.setAttribute('id', 'header-' + projectId);
+      $header.setAttribute('id', 'header-' + nodeId);
       var iTemplate = document.createElement('template');
-      iTemplate.innerHTML = '<i class="fa-regular fa-school"></i>';
+      iTemplate.innerHTML = '<i class="fa-duotone fa-regular fa-hexagon-nodes"></i>';
       var $i = iTemplate.content;
       var $headerSpan = document.createElement('span');
       $headerSpan.setAttribute('class', '');
-      $headerSpan.innerText = 'modify AI projects in ' + json.timeRemaining;
+      $headerSpan.innerText = 'modify bare metal nodes in ' + json.timeRemaining;
       var $x = document.createElement('span');
       $x.setAttribute('class', 'w3-button w3-display-topright ');
-      $x.setAttribute('onclick', 'document.querySelector("#card-' + projectId + '");');
+      $x.setAttribute('onclick', 'document.querySelector("#card-' + nodeId + '");');
       $x.classList.add("display-none");
-      $x.setAttribute('id', 'x-' + projectId);
+      $x.setAttribute('id', 'x-' + nodeId);
       var $body = document.createElement('div');
       $body.setAttribute('class', 'w3-container w3-padding ');
-      $body.setAttribute('id', 'text-' + projectId);
+      $body.setAttribute('id', 'text-' + nodeId);
       var $bar = document.createElement('div');
       $bar.setAttribute('class', 'w3-light-gray ');
-      $bar.setAttribute('id', 'bar-' + projectId);
+      $bar.setAttribute('id', 'bar-' + nodeId);
       var $progress = document.createElement('div');
       $progress.setAttribute('class', 'w3- ');
       $progress.setAttribute('style', 'height: 24px; width: ' + percent + '; ');
-      $progress.setAttribute('id', 'progress-' + projectId);
+      $progress.setAttribute('id', 'progress-' + nodeId);
       $progress.innerText = numPATCH + '/' + numFound;
       $card.append($header);
       $header.append($i);
@@ -729,24 +817,24 @@ async function websocketAiProject(success) {
       $box.append($margin);
       $margin.append($card);
       if(numPATCH < numFound) {
-        var $old_box = document.querySelector('.box-' + projectId);
+        var $old_box = document.querySelector('.box-' + nodeId);
       } else {
-        document.querySelector('.box-' + projectId)?.remove();
+        document.querySelector('.box-' + nodeId)?.remove();
       }
-      if(projectId) {
+      if(nodeId) {
         if(success)
           success(json);
       }
     });
   }
 }
-async function websocketAiProjectInner(apiRequest) {
-  var projectId = apiRequest['id'];
+async function websocketBareMetalNodeInner(apiRequest) {
+  var nodeId = apiRequest['id'];
   var classes = apiRequest['classes'];
   var vars = apiRequest['vars'];
   var empty = apiRequest['empty'];
 
-  if(projectId != null && vars.length > 0) {
+  if(nodeId != null && vars.length > 0) {
     var queryParams = "?" + Array.from(document.querySelectorAll(".pageSearchVal")).filter(elem => elem.innerText.length > 0).map(elem => elem.innerText).join("&");
     var uri = location.pathname + queryParams;
     fetch(uri).then(response => {
@@ -756,10 +844,14 @@ async function websocketAiProjectInner(apiRequest) {
         var inputCreated = null;
         var inputModified = null;
         var inputArchived = null;
-        var inputClusterName = null;
-        var inputProjectName = null;
-        var inputProjectId = null;
-        var inputDescription = null;
+        var inputLeaseInfo = null;
+        var inputNetworkInfo = null;
+        var inputNodeId = null;
+        var inputNodeIsMaintenance = null;
+        var inputNodeLinks = null;
+        var inputNodeName = null;
+        var inputNodePowerState = null;
+        var inputNodeProvisionState = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -774,7 +866,6 @@ async function websocketAiProjectInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
-        var inputProjectDisplayName = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Page_pk');
@@ -784,14 +875,22 @@ async function websocketAiProjectInner(apiRequest) {
           inputModified = $response.querySelector('.Page_modified');
         if(vars.includes('archived'))
           inputArchived = $response.querySelector('.Page_archived');
-        if(vars.includes('clusterName'))
-          inputClusterName = $response.querySelector('.Page_clusterName');
-        if(vars.includes('projectName'))
-          inputProjectName = $response.querySelector('.Page_projectName');
-        if(vars.includes('projectId'))
-          inputProjectId = $response.querySelector('.Page_projectId');
-        if(vars.includes('description'))
-          inputDescription = $response.querySelector('.Page_description');
+        if(vars.includes('leaseInfo'))
+          inputLeaseInfo = $response.querySelector('.Page_leaseInfo');
+        if(vars.includes('networkInfo'))
+          inputNetworkInfo = $response.querySelector('.Page_networkInfo');
+        if(vars.includes('nodeId'))
+          inputNodeId = $response.querySelector('.Page_nodeId');
+        if(vars.includes('nodeIsMaintenance'))
+          inputNodeIsMaintenance = $response.querySelector('.Page_nodeIsMaintenance');
+        if(vars.includes('nodeLinks'))
+          inputNodeLinks = $response.querySelector('.Page_nodeLinks');
+        if(vars.includes('nodeName'))
+          inputNodeName = $response.querySelector('.Page_nodeName');
+        if(vars.includes('nodePowerState'))
+          inputNodePowerState = $response.querySelector('.Page_nodePowerState');
+        if(vars.includes('nodeProvisionState'))
+          inputNodeProvisionState = $response.querySelector('.Page_nodeProvisionState');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -820,12 +919,10 @@ async function websocketAiProjectInner(apiRequest) {
           inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
-        if(vars.includes('projectDisplayName'))
-          inputProjectDisplayName = $response.querySelector('.Page_projectDisplayName');
 
-        jsWebsocketAiProject(projectId, vars, $response);
+        jsWebsocketBareMetalNode(nodeId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
-        window.listAiProject = JSON.parse($response.querySelector('.pageForm .listAiProject')?.value);
+        window.listBareMetalNode = JSON.parse($response.querySelector('.pageForm .listBareMetalNode')?.value);
 
 
         if(inputPk) {
@@ -868,44 +965,84 @@ async function websocketAiProjectInner(apiRequest) {
           addGlow(document.querySelector('.Page_archived'));
         }
 
-        if(inputClusterName) {
-          document.querySelectorAll('.Page_clusterName').forEach((item, index) => {
+        if(inputLeaseInfo) {
+          document.querySelectorAll('.Page_leaseInfo').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
-              item.value = inputClusterName.getAttribute('value');
+              item.value = inputLeaseInfo.getAttribute('value');
             else
-              item.textContent = inputClusterName.textContent;
+              item.textContent = inputLeaseInfo.textContent;
           });
-          addGlow(document.querySelector('.Page_clusterName'));
+          addGlow(document.querySelector('.Page_leaseInfo'));
         }
 
-        if(inputProjectName) {
-          document.querySelectorAll('.Page_projectName').forEach((item, index) => {
+        if(inputNetworkInfo) {
+          document.querySelectorAll('.Page_networkInfo').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
-              item.value = inputProjectName.getAttribute('value');
+              item.value = inputNetworkInfo.getAttribute('value');
             else
-              item.textContent = inputProjectName.textContent;
+              item.textContent = inputNetworkInfo.textContent;
           });
-          addGlow(document.querySelector('.Page_projectName'));
+          addGlow(document.querySelector('.Page_networkInfo'));
         }
 
-        if(inputProjectId) {
-          document.querySelectorAll('.Page_projectId').forEach((item, index) => {
+        if(inputNodeId) {
+          document.querySelectorAll('.Page_nodeId').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
-              item.value = inputProjectId.getAttribute('value');
+              item.value = inputNodeId.getAttribute('value');
             else
-              item.textContent = inputProjectId.textContent;
+              item.textContent = inputNodeId.textContent;
           });
-          addGlow(document.querySelector('.Page_projectId'));
+          addGlow(document.querySelector('.Page_nodeId'));
         }
 
-        if(inputDescription) {
-          document.querySelectorAll('.Page_description').forEach((item, index) => {
+        if(inputNodeIsMaintenance) {
+          document.querySelectorAll('.Page_nodeIsMaintenance').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
-              item.value = inputDescription.getAttribute('value');
+              item.value = inputNodeIsMaintenance.getAttribute('value');
             else
-              item.textContent = inputDescription.textContent;
+              item.textContent = inputNodeIsMaintenance.textContent;
           });
-          addGlow(document.querySelector('.Page_description'));
+          addGlow(document.querySelector('.Page_nodeIsMaintenance'));
+        }
+
+        if(inputNodeLinks) {
+          document.querySelectorAll('.Page_nodeLinks').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNodeLinks.getAttribute('value');
+            else
+              item.textContent = inputNodeLinks.textContent;
+          });
+          addGlow(document.querySelector('.Page_nodeLinks'));
+        }
+
+        if(inputNodeName) {
+          document.querySelectorAll('.Page_nodeName').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNodeName.getAttribute('value');
+            else
+              item.textContent = inputNodeName.textContent;
+          });
+          addGlow(document.querySelector('.Page_nodeName'));
+        }
+
+        if(inputNodePowerState) {
+          document.querySelectorAll('.Page_nodePowerState').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNodePowerState.getAttribute('value');
+            else
+              item.textContent = inputNodePowerState.textContent;
+          });
+          addGlow(document.querySelector('.Page_nodePowerState'));
+        }
+
+        if(inputNodeProvisionState) {
+          document.querySelectorAll('.Page_nodeProvisionState').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNodeProvisionState.getAttribute('value');
+            else
+              item.textContent = inputNodeProvisionState.textContent;
+          });
+          addGlow(document.querySelector('.Page_nodeProvisionState'));
         }
 
         if(inputClassCanonicalName) {
@@ -1048,23 +1185,13 @@ async function websocketAiProjectInner(apiRequest) {
           addGlow(document.querySelector('.Page_solrId'));
         }
 
-        if(inputProjectDisplayName) {
-          document.querySelectorAll('.Page_projectDisplayName').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputProjectDisplayName.getAttribute('value');
-            else
-              item.textContent = inputProjectDisplayName.textContent;
-          });
-          addGlow(document.querySelector('.Page_projectDisplayName'));
-        }
-
-          pageGraphAiProject();
+          pageGraphBareMetalNode();
       });
     });
   }
 }
 
-function pageGraphAiProject(apiRequest) {
+function pageGraphBareMetalNode(apiRequest) {
   var r = document.querySelector('.pageForm .pageResponse')?.value;
   if(r) {
     var json = JSON.parse(r);
@@ -1096,7 +1223,7 @@ function pageGraphAiProject(apiRequest) {
         var data = [];
         var layout = {};
         if(range) {
-          layout['title'] = 'AI projects';
+          layout['title'] = 'bare metal nodes';
           layout['xaxis'] = {
             title: rangeVarFq.displayName
           }
@@ -1159,7 +1286,7 @@ function pageGraphAiProject(apiRequest) {
               data.push(trace);
             });
           }
-          Plotly.react('htmBodyGraphAiProjectPage', data, layout);
+          Plotly.react('htmBodyGraphBareMetalNodePage', data, layout);
         }
       }
     }
@@ -1167,8 +1294,8 @@ function pageGraphAiProject(apiRequest) {
 }
 
 function animateStats() {
-  document.querySelector('#pageSearchVal-fqAiProject_time').innerText = '';
-  searchPage('AiProject', function() {
+  document.querySelector('#pageSearchVal-fqBareMetalNode_time').innerText = '';
+  searchPage('BareMetalNode', function() {
     let speedRate = parseFloat(document.querySelector('#animateStatsSpeed')?.value) * 1000;
     let xStep = parseFloat(document.querySelector('#animateStatsStep')?.value);
     let xMin = parseFloat(document.querySelector('#animateStatsMin')?.value);
@@ -1180,9 +1307,9 @@ function animateStats() {
       if (x > xMax || x < 0) {
         clearInterval(animateInterval);
       }
-      document.querySelector('#fqAiProject_time').value = x;
-      document.querySelector('#fqAiProject_time').onchange();
-      searchPage('AiProject');
+      document.querySelector('#fqBareMetalNode_time').value = x;
+      document.querySelector('#fqBareMetalNode_time').onchange();
+      searchPage('BareMetalNode');
     }, speedRate);
   });
 }

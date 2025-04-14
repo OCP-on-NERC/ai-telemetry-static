@@ -127,12 +127,12 @@ Promise.all([
     sort('AiCluster', 'locationColors', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortAiCluster_locationTitles')?.addEventListener('change', (event) => {
-    sort('AiCluster', 'locationTitles', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortAiCluster_locationLinks')?.addEventListener('change', (event) => {
     sort('AiCluster', 'locationLinks', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiCluster_entityShortId')?.addEventListener('change', (event) => {
+    sort('AiCluster', 'entityShortId', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchAiCluster')?.addEventListener('click', (event) => {

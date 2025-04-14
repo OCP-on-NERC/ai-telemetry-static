@@ -5,7 +5,7 @@
   > * {
     display: grid;
     grid-template-columns: subgrid;
-    grid-column: span 3;
+    grid-column: span 5;
     align-items: center;
     background-color: var(--wa-color-surface-raised);
     border-radius: var(--wa-border-radius-pill);

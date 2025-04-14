@@ -163,17 +163,20 @@ function searchAiNodeVals(filters, target, success, error) {
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
 
 function suggestAiNodeObjectSuggest($formFilters, $list, target) {
   success = function( data, textStatus, jQxhr ) {
-    $list.empty();
+    $list.innerHTML = '';
     data['list'].forEach((o, i) => {
       var $i = document.querySelector('<i class="fa-regular fa-computer"></i>');
       var $span = document.createElement('span');      $span.setAttribute('class', '');      $span.innerText = o['objectTitle'];
@@ -197,10 +200,13 @@ async function getAiNode(pk) {
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -622,10 +628,13 @@ function patchAiNodeVals(filters, vals, target, success, error) {
       , method: 'PATCH'
       , body: JSON.stringify(vals)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -735,10 +744,13 @@ async function postAiNode($formValues, target, success, error) {
       , method: 'POST'
       , body: JSON.stringify(vals)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -751,10 +763,13 @@ function postAiNodeVals(vals, target, success, error) {
       , method: 'POST'
       , body: JSON.stringify(vals)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -782,10 +797,11 @@ async function deleteAiNode(target, nodeId, success, error) {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'DELETE'
     }).then(response => {
-      if(response.ok)
+      if(response.ok) {
         success(response, target);
-      else
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -806,10 +822,13 @@ function putimportAiNodeVals(json, target, success, error) {
       , method: 'PUT'
       , body: JSON.stringify(json)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -837,10 +856,11 @@ async function deletefilterAiNode(target, success, error) {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'DELETE'
     }).then(response => {
-      if(response.ok)
+      if(response.ok) {
         success(response, target);
-      else
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }

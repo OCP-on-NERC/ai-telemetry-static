@@ -271,7 +271,7 @@
 {% if resultCount > 0 %}
           <h1><a href="{{pageUri}}"><i class="fa-regular fa-server"></i> <span>AI clusters</span></a></h1>
 {%- include en-us/search/ai-cluster/AiClusterSuggestedSearch.htm %}
-{% include en-us/search/ai-cluster/AiClusterSearchButtons.htm %}
+          <wa-divider></wa-divider>
 {% include en-us/search/ai-cluster/AiClusterSearchForm.htm %}
 {% endif %}
 {%- endblock htmBodyStartAiClusterPage %}
@@ -292,8 +292,9 @@
         </div>
           <h1><i class="fa-regular fa-server"></i> <span>AI clusters</span></h1>
         </div>
-{% include en-us/search/ai-cluster/AiClusterSearchButtons.htm %}
 {% include en-us/search/ai-cluster/AiClusterSearchForm.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/ai-cluster/AiClusterSearchButtons.htm %}
         <h2>
           <span>
   {% if classIconCssClasses is defined %}
@@ -322,7 +323,10 @@
             </wa-button>
           </div>
           {% endif %}
+          <div class="wa-flank wa-align-items-baseline margin-block-start ">
 {% include en-us/search/ai-cluster/AiClusterPaginationButtons.htm %}
+{% include en-us/search/ai-cluster/AiClusterSearchButtons.htm %}
+          </div>
           <div class="card-like-thing background-color-surface-border" id="site-results-grid">
             <div>
               <wa-dropdown id="htmDropdown-clusterName">

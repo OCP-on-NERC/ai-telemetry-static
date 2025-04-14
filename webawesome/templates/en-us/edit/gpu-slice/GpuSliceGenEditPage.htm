@@ -159,7 +159,7 @@
           var o = document.querySelector('.pageForm .result')?.value;
           if(o)
             window.result = JSON.parse(o);
-        {% if sliceName is defined %}
+        {% if result.sliceName is defined %}
         {% endif %}
         }
         var l = document.querySelector('.pageForm .listGpuSlice')?.value;
@@ -201,7 +201,11 @@
         });
         document.querySelector('#htmFormButton_postGpuSlice')?.addEventListener('click', event => {
           event.preventDefault();
-          postGpuSlice(document.querySelector('#htmForm_postGpuSlice'), document.querySelector('#htmFormButton_postGpuSlice'), (response, target) => { response.json().then((json) => { window.location.href = json.editPage; }); });
+          postGpuSlice(document.querySelector('#htmForm_postGpuSlice')
+          , document.querySelector('#htmFormButton_postGpuSlice')
+          , (json, target) => {
+            window.location.href = json.editPage;
+          });
           return false;
         });
 
@@ -251,9 +255,11 @@
 
 {%- block websocketPageLayout %}
 {%- block websocketGpuSlicePage %}
+{% if resultCount > 0 %}
         window.eventBus = new EventBus('/eventbus');
         window.eventBus.enableReconnect(true);
         websocketGpuSlice(websocketGpuSliceInner);
+{% endif %}
 {%- endblock websocketGpuSlicePage %}
 {%- endblock websocketPageLayout %}
 
@@ -273,8 +279,9 @@
           </div>
           <div class="margin-block">
           </div>
-{% include en-us/search/gpu-slice/GpuSliceSearchButtons.htm %}
 {% include en-us/search/gpu-slice/GpuSliceSearchForm.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/gpu-slice/GpuSliceSearchButtons.htm %}
 {% endif %}
 {%- endblock htmBodyStartGpuSlicePage %}
 {%- endblock htmBodyStartPageLayout %}
@@ -283,17 +290,21 @@
 {%- block htmBodyMiddleGpuSlicePage %}
         <div>
 {% if resultCount == 0 %}
-        {% if varsFqCount > 0 %}
-        <wa-tooltip for="return-to-GpuSlice">back to all GPU slices</wa-tooltip>
+        <div class="wa-flank">
+          <div>
+          {% if varsFqCount > 1 %}
+          <wa-tooltip for="return-to-GpuSlice">back to all GPU slices</wa-tooltip></wa-tooltip>
           <wa-button id="return-to-GpuSlice" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
             <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
             all GPU slices
           </wa-button>
-        </wa-tooltip>
-        {% endif %}
-        <h1><i class="fa-regular fa-cake-slice"></i> <span>GPU slices</span></h1>
-{% include en-us/search/gpu-slice/GpuSliceSearchButtons.htm %}
+          {% endif %}
+        </div>
+          <h1><i class="fa-regular fa-cake-slice"></i> <span>GPU slices</span></h1>
+        </div>
 {% include en-us/search/gpu-slice/GpuSliceSearchForm.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/gpu-slice/GpuSliceSearchButtons.htm %}
         <h2>
           <span>
   {% if classIconCssClasses is defined %}
@@ -308,8 +319,8 @@
 {% endif %}
 {%- block htmFormGpuSlicePage %}
           <form action="/en-us/api/gpu-slice" id="GpuSliceForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-{% if sliceName is defined %}
-            <input name="sliceName" class="valueSliceName" type="hidden" value="{{sliceName}}"/>
+{% if result.sliceName is defined %}
+            <input name="sliceName" class="valueSliceName" type="hidden" value="{{ result.sliceName }}"/>
             {% endif %}
             <input name="focusId" type="hidden"/>
             <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>

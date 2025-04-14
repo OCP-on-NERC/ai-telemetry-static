@@ -159,7 +159,7 @@
           var o = document.querySelector('.pageForm .result')?.value;
           if(o)
             window.result = JSON.parse(o);
-        {% if nodeId is defined %}
+        {% if result.nodeId is defined %}
         {% endif %}
         }
         var l = document.querySelector('.pageForm .listAiNode')?.value;
@@ -201,7 +201,11 @@
         });
         document.querySelector('#htmFormButton_postAiNode')?.addEventListener('click', event => {
           event.preventDefault();
-          postAiNode(document.querySelector('#htmForm_postAiNode'), document.querySelector('#htmFormButton_postAiNode'), (response, target) => { response.json().then((json) => { window.location.href = json.editPage; }); });
+          postAiNode(document.querySelector('#htmForm_postAiNode')
+          , document.querySelector('#htmFormButton_postAiNode')
+          , (json, target) => {
+            window.location.href = json.editPage;
+          });
           return false;
         });
 
@@ -251,9 +255,11 @@
 
 {%- block websocketPageLayout %}
 {%- block websocketAiNodePage %}
+{% if resultCount > 0 %}
         window.eventBus = new EventBus('/eventbus');
         window.eventBus.enableReconnect(true);
         websocketAiNode(websocketAiNodeInner);
+{% endif %}
 {%- endblock websocketAiNodePage %}
 {%- endblock websocketPageLayout %}
 
@@ -265,7 +271,7 @@
 {% if resultCount > 0 %}
           <h1><a href="{{pageUri}}"><i class="fa-regular fa-computer"></i> <span>AI nodes</span></a></h1>
 {%- include en-us/search/ai-node/AiNodeSuggestedSearch.htm %}
-{% include en-us/search/ai-node/AiNodeSearchButtons.htm %}
+          <wa-divider></wa-divider>
 {% include en-us/search/ai-node/AiNodeSearchForm.htm %}
 {% endif %}
 {%- endblock htmBodyStartAiNodePage %}
@@ -274,17 +280,21 @@
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleAiNodePage %}
 {% if resultCount == 0 %}
-        {% if varsFqCount > 0 %}
-        <wa-tooltip for="return-to-AiNode">back to all AI nodes</wa-tooltip>
+        <div class="wa-flank">
+          <div>
+          {% if varsFqCount > 1 %}
+          <wa-tooltip for="return-to-AiNode">back to all AI nodes</wa-tooltip></wa-tooltip>
           <wa-button id="return-to-AiNode" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
             <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
             all AI nodes
           </wa-button>
-        </wa-tooltip>
-        {% endif %}
-        <h1><i class="fa-regular fa-computer"></i> <span>AI nodes</span></h1>
-{% include en-us/search/ai-node/AiNodeSearchButtons.htm %}
+          {% endif %}
+        </div>
+          <h1><i class="fa-regular fa-computer"></i> <span>AI nodes</span></h1>
+        </div>
 {% include en-us/search/ai-node/AiNodeSearchForm.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/ai-node/AiNodeSearchButtons.htm %}
         <h2>
           <span>
   {% if classIconCssClasses is defined %}
@@ -304,7 +314,7 @@
           <div id="site-calendar-box">
             <div id="site-calendar"><!-- // --></div>
           </div>
-          {% if varsFqCount > 0 %}
+          {% if varsFqCount > 1 %}
           <div class="margin-block">
             <wa-tooltip for="return-to-AiNode">back to all AI nodes</wa-tooltip>
             <wa-button id="return-to-AiNode" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
@@ -313,17 +323,20 @@
             </wa-button>
           </div>
           {% endif %}
+          <div class="wa-flank wa-align-items-baseline margin-block-start ">
 {% include en-us/search/ai-node/AiNodePaginationButtons.htm %}
+{% include en-us/search/ai-node/AiNodeSearchButtons.htm %}
+          </div>
           <div class="card-like-thing background-color-surface-border" id="site-results-grid">
             <div>
               <wa-dropdown id="htmDropdown-clusterName">
                 <wa-button variant="brand" slot="trigger" caret>cluster name</wa-button>
                 <wa-menu>
-                  <wa-menu-item data-action="sort" data-order="asc" id="htmDropdown-clusterName-asc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortAiNode_clusterName'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-AiNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-clusterName-asc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
                     sort by cluster name ascending
                   </wa-menu-item>
-                  <wa-menu-item data-action="sort" data-order="desc" id="htmDropdown-clusterName-desc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortAiNode_clusterName'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-AiNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-clusterName-desc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
                     sort by cluster name descending
                   </wa-menu-item>
@@ -332,11 +345,11 @@
               <wa-dropdown id="htmDropdown-nodeName">
                 <wa-button variant="brand" slot="trigger" caret>node name</wa-button>
                 <wa-menu>
-                  <wa-menu-item data-action="sort" data-order="asc" id="htmDropdown-nodeName-asc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortAiNode_nodeName'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-AiNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-nodeName-asc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
                     sort by node name ascending
                   </wa-menu-item>
-                  <wa-menu-item data-action="sort" data-order="desc" id="htmDropdown-nodeName-desc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortAiNode_nodeName'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-AiNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-nodeName-desc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
                     sort by node name descending
                   </wa-menu-item>
@@ -345,11 +358,11 @@
               <wa-dropdown id="htmDropdown-description">
                 <wa-button variant="brand" slot="trigger" caret>description</wa-button>
                 <wa-menu>
-                  <wa-menu-item data-action="sort" data-order="asc" id="htmDropdown-description-asc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortAiNode_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-AiNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-description-asc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
                     sort by description ascending
                   </wa-menu-item>
-                  <wa-menu-item data-action="sort" data-order="desc" id="htmDropdown-description-desc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortAiNode_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-AiNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-description-desc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
                     sort by description descending
                   </wa-menu-item>
@@ -371,15 +384,15 @@
               </a>
               <wa-button variant="brand"
                   id="{{classApiMethodMethod}}_editPage"
-                  placeholder="[String] edit"
-                  label="edit"
-                  title="Edit this"
-                  class="button-on-left {{classApiMethodMethod}}_editPage classAiNode inputAiNode{{nodeId}}EditPage "
+                  placeholder="[String] manage"
+                  label="manage"
+                  title="Manage this"
+                  class="button-on-left {{classApiMethodMethod}}_editPage classAiNode inputAiNode{{ result.nodeId }}EditPage "
                   name="setEditPage"
                   href="{{ item.editPage | e }}"
                   >
                 <i class="fa-duotone fa-regular fa-pen-to-square"></i>
-                edit
+                manage
               </wa-button>
             </div>
             {% endfor %}
