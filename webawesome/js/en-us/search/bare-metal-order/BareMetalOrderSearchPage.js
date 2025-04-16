@@ -27,6 +27,34 @@ Promise.all([
     sort('BareMetalOrder', 'description', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortBareMetalOrder_networkId')?.addEventListener('change', (event) => {
+    sort('BareMetalOrder', 'networkId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortBareMetalOrder_numberOfFc430')?.addEventListener('change', (event) => {
+    sort('BareMetalOrder', 'numberOfFc430', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortBareMetalOrder_numberOfFc830')?.addEventListener('change', (event) => {
+    sort('BareMetalOrder', 'numberOfFc830', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortBareMetalOrder_numberOfR730xd')?.addEventListener('change', (event) => {
+    sort('BareMetalOrder', 'numberOfR730xd', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortBareMetalOrder_numberOfWhiteboxFlax1')?.addEventListener('change', (event) => {
+    sort('BareMetalOrder', 'numberOfWhiteboxFlax1', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortBareMetalOrder_numberOfLenovoSd650nv2A100')?.addEventListener('change', (event) => {
+    sort('BareMetalOrder', 'numberOfLenovoSd650nv2A100', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortBareMetalOrder_numberOfLenovoSd665nv3H100')?.addEventListener('change', (event) => {
+    sort('BareMetalOrder', 'numberOfLenovoSd665nv3H100', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortBareMetalOrder_classCanonicalName')?.addEventListener('change', (event) => {
     sort('BareMetalOrder', 'classCanonicalName', event.currentTarget.value);
   });
@@ -77,6 +105,10 @@ Promise.all([
 
   document.querySelector('#pageFacetSortBareMetalOrder_objectText')?.addEventListener('change', (event) => {
     sort('BareMetalOrder', 'objectText', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortBareMetalOrder_solrId')?.addEventListener('change', (event) => {
+    sort('BareMetalOrder', 'solrId', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchBareMetalOrder')?.addEventListener('click', (event) => {
@@ -139,6 +171,60 @@ Promise.all([
             facetFieldChange('BareMetalOrder', event.currentTarget);
           });
           document.querySelector('#pageFacetPivotBareMetalOrder_description')?.addEventListener('change', (event) => {
+            facetPivotChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#fqBareMetalOrder_numberOfFc430')?.addEventListener('change', (event) => {
+            fqChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetBareMetalOrder_numberOfFc430')?.addEventListener('click', (event) => {
+            facetFieldChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotBareMetalOrder_numberOfFc430')?.addEventListener('change', (event) => {
+            facetPivotChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#fqBareMetalOrder_numberOfFc830')?.addEventListener('change', (event) => {
+            fqChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetBareMetalOrder_numberOfFc830')?.addEventListener('click', (event) => {
+            facetFieldChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotBareMetalOrder_numberOfFc830')?.addEventListener('change', (event) => {
+            facetPivotChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#fqBareMetalOrder_numberOfR730xd')?.addEventListener('change', (event) => {
+            fqChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetBareMetalOrder_numberOfR730xd')?.addEventListener('click', (event) => {
+            facetFieldChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotBareMetalOrder_numberOfR730xd')?.addEventListener('change', (event) => {
+            facetPivotChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#fqBareMetalOrder_numberOfWhiteboxFlax1')?.addEventListener('change', (event) => {
+            fqChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetBareMetalOrder_numberOfWhiteboxFlax1')?.addEventListener('click', (event) => {
+            facetFieldChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotBareMetalOrder_numberOfWhiteboxFlax1')?.addEventListener('change', (event) => {
+            facetPivotChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#fqBareMetalOrder_numberOfLenovoSd650nv2A100')?.addEventListener('change', (event) => {
+            fqChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetBareMetalOrder_numberOfLenovoSd650nv2A100')?.addEventListener('click', (event) => {
+            facetFieldChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotBareMetalOrder_numberOfLenovoSd650nv2A100')?.addEventListener('change', (event) => {
+            facetPivotChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#fqBareMetalOrder_numberOfLenovoSd665nv3H100')?.addEventListener('change', (event) => {
+            fqChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetBareMetalOrder_numberOfLenovoSd665nv3H100')?.addEventListener('click', (event) => {
+            facetFieldChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotBareMetalOrder_numberOfLenovoSd665nv3H100')?.addEventListener('change', (event) => {
             facetPivotChange('BareMetalOrder', event.currentTarget);
           });
           document.querySelector('#fqBareMetalOrder_displayPage')?.addEventListener('change', (event) => {

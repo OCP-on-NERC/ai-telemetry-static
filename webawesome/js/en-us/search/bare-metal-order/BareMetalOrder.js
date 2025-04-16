@@ -41,6 +41,34 @@ function searchBareMetalOrderFilters($formFilters) {
     if(filterDescription != null && filterDescription !== '')
       filters.push({ name: 'fq', value: 'description:' + filterDescription });
 
+    var filterNetworkId = $formFilters.querySelector('.valueNetworkId')?.value;
+    if(filterNetworkId != null && filterNetworkId !== '')
+      filters.push({ name: 'fq', value: 'networkId:' + filterNetworkId });
+
+    var filterNumberOfFc430 = $formFilters.querySelector('.valueNumberOfFc430')?.value;
+    if(filterNumberOfFc430 != null && filterNumberOfFc430 !== '')
+      filters.push({ name: 'fq', value: 'numberOfFc430:' + filterNumberOfFc430 });
+
+    var filterNumberOfFc830 = $formFilters.querySelector('.valueNumberOfFc830')?.value;
+    if(filterNumberOfFc830 != null && filterNumberOfFc830 !== '')
+      filters.push({ name: 'fq', value: 'numberOfFc830:' + filterNumberOfFc830 });
+
+    var filterNumberOfR730xd = $formFilters.querySelector('.valueNumberOfR730xd')?.value;
+    if(filterNumberOfR730xd != null && filterNumberOfR730xd !== '')
+      filters.push({ name: 'fq', value: 'numberOfR730xd:' + filterNumberOfR730xd });
+
+    var filterNumberOfWhiteboxFlax1 = $formFilters.querySelector('.valueNumberOfWhiteboxFlax1')?.value;
+    if(filterNumberOfWhiteboxFlax1 != null && filterNumberOfWhiteboxFlax1 !== '')
+      filters.push({ name: 'fq', value: 'numberOfWhiteboxFlax1:' + filterNumberOfWhiteboxFlax1 });
+
+    var filterNumberOfLenovoSd650nv2A100 = $formFilters.querySelector('.valueNumberOfLenovoSd650nv2A100')?.value;
+    if(filterNumberOfLenovoSd650nv2A100 != null && filterNumberOfLenovoSd650nv2A100 !== '')
+      filters.push({ name: 'fq', value: 'numberOfLenovoSd650nv2A100:' + filterNumberOfLenovoSd650nv2A100 });
+
+    var filterNumberOfLenovoSd665nv3H100 = $formFilters.querySelector('.valueNumberOfLenovoSd665nv3H100')?.value;
+    if(filterNumberOfLenovoSd665nv3H100 != null && filterNumberOfLenovoSd665nv3H100 !== '')
+      filters.push({ name: 'fq', value: 'numberOfLenovoSd665nv3H100:' + filterNumberOfLenovoSd665nv3H100 });
+
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -92,6 +120,10 @@ function searchBareMetalOrderFilters($formFilters) {
     var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
+    if(filterSolrId != null && filterSolrId !== '')
+      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
   }
   return filters;
 }
@@ -112,6 +144,53 @@ function searchBareMetalOrderVals(filters, target, success, error) {
       }
     })
     .catch(response => error(response, target));
+}
+
+function suggestBareMetalOrderNetworkId(filters, $list, pk = null, networkId = null, relate=true, target) {
+  success = function( data, textStatus, jQxhr ) {
+    $list.innerHTML = '';
+    data['list'].forEach((o, i) => {
+      var iTemplate = document.createElement('template');
+      iTemplate.innerHTML = '<i class="fa-duotone fa-regular fa-network-wired"></i>';
+      var $i = iTemplate.content;
+      var $span = document.createElement('span');
+      $span.setAttribute('class', '');
+      $span.innerText = 
+o['objectTitle'];
+      var $a = document.createElement('a');
+      $a.setAttribute('href', o['editPage']);
+      $a.append($i);
+      $a.append($span);
+      var val = o['id'];
+      var checked = val == null ? false : (Array.isArray(val) ? val.includes(pk.toString()) : val == networkId);
+      var $input = document.createElement('wa-checkbox');
+      $input.setAttribute('id', 'GET_networkId_' + pk + '_id_' + o['id']);
+      $input.setAttribute('name', 'id');
+      $input.setAttribute('value', o['id']);
+      $input.setAttribute('class', 'valueNetworkId ');
+      if(pk != null) {
+        $input.addEventListener('change', function(event) {
+          patchBareMetalOrderVals([{ name: 'fq', value: 'pk:' + pk }], { [(event.target.checked ? 'set' : 'remove') + 'NetworkId']: o['id'] }
+              , target
+              , function(response, target) {
+                addGlow(target);
+                suggestBareMetalOrderNetworkId(filters, $list, pk, networkId, relate, target);
+              }
+              , function(response, target) { addError(target); }
+          );
+        });
+      }
+      if(checked)
+        $input.setAttribute('checked', 'checked');
+      var $li = document.createElement('li');
+      if(relate)
+        $li.append($input);
+      $li.append($a);
+      $list.append($li);
+    });
+  };
+  error = function( jqXhr, textStatus, errorThrown ) {};
+  searchBareMetalNetworkVals(filters, target, success, error);
 }
 
 function suggestBareMetalOrderObjectSuggest($formFilters, $list, target) {
@@ -225,6 +304,82 @@ async function patchBareMetalOrder($formFilters, $formValues, target, pk, succes
   if(removeDescription != null && removeDescription !== '')
     vals['removeDescription'] = removeDescription;
 
+  var valueNetworkId = (Array.from($formValues.querySelectorAll('.valueNetworkId')).filter(e => e.checked == true).find(() => true) ?? null)?.value;
+  if(valueNetworkId != null && valueNetworkId !== '')
+    vals['setNetworkId'] = valueNetworkId;
+
+  var valueNumberOfFc430 = $formValues.querySelector('.valueNumberOfFc430')?.value;
+  var removeNumberOfFc430 = $formValues.querySelector('.removeNumberOfFc430')?.value === 'true';
+  var setNumberOfFc430 = removeNumberOfFc430 ? null : $formValues.querySelector('.setNumberOfFc430')?.value;
+  var addNumberOfFc430 = $formValues.querySelector('.addNumberOfFc430')?.value;
+  if(removeNumberOfFc430 || setNumberOfFc430 != null && setNumberOfFc430 !== '')
+    vals['setNumberOfFc430'] = setNumberOfFc430;
+  if(addNumberOfFc430 != null && addNumberOfFc430 !== '')
+    vals['addNumberOfFc430'] = addNumberOfFc430;
+  var removeNumberOfFc430 = $formValues.querySelector('.removeNumberOfFc430')?.value;
+  if(removeNumberOfFc430 != null && removeNumberOfFc430 !== '')
+    vals['removeNumberOfFc430'] = removeNumberOfFc430;
+
+  var valueNumberOfFc830 = $formValues.querySelector('.valueNumberOfFc830')?.value;
+  var removeNumberOfFc830 = $formValues.querySelector('.removeNumberOfFc830')?.value === 'true';
+  var setNumberOfFc830 = removeNumberOfFc830 ? null : $formValues.querySelector('.setNumberOfFc830')?.value;
+  var addNumberOfFc830 = $formValues.querySelector('.addNumberOfFc830')?.value;
+  if(removeNumberOfFc830 || setNumberOfFc830 != null && setNumberOfFc830 !== '')
+    vals['setNumberOfFc830'] = setNumberOfFc830;
+  if(addNumberOfFc830 != null && addNumberOfFc830 !== '')
+    vals['addNumberOfFc830'] = addNumberOfFc830;
+  var removeNumberOfFc830 = $formValues.querySelector('.removeNumberOfFc830')?.value;
+  if(removeNumberOfFc830 != null && removeNumberOfFc830 !== '')
+    vals['removeNumberOfFc830'] = removeNumberOfFc830;
+
+  var valueNumberOfR730xd = $formValues.querySelector('.valueNumberOfR730xd')?.value;
+  var removeNumberOfR730xd = $formValues.querySelector('.removeNumberOfR730xd')?.value === 'true';
+  var setNumberOfR730xd = removeNumberOfR730xd ? null : $formValues.querySelector('.setNumberOfR730xd')?.value;
+  var addNumberOfR730xd = $formValues.querySelector('.addNumberOfR730xd')?.value;
+  if(removeNumberOfR730xd || setNumberOfR730xd != null && setNumberOfR730xd !== '')
+    vals['setNumberOfR730xd'] = setNumberOfR730xd;
+  if(addNumberOfR730xd != null && addNumberOfR730xd !== '')
+    vals['addNumberOfR730xd'] = addNumberOfR730xd;
+  var removeNumberOfR730xd = $formValues.querySelector('.removeNumberOfR730xd')?.value;
+  if(removeNumberOfR730xd != null && removeNumberOfR730xd !== '')
+    vals['removeNumberOfR730xd'] = removeNumberOfR730xd;
+
+  var valueNumberOfWhiteboxFlax1 = $formValues.querySelector('.valueNumberOfWhiteboxFlax1')?.value;
+  var removeNumberOfWhiteboxFlax1 = $formValues.querySelector('.removeNumberOfWhiteboxFlax1')?.value === 'true';
+  var setNumberOfWhiteboxFlax1 = removeNumberOfWhiteboxFlax1 ? null : $formValues.querySelector('.setNumberOfWhiteboxFlax1')?.value;
+  var addNumberOfWhiteboxFlax1 = $formValues.querySelector('.addNumberOfWhiteboxFlax1')?.value;
+  if(removeNumberOfWhiteboxFlax1 || setNumberOfWhiteboxFlax1 != null && setNumberOfWhiteboxFlax1 !== '')
+    vals['setNumberOfWhiteboxFlax1'] = setNumberOfWhiteboxFlax1;
+  if(addNumberOfWhiteboxFlax1 != null && addNumberOfWhiteboxFlax1 !== '')
+    vals['addNumberOfWhiteboxFlax1'] = addNumberOfWhiteboxFlax1;
+  var removeNumberOfWhiteboxFlax1 = $formValues.querySelector('.removeNumberOfWhiteboxFlax1')?.value;
+  if(removeNumberOfWhiteboxFlax1 != null && removeNumberOfWhiteboxFlax1 !== '')
+    vals['removeNumberOfWhiteboxFlax1'] = removeNumberOfWhiteboxFlax1;
+
+  var valueNumberOfLenovoSd650nv2A100 = $formValues.querySelector('.valueNumberOfLenovoSd650nv2A100')?.value;
+  var removeNumberOfLenovoSd650nv2A100 = $formValues.querySelector('.removeNumberOfLenovoSd650nv2A100')?.value === 'true';
+  var setNumberOfLenovoSd650nv2A100 = removeNumberOfLenovoSd650nv2A100 ? null : $formValues.querySelector('.setNumberOfLenovoSd650nv2A100')?.value;
+  var addNumberOfLenovoSd650nv2A100 = $formValues.querySelector('.addNumberOfLenovoSd650nv2A100')?.value;
+  if(removeNumberOfLenovoSd650nv2A100 || setNumberOfLenovoSd650nv2A100 != null && setNumberOfLenovoSd650nv2A100 !== '')
+    vals['setNumberOfLenovoSd650nv2A100'] = setNumberOfLenovoSd650nv2A100;
+  if(addNumberOfLenovoSd650nv2A100 != null && addNumberOfLenovoSd650nv2A100 !== '')
+    vals['addNumberOfLenovoSd650nv2A100'] = addNumberOfLenovoSd650nv2A100;
+  var removeNumberOfLenovoSd650nv2A100 = $formValues.querySelector('.removeNumberOfLenovoSd650nv2A100')?.value;
+  if(removeNumberOfLenovoSd650nv2A100 != null && removeNumberOfLenovoSd650nv2A100 !== '')
+    vals['removeNumberOfLenovoSd650nv2A100'] = removeNumberOfLenovoSd650nv2A100;
+
+  var valueNumberOfLenovoSd665nv3H100 = $formValues.querySelector('.valueNumberOfLenovoSd665nv3H100')?.value;
+  var removeNumberOfLenovoSd665nv3H100 = $formValues.querySelector('.removeNumberOfLenovoSd665nv3H100')?.value === 'true';
+  var setNumberOfLenovoSd665nv3H100 = removeNumberOfLenovoSd665nv3H100 ? null : $formValues.querySelector('.setNumberOfLenovoSd665nv3H100')?.value;
+  var addNumberOfLenovoSd665nv3H100 = $formValues.querySelector('.addNumberOfLenovoSd665nv3H100')?.value;
+  if(removeNumberOfLenovoSd665nv3H100 || setNumberOfLenovoSd665nv3H100 != null && setNumberOfLenovoSd665nv3H100 !== '')
+    vals['setNumberOfLenovoSd665nv3H100'] = setNumberOfLenovoSd665nv3H100;
+  if(addNumberOfLenovoSd665nv3H100 != null && addNumberOfLenovoSd665nv3H100 !== '')
+    vals['addNumberOfLenovoSd665nv3H100'] = addNumberOfLenovoSd665nv3H100;
+  var removeNumberOfLenovoSd665nv3H100 = $formValues.querySelector('.removeNumberOfLenovoSd665nv3H100')?.value;
+  if(removeNumberOfLenovoSd665nv3H100 != null && removeNumberOfLenovoSd665nv3H100 !== '')
+    vals['removeNumberOfLenovoSd665nv3H100'] = removeNumberOfLenovoSd665nv3H100;
+
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   var removeSessionId = $formValues.querySelector('.removeSessionId')?.value === 'true';
   var setSessionId = removeSessionId ? null : $formValues.querySelector('.setSessionId')?.value;
@@ -319,6 +474,34 @@ function patchBareMetalOrderFilters($formFilters) {
     if(filterDescription != null && filterDescription !== '')
       filters.push({ name: 'fq', value: 'description:' + filterDescription });
 
+    var filterNetworkId = $formFilters.querySelector('.valueNetworkId')?.value;
+    if(filterNetworkId != null && filterNetworkId !== '')
+      filters.push({ name: 'fq', value: 'networkId:' + filterNetworkId });
+
+    var filterNumberOfFc430 = $formFilters.querySelector('.valueNumberOfFc430')?.value;
+    if(filterNumberOfFc430 != null && filterNumberOfFc430 !== '')
+      filters.push({ name: 'fq', value: 'numberOfFc430:' + filterNumberOfFc430 });
+
+    var filterNumberOfFc830 = $formFilters.querySelector('.valueNumberOfFc830')?.value;
+    if(filterNumberOfFc830 != null && filterNumberOfFc830 !== '')
+      filters.push({ name: 'fq', value: 'numberOfFc830:' + filterNumberOfFc830 });
+
+    var filterNumberOfR730xd = $formFilters.querySelector('.valueNumberOfR730xd')?.value;
+    if(filterNumberOfR730xd != null && filterNumberOfR730xd !== '')
+      filters.push({ name: 'fq', value: 'numberOfR730xd:' + filterNumberOfR730xd });
+
+    var filterNumberOfWhiteboxFlax1 = $formFilters.querySelector('.valueNumberOfWhiteboxFlax1')?.value;
+    if(filterNumberOfWhiteboxFlax1 != null && filterNumberOfWhiteboxFlax1 !== '')
+      filters.push({ name: 'fq', value: 'numberOfWhiteboxFlax1:' + filterNumberOfWhiteboxFlax1 });
+
+    var filterNumberOfLenovoSd650nv2A100 = $formFilters.querySelector('.valueNumberOfLenovoSd650nv2A100')?.value;
+    if(filterNumberOfLenovoSd650nv2A100 != null && filterNumberOfLenovoSd650nv2A100 !== '')
+      filters.push({ name: 'fq', value: 'numberOfLenovoSd650nv2A100:' + filterNumberOfLenovoSd650nv2A100 });
+
+    var filterNumberOfLenovoSd665nv3H100 = $formFilters.querySelector('.valueNumberOfLenovoSd665nv3H100')?.value;
+    if(filterNumberOfLenovoSd665nv3H100 != null && filterNumberOfLenovoSd665nv3H100 !== '')
+      filters.push({ name: 'fq', value: 'numberOfLenovoSd665nv3H100:' + filterNumberOfLenovoSd665nv3H100 });
+
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -370,6 +553,10 @@ function patchBareMetalOrderFilters($formFilters) {
     var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
+    if(filterSolrId != null && filterSolrId !== '')
+      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
   }
   return filters;
 }
@@ -436,6 +623,34 @@ async function postBareMetalOrder($formValues, target, success, error) {
   var valueDescription = $formValues.querySelector('.valueDescription')?.value;
   if(valueDescription != null && valueDescription !== '')
     vals['description'] = valueDescription;
+
+  var valueNetworkId = (Array.from($formValues.querySelectorAll('.valueNetworkId')).filter(e => e.checked == true).find(() => true) ?? null)?.value;
+  if(valueNetworkId != null && valueNetworkId !== '')
+    vals['networkId'] = valueNetworkId;
+
+  var valueNumberOfFc430 = $formValues.querySelector('.valueNumberOfFc430')?.value;
+  if(valueNumberOfFc430 != null && valueNumberOfFc430 !== '')
+    vals['numberOfFc430'] = valueNumberOfFc430;
+
+  var valueNumberOfFc830 = $formValues.querySelector('.valueNumberOfFc830')?.value;
+  if(valueNumberOfFc830 != null && valueNumberOfFc830 !== '')
+    vals['numberOfFc830'] = valueNumberOfFc830;
+
+  var valueNumberOfR730xd = $formValues.querySelector('.valueNumberOfR730xd')?.value;
+  if(valueNumberOfR730xd != null && valueNumberOfR730xd !== '')
+    vals['numberOfR730xd'] = valueNumberOfR730xd;
+
+  var valueNumberOfWhiteboxFlax1 = $formValues.querySelector('.valueNumberOfWhiteboxFlax1')?.value;
+  if(valueNumberOfWhiteboxFlax1 != null && valueNumberOfWhiteboxFlax1 !== '')
+    vals['numberOfWhiteboxFlax1'] = valueNumberOfWhiteboxFlax1;
+
+  var valueNumberOfLenovoSd650nv2A100 = $formValues.querySelector('.valueNumberOfLenovoSd650nv2A100')?.value;
+  if(valueNumberOfLenovoSd650nv2A100 != null && valueNumberOfLenovoSd650nv2A100 !== '')
+    vals['numberOfLenovoSd650nv2A100'] = valueNumberOfLenovoSd650nv2A100;
+
+  var valueNumberOfLenovoSd665nv3H100 = $formValues.querySelector('.valueNumberOfLenovoSd665nv3H100')?.value;
+  if(valueNumberOfLenovoSd665nv3H100 != null && valueNumberOfLenovoSd665nv3H100 !== '')
+    vals['numberOfLenovoSd665nv3H100'] = valueNumberOfLenovoSd665nv3H100;
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   if(valueSessionId != null && valueSessionId !== '')
@@ -623,6 +838,13 @@ async function websocketBareMetalOrder(success) {
           success(json);
       }
     });
+
+    window.eventBus.registerHandler('websocketBareMetalNetwork', function (error, message) {
+      document.querySelector('.Page_networkId').trigger('oninput');
+      document.querySelector('.Page_networkId_add').innerText = 'add a bare metal network';
+      document.querySelector('.Page_networkId_add').classList.remove('w3-disabled');
+      document.querySelector('.Page_networkId_add').setAttribute('disabled', false);
+    });
   }
 }
 async function websocketBareMetalOrderInner(apiRequest) {
@@ -642,6 +864,13 @@ async function websocketBareMetalOrderInner(apiRequest) {
         var inputModified = null;
         var inputArchived = null;
         var inputDescription = null;
+        var inputNetworkId = null;
+        var inputNumberOfFc430 = null;
+        var inputNumberOfFc830 = null;
+        var inputNumberOfR730xd = null;
+        var inputNumberOfWhiteboxFlax1 = null;
+        var inputNumberOfLenovoSd650nv2A100 = null;
+        var inputNumberOfLenovoSd665nv3H100 = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -655,6 +884,7 @@ async function websocketBareMetalOrderInner(apiRequest) {
         var inputDownload = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
+        var inputSolrId = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Page_pk');
@@ -666,6 +896,20 @@ async function websocketBareMetalOrderInner(apiRequest) {
           inputArchived = $response.querySelector('.Page_archived');
         if(vars.includes('description'))
           inputDescription = $response.querySelector('.Page_description');
+        if(vars.includes('networkId'))
+          inputNetworkId = $response.querySelector('.Page_networkId');
+        if(vars.includes('numberOfFc430'))
+          inputNumberOfFc430 = $response.querySelector('.Page_numberOfFc430');
+        if(vars.includes('numberOfFc830'))
+          inputNumberOfFc830 = $response.querySelector('.Page_numberOfFc830');
+        if(vars.includes('numberOfR730xd'))
+          inputNumberOfR730xd = $response.querySelector('.Page_numberOfR730xd');
+        if(vars.includes('numberOfWhiteboxFlax1'))
+          inputNumberOfWhiteboxFlax1 = $response.querySelector('.Page_numberOfWhiteboxFlax1');
+        if(vars.includes('numberOfLenovoSd650nv2A100'))
+          inputNumberOfLenovoSd650nv2A100 = $response.querySelector('.Page_numberOfLenovoSd650nv2A100');
+        if(vars.includes('numberOfLenovoSd665nv3H100'))
+          inputNumberOfLenovoSd665nv3H100 = $response.querySelector('.Page_numberOfLenovoSd665nv3H100');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -692,6 +936,8 @@ async function websocketBareMetalOrderInner(apiRequest) {
           inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
         if(vars.includes('objectText'))
           inputObjectText = $response.querySelector('.Page_objectText');
+        if(vars.includes('solrId'))
+          inputSolrId = $response.querySelector('.Page_solrId');
 
         jsWebsocketBareMetalOrder(pk, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -746,6 +992,76 @@ async function websocketBareMetalOrderInner(apiRequest) {
               item.textContent = inputDescription.textContent;
           });
           addGlow(document.querySelector('.Page_description'));
+        }
+
+        if(inputNetworkId) {
+          document.querySelectorAll('.Page_networkId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNetworkId.getAttribute('value');
+            else
+              item.textContent = inputNetworkId.textContent;
+          });
+          addGlow(document.querySelector('.Page_networkId'));
+        }
+
+        if(inputNumberOfFc430) {
+          document.querySelectorAll('.Page_numberOfFc430').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNumberOfFc430.getAttribute('value');
+            else
+              item.textContent = inputNumberOfFc430.textContent;
+          });
+          addGlow(document.querySelector('.Page_numberOfFc430'));
+        }
+
+        if(inputNumberOfFc830) {
+          document.querySelectorAll('.Page_numberOfFc830').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNumberOfFc830.getAttribute('value');
+            else
+              item.textContent = inputNumberOfFc830.textContent;
+          });
+          addGlow(document.querySelector('.Page_numberOfFc830'));
+        }
+
+        if(inputNumberOfR730xd) {
+          document.querySelectorAll('.Page_numberOfR730xd').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNumberOfR730xd.getAttribute('value');
+            else
+              item.textContent = inputNumberOfR730xd.textContent;
+          });
+          addGlow(document.querySelector('.Page_numberOfR730xd'));
+        }
+
+        if(inputNumberOfWhiteboxFlax1) {
+          document.querySelectorAll('.Page_numberOfWhiteboxFlax1').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNumberOfWhiteboxFlax1.getAttribute('value');
+            else
+              item.textContent = inputNumberOfWhiteboxFlax1.textContent;
+          });
+          addGlow(document.querySelector('.Page_numberOfWhiteboxFlax1'));
+        }
+
+        if(inputNumberOfLenovoSd650nv2A100) {
+          document.querySelectorAll('.Page_numberOfLenovoSd650nv2A100').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNumberOfLenovoSd650nv2A100.getAttribute('value');
+            else
+              item.textContent = inputNumberOfLenovoSd650nv2A100.textContent;
+          });
+          addGlow(document.querySelector('.Page_numberOfLenovoSd650nv2A100'));
+        }
+
+        if(inputNumberOfLenovoSd665nv3H100) {
+          document.querySelectorAll('.Page_numberOfLenovoSd665nv3H100').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNumberOfLenovoSd665nv3H100.getAttribute('value');
+            else
+              item.textContent = inputNumberOfLenovoSd665nv3H100.textContent;
+          });
+          addGlow(document.querySelector('.Page_numberOfLenovoSd665nv3H100'));
         }
 
         if(inputClassCanonicalName) {
@@ -876,6 +1192,16 @@ async function websocketBareMetalOrderInner(apiRequest) {
               item.textContent = inputObjectText.textContent;
           });
           addGlow(document.querySelector('.Page_objectText'));
+        }
+
+        if(inputSolrId) {
+          document.querySelectorAll('.Page_solrId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSolrId.getAttribute('value');
+            else
+              item.textContent = inputSolrId.textContent;
+          });
+          addGlow(document.querySelector('.Page_solrId'));
         }
 
           pageGraphBareMetalOrder();
