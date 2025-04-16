@@ -355,6 +355,19 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
+              <wa-dropdown id="htmDropdown-modified">
+                <wa-button variant="brand" slot="trigger" caret>modified</wa-button>
+                <wa-menu>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortAiCluster_modified'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-AiCluster').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-modified-asc">
+                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                    sort by modified ascending
+                  </wa-menu-item>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortAiCluster_modified'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-AiCluster').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-modified-desc">
+                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                    sort by modified descending
+                  </wa-menu-item>
+                </wa-menu>
+              </wa-dropdown>
             </div>
             {% for item in listAiCluster%}
             <div>
@@ -365,6 +378,9 @@
               <a href="{{ item.displayPage }}">
               {{ item.description }}
               </a>
+              <a href="{{ item.displayPage }}">
+              <wa-format-date weekday="short" month="short" day="numeric" year="numeric" hour="numeric" minute="numeric" second="numeric" time-zone-name="short" date="{{ formatZonedDateTime(item.modified, "yyyy-MM-dd'T'HH:mm:ss.SSSX", defaultLocaleId, "UTC") }}"></wa-format-date>
+              </a>
             </div>
             {% endfor %}
               {% if getColumnClusterName is defined %}
@@ -372,6 +388,10 @@
                 </div>
               {% endif %}
               {% if getColumnDescription is defined %}
+                <div>
+                </div>
+              {% endif %}
+              {% if getColumnModified is defined %}
                 <div>
                 </div>
               {% endif %}

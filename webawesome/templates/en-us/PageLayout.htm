@@ -101,6 +101,7 @@
           <wa-tooltip for="site-aside-left-model-button-ClusterRequest" placement="right" hoist>An OpenShift cluster request</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-BareMetalNetwork" placement="right" hoist>An OpenStack bare metal network</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-BareMetalNode" placement="right" hoist>An OpenStack bare metal node</wa-tooltip>
+          <wa-tooltip for="site-aside-left-model-button-BareMetalOrder" placement="right" hoist>A bare metal order</wa-tooltip>
           <div class="flex flex-column round-row primary-smart-border-radius margin-block">
 {%- if userName is defined %}
             <wa-details>
@@ -122,6 +123,18 @@
                   <span>sign out</span>
                 </wa-button>
               </div>
+              <wa-details summary="Current scopes" open="true">
+                <div class="wa-stack ">
+                  <div>
+                    <wa-tag variant="neutral">{{ pageUri }}</wa-tag>
+                  </div>
+                  <div>
+                    {% for scope in scopes %}
+                    <wa-badge variant="success">{{ scope }}</wa-badge>
+                    {% endfor %}
+                  </div>
+                </div>
+              </wa-details>
             </wa-details>
 {%- else %}
             <wa-button variant="brand" href="{{ SITE_BASE_URL }}/en-us/search/user">
@@ -169,6 +182,10 @@
             <wa-button variant="brand" id="site-aside-left-model-button-BareMetalNode" href="{{ SITE_BASE_URL }}/en-us/search/bare-metal-node">
               <i class="fa-duotone fa-regular fa-hexagon-nodes"></i>
               bare metal nodes
+            </wa-button>
+            <wa-button variant="brand" id="site-aside-left-model-button-BareMetalOrder" href="{{ SITE_BASE_URL }}/en-us/search/bare-metal-order">
+              <i class="fa-duotone fa-regular fa-share-nodes"></i>
+              bare metal orders
             </wa-button>
           </div>
         </nav>

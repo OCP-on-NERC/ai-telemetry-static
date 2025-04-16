@@ -1,0 +1,296 @@
+{% extends "en-us/PageLayout.htm" %}
+
+{%- block htmTitlePageLayout %}
+{%- block htmTitleBareMetalOrderPage %}
+    <title>{% if resultCount == 0 %}no bare metal order found{% else %}bare metal orders{% endif %}</title>
+{%- endblock htmTitleBareMetalOrderPage %}
+{%- endblock htmTitlePageLayout %}
+
+{%- block htmStylesPageLayout %}
+{{ super() }}
+    <link rel="stylesheet" href="{{ staticBaseUrl }}/css/en-us/search/bare-metal-order/BareMetalOrder.css"/>
+{%- block htmStylesBareMetalOrderPage %}
+{%- endblock htmStylesBareMetalOrderPage %}
+{%- endblock htmStylesPageLayout %}
+
+{%- block htmStylePageLayout %}
+{{ super() }}
+{%- block htmStyleBareMetalOrderPage %}
+{%- endblock htmStyleBareMetalOrderPage %}
+{%- endblock htmStylePageLayout %}
+
+{%- block htmScriptsPageLayout %}
+{{ super() }}
+{%- block htmScriptsBareMetalOrderPage %}
+    <script src="{{staticBaseUrl}}/js/en-us/search/bare-metal-order/BareMetalOrder.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/en-us/search/bare-metal-order/BareMetalOrderSearchPage.js"></script>
+{%- endblock htmScriptsBareMetalOrderPage %}
+{%- endblock htmScriptsPageLayout %}
+
+{%- block htmScriptPageLayout %}
+{%- block htmScriptBareMetalOrderPage %}
+    <script>
+
+      function jsWebsocketBareMetalOrder(pk, vars, $response) {
+{%- block jsWebsocketBareMetalOrderPage %}{%- endblock %}
+      }
+
+      function jsTooltipBareMetalOrder(e, feature) {
+{%- block jsTooltipBareMetalOrderPage %}{%- endblock %}
+      }
+
+      function htmTooltipBareMetalOrder(feature, layer) {
+        return `{%- block htmTooltipBareMetalOrderPage %}
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
+{%- endblock htmTooltipBareMetalOrderPage %}`;
+      }
+    </script>
+    <script type="module">
+{% if DEFAULT_MAP_LOCATION is defined %}
+      window.DEFAULT_MAP_LOCATION = { type: 'Point', coordinates: [ {{ DEFAULT_MAP_LOCATION.coordinates[0] }}, {{ DEFAULT_MAP_LOCATION.coordinates[1] }} ]};
+{% endif %}
+{% if DEFAULT_MAP_ZOOM is defined %}
+      window.DEFAULT_MAP_ZOOM = {{ DEFAULT_MAP_ZOOM }};
+{% endif %}
+      window.DEFAULT_ZONE_ID = '{{ defaultZoneId }}';
+      Promise.all([
+        customElements.whenDefined('wa-button')
+        , customElements.whenDefined('wa-input')
+      ]).then(() => {
+
+        var pk = {% if result.pk is defined %}{{ result.pk | tojson }}{% else %}null{% endif %};
+
+        if(pk == null) {
+          document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-details');
+          });
+          document.querySelector('#grid-toggle-list')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-list');
+          });
+          document.querySelector('#grid-toggle-card')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-list');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-card');
+          });
+        } else {
+          var o = document.querySelector('.pageForm .result')?.value;
+          if(o)
+            window.result = JSON.parse(o);
+        {% if result.pk is defined %}
+        {% endif %}
+        }
+        var l = document.querySelector('.pageForm .listBareMetalOrder')?.value;
+        if(l)
+          window.listBareMetalOrder = JSON.parse(l);
+        window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
+        window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
+        window.defaultRangeVar = '{{ defaultRangeVar }}';
+        pageGraphBareMetalOrder();
+        {% for key, value in varsQ.items() %}
+
+        document.querySelector('#qBareMetalOrder_{{ key }}')?.addEventListener('wa-{% if var == 'objectSuggest' %}keyup{% else %}change{% endif %}', event => {
+          qChange('BareMetalOrder', event.target, document.querySelector('#qBareMetalOrderDiv_{{ key }}'));
+        });
+        {% endfor %}
+
+        document.querySelector('#qBareMetalOrder_rows')?.addEventListener('change', event => {
+          paramChange('BareMetalOrder', event.target, document.querySelector('#qBareMetalOrderDiv_rows'));
+        });
+
+        document.querySelector('#qBareMetalOrder_start')?.addEventListener('change', event => {
+          paramChange('BareMetalOrder', event.target, document.querySelector('#qBareMetalOrderDiv_start'));
+        });
+
+
+        var submitForm_patchBareMetalOrder = document.querySelector('#htmForm_patchBareMetalOrder')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_patchBareMetalOrder')?.addEventListener('click', event => {
+          event.preventDefault();
+          patchBareMetalOrder(null, document.querySelector('#htmForm_patchBareMetalOrder'), document.querySelector('#htmFormButton_patchBareMetalOrder'), event.target.getAttribute('data-pk'));
+          return false;
+        });
+
+        var submitForm_postBareMetalOrder = document.querySelector('#htmForm_postBareMetalOrder')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_postBareMetalOrder')?.addEventListener('click', event => {
+          event.preventDefault();
+          postBareMetalOrder(document.querySelector('#htmForm_postBareMetalOrder')
+          , document.querySelector('#htmFormButton_postBareMetalOrder')
+          , (json, target) => {
+            window.location.href = json.editPage;
+          });
+          return false;
+        });
+
+        var submitForm_deleteBareMetalOrder = document.querySelector('#htmForm_deleteBareMetalOrder')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deleteBareMetalOrder')?.addEventListener('click', event => {
+          event.preventDefault();
+          deleteBareMetalOrder(event.target, event.target.getAttribute('data-pk'));
+          return false;
+        });
+
+        var submitForm_searchpageBareMetalOrder = document.querySelector('#htmForm_searchpageBareMetalOrder')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpageBareMetalOrder')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpageBareMetalOrder();
+          return false;
+        });
+
+        var submitForm_deletefilterBareMetalOrder = document.querySelector('#htmForm_deletefilterBareMetalOrder')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deletefilterBareMetalOrder')?.addEventListener('click', event => {
+          event.preventDefault();
+          deletefilterBareMetalOrder(event.target);
+          return false;
+        });
+      });
+    </script>
+{%- endblock htmScriptBareMetalOrderPage %}
+{%- endblock htmScriptPageLayout %}
+
+{%- block websocketPageLayout %}
+{%- block websocketBareMetalOrderPage %}
+{% if resultCount > 0 %}
+        window.eventBus = new EventBus('/eventbus');
+        window.eventBus.enableReconnect(true);
+        websocketBareMetalOrder(websocketBareMetalOrderInner);
+{% endif %}
+{%- endblock websocketBareMetalOrderPage %}
+{%- endblock websocketPageLayout %}
+
+{%- block htmUrlBareMetalOrderPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlBareMetalOrderPage %}
+
+{%- block htmBodyStartPageLayout %}
+{{ super() }}
+{%- block htmBodyStartBareMetalOrderPage %}
+{% if resultCount > 0 %}
+          <h1><a href="{{pageUri}}"><i class="fa-duotone fa-regular fa-share-nodes"></i> <span>bare metal orders</span></a></h1>
+{%- include en-us/search/bare-metal-order/BareMetalOrderSuggestedSearch.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/bare-metal-order/BareMetalOrderSearchForm.htm %}
+{% endif %}
+{%- endblock htmBodyStartBareMetalOrderPage %}
+{%- endblock htmBodyStartPageLayout %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleBareMetalOrderPage %}
+{% if resultCount == 0 %}
+        <div class="wa-flank">
+          <div>
+          {% if varsFqCount > 1 %}
+          <wa-tooltip for="return-to-BareMetalOrder">back to all bare metal orders</wa-tooltip></wa-tooltip>
+          <wa-button id="return-to-BareMetalOrder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
+            all bare metal orders
+          </wa-button>
+          {% endif %}
+        </div>
+          <h1><i class="fa-duotone fa-regular fa-share-nodes"></i> <span>bare metal orders</span></h1>
+        </div>
+{% include en-us/search/bare-metal-order/BareMetalOrderSearchForm.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/bare-metal-order/BareMetalOrderSearchButtons.htm %}
+        <h2>
+          <span>
+  {% if classIconCssClasses is defined %}
+            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
+  {% endif %}
+            <span class="">no bare metal order found</span>
+          </span>
+        </h2>
+{% else %}
+{%- include en-us/search/bare-metal-order/BareMetalOrderSidebar.htm %}
+          <form action="/en-us/api/bare-metal-order" id="BareMetalOrderForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+            <input name="focusId" type="hidden"/>
+            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+            <input name="listBareMetalOrder" id="listBareMetalOrder" class="listBareMetalOrder"  value='{{ toJsonArrayStringInApostrophes(listBareMetalOrder) }}' type="hidden"/>
+          </form>
+        <div class="pageContent ">
+          <div id="site-calendar-box">
+            <div id="site-calendar"><!-- // --></div>
+          </div>
+          {% if varsFqCount > 1 %}
+          <div class="margin-block">
+            <wa-tooltip for="return-to-BareMetalOrder">back to all bare metal orders</wa-tooltip>
+            <wa-button id="return-to-BareMetalOrder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
+              all bare metal orders
+            </wa-button>
+          </div>
+          {% endif %}
+          <div class="wa-flank wa-align-items-baseline margin-block-start ">
+{% include en-us/search/bare-metal-order/BareMetalOrderPaginationButtons.htm %}
+{% include en-us/search/bare-metal-order/BareMetalOrderSearchButtons.htm %}
+          </div>
+          <div class="card-like-thing background-color-surface-border" id="site-results-grid">
+            <div>
+              <wa-dropdown id="htmDropdown-pk">
+                <wa-button variant="brand" slot="trigger" caret>primary key</wa-button>
+                <wa-menu>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalOrder_pk'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalOrder').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-pk-asc">
+                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                    sort by primary key ascending
+                  </wa-menu-item>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalOrder_pk'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalOrder').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-pk-desc">
+                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                    sort by primary key descending
+                  </wa-menu-item>
+                </wa-menu>
+              </wa-dropdown>
+              <wa-dropdown id="htmDropdown-description">
+                <wa-button variant="brand" slot="trigger" caret>bare metal order description</wa-button>
+                <wa-menu>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalOrder_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalOrder').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-description-asc">
+                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                    sort by bare metal order description ascending
+                  </wa-menu-item>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalOrder_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalOrder').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-description-desc">
+                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                    sort by bare metal order description descending
+                  </wa-menu-item>
+                </wa-menu>
+              </wa-dropdown>
+            </div>
+            {% for item in listBareMetalOrder%}
+            <div>
+              <a href="{{ item.displayPage }}">
+                <i class="fa-duotone fa-regular fa-share-nodes"></i>
+              {{ item.pk }}
+              </a>
+              <a href="{{ item.displayPage }}">
+              {{ item.description }}
+              </a>
+            </div>
+            {% endfor %}
+              {% if getColumnPk is defined %}
+                <div>
+                </div>
+              {% endif %}
+              {% if getColumnDescription is defined %}
+                <div>
+                </div>
+              {% endif %}
+          </div>
+        </div>
+{% endif %}
+{%- endblock htmBodyMiddleBareMetalOrderPage %}
+{%- endblock htmBodyMiddlePageLayout %}
+
+{%- block htmBodyEndPageLayout %}
+  {{ super() }}
+{%- block htmBodyEndBareMetalOrderPage %}
+{%- endblock htmBodyEndBareMetalOrderPage %}
+{%- endblock htmBodyEndPageLayout %}
