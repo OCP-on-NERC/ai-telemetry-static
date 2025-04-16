@@ -260,16 +260,16 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
-              <wa-dropdown id="htmDropdown-description">
-                <wa-button variant="brand" slot="trigger" caret>network description</wa-button>
+              <wa-dropdown id="htmDropdown-providerSegmentationId">
+                <wa-button variant="brand" slot="trigger" caret>provider segmentation ID</wa-button>
                 <wa-menu>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNetwork_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNetwork').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-description-asc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNetwork_providerSegmentationId'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNetwork').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-providerSegmentationId-asc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
-                    sort by network description ascending
+                    sort by provider segmentation ID ascending
                   </wa-menu-item>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNetwork_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNetwork').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-description-desc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNetwork_providerSegmentationId'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNetwork').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-providerSegmentationId-desc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
-                    sort by network description descending
+                    sort by provider segmentation ID descending
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
@@ -282,7 +282,7 @@
               {{ item.name }}
               </a>
               <a href="{{ item.displayPage }}">
-              {{ item.description }}
+              {{ item.providerSegmentationId }}
               </a>
               <wa-button variant="brand"
                   id="{{classApiMethodMethod}}_editPage"
@@ -302,7 +302,7 @@
                 <div>
                 </div>
               {% endif %}
-              {% if getColumnDescription is defined %}
+              {% if getColumnProviderSegmentationId is defined %}
                 <div>
                 </div>
               {% endif %}
