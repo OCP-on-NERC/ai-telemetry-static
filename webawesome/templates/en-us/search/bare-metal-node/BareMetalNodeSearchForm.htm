@@ -431,6 +431,41 @@ The primary key of this object in the database"
 {%- macro htmNodeProvisionStateBareMetalNodePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputNodeProvisionStateBareMetalNodePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputNodeResourceClassBareMetalNodePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_nodeResourceClass">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] resource class"
+                      label="resource class"
+                      id="{{classApiMethodMethod}}_nodeResourceClass"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-nodeId={{ result.nodeId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_nodeResourceClass setNodeResourceClass classBareMetalNode inputBareMetalNode{{ result.nodeId }}NodeResourceClass "
+                      name="setNodeResourceClass"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_nodeResourceClass setNodeResourceClass classBareMetalNode inputBareMetalNode{{ result.nodeId }}NodeResourceClass "
+                      name="setNodeResourceClass"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_nodeResourceClass valueNodeResourceClass classBareMetalNode inputBareMetalNode{{ result.nodeId }}NodeResourceClass "
+                      name="nodeResourceClass"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.nodeResourceClass | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNodeResourceClassBareMetalNodePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputNodeResourceClassBareMetalNodePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
 
 {%- macro htmButton_patchBareMetalNode() %}<wa-button variant="brand" id="htmButton_patchBareMetalNode" data-nodeId={{ result.nodeId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
@@ -573,6 +608,16 @@ The primary key of this object in the database"
                   {{ htmNodeProvisionStateBareMetalNodePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmNodeProvisionStateBareMetalNodePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNodeResourceClassBareMetalNodePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNodeResourceClassBareMetalNodePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNodeResourceClassBareMetalNodePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -724,6 +769,16 @@ The primary key of this object in the database"
                   {{ htmNodeProvisionStateBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmNodeProvisionStateBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNodeResourceClassBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNodeResourceClassBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNodeResourceClassBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -910,6 +965,16 @@ The primary key of this object in the database"
                   {{ htmNodeProvisionStateBareMetalNodePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmNodeProvisionStateBareMetalNodePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNodeResourceClassBareMetalNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNodeResourceClassBareMetalNodePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNodeResourceClassBareMetalNodePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
