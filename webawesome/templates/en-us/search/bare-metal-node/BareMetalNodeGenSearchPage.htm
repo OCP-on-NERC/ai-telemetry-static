@@ -247,19 +247,6 @@
           </div>
           <div class="card-like-thing background-color-surface-border" id="site-results-grid">
             <div>
-              <wa-dropdown id="htmDropdown-nodeId">
-                <wa-button variant="brand" slot="trigger" caret>id</wa-button>
-                <wa-menu>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNode_nodeId'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-nodeId-asc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
-                    sort by id ascending
-                  </wa-menu-item>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNode_nodeId'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-nodeId-desc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
-                    sort by id descending
-                  </wa-menu-item>
-                </wa-menu>
-              </wa-dropdown>
               <wa-dropdown id="htmDropdown-nodeName">
                 <wa-button variant="brand" slot="trigger" caret>name</wa-button>
                 <wa-menu>
@@ -273,16 +260,16 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
-              <wa-dropdown id="htmDropdown-nodeProvisionState">
-                <wa-button variant="brand" slot="trigger" caret>provision state</wa-button>
+              <wa-dropdown id="htmDropdown-nodeResourceClass">
+                <wa-button variant="brand" slot="trigger" caret>resource class</wa-button>
                 <wa-menu>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNode_nodeProvisionState'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-nodeProvisionState-asc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNode_nodeResourceClass'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-nodeResourceClass-asc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
-                    sort by provision state ascending
+                    sort by resource class ascending
                   </wa-menu-item>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNode_nodeProvisionState'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-nodeProvisionState-desc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNode_nodeResourceClass'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-nodeResourceClass-desc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
-                    sort by provision state descending
+                    sort by resource class descending
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
@@ -299,22 +286,35 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
+              <wa-dropdown id="htmDropdown-nodeProvisionState">
+                <wa-button variant="brand" slot="trigger" caret>provision state</wa-button>
+                <wa-menu>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNode_nodeProvisionState'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-nodeProvisionState-asc">
+                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                    sort by provision state ascending
+                  </wa-menu-item>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNode_nodeProvisionState'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-nodeProvisionState-desc">
+                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                    sort by provision state descending
+                  </wa-menu-item>
+                </wa-menu>
+              </wa-dropdown>
               <div></div>
             </div>
             {% for item in listBareMetalNode%}
             <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-duotone fa-regular fa-hexagon-nodes"></i>
-              {{ item.nodeId }}
-              </a>
-              <a href="{{ item.displayPage }}">
               {{ item.nodeName }}
               </a>
               <a href="{{ item.displayPage }}">
-              {{ item.nodeProvisionState }}
+              {{ item.nodeResourceClass }}
               </a>
               <a href="{{ item.displayPage }}">
               {{ item.nodePowerState }}
+              </a>
+              <a href="{{ item.displayPage }}">
+              {{ item.nodeProvisionState }}
               </a>
               <wa-button variant="brand"
                   id="{{classApiMethodMethod}}_editPage"
@@ -330,19 +330,19 @@
               </wa-button>
             </div>
             {% endfor %}
-              {% if getColumnNodeId is defined %}
-                <div>
-                </div>
-              {% endif %}
               {% if getColumnNodeName is defined %}
                 <div>
                 </div>
               {% endif %}
-              {% if getColumnNodeProvisionState is defined %}
+              {% if getColumnNodeResourceClass is defined %}
                 <div>
                 </div>
               {% endif %}
               {% if getColumnNodePowerState is defined %}
+                <div>
+                </div>
+              {% endif %}
+              {% if getColumnNodeProvisionState is defined %}
                 <div>
                 </div>
               {% endif %}

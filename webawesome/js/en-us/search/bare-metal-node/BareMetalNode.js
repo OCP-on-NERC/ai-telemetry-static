@@ -69,6 +69,10 @@ function searchBareMetalNodeFilters($formFilters) {
     if(filterNodeProvisionState != null && filterNodeProvisionState !== '')
       filters.push({ name: 'fq', value: 'nodeProvisionState:' + filterNodeProvisionState });
 
+    var filterNodeResourceClass = $formFilters.querySelector('.valueNodeResourceClass')?.value;
+    if(filterNodeResourceClass != null && filterNodeResourceClass !== '')
+      filters.push({ name: 'fq', value: 'nodeResourceClass:' + filterNodeResourceClass });
+
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -341,6 +345,18 @@ async function patchBareMetalNode($formFilters, $formValues, target, nodeId, suc
   if(removeNodeProvisionState != null && removeNodeProvisionState !== '')
     vals['removeNodeProvisionState'] = removeNodeProvisionState;
 
+  var valueNodeResourceClass = $formValues.querySelector('.valueNodeResourceClass')?.value;
+  var removeNodeResourceClass = $formValues.querySelector('.removeNodeResourceClass')?.value === 'true';
+  var setNodeResourceClass = removeNodeResourceClass ? null : $formValues.querySelector('.setNodeResourceClass')?.value;
+  var addNodeResourceClass = $formValues.querySelector('.addNodeResourceClass')?.value;
+  if(removeNodeResourceClass || setNodeResourceClass != null && setNodeResourceClass !== '')
+    vals['setNodeResourceClass'] = setNodeResourceClass;
+  if(addNodeResourceClass != null && addNodeResourceClass !== '')
+    vals['addNodeResourceClass'] = addNodeResourceClass;
+  var removeNodeResourceClass = $formValues.querySelector('.removeNodeResourceClass')?.value;
+  if(removeNodeResourceClass != null && removeNodeResourceClass !== '')
+    vals['removeNodeResourceClass'] = removeNodeResourceClass;
+
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   var removeSessionId = $formValues.querySelector('.removeSessionId')?.value === 'true';
   var setSessionId = removeSessionId ? null : $formValues.querySelector('.setSessionId')?.value;
@@ -462,6 +478,10 @@ function patchBareMetalNodeFilters($formFilters) {
     var filterNodeProvisionState = $formFilters.querySelector('.valueNodeProvisionState')?.value;
     if(filterNodeProvisionState != null && filterNodeProvisionState !== '')
       filters.push({ name: 'fq', value: 'nodeProvisionState:' + filterNodeProvisionState });
+
+    var filterNodeResourceClass = $formFilters.querySelector('.valueNodeResourceClass')?.value;
+    if(filterNodeResourceClass != null && filterNodeResourceClass !== '')
+      filters.push({ name: 'fq', value: 'nodeResourceClass:' + filterNodeResourceClass });
 
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -612,6 +632,10 @@ async function postBareMetalNode($formValues, target, success, error) {
   var valueNodeProvisionState = $formValues.querySelector('.valueNodeProvisionState')?.value;
   if(valueNodeProvisionState != null && valueNodeProvisionState !== '')
     vals['nodeProvisionState'] = valueNodeProvisionState;
+
+  var valueNodeResourceClass = $formValues.querySelector('.valueNodeResourceClass')?.value;
+  if(valueNodeResourceClass != null && valueNodeResourceClass !== '')
+    vals['nodeResourceClass'] = valueNodeResourceClass;
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   if(valueSessionId != null && valueSessionId !== '')
@@ -852,6 +876,7 @@ async function websocketBareMetalNodeInner(apiRequest) {
         var inputNodeName = null;
         var inputNodePowerState = null;
         var inputNodeProvisionState = null;
+        var inputNodeResourceClass = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -891,6 +916,8 @@ async function websocketBareMetalNodeInner(apiRequest) {
           inputNodePowerState = $response.querySelector('.Page_nodePowerState');
         if(vars.includes('nodeProvisionState'))
           inputNodeProvisionState = $response.querySelector('.Page_nodeProvisionState');
+        if(vars.includes('nodeResourceClass'))
+          inputNodeResourceClass = $response.querySelector('.Page_nodeResourceClass');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -1043,6 +1070,16 @@ async function websocketBareMetalNodeInner(apiRequest) {
               item.textContent = inputNodeProvisionState.textContent;
           });
           addGlow(document.querySelector('.Page_nodeProvisionState'));
+        }
+
+        if(inputNodeResourceClass) {
+          document.querySelectorAll('.Page_nodeResourceClass').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNodeResourceClass.getAttribute('value');
+            else
+              item.textContent = inputNodeResourceClass.textContent;
+          });
+          addGlow(document.querySelector('.Page_nodeResourceClass'));
         }
 
         if(inputClassCanonicalName) {
