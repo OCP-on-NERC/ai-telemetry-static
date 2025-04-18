@@ -24,6 +24,7 @@
     <script src="{{staticBaseUrl}}/js/en-us/search/bare-metal-order/BareMetalOrder.js"></script>
     <script type="module" src="{{staticBaseUrl}}/js/en-us/search/bare-metal-order/BareMetalOrderSearchPage.js"></script>
     <script type="module" src="{{staticBaseUrl}}/js/en-us/search/bare-metal-order/BareMetalOrderEditPage.js"></script>
+    <script src="{{staticBaseUrl}}/js/en-us/search/bare-metal-network/BareMetalNetwork.js"></script>
 {%- endblock htmScriptsBareMetalOrderPage %}
 {%- endblock htmScriptsPageLayout %}
 
@@ -78,6 +79,32 @@
           if(o)
             window.result = JSON.parse(o);
         {% if result.pk is defined %}
+          function relate_networkId(event) {
+            suggestBareMetalOrderNetworkId(
+                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + event.target.value }
+                , { 'name': 'rows', 'value': '10' }
+                , { 'name': 'fl', 'value': 'classCanonicalName,id,pk,editPage,objectTitle' } ] : [{%- if result.networkId is defined %}{'name':'fq','value':'id:{{ result.networkId }}'}{%- else %}{%- endif %}]
+                , document.querySelector('#' + event.target.getAttribute('data-list'))
+                , window.result.pk
+                , window.result.networkId
+                , true
+                );
+          }
+          document.querySelector('#POST_networkId')?.addEventListener('input', relate_networkId);
+          document.querySelector('#POST_networkId')?.addEventListener('focus', relate_networkId);
+          document.querySelector('#PATCH_networkId')?.addEventListener('input', relate_networkId);
+          document.querySelector('#PATCH_networkId')?.addEventListener('focus', relate_networkId);
+          document.querySelector('#Page_networkId')?.addEventListener('input', relate_networkId);
+          document.querySelector('#Page_networkId')?.addEventListener('focus', relate_networkId);
+          {% if "PATCH" in scopes %}
+          suggestBareMetalOrderNetworkId([{'name':'fq','value':'id:' + window.result.networkId}], document.querySelector('#listBareMetalOrderNetworkId_Page'), window.result.pk, window.result.networkId, true);
+          {% else %}
+          {% if "GET" in scopes %}
+          suggestBareMetalOrderNetworkId([{'name':'fq','value':'id:' + window.result.networkId}], document.querySelector('#listBareMetalOrderNetworkId_Page'), window.result.pk, window.result.networkId, true);
+          {% else %}
+          suggestBareMetalOrderNetworkId([{'name':'fq','value':'id:' + window.result.networkId}], document.querySelector('#listBareMetalOrderNetworkId_Page'), window.result.pk, window.result.networkId, false);
+          {% endif %}
+          {% endif %}
         {% endif %}
         }
         var l = document.querySelector('.pageForm .listBareMetalOrder')?.value;
