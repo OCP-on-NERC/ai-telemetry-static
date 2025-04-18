@@ -55,6 +55,10 @@ Promise.all([
     sort('BareMetalNode', 'nodeProvisionState', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortBareMetalNode_nodeResourceClass')?.addEventListener('change', (event) => {
+    sort('BareMetalNode', 'nodeResourceClass', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortBareMetalNode_classCanonicalName')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'classCanonicalName', event.currentTarget.value);
   });
@@ -238,6 +242,15 @@ Promise.all([
             facetFieldChange('BareMetalNode', event.currentTarget);
           });
           document.querySelector('#pageFacetPivotBareMetalNode_nodeProvisionState')?.addEventListener('change', (event) => {
+            facetPivotChange('BareMetalNode', event.currentTarget);
+          });
+          document.querySelector('#fqBareMetalNode_nodeResourceClass')?.addEventListener('change', (event) => {
+            fqChange('BareMetalNode', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetBareMetalNode_nodeResourceClass')?.addEventListener('click', (event) => {
+            facetFieldChange('BareMetalNode', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotBareMetalNode_nodeResourceClass')?.addEventListener('change', (event) => {
             facetPivotChange('BareMetalNode', event.currentTarget);
           });
           document.querySelector('#fqBareMetalNode_displayPage')?.addEventListener('change', (event) => {

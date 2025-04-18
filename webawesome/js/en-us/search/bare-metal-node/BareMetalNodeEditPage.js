@@ -225,6 +225,27 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
+          // PATCH nodeResourceClass
+          document.querySelector('#Page_nodeResourceClass')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_nodeResourceClass');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchBareMetalNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
+                  , 'setNodeResourceClass', event.currentTarget.value
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_nodeResourceClass')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_nodeResourceClass')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_nodeResourceClass');
+            const valid = form.reportValidity();
+          });
+
           // PATCH sessionId
           document.querySelector('#Page_sessionId')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_sessionId');
