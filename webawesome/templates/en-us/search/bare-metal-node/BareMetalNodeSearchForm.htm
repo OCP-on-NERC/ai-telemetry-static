@@ -190,7 +190,7 @@ The primary key of this object in the database"
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_networkInfo">
   {%- endif %}
-                  <wa-input
+                  <wa-textarea resize="auto"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] network info"
                       label="network info"
@@ -208,11 +208,11 @@ The primary key of this object in the database"
                       name="networkInfo"
     {%- endif %}
   {%- endif %}
-  {%- if "Page" == classApiMethodMethod %}
+{%- if "Page" == classApiMethodMethod %}
                       value="{{result.networkInfo | e }}"
-  {%- endif %}
-                      ></wa-input>
-
+{%- endif %}
+                      >
+</wa-textarea>
   {%- if 'Page' == classApiMethodMethod %}
                 </form>
   {%- endif %}

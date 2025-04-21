@@ -192,7 +192,7 @@ The name of this GPU slice"
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_description">
   {%- endif %}
-                  <wa-input
+                  <wa-textarea resize="auto"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] description"
                       label="description"
@@ -212,11 +212,11 @@ A description of this GPU device"
                       name="description"
     {%- endif %}
   {%- endif %}
-  {%- if "Page" == classApiMethodMethod %}
+{%- if "Page" == classApiMethodMethod %}
                       value="{{result.description | e }}"
-  {%- endif %}
-                      ></wa-input>
-
+{%- endif %}
+                      >
+</wa-textarea>
   {%- if 'Page' == classApiMethodMethod %}
                 </form>
   {%- endif %}
