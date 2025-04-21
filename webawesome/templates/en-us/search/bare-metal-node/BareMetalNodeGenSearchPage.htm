@@ -299,6 +299,19 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
+              <wa-dropdown id="htmDropdown-networkInfo">
+                <wa-button variant="brand" slot="trigger" caret>network info</wa-button>
+                <wa-menu>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNode_networkInfo'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-networkInfo-asc">
+                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                    sort by network info ascending
+                  </wa-menu-item>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNode_networkInfo'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-networkInfo-desc">
+                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                    sort by network info descending
+                  </wa-menu-item>
+                </wa-menu>
+              </wa-dropdown>
               <div></div>
             </div>
             {% for item in listBareMetalNode%}
@@ -315,6 +328,9 @@
               </a>
               <a href="{{ item.displayPage }}">
               {{ item.nodeProvisionState }}
+              </a>
+              <a href="{{ item.displayPage }}">
+              {{ item.networkInfo }}
               </a>
               <wa-button variant="brand"
                   id="{{classApiMethodMethod}}_editPage"
@@ -343,6 +359,10 @@
                 </div>
               {% endif %}
               {% if getColumnNodeProvisionState is defined %}
+                <div>
+                </div>
+              {% endif %}
+              {% if getColumnNetworkInfo is defined %}
                 <div>
                 </div>
               {% endif %}

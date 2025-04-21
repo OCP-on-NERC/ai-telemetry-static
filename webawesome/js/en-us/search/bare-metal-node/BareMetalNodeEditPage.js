@@ -84,7 +84,7 @@ Promise.all([
             const valid = form.checkValidity();
             if(valid) {
               patchBareMetalNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
-                  , 'setNetworkInfo', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
+                  , 'setNetworkInfo', event.currentTarget.value
                   , event.currentTarget
                   , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }

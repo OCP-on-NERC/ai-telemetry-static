@@ -192,7 +192,7 @@ The primary key of this object in the database"
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[JsonArray] network info"
+                      placeholder="[String] network info"
                       label="network info"
                       id="{{classApiMethodMethod}}_networkInfo"
   {%- if "Page" == classApiMethodMethod %}
@@ -209,7 +209,7 @@ The primary key of this object in the database"
     {%- endif %}
   {%- endif %}
   {%- if "Page" == classApiMethodMethod %}
-                      value="{{ toJsonArrayString(result.networkInfo) | e }}"
+                      value="{{result.networkInfo | e }}"
   {%- endif %}
                       ></wa-input>
 
