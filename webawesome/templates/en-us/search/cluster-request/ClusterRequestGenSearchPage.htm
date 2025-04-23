@@ -326,14 +326,14 @@
             <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-regular fa-server"></i>
-              {{ item.name }}
-              </a>
+              <span>{{ item.name | e }}
+</span>              </a>
               <a href="{{ item.displayPage }}">
-              {{ item.clusterTemplateTitle }}
-              </a>
+              <span>{{ item.clusterTemplateTitle | e }}
+</span>              </a>
               <a href="{{ item.displayPage }}">
-              {{ item.userId }}
-              </a>
+              <span>{{ item.userId | e }}
+</span>              </a>
               <wa-button variant="brand"
                   id="{{classApiMethodMethod}}_editPage"
                   placeholder="[String] manage"

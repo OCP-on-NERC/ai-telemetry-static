@@ -298,14 +298,14 @@
             <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-duotone fa-regular fa-share-nodes"></i>
-              {{ item.pk }}
-              </a>
+              <span>{{ item.pk | e }}
+</span>              </a>
               <a href="{{ item.displayPage }}">
-              {{ item.description }}
-              </a>
+              <span class="white-space-pre-wrap ">{{ item.description | e }}
+</span>              </a>
               <a href="{{ item.displayPage }}">
-              {{ item.networkName }}
-              </a>
+              <span>{{ item.networkName | e }}
+</span>              </a>
             </div>
             {% endfor %}
               {% if getColumnPk is defined %}

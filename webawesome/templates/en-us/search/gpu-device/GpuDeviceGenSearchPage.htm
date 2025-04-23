@@ -387,17 +387,17 @@
             <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-regular fa-memory"></i>
-              {{ item.clusterName }}
-              </a>
+              <span>{{ item.clusterName | e }}
+</span>              </a>
               <a href="{{ item.displayPage }}">
-              {{ item.nodeName }}
-              </a>
+              <span>{{ item.nodeName | e }}
+</span>              </a>
               <a href="{{ item.displayPage }}">
-              {{ item.description }}
-              </a>
+              <span class="white-space-pre-wrap ">{{ item.description | e }}
+</span>              </a>
               <a href="{{ item.displayPage }}">
-              {{ item.gpuDeviceNumber }}
-              </a>
+              <span>{{ item.gpuDeviceNumber | e }}
+</span>              </a>
               <wa-button variant="brand"
                   id="{{classApiMethodMethod}}_editPage"
                   placeholder="[String] manage"

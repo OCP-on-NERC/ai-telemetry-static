@@ -361,11 +361,11 @@
             <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-regular fa-cake-slice"></i>
-              {{ item.sliceName }}
-              </a>
+              <span>{{ item.sliceName | e }}
+</span>              </a>
               <a href="{{ item.displayPage }}">
-              {{ item.description }}
-              </a>
+              <span class="white-space-pre-wrap ">{{ item.description | e }}
+</span>              </a>
               <wa-button variant="brand"
                   id="{{classApiMethodMethod}}_editPage"
                   placeholder="[String] manage"

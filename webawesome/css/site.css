@@ -182,6 +182,9 @@ main, footer {
     /* Layout */
     /**********/
 
+    .white-space-pre-wrap {
+      white-space: pre-wrap;
+    }
     .card-like-thing {
       padding: var(--site-primary-space);
       margin-block: var(--site-margin-block);
@@ -543,7 +546,7 @@ main, footer {
     grid-column: 1;
     grid-row: 2;
   }
-  .label-on-left::part(input) {
+  .label-on-left::part(input), .label-on-left::part(base) {
     grid-column: 2;
     grid-row: 2;
   }
