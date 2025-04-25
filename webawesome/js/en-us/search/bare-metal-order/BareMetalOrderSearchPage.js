@@ -55,6 +55,14 @@ Promise.all([
     sort('BareMetalOrder', 'numberOfLenovoSd665nv3H100', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortBareMetalOrder_offerId')?.addEventListener('change', (event) => {
+    sort('BareMetalOrder', 'offerId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortBareMetalOrder_leaseId')?.addEventListener('change', (event) => {
+    sort('BareMetalOrder', 'leaseId', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortBareMetalOrder_classCanonicalName')?.addEventListener('change', (event) => {
     sort('BareMetalOrder', 'classCanonicalName', event.currentTarget.value);
   });
@@ -225,6 +233,24 @@ Promise.all([
             facetFieldChange('BareMetalOrder', event.currentTarget);
           });
           document.querySelector('#pageFacetPivotBareMetalOrder_numberOfLenovoSd665nv3H100')?.addEventListener('change', (event) => {
+            facetPivotChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#fqBareMetalOrder_offerId')?.addEventListener('change', (event) => {
+            fqChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetBareMetalOrder_offerId')?.addEventListener('click', (event) => {
+            facetFieldChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotBareMetalOrder_offerId')?.addEventListener('change', (event) => {
+            facetPivotChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#fqBareMetalOrder_leaseId')?.addEventListener('change', (event) => {
+            fqChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetBareMetalOrder_leaseId')?.addEventListener('click', (event) => {
+            facetFieldChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotBareMetalOrder_leaseId')?.addEventListener('change', (event) => {
             facetPivotChange('BareMetalOrder', event.currentTarget);
           });
           document.querySelector('#fqBareMetalOrder_displayPage')?.addEventListener('change', (event) => {
