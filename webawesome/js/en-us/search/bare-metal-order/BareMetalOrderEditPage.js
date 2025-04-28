@@ -204,6 +204,48 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
+          // PATCH offerId
+          document.querySelector('#Page_offerId')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_offerId');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchBareMetalOrderVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + event.currentTarget.getAttribute('data-pk') }]
+                  , 'setOfferId', event.currentTarget.value
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_offerId')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_offerId')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_offerId');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH leaseId
+          document.querySelector('#Page_leaseId')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_leaseId');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchBareMetalOrderVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + event.currentTarget.getAttribute('data-pk') }]
+                  , 'setLeaseId', event.currentTarget.value
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_leaseId')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_leaseId')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_leaseId');
+            const valid = form.reportValidity();
+          });
+
           // PATCH sessionId
           document.querySelector('#Page_sessionId')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_sessionId');

@@ -69,6 +69,14 @@ function searchBareMetalOrderFilters($formFilters) {
     if(filterNumberOfLenovoSd665nv3H100 != null && filterNumberOfLenovoSd665nv3H100 !== '')
       filters.push({ name: 'fq', value: 'numberOfLenovoSd665nv3H100:' + filterNumberOfLenovoSd665nv3H100 });
 
+    var filterOfferId = $formFilters.querySelector('.valueOfferId')?.value;
+    if(filterOfferId != null && filterOfferId !== '')
+      filters.push({ name: 'fq', value: 'offerId:' + filterOfferId });
+
+    var filterLeaseId = $formFilters.querySelector('.valueLeaseId')?.value;
+    if(filterLeaseId != null && filterLeaseId !== '')
+      filters.push({ name: 'fq', value: 'leaseId:' + filterLeaseId });
+
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -380,6 +388,30 @@ async function patchBareMetalOrder($formFilters, $formValues, target, pk, succes
   if(removeNumberOfLenovoSd665nv3H100 != null && removeNumberOfLenovoSd665nv3H100 !== '')
     vals['removeNumberOfLenovoSd665nv3H100'] = removeNumberOfLenovoSd665nv3H100;
 
+  var valueOfferId = $formValues.querySelector('.valueOfferId')?.value;
+  var removeOfferId = $formValues.querySelector('.removeOfferId')?.value === 'true';
+  var setOfferId = removeOfferId ? null : $formValues.querySelector('.setOfferId')?.value;
+  var addOfferId = $formValues.querySelector('.addOfferId')?.value;
+  if(removeOfferId || setOfferId != null && setOfferId !== '')
+    vals['setOfferId'] = setOfferId;
+  if(addOfferId != null && addOfferId !== '')
+    vals['addOfferId'] = addOfferId;
+  var removeOfferId = $formValues.querySelector('.removeOfferId')?.value;
+  if(removeOfferId != null && removeOfferId !== '')
+    vals['removeOfferId'] = removeOfferId;
+
+  var valueLeaseId = $formValues.querySelector('.valueLeaseId')?.value;
+  var removeLeaseId = $formValues.querySelector('.removeLeaseId')?.value === 'true';
+  var setLeaseId = removeLeaseId ? null : $formValues.querySelector('.setLeaseId')?.value;
+  var addLeaseId = $formValues.querySelector('.addLeaseId')?.value;
+  if(removeLeaseId || setLeaseId != null && setLeaseId !== '')
+    vals['setLeaseId'] = setLeaseId;
+  if(addLeaseId != null && addLeaseId !== '')
+    vals['addLeaseId'] = addLeaseId;
+  var removeLeaseId = $formValues.querySelector('.removeLeaseId')?.value;
+  if(removeLeaseId != null && removeLeaseId !== '')
+    vals['removeLeaseId'] = removeLeaseId;
+
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   var removeSessionId = $formValues.querySelector('.removeSessionId')?.value === 'true';
   var setSessionId = removeSessionId ? null : $formValues.querySelector('.setSessionId')?.value;
@@ -501,6 +533,14 @@ function patchBareMetalOrderFilters($formFilters) {
     var filterNumberOfLenovoSd665nv3H100 = $formFilters.querySelector('.valueNumberOfLenovoSd665nv3H100')?.value;
     if(filterNumberOfLenovoSd665nv3H100 != null && filterNumberOfLenovoSd665nv3H100 !== '')
       filters.push({ name: 'fq', value: 'numberOfLenovoSd665nv3H100:' + filterNumberOfLenovoSd665nv3H100 });
+
+    var filterOfferId = $formFilters.querySelector('.valueOfferId')?.value;
+    if(filterOfferId != null && filterOfferId !== '')
+      filters.push({ name: 'fq', value: 'offerId:' + filterOfferId });
+
+    var filterLeaseId = $formFilters.querySelector('.valueLeaseId')?.value;
+    if(filterLeaseId != null && filterLeaseId !== '')
+      filters.push({ name: 'fq', value: 'leaseId:' + filterLeaseId });
 
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -651,6 +691,14 @@ async function postBareMetalOrder($formValues, target, success, error) {
   var valueNumberOfLenovoSd665nv3H100 = $formValues.querySelector('.valueNumberOfLenovoSd665nv3H100')?.value;
   if(valueNumberOfLenovoSd665nv3H100 != null && valueNumberOfLenovoSd665nv3H100 !== '')
     vals['numberOfLenovoSd665nv3H100'] = valueNumberOfLenovoSd665nv3H100;
+
+  var valueOfferId = $formValues.querySelector('.valueOfferId')?.value;
+  if(valueOfferId != null && valueOfferId !== '')
+    vals['offerId'] = valueOfferId;
+
+  var valueLeaseId = $formValues.querySelector('.valueLeaseId')?.value;
+  if(valueLeaseId != null && valueLeaseId !== '')
+    vals['leaseId'] = valueLeaseId;
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   if(valueSessionId != null && valueSessionId !== '')
@@ -871,6 +919,8 @@ async function websocketBareMetalOrderInner(apiRequest) {
         var inputNumberOfWhiteboxFlax1 = null;
         var inputNumberOfLenovoSd650nv2A100 = null;
         var inputNumberOfLenovoSd665nv3H100 = null;
+        var inputOfferId = null;
+        var inputLeaseId = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -910,6 +960,10 @@ async function websocketBareMetalOrderInner(apiRequest) {
           inputNumberOfLenovoSd650nv2A100 = $response.querySelector('.Page_numberOfLenovoSd650nv2A100');
         if(vars.includes('numberOfLenovoSd665nv3H100'))
           inputNumberOfLenovoSd665nv3H100 = $response.querySelector('.Page_numberOfLenovoSd665nv3H100');
+        if(vars.includes('offerId'))
+          inputOfferId = $response.querySelector('.Page_offerId');
+        if(vars.includes('leaseId'))
+          inputLeaseId = $response.querySelector('.Page_leaseId');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -1062,6 +1116,26 @@ async function websocketBareMetalOrderInner(apiRequest) {
               item.textContent = inputNumberOfLenovoSd665nv3H100.textContent;
           });
           addGlow(document.querySelector('.Page_numberOfLenovoSd665nv3H100'));
+        }
+
+        if(inputOfferId) {
+          document.querySelectorAll('.Page_offerId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputOfferId.getAttribute('value');
+            else
+              item.textContent = inputOfferId.textContent;
+          });
+          addGlow(document.querySelector('.Page_offerId'));
+        }
+
+        if(inputLeaseId) {
+          document.querySelectorAll('.Page_leaseId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputLeaseId.getAttribute('value');
+            else
+              item.textContent = inputLeaseId.textContent;
+          });
+          addGlow(document.querySelector('.Page_leaseId'));
         }
 
         if(inputClassCanonicalName) {
