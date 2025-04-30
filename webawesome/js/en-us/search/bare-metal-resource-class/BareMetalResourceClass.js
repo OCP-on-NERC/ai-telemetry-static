@@ -646,7 +646,7 @@ async function websocketBareMetalResourceClass(success) {
       var $i = iTemplate.content;
       var $headerSpan = document.createElement('span');
       $headerSpan.setAttribute('class', '');
-      $headerSpan.innerText = 'modify  in ' + json.timeRemaining;
+      $headerSpan.innerText = 'modify bare metal resource classes in ' + json.timeRemaining;
       var $x = document.createElement('span');
       $x.setAttribute('class', 'w3-button w3-display-topright ');
       $x.setAttribute('onclick', 'document.querySelector("#card-' + name + '");');
@@ -1001,7 +1001,7 @@ function pageGraphBareMetalResourceClass(apiRequest) {
         var data = [];
         var layout = {};
         if(range) {
-          layout['title'] = '';
+          layout['title'] = 'bare metal resource classes';
           layout['xaxis'] = {
             title: rangeVarFq.displayName
           }

@@ -694,7 +694,7 @@ async function websocketManagedCluster(success) {
       var $i = iTemplate.content;
       var $headerSpan = document.createElement('span');
       $headerSpan.setAttribute('class', '');
-      $headerSpan.innerText = 'modify  in ' + json.timeRemaining;
+      $headerSpan.innerText = 'modify managed clusters in ' + json.timeRemaining;
       var $x = document.createElement('span');
       $x.setAttribute('class', 'w3-button w3-display-topright ');
       $x.setAttribute('onclick', 'document.querySelector("#card-' + id + '");');
@@ -1075,7 +1075,7 @@ function pageGraphManagedCluster(apiRequest) {
         var data = [];
         var layout = {};
         if(range) {
-          layout['title'] = '';
+          layout['title'] = 'managed clusters';
           layout['xaxis'] = {
             title: rangeVarFq.displayName
           }

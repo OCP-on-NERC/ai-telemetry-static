@@ -71,7 +71,7 @@
                     <div class="pageFacetField pageFacetFieldManagedCluster_{{ key }} " id="pageFacetFieldManagedCluster_{{ key }}">
                       {% for facetFieldKey, facetFieldValue in value.facetField.counts.items() %}
                       <div>
-                        <wa-tooltip content="{{ facetFieldValue | e }} null total with {{ value.facetField.var | e }} &quot;{{ facetFieldKey | e }}&quot;"></wa-tooltip>
+                        <wa-tooltip content="{{ facetFieldValue | e }} managed cluster total with {{ value.facetField.var | e }} &quot;{{ facetFieldKey | e }}&quot;"></wa-tooltip>
                         <div class="cursor-pointer raised-item " data-class="ManagedCluster" data-var="{{ value.facetField.var }}" data-val="{{ facetFieldKey }}" onclick="if(document.querySelector('#fqManagedCluster_{{ key }}')?.value === '{{ facetFieldKey }}') this.setAttribute('data-val', ''); fqReplace('ManagedCluster', this); ">{{ facetFieldValue }}: {{ facetFieldKey }}</div>
                       </div>
                       {% endfor %}

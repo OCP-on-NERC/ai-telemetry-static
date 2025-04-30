@@ -188,10 +188,10 @@
 {%- block htmBodyStartManagedClusterPage %}
 {% if resultCount > 0 %}
           <div class="wa-flank ">
-            <wa-tooltip for="return-to-ManagedCluster">back to </wa-tooltip>
+            <wa-tooltip for="return-to-ManagedCluster">back to all managed clusters</wa-tooltip>
             <wa-button id="return-to-ManagedCluster" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
               <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              
+              all managed clusters
             </wa-button>
             <h1 class="Page_objectTitle"><i class="fa-regular fa-server"></i> {{ result.objectTitle | e }}</h1>
           </div>
@@ -211,14 +211,14 @@
         <div class="wa-flank">
           <div>
           {% if varsFqCount > 1 %}
-          <wa-tooltip for="return-to-ManagedCluster">back to </wa-tooltip></wa-tooltip>
+          <wa-tooltip for="return-to-ManagedCluster">back to all managed clusters</wa-tooltip></wa-tooltip>
           <wa-button id="return-to-ManagedCluster" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
             <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            
+            all managed clusters
           </wa-button>
           {% endif %}
         </div>
-          <h1><i class="fa-regular fa-server"></i> <span></span></h1>
+          <h1><i class="fa-regular fa-server"></i> <span>managed clusters</span></h1>
         </div>
 {% include en-us/search/managed-cluster/ManagedClusterSearchForm.htm %}
           <wa-divider></wa-divider>
@@ -228,7 +228,7 @@
   {% if classIconCssClasses is defined %}
             <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
   {% endif %}
-            <span class=""></span>
+            <span class="">no managed cluster found</span>
           </span>
         </h2>
 {% else %}
