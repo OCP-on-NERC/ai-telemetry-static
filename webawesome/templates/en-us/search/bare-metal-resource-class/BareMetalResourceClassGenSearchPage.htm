@@ -2,7 +2,7 @@
 
 {%- block htmTitlePageLayout %}
 {%- block htmTitleBareMetalResourceClassPage %}
-    <title>{% if resultCount == 0 %}{% else %}{% endif %}</title>
+    <title>{% if resultCount == 0 %}no bare metal resource class found{% else %}bare metal resource classes{% endif %}</title>
 {%- endblock htmTitleBareMetalResourceClassPage %}
 {%- endblock htmTitlePageLayout %}
 
@@ -187,7 +187,7 @@
 {{ super() }}
 {%- block htmBodyStartBareMetalResourceClassPage %}
 {% if resultCount > 0 %}
-          <h1><a href="{{pageUri}}"><i class="fa-regular fa-server"></i> <span></span></a></h1>
+          <h1><a href="{{pageUri}}"><i class="fa-regular fa-server"></i> <span>bare metal resource classes</span></a></h1>
 {%- include en-us/search/bare-metal-resource-class/BareMetalResourceClassSuggestedSearch.htm %}
           <wa-divider></wa-divider>
 {% include en-us/search/bare-metal-resource-class/BareMetalResourceClassSearchForm.htm %}
@@ -201,14 +201,14 @@
         <div class="wa-flank">
           <div>
           {% if varsFqCount > 1 %}
-          <wa-tooltip for="return-to-BareMetalResourceClass">back to </wa-tooltip></wa-tooltip>
+          <wa-tooltip for="return-to-BareMetalResourceClass">back to all bare metal resource classes</wa-tooltip></wa-tooltip>
           <wa-button id="return-to-BareMetalResourceClass" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
             <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            
+            all bare metal resource classes
           </wa-button>
           {% endif %}
         </div>
-          <h1><i class="fa-regular fa-server"></i> <span></span></h1>
+          <h1><i class="fa-regular fa-server"></i> <span>bare metal resource classes</span></h1>
         </div>
 {% include en-us/search/bare-metal-resource-class/BareMetalResourceClassSearchForm.htm %}
           <wa-divider></wa-divider>
@@ -218,7 +218,7 @@
   {% if classIconCssClasses is defined %}
             <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
   {% endif %}
-            <span class=""></span>
+            <span class="">no bare metal resource class found</span>
           </span>
         </h2>
 {% else %}
@@ -234,10 +234,10 @@
           </div>
           {% if varsFqCount > 1 %}
           <div class="margin-block">
-            <wa-tooltip for="return-to-BareMetalResourceClass">back to </wa-tooltip>
+            <wa-tooltip for="return-to-BareMetalResourceClass">back to all bare metal resource classes</wa-tooltip>
             <wa-button id="return-to-BareMetalResourceClass" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
               <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              
+              all bare metal resource classes
             </wa-button>
           </div>
           {% endif %}

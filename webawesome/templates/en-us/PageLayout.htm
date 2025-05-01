@@ -73,6 +73,7 @@
     <script src="{{ STATIC_BASE_URL }}/js/leaflet.js"></script>
     <script src="{{ STATIC_BASE_URL }}/js/leaflet.draw.js"></script>
     <script src="{{ STATIC_BASE_URL }}/js/leaflet.contextmenu.js"></script>
+    <script src="{{ STATIC_BASE_URL }}/js/moment.js"></script>
 {%- endblock htmScriptsPageLayout %}
 {%- block htmScriptPageLayout %}
 {%- endblock htmScriptPageLayout %}
@@ -81,7 +82,7 @@
 {%- block websocketPageLayout %}{%- endblock websocketPageLayout %}
     </script>
    </head>
-  <body>
+  <body class="wa-body-l wa-size-l ">
     <wa-page disable-sticky="header">
 {%- block htmBodyPageLayout %}
 {%- block htmBodyStartPageLayout %}
@@ -97,12 +98,12 @@
           <wa-tooltip for="site-aside-left-model-button-GpuDevice" placement="right" hoist>A Red Hat OpenShift GPU device containing GPUs</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-GpuSlice" placement="right" hoist>A GPU slice inside a GPU</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-AiProject" placement="right" hoist>A research project using AI and GPUs</wa-tooltip>
-          <wa-tooltip for="site-aside-left-model-button-ClusterTemplate" placement="right" hoist>An OpenShift cluster template</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-ClusterOrder" placement="right" hoist>An OpenShift cluster order</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-ManagedCluster" placement="right" hoist>An OpenShift managed cluster</wa-tooltip>
+          <wa-tooltip for="site-aside-left-model-button-ClusterTemplate" placement="right" hoist>An OpenShift cluster template</wa-tooltip>
+          <wa-tooltip for="site-aside-left-model-button-BareMetalResourceClass" placement="right" hoist>A bare metal resource class</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-ClusterRequest" placement="right" hoist>An OpenShift cluster request</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-BareMetalNetwork" placement="right" hoist>An OpenStack bare metal network</wa-tooltip>
-          <wa-tooltip for="site-aside-left-model-button-BareMetalResourceClass" placement="right" hoist>An OpenStack bare metal resource class</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-BareMetalNode" placement="right" hoist>An OpenStack bare metal node</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-BareMetalOrder" placement="right" hoist>A bare metal order</wa-tooltip>
           <div class="flex flex-column round-row primary-smart-border-radius margin-block">
@@ -170,10 +171,6 @@
               <i class="fa-regular fa-school"></i>
               AI projects
             </wa-button>
-            <wa-button variant="brand" id="site-aside-left-model-button-ClusterTemplate" href="{{ SITE_BASE_URL }}/en-us/search/cluster-template">
-              <i class="fa-regular fa-server"></i>
-              cluster templates
-            </wa-button>
             <wa-button variant="brand" id="site-aside-left-model-button-ClusterOrder" href="{{ SITE_BASE_URL }}/en-us/search/cluster-order">
               <i class="fa-regular fa-server"></i>
               cluster orders
@@ -182,6 +179,14 @@
               <i class="fa-regular fa-server"></i>
               managed clusters
             </wa-button>
+            <wa-button variant="brand" id="site-aside-left-model-button-ClusterTemplate" href="{{ SITE_BASE_URL }}/en-us/search/cluster-template">
+              <i class="fa-regular fa-server"></i>
+              cluster templates
+            </wa-button>
+            <wa-button variant="brand" id="site-aside-left-model-button-BareMetalResourceClass" href="{{ SITE_BASE_URL }}/en-us/search/bare-metal-resource-class">
+              <i class="fa-regular fa-server"></i>
+              bare metal resource classes
+            </wa-button>
             <wa-button variant="brand" id="site-aside-left-model-button-ClusterRequest" href="{{ SITE_BASE_URL }}/en-us/search/cluster-request">
               <i class="fa-regular fa-server"></i>
               cluster requests
@@ -189,10 +194,6 @@
             <wa-button variant="brand" id="site-aside-left-model-button-BareMetalNetwork" href="{{ SITE_BASE_URL }}/en-us/search/bare-metal-network">
               <i class="fa-duotone fa-regular fa-network-wired"></i>
               bare metal networks
-            </wa-button>
-            <wa-button variant="brand" id="site-aside-left-model-button-BareMetalResourceClass" href="{{ SITE_BASE_URL }}/en-us/search/bare-metal-resource-class">
-              <i class="fa-regular fa-server"></i>
-              bare metal resource classes
             </wa-button>
             <wa-button variant="brand" id="site-aside-left-model-button-BareMetalNode" href="{{ SITE_BASE_URL }}/en-us/search/bare-metal-node">
               <i class="fa-duotone fa-regular fa-hexagon-nodes"></i>

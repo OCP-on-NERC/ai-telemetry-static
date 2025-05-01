@@ -71,7 +71,7 @@
                     <div class="pageFacetField pageFacetFieldBareMetalResourceClass_{{ key }} " id="pageFacetFieldBareMetalResourceClass_{{ key }}">
                       {% for facetFieldKey, facetFieldValue in value.facetField.counts.items() %}
                       <div>
-                        <wa-tooltip content="{{ facetFieldValue | e }} null total with {{ value.facetField.var | e }} &quot;{{ facetFieldKey | e }}&quot;"></wa-tooltip>
+                        <wa-tooltip content="{{ facetFieldValue | e }} bare metal resource class total with {{ value.facetField.var | e }} &quot;{{ facetFieldKey | e }}&quot;"></wa-tooltip>
                         <div class="cursor-pointer raised-item " data-class="BareMetalResourceClass" data-var="{{ value.facetField.var }}" data-val="{{ facetFieldKey }}" onclick="if(document.querySelector('#fqBareMetalResourceClass_{{ key }}')?.value === '{{ facetFieldKey }}') this.setAttribute('data-val', ''); fqReplace('BareMetalResourceClass', this); ">{{ facetFieldValue }}: {{ facetFieldKey }}</div>
                       </div>
                       {% endfor %}

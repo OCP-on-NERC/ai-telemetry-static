@@ -2,7 +2,7 @@
 
 {%- block htmTitlePageLayout %}
 {%- block htmTitleManagedClusterPage %}
-    <title>{% if resultCount == 0 %}{% else %}{% endif %}</title>
+    <title>{% if resultCount == 0 %}no managed cluster found{% else %}managed clusters{% endif %}</title>
 {%- endblock htmTitleManagedClusterPage %}
 {%- endblock htmTitlePageLayout %}
 
@@ -187,7 +187,7 @@
 {{ super() }}
 {%- block htmBodyStartManagedClusterPage %}
 {% if resultCount > 0 %}
-          <h1><a href="{{pageUri}}"><i class="fa-regular fa-server"></i> <span></span></a></h1>
+          <h1><a href="{{pageUri}}"><i class="fa-regular fa-server"></i> <span>managed clusters</span></a></h1>
 {%- include en-us/search/managed-cluster/ManagedClusterSuggestedSearch.htm %}
           <wa-divider></wa-divider>
 {% include en-us/search/managed-cluster/ManagedClusterSearchForm.htm %}
@@ -201,14 +201,14 @@
         <div class="wa-flank">
           <div>
           {% if varsFqCount > 1 %}
-          <wa-tooltip for="return-to-ManagedCluster">back to </wa-tooltip></wa-tooltip>
+          <wa-tooltip for="return-to-ManagedCluster">back to all managed clusters</wa-tooltip></wa-tooltip>
           <wa-button id="return-to-ManagedCluster" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
             <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            
+            all managed clusters
           </wa-button>
           {% endif %}
         </div>
-          <h1><i class="fa-regular fa-server"></i> <span></span></h1>
+          <h1><i class="fa-regular fa-server"></i> <span>managed clusters</span></h1>
         </div>
 {% include en-us/search/managed-cluster/ManagedClusterSearchForm.htm %}
           <wa-divider></wa-divider>
@@ -218,7 +218,7 @@
   {% if classIconCssClasses is defined %}
             <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
   {% endif %}
-            <span class=""></span>
+            <span class="">no managed cluster found</span>
           </span>
         </h2>
 {% else %}
@@ -234,10 +234,10 @@
           </div>
           {% if varsFqCount > 1 %}
           <div class="margin-block">
-            <wa-tooltip for="return-to-ManagedCluster">back to </wa-tooltip>
+            <wa-tooltip for="return-to-ManagedCluster">back to all managed clusters</wa-tooltip>
             <wa-button id="return-to-ManagedCluster" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
               <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              
+              all managed clusters
             </wa-button>
           </div>
           {% endif %}

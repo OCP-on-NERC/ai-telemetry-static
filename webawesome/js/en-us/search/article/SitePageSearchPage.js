@@ -51,8 +51,8 @@ Promise.all([
     sort('SitePage', 'saves', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortSitePage_title')?.addEventListener('change', (event) => {
-    sort('SitePage', 'title', event.currentTarget.value);
+  document.querySelector('#pageFacetSortSitePage_objectTitle')?.addEventListener('change', (event) => {
+    sort('SitePage', 'objectTitle', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortSitePage_editPage')?.addEventListener('change', (event) => {
