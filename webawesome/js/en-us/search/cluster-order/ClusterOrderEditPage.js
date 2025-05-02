@@ -65,7 +65,7 @@ Promise.all([
               patchClusterOrderVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
                   , 'setId', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -86,7 +86,7 @@ Promise.all([
               patchClusterOrderVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
                   , 'setState', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -107,7 +107,7 @@ Promise.all([
               patchClusterOrderVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
                   , 'setClusterId', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -128,7 +128,7 @@ Promise.all([
               patchClusterOrderVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
                   , 'setSessionId', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -149,7 +149,7 @@ Promise.all([
               patchClusterOrderVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
                   , 'setUserKey', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -170,7 +170,7 @@ Promise.all([
               patchClusterOrderVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
                   , 'setObjectTitle', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -191,7 +191,7 @@ Promise.all([
               patchClusterOrderVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
                   , 'setDisplayPage', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }

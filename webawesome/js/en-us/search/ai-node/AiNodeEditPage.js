@@ -65,7 +65,7 @@ Promise.all([
               patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
                   , 'setClusterName', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -86,7 +86,7 @@ Promise.all([
               patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
                   , 'setNodeName', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -107,7 +107,7 @@ Promise.all([
               patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
                   , 'setDescription', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -128,7 +128,7 @@ Promise.all([
               patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
                   , 'setNodeId', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -149,7 +149,7 @@ Promise.all([
               patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
                   , 'setId', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -170,7 +170,7 @@ Promise.all([
               patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
                   , 'setGpuDevicesTotal', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -191,7 +191,7 @@ Promise.all([
               patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
                   , 'setNgsildTenant', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -212,7 +212,7 @@ Promise.all([
               patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
                   , 'setNgsildPath', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -233,7 +233,7 @@ Promise.all([
               patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
                   , 'setNgsildContext', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -296,7 +296,7 @@ Promise.all([
               patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
                   , 'setSessionId', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -317,7 +317,7 @@ Promise.all([
               patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
                   , 'setUserKey', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -338,7 +338,7 @@ Promise.all([
               patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
                   , 'setObjectTitle', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -359,7 +359,7 @@ Promise.all([
               patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
                   , 'setDisplayPage', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }

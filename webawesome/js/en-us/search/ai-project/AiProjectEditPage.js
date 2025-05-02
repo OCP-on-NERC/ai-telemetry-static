@@ -65,7 +65,7 @@ Promise.all([
               patchAiProjectVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'projectId:' + event.currentTarget.getAttribute('data-projectId') }]
                   , 'setClusterName', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -86,7 +86,7 @@ Promise.all([
               patchAiProjectVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'projectId:' + event.currentTarget.getAttribute('data-projectId') }]
                   , 'setProjectName', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -107,7 +107,7 @@ Promise.all([
               patchAiProjectVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'projectId:' + event.currentTarget.getAttribute('data-projectId') }]
                   , 'setProjectId', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -128,7 +128,7 @@ Promise.all([
               patchAiProjectVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'projectId:' + event.currentTarget.getAttribute('data-projectId') }]
                   , 'setDescription', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -149,7 +149,7 @@ Promise.all([
               patchAiProjectVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'projectId:' + event.currentTarget.getAttribute('data-projectId') }]
                   , 'setSessionId', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -170,7 +170,7 @@ Promise.all([
               patchAiProjectVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'projectId:' + event.currentTarget.getAttribute('data-projectId') }]
                   , 'setUserKey', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -191,7 +191,7 @@ Promise.all([
               patchAiProjectVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'projectId:' + event.currentTarget.getAttribute('data-projectId') }]
                   , 'setObjectTitle', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -212,7 +212,7 @@ Promise.all([
               patchAiProjectVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'projectId:' + event.currentTarget.getAttribute('data-projectId') }]
                   , 'setDisplayPage', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }

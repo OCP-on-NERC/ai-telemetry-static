@@ -65,7 +65,7 @@ Promise.all([
               patchBareMetalResourceClassVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'name:' + event.currentTarget.getAttribute('data-name') }]
                   , 'setName', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -86,7 +86,7 @@ Promise.all([
               patchBareMetalResourceClassVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'name:' + event.currentTarget.getAttribute('data-name') }]
                   , 'setCount', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -107,7 +107,7 @@ Promise.all([
               patchBareMetalResourceClassVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'name:' + event.currentTarget.getAttribute('data-name') }]
                   , 'setSessionId', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -128,7 +128,7 @@ Promise.all([
               patchBareMetalResourceClassVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'name:' + event.currentTarget.getAttribute('data-name') }]
                   , 'setUserKey', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -149,7 +149,7 @@ Promise.all([
               patchBareMetalResourceClassVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'name:' + event.currentTarget.getAttribute('data-name') }]
                   , 'setObjectTitle', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -170,7 +170,7 @@ Promise.all([
               patchBareMetalResourceClassVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'name:' + event.currentTarget.getAttribute('data-name') }]
                   , 'setDisplayPage', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }

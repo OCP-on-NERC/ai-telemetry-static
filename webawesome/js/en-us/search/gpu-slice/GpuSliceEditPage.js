@@ -65,7 +65,7 @@ Promise.all([
               patchGpuSliceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'sliceName:' + event.currentTarget.getAttribute('data-sliceName') }]
                   , 'setSliceName', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -86,7 +86,7 @@ Promise.all([
               patchGpuSliceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'sliceName:' + event.currentTarget.getAttribute('data-sliceName') }]
                   , 'setDescription', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -107,7 +107,7 @@ Promise.all([
               patchGpuSliceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'sliceName:' + event.currentTarget.getAttribute('data-sliceName') }]
                   , 'setId', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -128,7 +128,7 @@ Promise.all([
               patchGpuSliceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'sliceName:' + event.currentTarget.getAttribute('data-sliceName') }]
                   , 'setNgsildTenant', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -149,7 +149,7 @@ Promise.all([
               patchGpuSliceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'sliceName:' + event.currentTarget.getAttribute('data-sliceName') }]
                   , 'setNgsildPath', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -170,7 +170,7 @@ Promise.all([
               patchGpuSliceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'sliceName:' + event.currentTarget.getAttribute('data-sliceName') }]
                   , 'setNgsildContext', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -233,7 +233,7 @@ Promise.all([
               patchGpuSliceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'sliceName:' + event.currentTarget.getAttribute('data-sliceName') }]
                   , 'setSessionId', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -254,7 +254,7 @@ Promise.all([
               patchGpuSliceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'sliceName:' + event.currentTarget.getAttribute('data-sliceName') }]
                   , 'setUserKey', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -275,7 +275,7 @@ Promise.all([
               patchGpuSliceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'sliceName:' + event.currentTarget.getAttribute('data-sliceName') }]
                   , 'setObjectTitle', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -296,7 +296,7 @@ Promise.all([
               patchGpuSliceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'sliceName:' + event.currentTarget.getAttribute('data-sliceName') }]
                   , 'setDisplayPage', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
