@@ -65,7 +65,7 @@ Promise.all([
               patchAiClusterVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'clusterName:' + event.currentTarget.getAttribute('data-clusterName') }]
                   , 'setClusterName', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -86,7 +86,7 @@ Promise.all([
               patchAiClusterVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'clusterName:' + event.currentTarget.getAttribute('data-clusterName') }]
                   , 'setDescription', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -107,7 +107,7 @@ Promise.all([
               patchAiClusterVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'clusterName:' + event.currentTarget.getAttribute('data-clusterName') }]
                   , 'setId', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -149,7 +149,7 @@ Promise.all([
               patchAiClusterVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'clusterName:' + event.currentTarget.getAttribute('data-clusterName') }]
                   , 'setAiNodesTotal', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -170,7 +170,7 @@ Promise.all([
               patchAiClusterVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'clusterName:' + event.currentTarget.getAttribute('data-clusterName') }]
                   , 'setGpuDevicesTotal', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -191,7 +191,7 @@ Promise.all([
               patchAiClusterVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'clusterName:' + event.currentTarget.getAttribute('data-clusterName') }]
                   , 'setNgsildTenant', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -212,7 +212,7 @@ Promise.all([
               patchAiClusterVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'clusterName:' + event.currentTarget.getAttribute('data-clusterName') }]
                   , 'setNgsildPath', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -233,7 +233,7 @@ Promise.all([
               patchAiClusterVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'clusterName:' + event.currentTarget.getAttribute('data-clusterName') }]
                   , 'setNgsildContext', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -275,7 +275,7 @@ Promise.all([
               patchAiClusterVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'clusterName:' + event.currentTarget.getAttribute('data-clusterName') }]
                   , 'setSessionId', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -296,7 +296,7 @@ Promise.all([
               patchAiClusterVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'clusterName:' + event.currentTarget.getAttribute('data-clusterName') }]
                   , 'setUserKey', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -317,7 +317,7 @@ Promise.all([
               patchAiClusterVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'clusterName:' + event.currentTarget.getAttribute('data-clusterName') }]
                   , 'setObjectTitle', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
@@ -338,7 +338,7 @@ Promise.all([
               patchAiClusterVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'clusterName:' + event.currentTarget.getAttribute('data-clusterName') }]
                   , 'setDisplayPage', event.currentTarget.value
                   , event.currentTarget
-                  , function(response, target) { addGlow(target); }
+                , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
