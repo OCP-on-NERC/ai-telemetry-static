@@ -161,15 +161,6 @@ Promise.all([
           document.querySelector('#pageFacetPivotClusterOrder_id')?.addEventListener('change', (event) => {
             facetPivotChange('ClusterOrder', event.currentTarget);
           });
-          document.querySelector('#fqClusterOrder_templateId')?.addEventListener('change', (event) => {
-            fqChange('ClusterOrder', event.currentTarget);
-          });
-          document.querySelector('#buttonFacetClusterOrder_templateId')?.addEventListener('click', (event) => {
-            facetFieldChange('ClusterOrder', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotClusterOrder_templateId')?.addEventListener('change', (event) => {
-            facetPivotChange('ClusterOrder', event.currentTarget);
-          });
           document.querySelector('#fqClusterOrder_state')?.addEventListener('change', (event) => {
             fqChange('ClusterOrder', event.currentTarget);
           });

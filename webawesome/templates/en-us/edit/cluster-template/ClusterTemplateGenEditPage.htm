@@ -31,7 +31,7 @@
 {%- block htmScriptClusterTemplatePage %}
     <script>
 
-      function jsWebsocketClusterTemplate(title, vars, $response) {
+      function jsWebsocketClusterTemplate(id, vars, $response) {
 {%- block jsWebsocketClusterTemplatePage %}{%- endblock %}
       }
 
@@ -58,9 +58,9 @@
         , customElements.whenDefined('wa-input')
       ]).then(() => {
 
-        var title = {% if result.title is defined %}{{ result.title | tojson }}{% else %}null{% endif %};
+        var id = {% if result.id is defined %}{{ result.id | tojson }}{% else %}null{% endif %};
 
-        if(title == null) {
+        if(id == null) {
           document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
             document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
             document.querySelector('#site-results-grid').classList.add('grid-mode-details');
@@ -77,7 +77,7 @@
           var o = document.querySelector('.pageForm .result')?.value;
           if(o)
             window.result = JSON.parse(o);
-        {% if result.title is defined %}
+        {% if result.id is defined %}
         {% endif %}
         }
         var l = document.querySelector('.pageForm .listClusterTemplate')?.value;
@@ -109,7 +109,7 @@
         });
         document.querySelector('#htmFormButton_patchClusterTemplate')?.addEventListener('click', event => {
           event.preventDefault();
-          patchClusterTemplate(null, document.querySelector('#htmForm_patchClusterTemplate'), document.querySelector('#htmFormButton_patchClusterTemplate'), event.target.getAttribute('data-title'));
+          patchClusterTemplate(null, document.querySelector('#htmForm_patchClusterTemplate'), document.querySelector('#htmFormButton_patchClusterTemplate'), event.target.getAttribute('data-id'));
           return false;
         });
 
@@ -133,7 +133,7 @@
         });
         document.querySelector('#htmFormButton_deleteClusterTemplate')?.addEventListener('click', event => {
           event.preventDefault();
-          deleteClusterTemplate(event.target, event.target.getAttribute('data-title'));
+          deleteClusterTemplate(event.target, event.target.getAttribute('data-id'));
           return false;
         });
 
@@ -237,8 +237,8 @@
 {% endif %}
 {%- block htmFormClusterTemplatePage %}
           <form action="/en-us/api/cluster-template" id="ClusterTemplateForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-{% if result.title is defined %}
-            <input name="title" class="valueTitle" type="hidden" value="{{ result.title }}"/>
+{% if result.id is defined %}
+            <input name="id" class="valueId" type="hidden" value="{{ result.id }}"/>
             {% endif %}
             <input name="focusId" type="hidden"/>
             <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>

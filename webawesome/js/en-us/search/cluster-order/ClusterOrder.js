@@ -130,6 +130,53 @@ function searchClusterOrderVals(filters, target, success, error) {
     .catch(response => error(response, target));
 }
 
+function suggestClusterOrderTemplateId(filters, $list, id = null, templateId = null, relate=true, target) {
+  success = function( data, textStatus, jQxhr ) {
+    $list.innerHTML = '';
+    data['list'].forEach((o, i) => {
+      var iTemplate = document.createElement('template');
+      iTemplate.innerHTML = '<i class="fa-regular fa-server"></i>';
+      var $i = iTemplate.content;
+      var $span = document.createElement('span');
+      $span.setAttribute('class', '');
+      $span.innerText = 
+o['objectTitle'];
+      var $a = document.createElement('a');
+      $a.setAttribute('href', o['editPage']);
+      $a.append($i);
+      $a.append($span);
+      var val = o['id'];
+      var checked = val == null ? false : (Array.isArray(val) ? val.includes(id.toString()) : val == templateId);
+      var $input = document.createElement('wa-checkbox');
+      $input.setAttribute('id', 'GET_templateId_' + id + '_id_' + o['id']);
+      $input.setAttribute('name', 'id');
+      $input.setAttribute('value', o['id']);
+      $input.setAttribute('class', 'valueTemplateId ');
+      if(id != null) {
+        $input.addEventListener('change', function(event) {
+          patchClusterOrderVals([{ name: 'fq', value: 'id:' + id }], { [(event.target.checked ? 'set' : 'remove') + 'TemplateId']: o['id'] }
+              , target
+              , function(response, target) {
+                addGlow(target);
+                suggestClusterOrderTemplateId(filters, $list, id, templateId, relate, target);
+              }
+              , function(response, target) { addError(target); }
+          );
+        });
+      }
+      if(checked)
+        $input.setAttribute('checked', 'checked');
+      var $li = document.createElement('li');
+      if(relate)
+        $li.append($input);
+      $li.append($a);
+      $list.append($li);
+    });
+  };
+  error = function( jqXhr, textStatus, errorThrown ) {};
+  searchClusterTemplateVals(filters, target, success, error);
+}
+
 function suggestClusterOrderObjectSuggest($formFilters, $list, target) {
   success = function( data, textStatus, jQxhr ) {
     $list.innerHTML = '';
@@ -241,17 +288,9 @@ async function patchClusterOrder($formFilters, $formValues, target, id, success,
   if(removeId != null && removeId !== '')
     vals['removeId'] = removeId;
 
-  var valueTemplateId = $formValues.querySelector('.valueTemplateId')?.value;
-  var removeTemplateId = $formValues.querySelector('.removeTemplateId')?.value === 'true';
-  var setTemplateId = removeTemplateId ? null : $formValues.querySelector('.setTemplateId')?.value;
-  var addTemplateId = $formValues.querySelector('.addTemplateId')?.value;
-  if(removeTemplateId || setTemplateId != null && setTemplateId !== '')
-    vals['setTemplateId'] = setTemplateId;
-  if(addTemplateId != null && addTemplateId !== '')
-    vals['addTemplateId'] = addTemplateId;
-  var removeTemplateId = $formValues.querySelector('.removeTemplateId')?.value;
-  if(removeTemplateId != null && removeTemplateId !== '')
-    vals['removeTemplateId'] = removeTemplateId;
+  var valueTemplateId = (Array.from($formValues.querySelectorAll('.valueTemplateId')).filter(e => e.checked == true).find(() => true) ?? null)?.value;
+  if(valueTemplateId != null && valueTemplateId !== '')
+    vals['setTemplateId'] = valueTemplateId;
 
   var valueState = $formValues.querySelector('.valueState')?.value;
   var removeState = $formValues.querySelector('.removeState')?.value === 'true';
@@ -505,7 +544,7 @@ async function postClusterOrder($formValues, target, success, error) {
   if(valueId != null && valueId !== '')
     vals['id'] = valueId;
 
-  var valueTemplateId = $formValues.querySelector('.valueTemplateId')?.value;
+  var valueTemplateId = (Array.from($formValues.querySelectorAll('.valueTemplateId')).filter(e => e.checked == true).find(() => true) ?? null)?.value;
   if(valueTemplateId != null && valueTemplateId !== '')
     vals['templateId'] = valueTemplateId;
 
@@ -729,6 +768,13 @@ async function websocketClusterOrder(success) {
         if(success)
           success(json);
       }
+    });
+
+    window.eventBus.registerHandler('websocketClusterTemplate', function (error, message) {
+      document.querySelector('.Page_templateId').trigger('oninput');
+      document.querySelector('.Page_templateId_add').innerText = 'add a cluster template';
+      document.querySelector('.Page_templateId_add').classList.remove('w3-disabled');
+      document.querySelector('.Page_templateId_add').setAttribute('disabled', false);
     });
   }
 }

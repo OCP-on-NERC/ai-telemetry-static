@@ -24,6 +24,7 @@
 {%- block htmScriptsClusterOrderPage %}
     <script src="{{staticBaseUrl}}/js/en-us/search/cluster-order/ClusterOrder.js"></script>
     <script type="module" src="{{staticBaseUrl}}/js/en-us/search/cluster-order/ClusterOrderSearchPage.js"></script>
+    <script src="{{staticBaseUrl}}/js/en-us/search/cluster-template/ClusterTemplate.js"></script>
 {%- endblock htmScriptsClusterOrderPage %}
 {%- endblock htmScriptsPageLayout %}
 
@@ -60,6 +61,22 @@
 
         var id = {% if result.id is defined %}{{ result.id | tojson }}{% else %}null{% endif %};
 
+          function relate_templateId(event) {
+            suggestClusterOrderTemplateId(
+                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + event.target.value }
+                , { 'name': 'rows', 'value': '10' }
+                , { 'name': 'fl', 'value': 'classCanonicalName,id,pk,editPage,objectTitle' } ] : [{%- if result.templateId is defined %}{'name':'fq','value':'id:{{ result.templateId }}'}{%- else %}{%- endif %}]
+                , document.querySelector('#' + event.target.getAttribute('data-list'))
+                , null
+                , null
+                , true
+                , this
+                );
+          }
+          document.querySelector('#POST_templateId')?.addEventListener('input', relate_templateId);
+          document.querySelector('#POST_templateId')?.addEventListener('focus', relate_templateId);
+          document.querySelector('#PATCH_templateId')?.addEventListener('input', relate_templateId);
+          document.querySelector('#PATCH_templateId')?.addEventListener('focus', relate_templateId);
         if(id == null) {
           document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
             document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');

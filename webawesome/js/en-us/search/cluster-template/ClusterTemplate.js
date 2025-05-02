@@ -134,7 +134,7 @@ function searchClusterTemplateVals(filters, target, success, error) {
 
 async function getClusterTemplate(pk) {
   fetch(
-    '/en-us/api/cluster-template/' + title
+    '/en-us/api/cluster-template/' + id
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
     }).then(response => {
@@ -151,7 +151,7 @@ async function getClusterTemplate(pk) {
 
 // PATCH //
 
-async function patchClusterTemplate($formFilters, $formValues, target, title, success, error) {
+async function patchClusterTemplate($formFilters, $formValues, target, id, success, error) {
   var filters = patchClusterTemplateFilters($formFilters);
 
   var vals = {};
@@ -319,7 +319,7 @@ async function patchClusterTemplate($formFilters, $formValues, target, title, su
   if(removeEditPage != null && removeEditPage !== '')
     vals['removeEditPage'] = removeEditPage;
 
-  patchClusterTemplateVals(title == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'title:' + title}], vals, target, success, error);
+  patchClusterTemplateVals(id == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, target, success, error);
 }
 
 function patchClusterTemplateFilters($formFilters) {
@@ -558,7 +558,7 @@ function postClusterTemplateVals(vals, target, success, error) {
 
 // DELETE //
 
-async function deleteClusterTemplate(target, title, success, error) {
+async function deleteClusterTemplate(target, id, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
       addGlow(target);
@@ -574,7 +574,7 @@ async function deleteClusterTemplate(target, title, success, error) {
   }
 
   fetch(
-    '/en-us/api/cluster-template/' + encodeURIComponent(title)
+    '/en-us/api/cluster-template/' + encodeURIComponent(id)
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'DELETE'
@@ -590,7 +590,7 @@ async function deleteClusterTemplate(target, title, success, error) {
 
 // PUTImport //
 
-async function putimportClusterTemplate($formValues, target, title, success, error) {
+async function putimportClusterTemplate($formValues, target, id, success, error) {
   var json = $formValues.querySelector('.PUTImport_searchList')?.value;
   if(json != null && json !== '')
     putimportClusterTemplateVals(JSON.parse(json), target, success, error);
@@ -652,25 +652,25 @@ async function websocketClusterTemplate(success) {
 
     window.eventBus.registerHandler('websocketClusterTemplate', function (error, message) {
       var json = JSON.parse(message['body']);
-      var title = json['id'];
+      var id = json['id'];
       var pks = json['pks'];
       var empty = json['empty'];
       var numFound = parseInt(json['numFound']);
       var numPATCH = parseInt(json['numPATCH']);
       var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
       var $box = document.createElement('div');
-      $box.setAttribute('class', 'w3-quarter box-' + title + ' ');
-      $box.setAttribute('id', 'box-' + title);
+      $box.setAttribute('class', 'w3-quarter box-' + id + ' ');
+      $box.setAttribute('id', 'box-' + id);
       $box.setAttribute('data-numPATCH', numPATCH);
       var $margin = document.createElement('div');
       $margin.setAttribute('class', 'w3-margin ');
-      $margin.setAttribute('id', 'margin-' + title);
+      $margin.setAttribute('id', 'margin-' + id);
       var $card = document.createElement('div');
       $card.setAttribute('class', 'w3-card w3-white ');
-      $card.setAttribute('id', 'card-' + title);
+      $card.setAttribute('id', 'card-' + id);
       var $header = document.createElement('div');
       $header.setAttribute('class', 'w3-container fa- ');
-      $header.setAttribute('id', 'header-' + title);
+      $header.setAttribute('id', 'header-' + id);
       var iTemplate = document.createElement('template');
       iTemplate.innerHTML = '<i class="fa-regular fa-server"></i>';
       var $i = iTemplate.content;
@@ -679,19 +679,19 @@ async function websocketClusterTemplate(success) {
       $headerSpan.innerText = 'modify cluster templates in ' + json.timeRemaining;
       var $x = document.createElement('span');
       $x.setAttribute('class', 'w3-button w3-display-topright ');
-      $x.setAttribute('onclick', 'document.querySelector("#card-' + title + '");');
+      $x.setAttribute('onclick', 'document.querySelector("#card-' + id + '");');
       $x.classList.add("display-none");
-      $x.setAttribute('id', 'x-' + title);
+      $x.setAttribute('id', 'x-' + id);
       var $body = document.createElement('div');
       $body.setAttribute('class', 'w3-container w3-padding ');
-      $body.setAttribute('id', 'text-' + title);
+      $body.setAttribute('id', 'text-' + id);
       var $bar = document.createElement('div');
       $bar.setAttribute('class', 'w3-light-gray ');
-      $bar.setAttribute('id', 'bar-' + title);
+      $bar.setAttribute('id', 'bar-' + id);
       var $progress = document.createElement('div');
       $progress.setAttribute('class', 'w3- ');
       $progress.setAttribute('style', 'height: 24px; width: ' + percent + '; ');
-      $progress.setAttribute('id', 'progress-' + title);
+      $progress.setAttribute('id', 'progress-' + id);
       $progress.innerText = numPATCH + '/' + numFound;
       $card.append($header);
       $header.append($i);
@@ -703,11 +703,11 @@ async function websocketClusterTemplate(success) {
       $box.append($margin);
       $margin.append($card);
       if(numPATCH < numFound) {
-        var $old_box = document.querySelector('.box-' + title);
+        var $old_box = document.querySelector('.box-' + id);
       } else {
-        document.querySelector('.box-' + title)?.remove();
+        document.querySelector('.box-' + id)?.remove();
       }
-      if(title) {
+      if(id) {
         if(success)
           success(json);
       }
@@ -715,12 +715,12 @@ async function websocketClusterTemplate(success) {
   }
 }
 async function websocketClusterTemplateInner(apiRequest) {
-  var title = apiRequest['id'];
+  var id = apiRequest['id'];
   var classes = apiRequest['classes'];
   var vars = apiRequest['vars'];
   var empty = apiRequest['empty'];
 
-  if(title != null && vars.length > 0) {
+  if(id != null && vars.length > 0) {
     var queryParams = "?" + Array.from(document.querySelectorAll(".pageSearchVal")).filter(elem => elem.innerText.length > 0).map(elem => elem.innerText).join("&");
     var uri = location.pathname + queryParams;
     fetch(uri).then(response => {
@@ -794,7 +794,7 @@ async function websocketClusterTemplateInner(apiRequest) {
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
 
-        jsWebsocketClusterTemplate(title, vars, $response);
+        jsWebsocketClusterTemplate(id, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
         window.listClusterTemplate = JSON.parse($response.querySelector('.pageForm .listClusterTemplate')?.value);
 
