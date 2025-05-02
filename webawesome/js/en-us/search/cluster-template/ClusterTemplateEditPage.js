@@ -16,7 +16,7 @@ Promise.all([
               var t = moment(t3);
               if(t) {
                 var s = t.tz(timeZone).format('YYYY-MM-DDTHH:mm:ss.000') + '[' + timeZone + ']';
-                patchClusterTemplateVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'title:' + event.currentTarget.getAttribute('data-title') }]
+                patchClusterTemplateVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
                     , 'setCreated', s
                     , event.currentTarget
                     , function(response, target) { addGlow(target); }
@@ -40,7 +40,7 @@ Promise.all([
             if(valid) {
               var confirmResponse = confirm('Are you sure you want to archive that?'); 
               if(confirmResponse) { 
-                patchClusterTemplateVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'title:' + event.currentTarget.getAttribute('data-title') }]
+                patchClusterTemplateVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
                     , 'setArchived', !(event.currentTarget.getAttribute('data-val') === 'true')
                     , event.currentTarget
                     , function(response, target) { addGlow(target); }
@@ -62,7 +62,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_id');
             const valid = form.checkValidity();
             if(valid) {
-              patchClusterTemplateVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'title:' + event.currentTarget.getAttribute('data-title') }]
+              patchClusterTemplateVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
                   , 'setId', event.currentTarget.value
                   , event.currentTarget
                   , function(response, target) { addGlow(target); }
@@ -83,7 +83,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_title');
             const valid = form.checkValidity();
             if(valid) {
-              patchClusterTemplateVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'title:' + event.currentTarget.getAttribute('data-title') }]
+              patchClusterTemplateVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
                   , 'setTitle', event.currentTarget.value
                   , event.currentTarget
                   , function(response, target) { addGlow(target); }
@@ -104,7 +104,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_description');
             const valid = form.checkValidity();
             if(valid) {
-              patchClusterTemplateVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'title:' + event.currentTarget.getAttribute('data-title') }]
+              patchClusterTemplateVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
                   , 'setDescription', event.currentTarget.value
                   , event.currentTarget
                   , function(response, target) { addGlow(target); }
@@ -125,7 +125,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_parameters');
             const valid = form.checkValidity();
             if(valid) {
-              patchClusterTemplateVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'title:' + event.currentTarget.getAttribute('data-title') }]
+              patchClusterTemplateVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
                   , 'setParameters', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
                   , event.currentTarget
                   , function(response, target) { addGlow(target); }
@@ -146,7 +146,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_sessionId');
             const valid = form.checkValidity();
             if(valid) {
-              patchClusterTemplateVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'title:' + event.currentTarget.getAttribute('data-title') }]
+              patchClusterTemplateVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
                   , 'setSessionId', event.currentTarget.value
                   , event.currentTarget
                   , function(response, target) { addGlow(target); }
@@ -167,7 +167,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_userKey');
             const valid = form.checkValidity();
             if(valid) {
-              patchClusterTemplateVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'title:' + event.currentTarget.getAttribute('data-title') }]
+              patchClusterTemplateVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
                   , 'setUserKey', event.currentTarget.value
                   , event.currentTarget
                   , function(response, target) { addGlow(target); }
@@ -188,7 +188,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_objectTitle');
             const valid = form.checkValidity();
             if(valid) {
-              patchClusterTemplateVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'title:' + event.currentTarget.getAttribute('data-title') }]
+              patchClusterTemplateVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
                   , 'setObjectTitle', event.currentTarget.value
                   , event.currentTarget
                   , function(response, target) { addGlow(target); }
@@ -209,7 +209,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_displayPage');
             const valid = form.checkValidity();
             if(valid) {
-              patchClusterTemplateVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'title:' + event.currentTarget.getAttribute('data-title') }]
+              patchClusterTemplateVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
                   , 'setDisplayPage', event.currentTarget.value
                   , event.currentTarget
                   , function(response, target) { addGlow(target); }

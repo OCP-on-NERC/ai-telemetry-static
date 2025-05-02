@@ -204,7 +204,7 @@ The primary key of this object in the database"
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_siteTheme">
   {%- endif %}
-                  <wa-radio-group
+                  <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] site theme"
                       label="site theme"
@@ -227,10 +227,7 @@ The site theme, either light or dark. "
   {%- if "Page" == classApiMethodMethod %}
                       value="{{result.siteTheme | e }}"
   {%- endif %}
-                      >
-                    <wa-radio value="light">Light</wa-radio>
-                    <wa-radio value="dark">Dark</wa-radio>
-                  </wa-radio-group>
+                      ></wa-input>
 
   {%- if 'Page' == classApiMethodMethod %}
                 </form>
@@ -244,7 +241,7 @@ The site theme, either light or dark. "
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_webComponentsTheme">
   {%- endif %}
-                  <wa-radio-group
+                  <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] web components theme"
                       label="web components theme"
@@ -267,19 +264,7 @@ The web components theme for the site. "
   {%- if "Page" == classApiMethodMethod %}
                       value="{{result.webComponentsTheme | e }}"
   {%- endif %}
-                      >
-                    <wa-radio value="default">Default&mdash;Your trusty companion, like a perfectly broken-in pair of jeans.</wa-radio>
-                    <wa-radio value="classic">Classic&mdash;Timeless elegance that never goes out of style.</wa-radio>
-                    <wa-radio value="awesome">Awesome&mdash;Punchy and vibrant, the rockstar of themes.</wa-radio>
-                    <wa-radio value="active">Active&mdash;Energetic and tactile, always in motion.</wa-radio>
-                    <wa-radio value="brutalist">Brutalist&mdash;Sharp, square, and unapologetically bold.</wa-radio>
-                    <wa-radio value="glossy">Glossy&mdash;Bustling with plenty of luster and shine.</wa-radio>
-                    <wa-radio value="matter">Matter&mdash;Digital design inspired by the real world.</wa-radio>
-                    <wa-radio value="mellow">Mellow&mdash;Soft and soothing, like a lazy Sunday morning.</wa-radio>
-                    <wa-radio value="playful">Playful&mdash;Cheerful and engaging, like a playground on screen.</wa-radio>
-                    <wa-radio value="premium">Premium&mdash;The ultimate in sophistication and style.</wa-radio>
-                    <wa-radio value="tailspin">Tailspin&mdash;Like a bird in flight, guiding you from there to here.</wa-radio>
-                  </wa-radio-group>
+                      ></wa-input>
 
   {%- if 'Page' == classApiMethodMethod %}
                 </form>

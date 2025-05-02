@@ -106,10 +106,10 @@ Promise.all([
   document.querySelector('#htmButton_deleteClusterTemplate')?.addEventListener('click', (event) => {
     var confirmResponse = confirm('Are you sure you want to delete that?'); 
     if(confirmResponse) { 
-      var title =  event.currentTarget.getAttribute('data-title');
+      var id =  event.currentTarget.getAttribute('data-id');
       deleteClusterTemplate(
           event.currentTarget
-          , title
+          , id
           , function(response, target) { addGlow(target); }
           , function(response, target) { addError(target); }
           );

@@ -78,27 +78,6 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH templateId
-          document.querySelector('#Page_templateId')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_templateId');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchClusterOrderVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
-                  , 'setTemplateId', event.currentTarget.value
-                  , event.currentTarget
-                  , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_templateId')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_templateId')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_templateId');
-            const valid = form.reportValidity();
-          });
-
           // PATCH state
           document.querySelector('#Page_state')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_state');

@@ -24,6 +24,7 @@
     <script src="{{staticBaseUrl}}/js/en-us/search/cluster-order/ClusterOrder.js"></script>
     <script type="module" src="{{staticBaseUrl}}/js/en-us/search/cluster-order/ClusterOrderSearchPage.js"></script>
     <script type="module" src="{{staticBaseUrl}}/js/en-us/search/cluster-order/ClusterOrderEditPage.js"></script>
+    <script src="{{staticBaseUrl}}/js/en-us/search/cluster-template/ClusterTemplate.js"></script>
 {%- endblock htmScriptsClusterOrderPage %}
 {%- endblock htmScriptsPageLayout %}
 
@@ -78,6 +79,32 @@
           if(o)
             window.result = JSON.parse(o);
         {% if result.id is defined %}
+          function relate_templateId(event) {
+            suggestClusterOrderTemplateId(
+                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + event.target.value }
+                , { 'name': 'rows', 'value': '10' }
+                , { 'name': 'fl', 'value': 'classCanonicalName,id,pk,editPage,objectTitle' } ] : [{%- if result.templateId is defined %}{'name':'fq','value':'id:{{ result.templateId }}'}{%- else %}{%- endif %}]
+                , document.querySelector('#' + event.target.getAttribute('data-list'))
+                , window.result.id
+                , window.result.templateId
+                , true
+                );
+          }
+          document.querySelector('#POST_templateId')?.addEventListener('input', relate_templateId);
+          document.querySelector('#POST_templateId')?.addEventListener('focus', relate_templateId);
+          document.querySelector('#PATCH_templateId')?.addEventListener('input', relate_templateId);
+          document.querySelector('#PATCH_templateId')?.addEventListener('focus', relate_templateId);
+          document.querySelector('#Page_templateId')?.addEventListener('input', relate_templateId);
+          document.querySelector('#Page_templateId')?.addEventListener('focus', relate_templateId);
+          {% if "PATCH" in scopes %}
+          suggestClusterOrderTemplateId([{'name':'fq','value':'id:' + window.result.templateId}], document.querySelector('#listClusterOrderTemplateId_Page'), window.result.id, window.result.templateId, true);
+          {% else %}
+          {% if "GET" in scopes %}
+          suggestClusterOrderTemplateId([{'name':'fq','value':'id:' + window.result.templateId}], document.querySelector('#listClusterOrderTemplateId_Page'), window.result.id, window.result.templateId, true);
+          {% else %}
+          suggestClusterOrderTemplateId([{'name':'fq','value':'id:' + window.result.templateId}], document.querySelector('#listClusterOrderTemplateId_Page'), window.result.id, window.result.templateId, false);
+          {% endif %}
+          {% endif %}
         {% endif %}
         }
         var l = document.querySelector('.pageForm .listClusterOrder')?.value;

@@ -10,15 +10,15 @@
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
   {%- if "Page" == classApiMethodMethod %}
-                      data-title={{ result.title | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_pk setPk classClusterTemplate inputClusterTemplate{{ result.title }}Pk "
+                      data-id={{ result.id | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classClusterTemplate inputClusterTemplate{{ result.id }}Pk "
                       name="setPk"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_pk setPk classClusterTemplate inputClusterTemplate{{ result.title }}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classClusterTemplate inputClusterTemplate{{ result.id }}Pk "
                       name="setPk"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_pk valuePk classClusterTemplate inputClusterTemplate{{ result.title }}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk valuePk classClusterTemplate inputClusterTemplate{{ result.id }}Pk "
                       name="pk"
     {%- endif %}
   {%- endif %}
@@ -44,14 +44,14 @@ The primary key of this object in the database"
                       readonly
                       hint="A created timestamp for this record in the database"
                       label="created"
-                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classClusterTemplate inputClusterTemplate{{ result.title }}Created "
+                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classClusterTemplate inputClusterTemplate{{ result.id }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
                       value="{%- if result.created is defined %}{{ formatZonedDateTime(result.created, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
-                      data-title={{ result.title | tojson }}
+                      data-id={{ result.id | tojson }}
                       >
                   </wa-input>
   {%- if 'Page' == classApiMethodMethod %}
@@ -71,14 +71,14 @@ The primary key of this object in the database"
                       readonly
                       hint="A modified timestamp for this record in the database"
                       label="modified"
-                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classClusterTemplate inputClusterTemplate{{ result.title }}Modified "
+                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classClusterTemplate inputClusterTemplate{{ result.id }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
                       value="{%- if result.modified is defined %}{{ formatZonedDateTime(result.modified, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
-                      data-title={{ result.title | tojson }}
+                      data-id={{ result.id | tojson }}
                       >
                   </wa-input>
   {%- if 'Page' == classApiMethodMethod %}
@@ -99,9 +99,9 @@ The primary key of this object in the database"
                       placeholder="archive"
                       label="archive"
                       hint="For archiving this record"
-                      class="label-on-left {{classApiMethodMethod}}_archived classClusterTemplate inputClusterTemplate{{ result.title }}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classClusterTemplate inputClusterTemplate{{ result.id }}Archived "
                       name="setArchived"
-                      data-title={{ result.title | tojson }}
+                      data-id={{ result.id | tojson }}
                       data-val="{{ result.archived | e }}"
                       >archive</wa-button>
   {%- else %}
@@ -118,14 +118,14 @@ The primary key of this object in the database"
                       label="archive"
                       hint="For archiving this record"
   {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_archived classClusterTemplate inputClusterTemplate{{ result.title }}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classClusterTemplate inputClusterTemplate{{ result.id }}Archived "
                       name="setArchived"
   {%- else %}
     {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_archived classClusterTemplate inputClusterTemplate{{ result.title }}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classClusterTemplate inputClusterTemplate{{ result.id }}Archived "
                       name="setArchived"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classClusterTemplate inputClusterTemplate{{ result.title }}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classClusterTemplate inputClusterTemplate{{ result.id }}Archived "
                       name="setArchived"
     {%- endif %}
   {%- endif %}
@@ -133,7 +133,7 @@ The primary key of this object in the database"
     {%- if result.archived == true %}
                       checked
     {%- endif %}
-                      data-title={{ result.title | tojson }}
+                      data-id={{ result.id | tojson }}
                       >archive</wa-checkbox>
   {%- else %}
                       >
@@ -163,15 +163,15 @@ The primary key of this object in the database"
 The ID of this template"
                       id="{{classApiMethodMethod}}_id"
   {%- if "Page" == classApiMethodMethod %}
-                      data-title={{ result.title | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_id setId classClusterTemplate inputClusterTemplate{{ result.title }}Id "
+                      data-id={{ result.id | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_id setId classClusterTemplate inputClusterTemplate{{ result.id }}Id "
                       name="setId"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_id setId classClusterTemplate inputClusterTemplate{{ result.title }}Id "
+                      class="label-on-left {{classApiMethodMethod}}_id setId classClusterTemplate inputClusterTemplate{{ result.id }}Id "
                       name="setId"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_id valueId classClusterTemplate inputClusterTemplate{{ result.title }}Id "
+                      class="label-on-left {{classApiMethodMethod}}_id valueId classClusterTemplate inputClusterTemplate{{ result.id }}Id "
                       name="id"
     {%- endif %}
   {%- endif %}
@@ -200,15 +200,15 @@ The ID of this template"
 The title of this template"
                       id="{{classApiMethodMethod}}_title"
   {%- if "Page" == classApiMethodMethod %}
-                      data-title={{ result.title | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_title setTitle classClusterTemplate inputClusterTemplate{{ result.title }}Title "
+                      data-id={{ result.id | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_title setTitle classClusterTemplate inputClusterTemplate{{ result.id }}Title "
                       name="setTitle"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_title setTitle classClusterTemplate inputClusterTemplate{{ result.title }}Title "
+                      class="label-on-left {{classApiMethodMethod}}_title setTitle classClusterTemplate inputClusterTemplate{{ result.id }}Title "
                       name="setTitle"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_title valueTitle classClusterTemplate inputClusterTemplate{{ result.title }}Title "
+                      class="label-on-left {{classApiMethodMethod}}_title valueTitle classClusterTemplate inputClusterTemplate{{ result.id }}Title "
                       name="title"
     {%- endif %}
   {%- endif %}
@@ -237,15 +237,15 @@ The title of this template"
 The description of this template"
                       id="{{classApiMethodMethod}}_description"
   {%- if "Page" == classApiMethodMethod %}
-                      data-title={{ result.title | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classClusterTemplate inputClusterTemplate{{ result.title }}Description "
+                      data-id={{ result.id | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classClusterTemplate inputClusterTemplate{{ result.id }}Description "
                       name="setDescription"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classClusterTemplate inputClusterTemplate{{ result.title }}Description "
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classClusterTemplate inputClusterTemplate{{ result.id }}Description "
                       name="setDescription"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classClusterTemplate inputClusterTemplate{{ result.title }}Description "
+                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classClusterTemplate inputClusterTemplate{{ result.id }}Description "
                       name="description"
     {%- endif %}
   {%- endif %}
@@ -274,15 +274,15 @@ The description of this template"
 The parameters of this template"
                       id="{{classApiMethodMethod}}_parameters"
   {%- if "Page" == classApiMethodMethod %}
-                      data-title={{ result.title | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_parameters setParameters classClusterTemplate inputClusterTemplate{{ result.title }}Parameters "
+                      data-id={{ result.id | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_parameters setParameters classClusterTemplate inputClusterTemplate{{ result.id }}Parameters "
                       name="setParameters"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_parameters setParameters classClusterTemplate inputClusterTemplate{{ result.title }}Parameters "
+                      class="label-on-left {{classApiMethodMethod}}_parameters setParameters classClusterTemplate inputClusterTemplate{{ result.id }}Parameters "
                       name="setParameters"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_parameters valueParameters classClusterTemplate inputClusterTemplate{{ result.title }}Parameters "
+                      class="label-on-left {{classApiMethodMethod}}_parameters valueParameters classClusterTemplate inputClusterTemplate{{ result.id }}Parameters "
                       name="parameters"
     {%- endif %}
   {%- endif %}
@@ -300,7 +300,7 @@ The parameters of this template"
                             {{ inputParametersClusterTemplatePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
 
-{%- macro htmButton_patchClusterTemplate() %}<wa-button variant="brand" id="htmButton_patchClusterTemplate" data-title={{ result.title | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
+{%- macro htmButton_patchClusterTemplate() %}<wa-button variant="brand" id="htmButton_patchClusterTemplate" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchClusterTemplate() %}
           <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchClusterTemplate">Modify cluster template</wa-button>
@@ -410,7 +410,7 @@ The parameters of this template"
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_postClusterTemplate() %}<wa-button variant="brand" id="htmButton_postClusterTemplate" data-title={{ result.title | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
+{%- macro htmButton_postClusterTemplate() %}<wa-button variant="brand" id="htmButton_postClusterTemplate" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postClusterTemplate() %}
           <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postClusterTemplate">Create a cluster template</wa-button>
@@ -521,7 +521,7 @@ The parameters of this template"
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_deleteClusterTemplate() %}<wa-button variant="brand" id="htmButton_deleteClusterTemplate" data-title={{ result.title | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
+{%- macro htmButton_deleteClusterTemplate() %}<wa-button variant="brand" id="htmButton_deleteClusterTemplate" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteClusterTemplate() %}
           <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deleteClusterTemplate">Delete cluster template</wa-button>
@@ -535,7 +535,7 @@ The parameters of this template"
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_putimportClusterTemplate() %}<wa-button variant="brand" id="htmButton_putimportClusterTemplate" data-title={{ result.title | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
+{%- macro htmButton_putimportClusterTemplate() %}<wa-button variant="brand" id="htmButton_putimportClusterTemplate" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportClusterTemplate() %}
           <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_putimportClusterTemplate">Import cluster templates</wa-button>
@@ -548,7 +548,7 @@ The parameters of this template"
               <wa-textarea
                   class="PUTImport_searchList "
                   style="height: 300px; "
-                  placeholder="{ 'searchList': [ { 'title': ... , 'saves': [ ... ] }, ... ] }"
+                  placeholder="{ 'searchList': [ { 'id': ... , 'saves': [ ... ] }, ... ] }"
                   >
               </wa-textarea>
             </div>
@@ -666,7 +666,7 @@ The parameters of this template"
         </div>
 {%- endmacro %}
 
-{%- macro htmButton_deletefilterClusterTemplate() %}<wa-button variant="brand" id="htmButton_deletefilterClusterTemplate" data-title={{ result.title | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
+{%- macro htmButton_deletefilterClusterTemplate() %}<wa-button variant="brand" id="htmButton_deletefilterClusterTemplate" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterClusterTemplate() %}
           <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deletefilterClusterTemplate">Delete cluster template</wa-button>
@@ -685,14 +685,14 @@ The parameters of this template"
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
               <wa-button variant="brand" id="refreshThisClusterTemplateGenPage"
-                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'title:{{ result.title }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisClusterTemplateGenPage')); }, function() { addError(document.querySelector('#refreshThisClusterTemplateGenPage')); }); return false; ">
+                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'id:{{ result.id }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisClusterTemplateGenPage')); }, function() { addError(document.querySelector('#refreshThisClusterTemplateGenPage')); }); return false; ">
                 <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
                 refresh
               </wa-button>
     {% endif %}
     {% if resultCount > 0 %}
-              <wa-button variant="brand" id="refreshAllClusterTemplateGenPage{{ result.title | e }}"
-                   onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllClusterTemplateGenPage{{ result.title | e }}')); }, function() { addError(document.querySelector('#refreshAllClusterTemplateGenPage{{ result.title | e }}')); }); "
+              <wa-button variant="brand" id="refreshAllClusterTemplateGenPage{{ result.id | e }}"
+                   onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllClusterTemplateGenPage{{ result.id | e }}')); }, function() { addError(document.querySelector('#refreshAllClusterTemplateGenPage{{ result.id | e }}')); }); "
                   >
                 <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
                 Refresh all 
