@@ -47,6 +47,14 @@ function searchSiteUserFilters($formFilters) {
     if(filterSeeArchived != null && filterSeeArchived === true)
       filters.push({ name: 'fq', value: 'seeArchived:' + filterSeeArchived });
 
+    var filterSiteTheme = $formFilters.querySelector('.valueSiteTheme')?.value;
+    if(filterSiteTheme != null && filterSiteTheme !== '')
+      filters.push({ name: 'fq', value: 'siteTheme:' + filterSiteTheme });
+
+    var filterWebComponentsTheme = $formFilters.querySelector('.valueWebComponentsTheme')?.value;
+    if(filterWebComponentsTheme != null && filterWebComponentsTheme !== '')
+      filters.push({ name: 'fq', value: 'webComponentsTheme:' + filterWebComponentsTheme });
+
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -255,6 +263,30 @@ async function patchSiteUser($formFilters, $formValues, target, userId, success,
   if(removeSeeArchived != null && removeSeeArchived !== '')
     vals['removeSeeArchived'] = removeSeeArchived;
 
+  var valueSiteTheme = $formValues.querySelector('.valueSiteTheme')?.value;
+  var removeSiteTheme = $formValues.querySelector('.removeSiteTheme')?.value === 'true';
+  var setSiteTheme = removeSiteTheme ? null : $formValues.querySelector('.setSiteTheme')?.value;
+  var addSiteTheme = $formValues.querySelector('.addSiteTheme')?.value;
+  if(removeSiteTheme || setSiteTheme != null && setSiteTheme !== '')
+    vals['setSiteTheme'] = setSiteTheme;
+  if(addSiteTheme != null && addSiteTheme !== '')
+    vals['addSiteTheme'] = addSiteTheme;
+  var removeSiteTheme = $formValues.querySelector('.removeSiteTheme')?.value;
+  if(removeSiteTheme != null && removeSiteTheme !== '')
+    vals['removeSiteTheme'] = removeSiteTheme;
+
+  var valueWebComponentsTheme = $formValues.querySelector('.valueWebComponentsTheme')?.value;
+  var removeWebComponentsTheme = $formValues.querySelector('.removeWebComponentsTheme')?.value === 'true';
+  var setWebComponentsTheme = removeWebComponentsTheme ? null : $formValues.querySelector('.setWebComponentsTheme')?.value;
+  var addWebComponentsTheme = $formValues.querySelector('.addWebComponentsTheme')?.value;
+  if(removeWebComponentsTheme || setWebComponentsTheme != null && setWebComponentsTheme !== '')
+    vals['setWebComponentsTheme'] = setWebComponentsTheme;
+  if(addWebComponentsTheme != null && addWebComponentsTheme !== '')
+    vals['addWebComponentsTheme'] = addWebComponentsTheme;
+  var removeWebComponentsTheme = $formValues.querySelector('.removeWebComponentsTheme')?.value;
+  if(removeWebComponentsTheme != null && removeWebComponentsTheme !== '')
+    vals['removeWebComponentsTheme'] = removeWebComponentsTheme;
+
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   var removeSessionId = $formValues.querySelector('.removeSessionId')?.value === 'true';
   var setSessionId = removeSessionId ? null : $formValues.querySelector('.setSessionId')?.value;
@@ -439,6 +471,14 @@ function patchSiteUserFilters($formFilters) {
     if(filterSeeArchived != null && filterSeeArchived === true)
       filters.push({ name: 'fq', value: 'seeArchived:' + filterSeeArchived });
 
+    var filterSiteTheme = $formFilters.querySelector('.valueSiteTheme')?.value;
+    if(filterSiteTheme != null && filterSiteTheme !== '')
+      filters.push({ name: 'fq', value: 'siteTheme:' + filterSiteTheme });
+
+    var filterWebComponentsTheme = $formFilters.querySelector('.valueWebComponentsTheme')?.value;
+    if(filterWebComponentsTheme != null && filterWebComponentsTheme !== '')
+      filters.push({ name: 'fq', value: 'webComponentsTheme:' + filterWebComponentsTheme });
+
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -592,6 +632,14 @@ async function postSiteUser($formValues, target, success, error) {
   var valueSeeArchived = $formValues.querySelector('.valueSeeArchived')?.value;
   if(valueSeeArchived != null && valueSeeArchived !== '')
     vals['seeArchived'] = valueSeeArchived == 'true';
+
+  var valueSiteTheme = $formValues.querySelector('.valueSiteTheme')?.value;
+  if(valueSiteTheme != null && valueSiteTheme !== '')
+    vals['siteTheme'] = valueSiteTheme;
+
+  var valueWebComponentsTheme = $formValues.querySelector('.valueWebComponentsTheme')?.value;
+  if(valueWebComponentsTheme != null && valueWebComponentsTheme !== '')
+    vals['webComponentsTheme'] = valueWebComponentsTheme;
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   if(valueSessionId != null && valueSessionId !== '')
@@ -762,6 +810,8 @@ async function websocketSiteUserInner(apiRequest) {
         var inputModified = null;
         var inputArchived = null;
         var inputSeeArchived = null;
+        var inputSiteTheme = null;
+        var inputWebComponentsTheme = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -795,6 +845,10 @@ async function websocketSiteUserInner(apiRequest) {
           inputArchived = $response.querySelector('.Page_archived');
         if(vars.includes('seeArchived'))
           inputSeeArchived = $response.querySelector('.Page_seeArchived');
+        if(vars.includes('siteTheme'))
+          inputSiteTheme = $response.querySelector('.Page_siteTheme');
+        if(vars.includes('webComponentsTheme'))
+          inputWebComponentsTheme = $response.querySelector('.Page_webComponentsTheme');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -893,6 +947,26 @@ async function websocketSiteUserInner(apiRequest) {
               item.textContent = inputSeeArchived.textContent;
           });
           addGlow(document.querySelector('.Page_seeArchived'));
+        }
+
+        if(inputSiteTheme) {
+          document.querySelectorAll('.Page_siteTheme').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSiteTheme.getAttribute('value');
+            else
+              item.textContent = inputSiteTheme.textContent;
+          });
+          addGlow(document.querySelector('.Page_siteTheme'));
+        }
+
+        if(inputWebComponentsTheme) {
+          document.querySelectorAll('.Page_webComponentsTheme').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputWebComponentsTheme.getAttribute('value');
+            else
+              item.textContent = inputWebComponentsTheme.textContent;
+          });
+          addGlow(document.querySelector('.Page_webComponentsTheme'));
         }
 
         if(inputClassCanonicalName) {
