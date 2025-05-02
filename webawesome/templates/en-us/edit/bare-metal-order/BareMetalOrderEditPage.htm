@@ -1,1 +1,10 @@
 {% extends "en-us/edit/bare-metal-order/BareMetalOrderGenEditPage.htm" %}
+
+{%- block htmBodyStartBareMetalOrderPage %}
+{% if resultCount > 0 %}
+          <h1><a href="{{pageUri}}"><i class="fa-duotone fa-regular fa-share-nodes"></i> <span>bare metal orders</span></a></h1>
+{%- include en-us/search/bare-metal-order/BareMetalOrderSuggestedSearch.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/bare-metal-order/CustomBareMetalOrderSearchForm.htm %}
+{% endif %}
+{%- endblock htmBodyStartBareMetalOrderPage %}
