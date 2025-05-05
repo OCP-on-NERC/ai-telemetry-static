@@ -204,45 +204,24 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH offerId
-          document.querySelector('#Page_offerId')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_offerId');
+          // PATCH status
+          document.querySelector('#Page_status')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_status');
             const valid = form.checkValidity();
             if(valid) {
               patchBareMetalOrderVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + event.currentTarget.getAttribute('data-pk') }]
-                  , 'setOfferId', event.currentTarget.value
+                  , 'setStatus', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
           });
-          document.querySelector('#Page_offerId')?.addEventListener('focus', (event) => {
+          document.querySelector('#Page_status')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_offerId')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_offerId');
-            const valid = form.reportValidity();
-          });
-
-          // PATCH leaseId
-          document.querySelector('#Page_leaseId')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_leaseId');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchBareMetalOrderVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + event.currentTarget.getAttribute('data-pk') }]
-                  , 'setLeaseId', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_leaseId')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_leaseId')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_leaseId');
+          document.querySelector('#Page_status')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_status');
             const valid = form.reportValidity();
           });
 
