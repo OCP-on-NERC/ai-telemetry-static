@@ -1,0 +1,1142 @@
+{%- macro inputPkBareMetalOrderPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_pk">
+  {%- endif %}
+                  <wa-input
+                      readonly
+                      placeholder="[Long] primary key"
+                      label="primary key"
+                      hint="
+The primary key of this object in the database"
+                      id="{{classApiMethodMethod}}_pk"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-pk={{ result.pk | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classBareMetalOrder inputBareMetalOrder{{ result.pk }}Pk "
+                      name="setPk"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classBareMetalOrder inputBareMetalOrder{{ result.pk }}Pk "
+                      name="setPk"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_pk valuePk classBareMetalOrder inputBareMetalOrder{{ result.pk }}Pk "
+                      name="pk"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.pk | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmPkBareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputPkBareMetalOrderPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputCreatedBareMetalOrderPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_created">
+  {%- endif %}
+                  <wa-input
+                      type="text"
+                      readonly
+                      hint="A created timestamp for this record in the database"
+                      label="created"
+                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classBareMetalOrder inputBareMetalOrder{{ result.pk }}Created "
+                      placeholder="MM/dd/yyyy h:mm a '['VV']'"
+                      data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
+                      id="{{classApiMethodMethod}}_created"
+                      value="{%- if result.created is defined %}{{ formatZonedDateTime(result.created, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+  {%- if 'Page' == classApiMethodMethod %}
+  {%- endif %}
+                      data-pk={{ result.pk | tojson }}
+                      >
+                  </wa-input>
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmCreatedBareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputCreatedBareMetalOrderPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputModifiedBareMetalOrderPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_modified">
+  {%- endif %}
+                  <wa-input
+                      type="text"
+                      readonly
+                      hint="A modified timestamp for this record in the database"
+                      label="modified"
+                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classBareMetalOrder inputBareMetalOrder{{ result.pk }}Modified "
+                      placeholder="MM/dd/yyyy h:mm a '['VV']'"
+                      data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
+                      id="{{classApiMethodMethod}}_modified"
+                      value="{%- if result.modified is defined %}{{ formatZonedDateTime(result.modified, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+  {%- if 'Page' == classApiMethodMethod %}
+  {%- endif %}
+                      data-pk={{ result.pk | tojson }}
+                      >
+                  </wa-input>
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmModifiedBareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputModifiedBareMetalOrderPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputArchivedBareMetalOrderPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_archived">
+  {%- endif %}
+  {%- if 'Page' == classApiMethodMethod %}
+                  <wa-button variant="brand"
+                      id="{{classApiMethodMethod}}_archived"
+                      placeholder="archive"
+                      label="archive"
+                      hint="For archiving this record"
+                      class="label-on-left {{classApiMethodMethod}}_archived classBareMetalOrder inputBareMetalOrder{{ result.pk }}Archived "
+                      name="setArchived"
+                      data-pk={{ result.pk | tojson }}
+                      data-val="{{ result.archived | e }}"
+                      >archive</wa-button>
+  {%- else %}
+  {%- if 'Page' == classApiMethodMethod %}
+                  <wa-checkbox
+                      id="{{classApiMethodMethod}}_archived"
+                      value="true"
+  {%- else %}
+                  <wa-select
+                      id="{{classApiMethodMethod}}_archived"
+  {%- endif %}
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="archive"
+                      label="archive"
+                      hint="For archiving this record"
+  {%- if 'Page' == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_archived classBareMetalOrder inputBareMetalOrder{{ result.pk }}Archived "
+                      name="setArchived"
+  {%- else %}
+    {%- if 'Page' == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_archived classBareMetalOrder inputBareMetalOrder{{ result.pk }}Archived "
+                      name="setArchived"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classBareMetalOrder inputBareMetalOrder{{ result.pk }}Archived "
+                      name="setArchived"
+    {%- endif %}
+  {%- endif %}
+  {%- if 'Page' == classApiMethodMethod %}
+    {%- if result.archived == true %}
+                      checked
+    {%- endif %}
+                      data-pk={{ result.pk | tojson }}
+                      >archive</wa-checkbox>
+  {%- else %}
+                      >
+                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value="true">true</wa-option>
+                    <wa-option value="false">false</wa-option>
+                  </wa-select>
+  {%- endif %}
+  {%- endif %}
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmArchivedBareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputArchivedBareMetalOrderPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputDescriptionBareMetalOrderPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_description">
+  {%- endif %}
+                  <wa-textarea resize="auto"
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] bare metal order description"
+                      label="bare metal order description"
+                      hint="
+The description of this bare metal order"
+                      id="{{classApiMethodMethod}}_description"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-pk={{ result.pk | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classBareMetalOrder inputBareMetalOrder{{ result.pk }}Description "
+                      name="setDescription"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classBareMetalOrder inputBareMetalOrder{{ result.pk }}Description "
+                      name="setDescription"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classBareMetalOrder inputBareMetalOrder{{ result.pk }}Description "
+                      name="description"
+    {%- endif %}
+  {%- endif %}
+{%- if "Page" == classApiMethodMethod %}
+                      value="{{result.description | e }}"
+{%- endif %}
+                      >
+</wa-textarea>
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmDescriptionBareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputDescriptionBareMetalOrderPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputNetworkIdBareMetalOrderPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_networkId">
+  {%- endif %}
+  {%- if 'PUTCopy' == classApiMethodMethod %}
+                  <div>
+                    <wa-checkbox 
+                        id="{{classApiMethodMethod}}_networkId_clear"
+                        class="label-on-left classApiMethodMethod}}_networkId_clear networkId_clear "
+                        hint="clear"
+                        >
+                      clear
+                    </wa-checkbox>
+                  </div>
+  {%- endif %}
+                  <wa-input
+                      type="text"
+                      placeholder="bare metal network"
+                      label="bare metal network"
+                      hint="The bare metal network to use for this order. "
+                      class="label-on-left {{classApiMethodMethod}}_networkId valueObjectSuggest suggestNetworkId "
+                      name="setNetworkId"
+                      id="{{classApiMethodMethod}}_networkId"
+                      data-list="listBareMetalOrderNetworkId_{{classApiMethodMethod}}"
+                      autocomplete="off"
+                      value="{{result.networkId | e }}"
+                  >
+              </wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNetworkIdBareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                {{ inputNetworkIdBareMetalOrderPage(authForWrite=authForWrite, authForRead=authForRead) }}
+                <div class="label-on-left-ul-label ">
+                  <i class="{{ FONTAWESOME_STYLE }} fa-search "></i>
+                  relate a bare metal network to this bare metal order
+                </div>
+                <ul class="label-on-left-ul " id="listBareMetalOrderNetworkId_{{classApiMethodMethod}}">
+                </ul>
+                {%- if authForReadBool == true %}
+                {% if 'Page' == classApiMethodMethod %}
+                <div>
+                  <button
+                       id="{{classApiMethodMethod}}_networkId_add"
+                       onclick="this.classList.add('w3-disabled'); this.disabled = true; this.innerHTML = 'Sending…'; postBareMetalNetworkVals({ id: '{{ result.pk }}' }, this, function(response, target) { document.querySelector('#{{classApiMethodMethod}}_networkId_add').disabled = false; document.querySelector('#{{classApiMethodMethod}}_networkId_add').innerHTML = 'add a bare metal network'; }, this, function(response, target) { addError(document.querySelector('#{{classApiMethodMethod}}networkId')); });"
+                      >add a bare metal network</button>
+                  </div>
+                {%- endif %}
+                {%- endif %}
+{%- endmacro %}
+{%- macro inputNumberOfFc430BareMetalOrderPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, min=0, max=100) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_numberOfFc430">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Integer] number of fc430"
+                      label="number of fc430 ({{ max }} available)"
+                      type="number"
+                      min="{{ min }}"
+                      max="{{ max }}"
+                      hint="
+The number of fc430 nodes to request for this order. "
+                      id="{{classApiMethodMethod}}_numberOfFc430"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-pk={{ result.pk | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_numberOfFc430 setNumberOfFc430 classBareMetalOrder inputBareMetalOrder{{ result.pk }}NumberOfFc430 "
+                      name="setNumberOfFc430"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_numberOfFc430 setNumberOfFc430 classBareMetalOrder inputBareMetalOrder{{ result.pk }}NumberOfFc430 "
+                      name="setNumberOfFc430"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_numberOfFc430 valueNumberOfFc430 classBareMetalOrder inputBareMetalOrder{{ result.pk }}NumberOfFc430 "
+                      name="numberOfFc430"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.numberOfFc430 | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNumberOfFc430BareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false, min=0, max=100) %}
+                            {{ inputNumberOfFc430BareMetalOrderPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, min=min, max=max) }}
+{%- endmacro %}
+{%- macro inputNumberOfFc830BareMetalOrderPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, min=0, max=100) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_numberOfFc830">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Integer] number of fc830"
+                      label="number of fc830 ({{ max }} available)"
+                      type="number"
+                      min="{{ min }}"
+                      max="{{ max }}"
+                      hint="
+The number of fc830 nodes to request for this order. "
+                      id="{{classApiMethodMethod}}_numberOfFc830"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-pk={{ result.pk | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_numberOfFc830 setNumberOfFc830 classBareMetalOrder inputBareMetalOrder{{ result.pk }}NumberOfFc830 "
+                      name="setNumberOfFc830"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_numberOfFc830 setNumberOfFc830 classBareMetalOrder inputBareMetalOrder{{ result.pk }}NumberOfFc830 "
+                      name="setNumberOfFc830"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_numberOfFc830 valueNumberOfFc830 classBareMetalOrder inputBareMetalOrder{{ result.pk }}NumberOfFc830 "
+                      name="numberOfFc830"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.numberOfFc830 | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNumberOfFc830BareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false, min=0, max=100) %}
+                            {{ inputNumberOfFc830BareMetalOrderPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, min=min, max=max) }}
+{%- endmacro %}
+{%- macro inputNumberOfR730xdBareMetalOrderPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, min=0, max=100) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_numberOfR730xd">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Integer] number of r730xd"
+                      label="number of r730xd ({{ max }} available)"
+                      type="number"
+                      min="{{ min }}"
+                      max="{{ max }}"
+                      hint="
+The number of r730xd nodes to request for this order. "
+                      id="{{classApiMethodMethod}}_numberOfR730xd"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-pk={{ result.pk | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_numberOfR730xd setNumberOfR730xd classBareMetalOrder inputBareMetalOrder{{ result.pk }}NumberOfR730xd "
+                      name="setNumberOfR730xd"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_numberOfR730xd setNumberOfR730xd classBareMetalOrder inputBareMetalOrder{{ result.pk }}NumberOfR730xd "
+                      name="setNumberOfR730xd"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_numberOfR730xd valueNumberOfR730xd classBareMetalOrder inputBareMetalOrder{{ result.pk }}NumberOfR730xd "
+                      name="numberOfR730xd"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.numberOfR730xd | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNumberOfR730xdBareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false, min=0, max=100) %}
+                            {{ inputNumberOfR730xdBareMetalOrderPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, min=min, max=max) }}
+{%- endmacro %}
+{%- macro inputNumberOfWhiteboxFlax1BareMetalOrderPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, min=0, max=100) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_numberOfWhiteboxFlax1">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Integer] number of whitebox-flax-1"
+                      label="number of whitebox-flax-1 ({{ max }} available)"
+                      type="number"
+                      min="{{ min }}"
+                      max="{{ max }}"
+                      hint="
+The number of whitebox-flax-1 nodes to request for this order. "
+                      id="{{classApiMethodMethod}}_numberOfWhiteboxFlax1"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-pk={{ result.pk | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_numberOfWhiteboxFlax1 setNumberOfWhiteboxFlax1 classBareMetalOrder inputBareMetalOrder{{ result.pk }}NumberOfWhiteboxFlax1 "
+                      name="setNumberOfWhiteboxFlax1"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_numberOfWhiteboxFlax1 setNumberOfWhiteboxFlax1 classBareMetalOrder inputBareMetalOrder{{ result.pk }}NumberOfWhiteboxFlax1 "
+                      name="setNumberOfWhiteboxFlax1"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_numberOfWhiteboxFlax1 valueNumberOfWhiteboxFlax1 classBareMetalOrder inputBareMetalOrder{{ result.pk }}NumberOfWhiteboxFlax1 "
+                      name="numberOfWhiteboxFlax1"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.numberOfWhiteboxFlax1 | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNumberOfWhiteboxFlax1BareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false, min=0, max=100) %}
+                            {{ inputNumberOfWhiteboxFlax1BareMetalOrderPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, min=min, max=max) }}
+{%- endmacro %}
+{%- macro inputNumberOfLenovoSd650nv2A100BareMetalOrderPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, min=0, max=100) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_numberOfLenovoSd650nv2A100">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Integer] number of lenovo-sd650nv2-a100"
+                      label="number of lenovo-sd650nv2-a100 ({{ max }} available)"
+                      type="number"
+                      min="{{ min }}"
+                      max="{{ max }}"
+                      hint="
+The number of lenovo-sd650nv2-a100 nodes to request for this order. "
+                      id="{{classApiMethodMethod}}_numberOfLenovoSd650nv2A100"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-pk={{ result.pk | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_numberOfLenovoSd650nv2A100 setNumberOfLenovoSd650nv2A100 classBareMetalOrder inputBareMetalOrder{{ result.pk }}NumberOfLenovoSd650nv2A100 "
+                      name="setNumberOfLenovoSd650nv2A100"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_numberOfLenovoSd650nv2A100 setNumberOfLenovoSd650nv2A100 classBareMetalOrder inputBareMetalOrder{{ result.pk }}NumberOfLenovoSd650nv2A100 "
+                      name="setNumberOfLenovoSd650nv2A100"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_numberOfLenovoSd650nv2A100 valueNumberOfLenovoSd650nv2A100 classBareMetalOrder inputBareMetalOrder{{ result.pk }}NumberOfLenovoSd650nv2A100 "
+                      name="numberOfLenovoSd650nv2A100"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.numberOfLenovoSd650nv2A100 | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNumberOfLenovoSd650nv2A100BareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false, min=0, max=100) %}
+                            {{ inputNumberOfLenovoSd650nv2A100BareMetalOrderPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, min=min, max=max) }}
+{%- endmacro %}
+{%- macro inputNumberOfLenovoSd665nv3H100BareMetalOrderPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, min=0, max=100) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_numberOfLenovoSd665nv3H100">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Integer] number of lenovo-sd665nv3-h100"
+                      label="number of lenovo-sd665nv3-h100 ({{ max }} available)"
+                      type="number"
+                      min="{{ min }}"
+                      max="{{ max }}"
+                      hint="
+The number of lenovo-sd665nv3-h100 nodes to request for this order. "
+                      id="{{classApiMethodMethod}}_numberOfLenovoSd665nv3H100"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-pk={{ result.pk | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_numberOfLenovoSd665nv3H100 setNumberOfLenovoSd665nv3H100 classBareMetalOrder inputBareMetalOrder{{ result.pk }}NumberOfLenovoSd665nv3H100 "
+                      name="setNumberOfLenovoSd665nv3H100"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_numberOfLenovoSd665nv3H100 setNumberOfLenovoSd665nv3H100 classBareMetalOrder inputBareMetalOrder{{ result.pk }}NumberOfLenovoSd665nv3H100 "
+                      name="setNumberOfLenovoSd665nv3H100"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_numberOfLenovoSd665nv3H100 valueNumberOfLenovoSd665nv3H100 classBareMetalOrder inputBareMetalOrder{{ result.pk }}NumberOfLenovoSd665nv3H100 "
+                      name="numberOfLenovoSd665nv3H100"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.numberOfLenovoSd665nv3H100 | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNumberOfLenovoSd665nv3H100BareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false, min=0, max=100) %}
+                            {{ inputNumberOfLenovoSd665nv3H100BareMetalOrderPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, min=min, max=max) }}
+{%- endmacro %}
+{%- macro inputOfferIdBareMetalOrderPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_offerId">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] offer ID"
+                      label="offer ID"
+                      hint="
+The offer ID of a bare metal fulfillment"
+                      id="{{classApiMethodMethod}}_offerId"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-pk={{ result.pk | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_offerId setOfferId classBareMetalOrder inputBareMetalOrder{{ result.pk }}OfferId "
+                      name="setOfferId"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_offerId setOfferId classBareMetalOrder inputBareMetalOrder{{ result.pk }}OfferId "
+                      name="setOfferId"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_offerId valueOfferId classBareMetalOrder inputBareMetalOrder{{ result.pk }}OfferId "
+                      name="offerId"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.offerId | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmOfferIdBareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputOfferIdBareMetalOrderPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputLeaseIdBareMetalOrderPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_leaseId">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] lease ID"
+                      label="lease ID"
+                      hint="
+The lease ID of a bare metal fulfillment"
+                      id="{{classApiMethodMethod}}_leaseId"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-pk={{ result.pk | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_leaseId setLeaseId classBareMetalOrder inputBareMetalOrder{{ result.pk }}LeaseId "
+                      name="setLeaseId"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_leaseId setLeaseId classBareMetalOrder inputBareMetalOrder{{ result.pk }}LeaseId "
+                      name="setLeaseId"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_leaseId valueLeaseId classBareMetalOrder inputBareMetalOrder{{ result.pk }}LeaseId "
+                      name="leaseId"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.leaseId | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmLeaseIdBareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputLeaseIdBareMetalOrderPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+
+{%- macro htmButton_patchBareMetalOrder() %}<wa-button variant="brand" id="htmButton_patchBareMetalOrder" data-pk={{ result.pk | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
+
+{%- macro htmFormButton_patchBareMetalOrder() %}
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchBareMetalOrder">Modify bare metal order</wa-button>
+{%- endmacro %}
+
+{%- macro htmForm_patchBareMetalOrder() %}
+        <wa-dialog with-footer id="patchBareMetalOrderDialog" label="Modify bare metal order">
+          <form id="htmForm_patchBareMetalOrder" class="round-row primary-smart-border-radius ">
+            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
+              <div slot="summary">
+                <span>primary key, ID, created, modified, archive details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmPkBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmPkBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmPkBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmCreatedBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmCreatedBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmCreatedBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmModifiedBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmModifiedBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmModifiedBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmArchivedBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmArchivedBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmArchivedBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="bare-metal-order-details">
+              <div slot="summary">
+                <span>bare metal order details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmDescriptionBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmDescriptionBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmDescriptionBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNetworkIdBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNetworkIdBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNetworkIdBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="node-details">
+              <div slot="summary">
+                <span>node details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNumberOfFc430BareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNumberOfFc430BareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNumberOfFc430BareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNumberOfFc830BareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNumberOfFc830BareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNumberOfFc830BareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNumberOfR730xdBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNumberOfR730xdBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNumberOfR730xdBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNumberOfWhiteboxFlax1BareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNumberOfWhiteboxFlax1BareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNumberOfWhiteboxFlax1BareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNumberOfLenovoSd650nv2A100BareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNumberOfLenovoSd650nv2A100BareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNumberOfLenovoSd650nv2A100BareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNumberOfLenovoSd665nv3H100BareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNumberOfLenovoSd665nv3H100BareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNumberOfLenovoSd665nv3H100BareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="bare-metal-fulfill-offer-details">
+              <div slot="summary">
+                <span>bare metal fulfill offer details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmOfferIdBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmOfferIdBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmOfferIdBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmLeaseIdBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmLeaseIdBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmLeaseIdBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+          </form>
+          {{ htmFormButton_patchBareMetalOrder() }}
+        </wa-dialog>
+{%- endmacro %}
+
+{%- macro htmButton_postBareMetalOrder() %}<wa-button variant="brand" id="htmButton_postBareMetalOrder" data-pk={{ result.pk | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
+
+{%- macro htmFormButton_postBareMetalOrder() %}
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postBareMetalOrder">Create a bare metal order</wa-button>
+{%- endmacro %}
+
+{%- macro htmForm_postBareMetalOrder() %}
+        <wa-dialog with-footer style="--width: 50vw; " id="postBareMetalOrderDialog" label="Create a bare metal order">
+          <form id="htmForm_postBareMetalOrder" class="round-row primary-smart-border-radius ">
+            <div>You can override any default values below: </div>
+            <wa-details open class="HtmRow" id="bare-metal-order-details">
+              <div slot="summary">
+                <span>bare metal order details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmDescriptionBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmDescriptionBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmDescriptionBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNetworkIdBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNetworkIdBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNetworkIdBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="node-details">
+              <div slot="summary">
+                <span>node details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if  resourceClasses | selectattr('name', 'equalto', 'fc430') | list | count %}
+              {%- if "PATCH" in scopes %}
+                {{ htmNumberOfFc430BareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'fc430') | list | first).count) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNumberOfFc430BareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'fc430') | list | first).count) }}
+                {%- else %}
+                  {{ htmNumberOfFc430BareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'fc430') | list | first).count) }}
+                {%- endif %}
+              {%- endif %}
+              {%- endif %}
+
+              {%- if  resourceClasses | selectattr('name', 'equalto', 'fc830') | list | count %}
+              {%- if "PATCH" in scopes %}
+                {{ htmNumberOfFc830BareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'fc830') | list | first).count) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNumberOfFc830BareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'fc830') | list | first).count) }}
+                {%- else %}
+                  {{ htmNumberOfFc830BareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'fc830') | list | first).count) }}
+                {%- endif %}
+              {%- endif %}
+              {%- endif %}
+
+              {%- if  resourceClasses | selectattr('name', 'equalto', 'r730xd') | list | count %}
+              {%- if "PATCH" in scopes %}
+                {{ htmNumberOfR730xdBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'r730xd') | list | first).count) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNumberOfR730xdBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'r730xd') | list | first).count) }}
+                {%- else %}
+                  {{ htmNumberOfR730xdBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'r730xd') | list | first).count) }}
+                {%- endif %}
+              {%- endif %}
+              {%- endif %}
+
+              {%- if  resourceClasses | selectattr('name', 'equalto', 'whitebox-flax-1') | list | count %}
+              {%- if "PATCH" in scopes %}
+                {{ htmNumberOfWhiteboxFlax1BareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'whitebox-flax-1') | list | first).count) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNumberOfWhiteboxFlax1BareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'whitebox-flax-1') | list | first).count) }}
+                {%- else %}
+                  {{ htmNumberOfWhiteboxFlax1BareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'whitebox-flax-1') | list | first).count) }}
+                {%- endif %}
+              {%- endif %}
+              {%- endif %}
+
+              {%- if  resourceClasses | selectattr('name', 'equalto', 'lenovo-sd650nv2-a100') | list | count %}
+              {%- if "PATCH" in scopes %}
+                {{ htmNumberOfLenovoSd650nv2A100BareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'lenovo-sd650nv2-a100') | list | first).count) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNumberOfLenovoSd650nv2A100BareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'lenovo-sd650nv2-a100') | list | first).count) }}
+                {%- else %}
+                  {{ htmNumberOfLenovoSd650nv2A100BareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'lenovo-sd650nv2-a100') | list | first).count) }}
+                {%- endif %}
+              {%- endif %}
+              {%- endif %}
+
+              {%- if  resourceClasses | selectattr('name', 'equalto', 'lenovo-sd665nv3-h100') | list | count %}
+              {%- if "PATCH" in scopes %}
+                {{ htmNumberOfLenovoSd665nv3H100BareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'lenovo-sd665nv3-h100') | list | first).count) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNumberOfLenovoSd665nv3H100BareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'lenovo-sd665nv3-h100') | list | first).count) }}
+                {%- else %}
+                  {{ htmNumberOfLenovoSd665nv3H100BareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'lenovo-sd665nv3-h100') | list | first).count) }}
+                {%- endif %}
+              {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+          </form>
+          {{ htmFormButton_postBareMetalOrder() }}
+        </wa-dialog>
+{%- endmacro %}
+
+{%- macro htmButton_deleteBareMetalOrder() %}<wa-button variant="brand" id="htmButton_deleteBareMetalOrder" data-pk={{ result.pk | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
+
+{%- macro htmFormButton_deleteBareMetalOrder() %}
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deleteBareMetalOrder">Delete bare metal order</wa-button>
+{%- endmacro %}
+
+{%- macro htmForm_deleteBareMetalOrder() %}
+        <wa-dialog with-footer id="deleteBareMetalOrderDialog" label="Delete bare metal order">
+          <form id="htmForm_deleteBareMetalOrder" class="round-row primary-smart-border-radius ">
+          </form>
+          {{ htmFormButton_deleteBareMetalOrder() }}
+        </wa-dialog>
+{%- endmacro %}
+
+{%- macro htmButton_searchpageBareMetalOrder() %}{%- endmacro %}
+
+{%- macro htmFormButton_searchpageBareMetalOrder() %}
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageBareMetalOrder">Search bare metal orders</wa-button>
+{%- endmacro %}
+
+{%- macro htmForm_searchpageBareMetalOrder() %}
+        <div with-footer id="searchpageBareMetalOrderDialog" label="Search bare metal orders">
+          <div id="htmForm_searchpageBareMetalOrder" class="round-row primary-smart-border-radius ">
+            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
+              <div slot="summary">
+                <span>primary key, ID, created, modified, archive details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmPkBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmPkBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmPkBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmCreatedBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmCreatedBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmCreatedBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmModifiedBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmModifiedBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmModifiedBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmArchivedBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmArchivedBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmArchivedBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="bare-metal-order-details">
+              <div slot="summary">
+                <span>bare metal order details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmDescriptionBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmDescriptionBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmDescriptionBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNetworkIdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNetworkIdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNetworkIdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="node-details">
+              <div slot="summary">
+                <span>node details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNumberOfFc430BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNumberOfFc430BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNumberOfFc430BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNumberOfFc830BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNumberOfFc830BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNumberOfFc830BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNumberOfR730xdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNumberOfR730xdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNumberOfR730xdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNumberOfWhiteboxFlax1BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNumberOfWhiteboxFlax1BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNumberOfWhiteboxFlax1BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNumberOfLenovoSd650nv2A100BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNumberOfLenovoSd650nv2A100BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNumberOfLenovoSd650nv2A100BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNumberOfLenovoSd665nv3H100BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNumberOfLenovoSd665nv3H100BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNumberOfLenovoSd665nv3H100BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="bare-metal-fulfill-offer-details">
+              <div slot="summary">
+                <span>bare metal fulfill offer details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmOfferIdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmOfferIdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmOfferIdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmLeaseIdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmLeaseIdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmLeaseIdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+          </div>
+        </div>
+{%- endmacro %}
+
+{%- macro htmButton_deletefilterBareMetalOrder() %}<wa-button variant="brand" id="htmButton_deletefilterBareMetalOrder" data-pk={{ result.pk | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
+
+{%- macro htmFormButton_deletefilterBareMetalOrder() %}
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deletefilterBareMetalOrder">Delete bare metal order</wa-button>
+{%- endmacro %}
+
+{%- macro htmForm_deletefilterBareMetalOrder() %}
+        <wa-dialog with-footer id="deletefilterBareMetalOrderDialog" label="Delete bare metal order">
+          <form id="htmForm_deletefilterBareMetalOrder" class="round-row primary-smart-border-radius ">
+          </form>
+          {{ htmFormButton_deletefilterBareMetalOrder() }}
+        </wa-dialog>
+{%- endmacro %}
+          <div id="htmButtonGroup">
+            <div class="flex flex-wrap round-column pill-smart-border-radius ">
+{% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+  {% if "PATCH" in scopes %}
+    {% if resultCount >= 1 %}
+              <wa-button variant="brand" id="refreshThisBareMetalOrderGenPage"
+                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'pk:{{ result.pk }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisBareMetalOrderGenPage')); }, function() { addError(document.querySelector('#refreshThisBareMetalOrderGenPage')); }); return false; ">
+                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
+                refresh
+              </wa-button>
+    {% endif %}
+    {% if resultCount > 0 %}
+              <wa-button variant="brand" id="refreshAllBareMetalOrderGenPage{{ result.pk | e }}"
+                   onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllBareMetalOrderGenPage{{ result.pk | e }}')); }, function() { addError(document.querySelector('#refreshAllBareMetalOrderGenPage{{ result.pk | e }}')); }); "
+                  >
+                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
+                Refresh all 
+              </wa-button>
+    {% endif %}
+  {% endif %}
+{% endif %}
+{%- if 'PATCH' in scopes %}
+  {%- if resultCount > 0 %}
+    {{ htmButton_patchBareMetalOrder() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'POST' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmButton_postBareMetalOrder() }}
+  {%- else %}
+    {{ htmButton_postBareMetalOrder() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount == 1 %}
+    {{ htmButton_deleteBareMetalOrder() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount > 1 %}
+    {{ htmButton_deletefilterBareMetalOrder() }}
+  {%- endif %}
+{%- endif %}
+
+            </div>
+          </div>
+{%- if 'DELETE' in scopes %}
+    {{ htmForm_patchBareMetalOrder() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'POST' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_postBareMetalOrder() }}
+  {%- else %}
+    {{ htmForm_postBareMetalOrder() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deleteBareMetalOrder() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deletefilterBareMetalOrder() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}
