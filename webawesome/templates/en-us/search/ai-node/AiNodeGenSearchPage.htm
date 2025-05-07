@@ -362,7 +362,6 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
-              <div></div>
                   </div>
                   {% for item in listAiNode%}
                   <div>
@@ -376,18 +375,6 @@
               <a href="{{ item.displayPage }}">
               <span class="white-space-pre-wrap ">{{ item.description | e }}
 </span>              </a>
-              <wa-button variant="brand"
-                  id="{{classApiMethodMethod}}_editPage"
-                  placeholder="[String] manage"
-                  label="manage"
-                  title="Manage this"
-                  class="button-on-left {{classApiMethodMethod}}_editPage classAiNode inputAiNode{{ result.nodeId }}EditPage "
-                  name="setEditPage"
-                  href="{{ item.editPage | e }}"
-                  >
-                <i class="fa-duotone fa-regular fa-pen-to-square"></i>
-                manage
-              </wa-button>
                   </div>
                   {% endfor %}
               {% if getColumnClusterName is defined %}
@@ -399,10 +386,6 @@
                 </div>
               {% endif %}
               {% if getColumnDescription is defined %}
-                <div>
-                </div>
-              {% endif %}
-              {% if getColumnEditPage is defined %}
                 <div>
                 </div>
               {% endif %}

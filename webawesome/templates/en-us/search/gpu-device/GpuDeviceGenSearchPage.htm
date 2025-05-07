@@ -375,7 +375,6 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
-              <div></div>
                   </div>
                   {% for item in listGpuDevice%}
                   <div>
@@ -392,18 +391,6 @@
               <a href="{{ item.displayPage }}">
               <span>{{ item.gpuDeviceNumber | e }}
 </span>              </a>
-              <wa-button variant="brand"
-                  id="{{classApiMethodMethod}}_editPage"
-                  placeholder="[String] manage"
-                  label="manage"
-                  title="Manage this"
-                  class="button-on-left {{classApiMethodMethod}}_editPage classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}EditPage "
-                  name="setEditPage"
-                  href="{{ item.editPage | e }}"
-                  >
-                <i class="fa-duotone fa-regular fa-pen-to-square"></i>
-                manage
-              </wa-button>
                   </div>
                   {% endfor %}
               {% if getColumnClusterName is defined %}
@@ -419,10 +406,6 @@
                 </div>
               {% endif %}
               {% if getColumnGpuDeviceNumber is defined %}
-                <div>
-                </div>
-              {% endif %}
-              {% if getColumnEditPage is defined %}
                 <div>
                 </div>
               {% endif %}
