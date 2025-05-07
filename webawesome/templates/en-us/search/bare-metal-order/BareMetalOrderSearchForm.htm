@@ -463,32 +463,32 @@ The number of lenovo-sd665nv3-h100 nodes to request for this order. "
 {%- macro htmNumberOfLenovoSd665nv3H100BareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputNumberOfLenovoSd665nv3H100BareMetalOrderPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputOfferIdBareMetalOrderPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputStatusBareMetalOrderPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
-                <form class="subgrid-2col " id="PageForm_offerId">
+                <form class="subgrid-2col " id="PageForm_status">
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] offer ID"
-                      label="offer ID"
+                      placeholder="[String] order status"
+                      label="order status"
                       hint="
-The offer ID of a bare metal fulfillment"
-                      id="{{classApiMethodMethod}}_offerId"
+The order status of a bare metal fulfillment"
+                      id="{{classApiMethodMethod}}_status"
   {%- if "Page" == classApiMethodMethod %}
                       data-pk={{ result.pk | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_offerId setOfferId classBareMetalOrder inputBareMetalOrder{{ result.pk }}OfferId "
-                      name="setOfferId"
+                      class="label-on-left {{classApiMethodMethod}}_status setStatus classBareMetalOrder inputBareMetalOrder{{ result.pk }}Status "
+                      name="setStatus"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_offerId setOfferId classBareMetalOrder inputBareMetalOrder{{ result.pk }}OfferId "
-                      name="setOfferId"
+                      class="label-on-left {{classApiMethodMethod}}_status setStatus classBareMetalOrder inputBareMetalOrder{{ result.pk }}Status "
+                      name="setStatus"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_offerId valueOfferId classBareMetalOrder inputBareMetalOrder{{ result.pk }}OfferId "
-                      name="offerId"
+                      class="label-on-left {{classApiMethodMethod}}_status valueStatus classBareMetalOrder inputBareMetalOrder{{ result.pk }}Status "
+                      name="status"
     {%- endif %}
   {%- endif %}
   {%- if "Page" == classApiMethodMethod %}
-                      value="{{result.offerId | e }}"
+                      value="{{result.status | e }}"
   {%- endif %}
                       ></wa-input>
 
@@ -497,45 +497,8 @@ The offer ID of a bare metal fulfillment"
   {%- endif %}
 {%- endmacro %}
 
-{%- macro htmOfferIdBareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
-                            {{ inputOfferIdBareMetalOrderPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
-{%- endmacro %}
-{%- macro inputLeaseIdBareMetalOrderPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
-  {%- if 'Page' == classApiMethodMethod %}
-                <form class="subgrid-2col " id="PageForm_leaseId">
-  {%- endif %}
-                  <wa-input
-                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] lease ID"
-                      label="lease ID"
-                      hint="
-The lease ID of a bare metal fulfillment"
-                      id="{{classApiMethodMethod}}_leaseId"
-  {%- if "Page" == classApiMethodMethod %}
-                      data-pk={{ result.pk | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_leaseId setLeaseId classBareMetalOrder inputBareMetalOrder{{ result.pk }}LeaseId "
-                      name="setLeaseId"
-  {%- else %}
-    {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_leaseId setLeaseId classBareMetalOrder inputBareMetalOrder{{ result.pk }}LeaseId "
-                      name="setLeaseId"
-    {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_leaseId valueLeaseId classBareMetalOrder inputBareMetalOrder{{ result.pk }}LeaseId "
-                      name="leaseId"
-    {%- endif %}
-  {%- endif %}
-  {%- if "Page" == classApiMethodMethod %}
-                      value="{{result.leaseId | e }}"
-  {%- endif %}
-                      ></wa-input>
-
-  {%- if 'Page' == classApiMethodMethod %}
-                </form>
-  {%- endif %}
-{%- endmacro %}
-
-{%- macro htmLeaseIdBareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
-                            {{ inputLeaseIdBareMetalOrderPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- macro htmStatusBareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputStatusBareMetalOrderPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
 
 {%- macro htmButton_patchBareMetalOrder() %}<wa-button variant="brand" id="htmButton_patchBareMetalOrder" data-pk={{ result.pk | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
@@ -690,29 +653,19 @@ The lease ID of a bare metal fulfillment"
               {%- endif %}
               </div>
             </wa-details>
-            <wa-details open class="HtmRow" id="bare-metal-fulfill-offer-details">
+            <wa-details open class="HtmRow" id="status">
               <div slot="summary">
-                <span>bare metal fulfill offer details</span>
+                <span>status</span>
               </div>
               <div class="grid-with-subgrid-2col ">
 
               {%- if "PATCH" in scopes %}
-                {{ htmOfferIdBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmStatusBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
-                  {{ htmOfferIdBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                  {{ htmStatusBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
-                  {{ htmOfferIdBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmLeaseIdBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmLeaseIdBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmLeaseIdBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                  {{ htmStatusBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -875,29 +828,19 @@ The lease ID of a bare metal fulfillment"
               {%- endif %}
               </div>
             </wa-details>
-            <wa-details open class="HtmRow" id="bare-metal-fulfill-offer-details">
+            <wa-details open class="HtmRow" id="status">
               <div slot="summary">
-                <span>bare metal fulfill offer details</span>
+                <span>status</span>
               </div>
               <div class="grid-with-subgrid-2col ">
 
               {%- if "PATCH" in scopes %}
-                {{ htmOfferIdBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmStatusBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
-                  {{ htmOfferIdBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                  {{ htmStatusBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
-                  {{ htmOfferIdBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmLeaseIdBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmLeaseIdBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmLeaseIdBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                  {{ htmStatusBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -1073,29 +1016,19 @@ The lease ID of a bare metal fulfillment"
               {%- endif %}
               </div>
             </wa-details>
-            <wa-details open class="HtmRow" id="bare-metal-fulfill-offer-details">
+            <wa-details open class="HtmRow" id="status">
               <div slot="summary">
-                <span>bare metal fulfill offer details</span>
+                <span>status</span>
               </div>
               <div class="grid-with-subgrid-2col ">
 
               {%- if "PATCH" in scopes %}
-                {{ htmOfferIdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmStatusBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
-                  {{ htmOfferIdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                  {{ htmStatusBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
-                  {{ htmOfferIdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmLeaseIdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmLeaseIdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmLeaseIdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                  {{ htmStatusBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
