@@ -268,67 +268,61 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartGpuSlicePage %}
-{% if resultCount > 0 %}
-          <h1><a href="{{pageUri}}"><i class="fa-regular fa-cake-slice"></i> <span>GPU slices</span></a></h1>
-{%- include en-us/search/gpu-slice/GpuSliceSuggestedSearch.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/gpu-slice/GpuSliceSearchForm.htm %}
-{% endif %}
 {%- endblock htmBodyStartGpuSlicePage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleGpuSlicePage %}
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-GpuSlice">back to all GPU slices</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-GpuSlice" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all GPU slices
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-regular fa-cake-slice"></i> <span>GPU slices</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-GpuSlice" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-regular fa-cake-slice"></i>
+              all GPU slices
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no GPU slice found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-regular fa-cake-slice"></i>
+            </div>
+            <span class="wa-heading-m ">no GPU slice found</span>
+            <p class="wa-caption-l ">A GPU slice inside a GPU</p>
 {% include en-us/search/gpu-slice/GpuSliceSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/gpu-slice/GpuSliceSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no GPU slice found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/gpu-slice/GpuSliceSidebar.htm %}
-          <form action="/en-us/api/gpu-slice" id="GpuSliceForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-            <input name="focusId" type="hidden"/>
-            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
-            <input name="listGpuSlice" id="listGpuSlice" class="listGpuSlice"  value='{{ toJsonArrayStringInApostrophes(listGpuSlice) }}' type="hidden"/>
-          </form>
-        <div class="pageContent ">
-          <div id="site-calendar-box">
-            <div id="site-calendar"><!-- // --></div>
-          </div>
-          {% if varsFqCount > 1 %}
-          <div class="margin-block">
-            <wa-tooltip for="return-to-GpuSlice">back to all GPU slices</wa-tooltip>
-            <wa-button id="return-to-GpuSlice" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all GPU slices
-            </wa-button>
-          </div>
-          {% endif %}
-          <div class="wa-flank wa-align-items-baseline margin-block-start ">
-{% include en-us/search/gpu-slice/GpuSlicePaginationButtons.htm %}
+{%- include en-us/search/gpu-slice/GpuSliceSuggestedSearch.htm %}
+          <div>
+            <form action="/en-us/api/gpu-slice" id="GpuSliceForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+              <input name="focusId" type="hidden"/>
+              <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+              <input name="listGpuSlice" id="listGpuSlice" class="listGpuSlice"  value='{{ toJsonArrayStringInApostrophes(listGpuSlice) }}' type="hidden"/>
+            </form>
+            <div id="site-calendar-box">
+              <div id="site-calendar"><!-- // --></div>
+            </div>
+            <div class="wa-stack wa-gap-m ">
+              <wa-tooltip for="return-to-GpuSlice">back to all GPU slices</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-GpuSlice" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-regular fa-cake-slice"></i>
+                  all GPU slices
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  search GPU slices
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{% include en-us/search/gpu-slice/GpuSliceSearchForm.htm %}
 {% include en-us/search/gpu-slice/GpuSliceSearchButtons.htm %}
-          </div>
-          <div class="card-like-thing background-color-surface-border" id="site-results-grid">
-            <div>
+              <div class="wa-stack wa-gap-0 ">
+{% include en-us/search/gpu-slice/GpuSlicePaginationButtons.htm %}
+                <div class="card-like-thing background-color-surface-border" id="site-results-grid">
+                  <div>
               <wa-dropdown id="htmDropdown-sliceName">
                 <wa-button variant="brand" slot="trigger" caret>name</wa-button>
                 <wa-menu>
@@ -356,9 +350,9 @@
                 </wa-menu>
               </wa-dropdown>
               <div></div>
-            </div>
-            {% for item in listGpuSlice%}
-            <div>
+                  </div>
+                  {% for item in listGpuSlice%}
+                  <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-regular fa-cake-slice"></i>
               <span>{{ item.sliceName | e }}
@@ -378,8 +372,8 @@
                 <i class="fa-duotone fa-regular fa-pen-to-square"></i>
                 manage
               </wa-button>
-            </div>
-            {% endfor %}
+                  </div>
+                  {% endfor %}
               {% if getColumnSliceName is defined %}
                 <div>
                 </div>
@@ -392,8 +386,11 @@
                 <div>
                 </div>
               {% endif %}
+                </div>
+{% include en-us/search/gpu-slice/GpuSlicePaginationButtons.htm %}
+              </div>
+            </div>
           </div>
-        </div>
 {% endif %}
 {%- endblock htmBodyMiddleGpuSlicePage %}
 {%- endblock htmBodyMiddlePageLayout %}

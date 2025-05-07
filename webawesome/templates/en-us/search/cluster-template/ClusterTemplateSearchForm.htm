@@ -6,6 +6,7 @@
                       readonly
                       placeholder="[Long] primary key"
                       label="primary key"
+                      type="number"
                       hint="
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
@@ -137,7 +138,7 @@ The primary key of this object in the database"
                       >archive</wa-checkbox>
   {%- else %}
                       >
-                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value=""></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
                   </wa-select>
@@ -307,57 +308,8 @@ The parameters of this template"
 {%- endmacro %}
 
 {%- macro htmForm_patchClusterTemplate() %}
-        <wa-dialog with-footer id="patchClusterTemplateDialog" label="Modify cluster template">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="patchClusterTemplateDialog" label="Modify cluster template">
           <form id="htmForm_patchClusterTemplate" class="round-row primary-smart-border-radius ">
-            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedClusterTemplatePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </wa-details>
             <wa-details open class="HtmRow" id="cluster-template-details">
               <div slot="summary">
                 <span>cluster template details</span>
@@ -417,58 +369,9 @@ The parameters of this template"
 {%- endmacro %}
 
 {%- macro htmForm_postClusterTemplate() %}
-        <wa-dialog with-footer id="postClusterTemplateDialog" label="Create a cluster template">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="postClusterTemplateDialog" label="Create a cluster template">
           <form id="htmForm_postClusterTemplate" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
-            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedClusterTemplatePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </wa-details>
             <wa-details open class="HtmRow" id="cluster-template-details">
               <div slot="summary">
                 <span>cluster template details</span>
@@ -528,7 +431,7 @@ The parameters of this template"
 {%- endmacro %}
 
 {%- macro htmForm_deleteClusterTemplate() %}
-        <wa-dialog with-footer id="deleteClusterTemplateDialog" label="Delete cluster template">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deleteClusterTemplateDialog" label="Delete cluster template">
           <form id="htmForm_deleteClusterTemplate" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deleteClusterTemplate() }}
@@ -542,7 +445,7 @@ The parameters of this template"
 {%- endmacro %}
 
 {%- macro htmForm_putimportClusterTemplate() %}
-        <wa-dialog with-footer id="putimportClusterTemplateDialog" label="Import cluster templates">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportClusterTemplateDialog" label="Import cluster templates">
           <form id="htmForm_putimportClusterTemplate" class="round-row primary-smart-border-radius ">
             <div>
               <wa-textarea
@@ -564,7 +467,7 @@ The parameters of this template"
 {%- endmacro %}
 
 {%- macro htmForm_searchpageClusterTemplate() %}
-        <div with-footer id="searchpageClusterTemplateDialog" label="Search cluster templates">
+        <div with-header with-footer style="--width: 50vw; " id="searchpageClusterTemplateDialog" label="Search cluster templates">
           <div id="htmForm_searchpageClusterTemplate" class="round-row primary-smart-border-radius ">
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
               <div slot="summary">
@@ -673,14 +576,14 @@ The parameters of this template"
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterClusterTemplate() %}
-        <wa-dialog with-footer id="deletefilterClusterTemplateDialog" label="Delete cluster template">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deletefilterClusterTemplateDialog" label="Delete cluster template">
           <form id="htmForm_deletefilterClusterTemplate" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deletefilterClusterTemplate() }}
         </wa-dialog>
 {%- endmacro %}
-          <div id="htmButtonGroup">
-            <div class="flex flex-wrap round-column pill-smart-border-radius ">
+          <div id="htmSearchForm">
+            <wa-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
@@ -702,7 +605,9 @@ The parameters of this template"
 {% endif %}
 {%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_patchClusterTemplate() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
@@ -713,7 +618,7 @@ The parameters of this template"
   {%- endif %}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount == 1 %}
+  {%- if result is defined %}
     {{ htmButton_deleteClusterTemplate() }}
   {%- endif %}
 {%- endif %}
@@ -721,12 +626,14 @@ The parameters of this template"
   {{ htmButton_putimportClusterTemplate() }}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount > 1 %}
+  {%- if result is not defined %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_deletefilterClusterTemplate() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 
-            </div>
+            </wa-button-group>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchClusterTemplate() }}

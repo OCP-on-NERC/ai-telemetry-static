@@ -6,6 +6,7 @@
                       readonly
                       placeholder="[Long] primary key"
                       label="primary key"
+                      type="number"
                       hint="
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
@@ -137,7 +138,7 @@ The primary key of this object in the database"
                       >archive</wa-checkbox>
   {%- else %}
                       >
-                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value=""></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
                   </wa-select>
@@ -323,57 +324,8 @@ The cluster id associated with the order"
 {%- endmacro %}
 
 {%- macro htmForm_patchClusterOrder() %}
-        <wa-dialog with-footer id="patchClusterOrderDialog" label="Modify cluster order">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="patchClusterOrderDialog" label="Modify cluster order">
           <form id="htmForm_patchClusterOrder" class="round-row primary-smart-border-radius ">
-            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </wa-details>
             <wa-details open class="HtmRow" id="cluster-order-details">
               <div slot="summary">
                 <span>cluster order details</span>
@@ -433,58 +385,9 @@ The cluster id associated with the order"
 {%- endmacro %}
 
 {%- macro htmForm_postClusterOrder() %}
-        <wa-dialog with-footer id="postClusterOrderDialog" label="Create a cluster order">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="postClusterOrderDialog" label="Create a cluster order">
           <form id="htmForm_postClusterOrder" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
-            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </wa-details>
             <wa-details open class="HtmRow" id="cluster-order-details">
               <div slot="summary">
                 <span>cluster order details</span>
@@ -544,7 +447,7 @@ The cluster id associated with the order"
 {%- endmacro %}
 
 {%- macro htmForm_deleteClusterOrder() %}
-        <wa-dialog with-footer id="deleteClusterOrderDialog" label="Delete cluster order">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deleteClusterOrderDialog" label="Delete cluster order">
           <form id="htmForm_deleteClusterOrder" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deleteClusterOrder() }}
@@ -558,7 +461,7 @@ The cluster id associated with the order"
 {%- endmacro %}
 
 {%- macro htmForm_putimportClusterOrder() %}
-        <wa-dialog with-footer id="putimportClusterOrderDialog" label="Import cluster orders">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportClusterOrderDialog" label="Import cluster orders">
           <form id="htmForm_putimportClusterOrder" class="round-row primary-smart-border-radius ">
             <div>
               <wa-textarea
@@ -580,7 +483,7 @@ The cluster id associated with the order"
 {%- endmacro %}
 
 {%- macro htmForm_searchpageClusterOrder() %}
-        <div with-footer id="searchpageClusterOrderDialog" label="Search cluster orders">
+        <div with-header with-footer style="--width: 50vw; " id="searchpageClusterOrderDialog" label="Search cluster orders">
           <div id="htmForm_searchpageClusterOrder" class="round-row primary-smart-border-radius ">
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
               <div slot="summary">
@@ -689,14 +592,14 @@ The cluster id associated with the order"
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterClusterOrder() %}
-        <wa-dialog with-footer id="deletefilterClusterOrderDialog" label="Delete cluster order">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deletefilterClusterOrderDialog" label="Delete cluster order">
           <form id="htmForm_deletefilterClusterOrder" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deletefilterClusterOrder() }}
         </wa-dialog>
 {%- endmacro %}
-          <div id="htmButtonGroup">
-            <div class="flex flex-wrap round-column pill-smart-border-radius ">
+          <div id="htmSearchForm">
+            <wa-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
@@ -718,7 +621,9 @@ The cluster id associated with the order"
 {% endif %}
 {%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_patchClusterOrder() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
@@ -729,7 +634,7 @@ The cluster id associated with the order"
   {%- endif %}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount == 1 %}
+  {%- if result is defined %}
     {{ htmButton_deleteClusterOrder() }}
   {%- endif %}
 {%- endif %}
@@ -737,12 +642,14 @@ The cluster id associated with the order"
   {{ htmButton_putimportClusterOrder() }}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount > 1 %}
+  {%- if result is not defined %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_deletefilterClusterOrder() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 
-            </div>
+            </wa-button-group>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchClusterOrder() }}

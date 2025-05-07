@@ -6,6 +6,7 @@
                       readonly
                       placeholder="[Long] primary key"
                       label="primary key"
+                      type="number"
                       hint="
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
@@ -137,7 +138,7 @@ The primary key of this object in the database"
                       >archive</wa-checkbox>
   {%- else %}
                       >
-                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value=""></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
                   </wa-select>
@@ -264,6 +265,7 @@ The primary key of this object in the database"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[Integer] is maintenance"
                       label="is maintenance"
+                      type="number"
                       id="{{classApiMethodMethod}}_nodeIsMaintenance"
   {%- if "Page" == classApiMethodMethod %}
                       data-nodeId={{ result.nodeId | tojson }}
@@ -474,57 +476,8 @@ The primary key of this object in the database"
 {%- endmacro %}
 
 {%- macro htmForm_patchBareMetalNode() %}
-        <wa-dialog with-footer id="patchBareMetalNodeDialog" label="Modify bare metal node">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="patchBareMetalNodeDialog" label="Modify bare metal node">
           <form id="htmForm_patchBareMetalNode" class="round-row primary-smart-border-radius ">
-            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkBareMetalNodePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkBareMetalNodePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkBareMetalNodePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedBareMetalNodePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedBareMetalNodePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedBareMetalNodePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedBareMetalNodePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedBareMetalNodePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedBareMetalNodePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedBareMetalNodePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedBareMetalNodePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedBareMetalNodePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </wa-details>
             <wa-details open class="HtmRow" id="details">
               <div slot="summary">
                 <span>details</span>
@@ -634,58 +587,9 @@ The primary key of this object in the database"
 {%- endmacro %}
 
 {%- macro htmForm_postBareMetalNode() %}
-        <wa-dialog with-footer id="postBareMetalNodeDialog" label="Create a bare metal node">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="postBareMetalNodeDialog" label="Create a bare metal node">
           <form id="htmForm_postBareMetalNode" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
-            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </wa-details>
             <wa-details open class="HtmRow" id="details">
               <div slot="summary">
                 <span>details</span>
@@ -795,7 +699,7 @@ The primary key of this object in the database"
 {%- endmacro %}
 
 {%- macro htmForm_deleteBareMetalNode() %}
-        <wa-dialog with-footer id="deleteBareMetalNodeDialog" label="Delete bare metal node">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deleteBareMetalNodeDialog" label="Delete bare metal node">
           <form id="htmForm_deleteBareMetalNode" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deleteBareMetalNode() }}
@@ -809,7 +713,7 @@ The primary key of this object in the database"
 {%- endmacro %}
 
 {%- macro htmForm_putimportBareMetalNode() %}
-        <wa-dialog with-footer id="putimportBareMetalNodeDialog" label="Import bare metal nodes">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportBareMetalNodeDialog" label="Import bare metal nodes">
           <form id="htmForm_putimportBareMetalNode" class="round-row primary-smart-border-radius ">
             <div>
               <wa-textarea
@@ -831,7 +735,7 @@ The primary key of this object in the database"
 {%- endmacro %}
 
 {%- macro htmForm_searchpageBareMetalNode() %}
-        <div with-footer id="searchpageBareMetalNodeDialog" label="Search bare metal nodes">
+        <div with-header with-footer style="--width: 50vw; " id="searchpageBareMetalNodeDialog" label="Search bare metal nodes">
           <div id="htmForm_searchpageBareMetalNode" class="round-row primary-smart-border-radius ">
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
               <div slot="summary">
@@ -990,14 +894,14 @@ The primary key of this object in the database"
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterBareMetalNode() %}
-        <wa-dialog with-footer id="deletefilterBareMetalNodeDialog" label="Delete bare metal node">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deletefilterBareMetalNodeDialog" label="Delete bare metal node">
           <form id="htmForm_deletefilterBareMetalNode" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deletefilterBareMetalNode() }}
         </wa-dialog>
 {%- endmacro %}
-          <div id="htmButtonGroup">
-            <div class="flex flex-wrap round-column pill-smart-border-radius ">
+          <div id="htmSearchForm">
+            <wa-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
@@ -1019,7 +923,9 @@ The primary key of this object in the database"
 {% endif %}
 {%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_patchBareMetalNode() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
@@ -1030,7 +936,7 @@ The primary key of this object in the database"
   {%- endif %}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount == 1 %}
+  {%- if result is defined %}
     {{ htmButton_deleteBareMetalNode() }}
   {%- endif %}
 {%- endif %}
@@ -1038,12 +944,14 @@ The primary key of this object in the database"
   {{ htmButton_putimportBareMetalNode() }}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount > 1 %}
+  {%- if result is not defined %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_deletefilterBareMetalNode() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 
-            </div>
+            </wa-button-group>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchBareMetalNode() }}

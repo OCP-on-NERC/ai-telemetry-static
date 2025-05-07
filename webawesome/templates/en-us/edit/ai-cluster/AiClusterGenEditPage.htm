@@ -290,29 +290,26 @@
 {%- block htmBodyMiddleAiClusterPage %}
         <div>
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-AiCluster">back to all AI clusters</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-AiCluster" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all AI clusters
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-regular fa-server"></i> <span>AI clusters</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-AiCluster" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-regular fa-server"></i>
+              all AI clusters
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no AI cluster found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-regular fa-server"></i>
+            </div>
+            <span class="wa-heading-m ">no AI cluster found</span>
+            <p class="wa-caption-l ">A Red Hat OpenShift cluster containing GPUs</p>
 {% include en-us/search/ai-cluster/AiClusterSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/ai-cluster/AiClusterSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no AI cluster found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/ai-cluster/AiClusterSidebar.htm %}
 {%- include en-us/search/ai-cluster/AiClusterSuggestedSearch.htm %}

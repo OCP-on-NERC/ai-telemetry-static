@@ -290,29 +290,26 @@
 {%- block htmBodyMiddleGpuDevicePage %}
         <div>
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-GpuDevice">back to all GPU devices</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-GpuDevice" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all GPU devices
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-regular fa-memory"></i> <span>GPU devices</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-GpuDevice" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-regular fa-memory"></i>
+              all GPU devices
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no GPU device found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-regular fa-memory"></i>
+            </div>
+            <span class="wa-heading-m ">no GPU device found</span>
+            <p class="wa-caption-l ">A Red Hat OpenShift GPU device containing GPUs</p>
 {% include en-us/search/gpu-device/GpuDeviceSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/gpu-device/GpuDeviceSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no GPU device found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/gpu-device/GpuDeviceSidebar.htm %}
 {%- include en-us/search/gpu-device/GpuDeviceSuggestedSearch.htm %}

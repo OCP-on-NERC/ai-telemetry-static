@@ -290,29 +290,26 @@
 {%- block htmBodyMiddleGpuSlicePage %}
         <div>
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-GpuSlice">back to all GPU slices</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-GpuSlice" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all GPU slices
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-regular fa-cake-slice"></i> <span>GPU slices</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-GpuSlice" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-regular fa-cake-slice"></i>
+              all GPU slices
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no GPU slice found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-regular fa-cake-slice"></i>
+            </div>
+            <span class="wa-heading-m ">no GPU slice found</span>
+            <p class="wa-caption-l ">A GPU slice inside a GPU</p>
 {% include en-us/search/gpu-slice/GpuSliceSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/gpu-slice/GpuSliceSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no GPU slice found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/gpu-slice/GpuSliceSidebar.htm %}
 {%- include en-us/search/gpu-slice/GpuSliceSuggestedSearch.htm %}

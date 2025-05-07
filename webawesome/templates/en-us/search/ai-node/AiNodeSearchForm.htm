@@ -6,6 +6,7 @@
                       readonly
                       placeholder="[Long] primary key"
                       label="primary key"
+                      type="number"
                       hint="
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
@@ -137,7 +138,7 @@ The primary key of this object in the database"
                       >archive</wa-checkbox>
   {%- else %}
                       >
-                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value=""></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
                   </wa-select>
@@ -344,6 +345,7 @@ A unique ID for this Smart Data Model"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[Integer] GPU devices total"
                       label="GPU devices total"
+                      type="number"
                       hint="
 The total number of GPU devices on this cluster. "
                       id="{{classApiMethodMethod}}_gpuDevicesTotal"
@@ -566,57 +568,8 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- endmacro %}
 
 {%- macro htmForm_patchAiNode() %}
-        <wa-dialog with-footer id="patchAiNodeDialog" label="Modify AI node">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="patchAiNodeDialog" label="Modify AI node">
           <form id="htmForm_patchAiNode" class="round-row primary-smart-border-radius ">
-            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkAiNodePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkAiNodePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkAiNodePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedAiNodePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedAiNodePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedAiNodePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedAiNodePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedAiNodePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedAiNodePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedAiNodePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedAiNodePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedAiNodePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </wa-details>
             <wa-details open class="HtmRow" id="cluster-details">
               <div slot="summary">
                 <span>cluster details</span>
@@ -750,58 +703,9 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- endmacro %}
 
 {%- macro htmForm_postAiNode() %}
-        <wa-dialog with-footer id="postAiNodeDialog" label="Create an AI node">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="postAiNodeDialog" label="Create an AI node">
           <form id="htmForm_postAiNode" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
-            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkAiNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkAiNodePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkAiNodePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedAiNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedAiNodePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedAiNodePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedAiNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedAiNodePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedAiNodePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedAiNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedAiNodePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedAiNodePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </wa-details>
             <wa-details open class="HtmRow" id="cluster-details">
               <div slot="summary">
                 <span>cluster details</span>
@@ -935,7 +839,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- endmacro %}
 
 {%- macro htmForm_deleteAiNode() %}
-        <wa-dialog with-footer id="deleteAiNodeDialog" label="Delete AI node">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deleteAiNodeDialog" label="Delete AI node">
           <form id="htmForm_deleteAiNode" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deleteAiNode() }}
@@ -949,7 +853,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- endmacro %}
 
 {%- macro htmForm_putimportAiNode() %}
-        <wa-dialog with-footer id="putimportAiNodeDialog" label="Import AI nodes">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportAiNodeDialog" label="Import AI nodes">
           <form id="htmForm_putimportAiNode" class="round-row primary-smart-border-radius ">
             <div>
               <wa-textarea
@@ -971,7 +875,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- endmacro %}
 
 {%- macro htmForm_searchpageAiNode() %}
-        <div with-footer id="searchpageAiNodeDialog" label="Search AI nodes">
+        <div with-header with-footer style="--width: 50vw; " id="searchpageAiNodeDialog" label="Search AI nodes">
           <div id="htmForm_searchpageAiNode" class="round-row primary-smart-border-radius ">
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
               <div slot="summary">
@@ -1154,14 +1058,14 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterAiNode() %}
-        <wa-dialog with-footer id="deletefilterAiNodeDialog" label="Delete AI node">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deletefilterAiNodeDialog" label="Delete AI node">
           <form id="htmForm_deletefilterAiNode" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deletefilterAiNode() }}
         </wa-dialog>
 {%- endmacro %}
-          <div id="htmButtonGroup">
-            <div class="flex flex-wrap round-column pill-smart-border-radius ">
+          <div id="htmSearchForm">
+            <wa-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
@@ -1183,7 +1087,9 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {% endif %}
 {%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_patchAiNode() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
@@ -1194,7 +1100,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
   {%- endif %}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount == 1 %}
+  {%- if result is defined %}
     {{ htmButton_deleteAiNode() }}
   {%- endif %}
 {%- endif %}
@@ -1202,12 +1108,14 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
   {{ htmButton_putimportAiNode() }}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount > 1 %}
+  {%- if result is not defined %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_deletefilterAiNode() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 
-            </div>
+            </wa-button-group>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchAiNode() }}

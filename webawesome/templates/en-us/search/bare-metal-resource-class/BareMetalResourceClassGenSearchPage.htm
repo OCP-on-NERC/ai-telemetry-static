@@ -186,67 +186,61 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartBareMetalResourceClassPage %}
-{% if resultCount > 0 %}
-          <h1><a href="{{pageUri}}"><i class="fa-regular fa-server"></i> <span>bare metal resource classes</span></a></h1>
-{%- include en-us/search/bare-metal-resource-class/BareMetalResourceClassSuggestedSearch.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/bare-metal-resource-class/BareMetalResourceClassSearchForm.htm %}
-{% endif %}
 {%- endblock htmBodyStartBareMetalResourceClassPage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleBareMetalResourceClassPage %}
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-BareMetalResourceClass">back to all bare metal resource classes</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-BareMetalResourceClass" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all bare metal resource classes
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-regular fa-server"></i> <span>bare metal resource classes</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-BareMetalResourceClass" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-regular fa-server"></i>
+              all bare metal resource classes
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no bare metal resource class found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-regular fa-server"></i>
+            </div>
+            <span class="wa-heading-m ">no bare metal resource class found</span>
+            <p class="wa-caption-l ">A bare metal resource class</p>
 {% include en-us/search/bare-metal-resource-class/BareMetalResourceClassSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/bare-metal-resource-class/BareMetalResourceClassSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no bare metal resource class found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/bare-metal-resource-class/BareMetalResourceClassSidebar.htm %}
-          <form action="/en-us/api/bare-metal-resource-class" id="BareMetalResourceClassForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-            <input name="focusId" type="hidden"/>
-            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
-            <input name="listBareMetalResourceClass" id="listBareMetalResourceClass" class="listBareMetalResourceClass"  value='{{ toJsonArrayStringInApostrophes(listBareMetalResourceClass) }}' type="hidden"/>
-          </form>
-        <div class="pageContent ">
-          <div id="site-calendar-box">
-            <div id="site-calendar"><!-- // --></div>
-          </div>
-          {% if varsFqCount > 1 %}
-          <div class="margin-block">
-            <wa-tooltip for="return-to-BareMetalResourceClass">back to all bare metal resource classes</wa-tooltip>
-            <wa-button id="return-to-BareMetalResourceClass" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all bare metal resource classes
-            </wa-button>
-          </div>
-          {% endif %}
-          <div class="wa-flank wa-align-items-baseline margin-block-start ">
-{% include en-us/search/bare-metal-resource-class/BareMetalResourceClassPaginationButtons.htm %}
+{%- include en-us/search/bare-metal-resource-class/BareMetalResourceClassSuggestedSearch.htm %}
+          <div>
+            <form action="/en-us/api/bare-metal-resource-class" id="BareMetalResourceClassForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+              <input name="focusId" type="hidden"/>
+              <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+              <input name="listBareMetalResourceClass" id="listBareMetalResourceClass" class="listBareMetalResourceClass"  value='{{ toJsonArrayStringInApostrophes(listBareMetalResourceClass) }}' type="hidden"/>
+            </form>
+            <div id="site-calendar-box">
+              <div id="site-calendar"><!-- // --></div>
+            </div>
+            <div class="wa-stack wa-gap-m ">
+              <wa-tooltip for="return-to-BareMetalResourceClass">back to all bare metal resource classes</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-BareMetalResourceClass" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-regular fa-server"></i>
+                  all bare metal resource classes
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  search bare metal resource classes
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{% include en-us/search/bare-metal-resource-class/BareMetalResourceClassSearchForm.htm %}
 {% include en-us/search/bare-metal-resource-class/BareMetalResourceClassSearchButtons.htm %}
-          </div>
-          <div class="card-like-thing background-color-surface-border" id="site-results-grid">
-            <div>
+              <div class="wa-stack wa-gap-0 ">
+{% include en-us/search/bare-metal-resource-class/BareMetalResourceClassPaginationButtons.htm %}
+                <div class="card-like-thing background-color-surface-border" id="site-results-grid">
+                  <div>
               <wa-dropdown id="htmDropdown-name">
                 <wa-button variant="brand" slot="trigger" caret>resource class name</wa-button>
                 <wa-menu>
@@ -273,10 +267,9 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
-              <div></div>
-            </div>
-            {% for item in listBareMetalResourceClass%}
-            <div>
+                  </div>
+                  {% for item in listBareMetalResourceClass%}
+                  <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-regular fa-server"></i>
               <span>{{ item.name | e }}
@@ -284,20 +277,8 @@
               <a href="{{ item.displayPage }}">
               <span>{{ item.count | e }}
 </span>              </a>
-              <wa-button variant="brand"
-                  id="{{classApiMethodMethod}}_editPage"
-                  placeholder="[String] manage"
-                  label="manage"
-                  title="Manage this"
-                  class="button-on-left {{classApiMethodMethod}}_editPage classBareMetalResourceClass inputBareMetalResourceClass{{ result.name }}EditPage "
-                  name="setEditPage"
-                  href="{{ item.editPage | e }}"
-                  >
-                <i class="fa-duotone fa-regular fa-pen-to-square"></i>
-                manage
-              </wa-button>
-            </div>
-            {% endfor %}
+                  </div>
+                  {% endfor %}
               {% if getColumnName is defined %}
                 <div>
                 </div>
@@ -306,12 +287,11 @@
                 <div>
                 </div>
               {% endif %}
-              {% if getColumnEditPage is defined %}
-                <div>
                 </div>
-              {% endif %}
+{% include en-us/search/bare-metal-resource-class/BareMetalResourceClassPaginationButtons.htm %}
+              </div>
+            </div>
           </div>
-        </div>
 {% endif %}
 {%- endblock htmBodyMiddleBareMetalResourceClassPage %}
 {%- endblock htmBodyMiddlePageLayout %}

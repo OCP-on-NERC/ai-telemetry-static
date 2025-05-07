@@ -6,6 +6,7 @@
                       readonly
                       placeholder="[Long] primary key"
                       label="primary key"
+                      type="number"
                       hint="
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
@@ -137,7 +138,7 @@ The primary key of this object in the database"
                       >archive</wa-checkbox>
   {%- else %}
                       >
-                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value=""></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
                   </wa-select>
@@ -455,57 +456,8 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- endmacro %}
 
 {%- macro htmForm_patchGpuSlice() %}
-        <wa-dialog with-footer id="patchGpuSliceDialog" label="Modify GPU slice">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="patchGpuSliceDialog" label="Modify GPU slice">
           <form id="htmForm_patchGpuSlice" class="round-row primary-smart-border-radius ">
-            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkGpuSlicePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkGpuSlicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkGpuSlicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedGpuSlicePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedGpuSlicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedGpuSlicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedGpuSlicePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedGpuSlicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedGpuSlicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedGpuSlicePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedGpuSlicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedGpuSlicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </wa-details>
             <wa-details class="HtmRow" id="gpu-device-details">
               <div slot="summary">
                 <span>GPU device details</span>
@@ -609,58 +561,9 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- endmacro %}
 
 {%- macro htmForm_postGpuSlice() %}
-        <wa-dialog with-footer id="postGpuSliceDialog" label="Create a GPU slice">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="postGpuSliceDialog" label="Create a GPU slice">
           <form id="htmForm_postGpuSlice" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
-            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkGpuSlicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkGpuSlicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkGpuSlicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedGpuSlicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedGpuSlicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedGpuSlicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedGpuSlicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedGpuSlicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedGpuSlicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedGpuSlicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedGpuSlicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedGpuSlicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </wa-details>
             <wa-details class="HtmRow" id="gpu-device-details">
               <div slot="summary">
                 <span>GPU device details</span>
@@ -764,7 +667,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- endmacro %}
 
 {%- macro htmForm_deleteGpuSlice() %}
-        <wa-dialog with-footer id="deleteGpuSliceDialog" label="Delete GPU slice">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deleteGpuSliceDialog" label="Delete GPU slice">
           <form id="htmForm_deleteGpuSlice" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deleteGpuSlice() }}
@@ -778,7 +681,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- endmacro %}
 
 {%- macro htmForm_putimportGpuSlice() %}
-        <wa-dialog with-footer id="putimportGpuSliceDialog" label="Import GPU slices">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportGpuSliceDialog" label="Import GPU slices">
           <form id="htmForm_putimportGpuSlice" class="round-row primary-smart-border-radius ">
             <div>
               <wa-textarea
@@ -800,7 +703,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- endmacro %}
 
 {%- macro htmForm_searchpageGpuSlice() %}
-        <div with-footer id="searchpageGpuSliceDialog" label="Search GPU slices">
+        <div with-header with-footer style="--width: 50vw; " id="searchpageGpuSliceDialog" label="Search GPU slices">
           <div id="htmForm_searchpageGpuSlice" class="round-row primary-smart-border-radius ">
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
               <div slot="summary">
@@ -953,14 +856,14 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterGpuSlice() %}
-        <wa-dialog with-footer id="deletefilterGpuSliceDialog" label="Delete GPU slice">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deletefilterGpuSliceDialog" label="Delete GPU slice">
           <form id="htmForm_deletefilterGpuSlice" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deletefilterGpuSlice() }}
         </wa-dialog>
 {%- endmacro %}
-          <div id="htmButtonGroup">
-            <div class="flex flex-wrap round-column pill-smart-border-radius ">
+          <div id="htmSearchForm">
+            <wa-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
@@ -982,7 +885,9 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {% endif %}
 {%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_patchGpuSlice() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
@@ -993,7 +898,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
   {%- endif %}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount == 1 %}
+  {%- if result is defined %}
     {{ htmButton_deleteGpuSlice() }}
   {%- endif %}
 {%- endif %}
@@ -1001,12 +906,14 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
   {{ htmButton_putimportGpuSlice() }}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount > 1 %}
+  {%- if result is not defined %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_deletefilterGpuSlice() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 
-            </div>
+            </wa-button-group>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchGpuSlice() }}

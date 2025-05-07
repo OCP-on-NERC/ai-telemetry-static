@@ -290,29 +290,26 @@
 {%- block htmBodyMiddleAiNodePage %}
         <div>
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-AiNode">back to all AI nodes</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-AiNode" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all AI nodes
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-regular fa-computer"></i> <span>AI nodes</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-AiNode" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-regular fa-computer"></i>
+              all AI nodes
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no AI node found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-regular fa-computer"></i>
+            </div>
+            <span class="wa-heading-m ">no AI node found</span>
+            <p class="wa-caption-l ">A Red Hat OpenShift node containing GPUs</p>
 {% include en-us/search/ai-node/AiNodeSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/ai-node/AiNodeSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no AI node found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/ai-node/AiNodeSidebar.htm %}
 {%- include en-us/search/ai-node/AiNodeSuggestedSearch.htm %}

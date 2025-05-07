@@ -268,67 +268,61 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartAiNodePage %}
-{% if resultCount > 0 %}
-          <h1><a href="{{pageUri}}"><i class="fa-regular fa-computer"></i> <span>AI nodes</span></a></h1>
-{%- include en-us/search/ai-node/AiNodeSuggestedSearch.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/ai-node/AiNodeSearchForm.htm %}
-{% endif %}
 {%- endblock htmBodyStartAiNodePage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleAiNodePage %}
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-AiNode">back to all AI nodes</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-AiNode" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all AI nodes
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-regular fa-computer"></i> <span>AI nodes</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-AiNode" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-regular fa-computer"></i>
+              all AI nodes
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no AI node found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-regular fa-computer"></i>
+            </div>
+            <span class="wa-heading-m ">no AI node found</span>
+            <p class="wa-caption-l ">A Red Hat OpenShift node containing GPUs</p>
 {% include en-us/search/ai-node/AiNodeSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/ai-node/AiNodeSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no AI node found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/ai-node/AiNodeSidebar.htm %}
-          <form action="/en-us/api/ai-node" id="AiNodeForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-            <input name="focusId" type="hidden"/>
-            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
-            <input name="listAiNode" id="listAiNode" class="listAiNode"  value='{{ toJsonArrayStringInApostrophes(listAiNode) }}' type="hidden"/>
-          </form>
-        <div class="pageContent ">
-          <div id="site-calendar-box">
-            <div id="site-calendar"><!-- // --></div>
-          </div>
-          {% if varsFqCount > 1 %}
-          <div class="margin-block">
-            <wa-tooltip for="return-to-AiNode">back to all AI nodes</wa-tooltip>
-            <wa-button id="return-to-AiNode" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all AI nodes
-            </wa-button>
-          </div>
-          {% endif %}
-          <div class="wa-flank wa-align-items-baseline margin-block-start ">
-{% include en-us/search/ai-node/AiNodePaginationButtons.htm %}
+{%- include en-us/search/ai-node/AiNodeSuggestedSearch.htm %}
+          <div>
+            <form action="/en-us/api/ai-node" id="AiNodeForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+              <input name="focusId" type="hidden"/>
+              <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+              <input name="listAiNode" id="listAiNode" class="listAiNode"  value='{{ toJsonArrayStringInApostrophes(listAiNode) }}' type="hidden"/>
+            </form>
+            <div id="site-calendar-box">
+              <div id="site-calendar"><!-- // --></div>
+            </div>
+            <div class="wa-stack wa-gap-m ">
+              <wa-tooltip for="return-to-AiNode">back to all AI nodes</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-AiNode" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-regular fa-computer"></i>
+                  all AI nodes
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  search AI nodes
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{% include en-us/search/ai-node/AiNodeSearchForm.htm %}
 {% include en-us/search/ai-node/AiNodeSearchButtons.htm %}
-          </div>
-          <div class="card-like-thing background-color-surface-border" id="site-results-grid">
-            <div>
+              <div class="wa-stack wa-gap-0 ">
+{% include en-us/search/ai-node/AiNodePaginationButtons.htm %}
+                <div class="card-like-thing background-color-surface-border" id="site-results-grid">
+                  <div>
               <wa-dropdown id="htmDropdown-clusterName">
                 <wa-button variant="brand" slot="trigger" caret>cluster name</wa-button>
                 <wa-menu>
@@ -369,9 +363,9 @@
                 </wa-menu>
               </wa-dropdown>
               <div></div>
-            </div>
-            {% for item in listAiNode%}
-            <div>
+                  </div>
+                  {% for item in listAiNode%}
+                  <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-regular fa-computer"></i>
               <span>{{ item.clusterName | e }}
@@ -394,8 +388,8 @@
                 <i class="fa-duotone fa-regular fa-pen-to-square"></i>
                 manage
               </wa-button>
-            </div>
-            {% endfor %}
+                  </div>
+                  {% endfor %}
               {% if getColumnClusterName is defined %}
                 <div>
                 </div>
@@ -412,8 +406,11 @@
                 <div>
                 </div>
               {% endif %}
+                </div>
+{% include en-us/search/ai-node/AiNodePaginationButtons.htm %}
+              </div>
+            </div>
           </div>
-        </div>
 {% endif %}
 {%- endblock htmBodyMiddleAiNodePage %}
 {%- endblock htmBodyMiddlePageLayout %}

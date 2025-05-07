@@ -208,29 +208,26 @@
 {%- block htmBodyMiddleAiProjectPage %}
         <div>
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-AiProject">back to all AI projects</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-AiProject" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all AI projects
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-regular fa-school"></i> <span>AI projects</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-AiProject" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-regular fa-school"></i>
+              all AI projects
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no AI project found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-regular fa-school"></i>
+            </div>
+            <span class="wa-heading-m ">no AI project found</span>
+            <p class="wa-caption-l ">A research project using AI and GPUs</p>
 {% include en-us/search/ai-project/AiProjectSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/ai-project/AiProjectSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no AI project found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/ai-project/AiProjectSidebar.htm %}
 {%- include en-us/search/ai-project/AiProjectSuggestedSearch.htm %}

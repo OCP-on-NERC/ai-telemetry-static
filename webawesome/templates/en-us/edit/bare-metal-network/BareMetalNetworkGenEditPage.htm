@@ -208,29 +208,26 @@
 {%- block htmBodyMiddleBareMetalNetworkPage %}
         <div>
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-BareMetalNetwork">back to all bare metal networks</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-BareMetalNetwork" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all bare metal networks
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-duotone fa-regular fa-network-wired"></i> <span>bare metal networks</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-BareMetalNetwork" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular fa-network-wired"></i>
+              all bare metal networks
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no bare metal network found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-duotone fa-regular fa-network-wired"></i>
+            </div>
+            <span class="wa-heading-m ">no bare metal network found</span>
+            <p class="wa-caption-l ">An OpenStack bare metal network</p>
 {% include en-us/search/bare-metal-network/BareMetalNetworkSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/bare-metal-network/BareMetalNetworkSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no bare metal network found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/bare-metal-network/BareMetalNetworkSidebar.htm %}
 {%- include en-us/search/bare-metal-network/BareMetalNetworkSuggestedSearch.htm %}
