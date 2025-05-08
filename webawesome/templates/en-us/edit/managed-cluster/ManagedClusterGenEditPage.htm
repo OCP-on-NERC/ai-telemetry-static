@@ -188,10 +188,10 @@
 {%- block htmBodyStartManagedClusterPage %}
 {% if resultCount > 0 %}
           <div class="wa-flank ">
-            <wa-tooltip for="return-to-ManagedCluster">back to all managed clusters</wa-tooltip>
+            <wa-tooltip for="return-to-ManagedCluster">back to all tenant clusters</wa-tooltip>
             <wa-button id="return-to-ManagedCluster" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
               <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all managed clusters
+              all tenant clusters
             </wa-button>
             <h1 class="Page_objectTitle"><i class="fa-regular fa-server"></i> {{ result.objectTitle | e }}</h1>
           </div>
@@ -208,29 +208,26 @@
 {%- block htmBodyMiddleManagedClusterPage %}
         <div>
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
-          <wa-tooltip for="return-to-ManagedCluster">back to all managed clusters</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-ManagedCluster" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all managed clusters
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-regular fa-server"></i> <span>managed clusters</span></h1>
-        </div>
+        <div class="wa-stack ">
+          <wa-tooltip for="return-to-ManagedCluster">back to all tenant clusters</wa-tooltip></wa-tooltip>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-ManagedCluster" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-regular fa-server"></i>
+              all tenant clusters
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no tenant cluster found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-regular fa-server"></i>
+            </div>
+            <span class="wa-heading-m ">no tenant cluster found</span>
+            <p class="wa-caption-l ">An OpenShift tenant cluster</p>
 {% include en-us/search/managed-cluster/ManagedClusterSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/managed-cluster/ManagedClusterSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no managed cluster found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/managed-cluster/ManagedClusterSidebar.htm %}
 {%- include en-us/search/managed-cluster/ManagedClusterSuggestedSearch.htm %}

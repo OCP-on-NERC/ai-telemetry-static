@@ -262,29 +262,26 @@
 {%- block htmBodyMiddleClusterRequestPage %}
         <div>
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-ClusterRequest">back to all cluster requests</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-ClusterRequest" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all cluster requests
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-regular fa-server"></i> <span>cluster requests</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-ClusterRequest" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-regular fa-server"></i>
+              all cluster requests
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no cluster request found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-regular fa-server"></i>
+            </div>
+            <span class="wa-heading-m ">no cluster request found</span>
+            <p class="wa-caption-l ">An OpenShift cluster request</p>
 {% include en-us/search/cluster-request/ClusterRequestSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/cluster-request/ClusterRequestSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no cluster request found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/cluster-request/ClusterRequestSidebar.htm %}
 {%- include en-us/search/cluster-request/ClusterRequestSuggestedSearch.htm %}

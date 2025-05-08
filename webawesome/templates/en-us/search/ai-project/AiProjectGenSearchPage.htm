@@ -186,67 +186,61 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartAiProjectPage %}
-{% if resultCount > 0 %}
-          <h1><a href="{{pageUri}}"><i class="fa-regular fa-school"></i> <span>AI projects</span></a></h1>
-{%- include en-us/search/ai-project/AiProjectSuggestedSearch.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/ai-project/AiProjectSearchForm.htm %}
-{% endif %}
 {%- endblock htmBodyStartAiProjectPage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleAiProjectPage %}
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-AiProject">back to all AI projects</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-AiProject" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all AI projects
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-regular fa-school"></i> <span>AI projects</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-AiProject" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-regular fa-school"></i>
+              all AI projects
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no AI project found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-regular fa-school"></i>
+            </div>
+            <span class="wa-heading-m ">no AI project found</span>
+            <p class="wa-caption-l ">A research project using AI and GPUs</p>
 {% include en-us/search/ai-project/AiProjectSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/ai-project/AiProjectSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no AI project found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/ai-project/AiProjectSidebar.htm %}
-          <form action="/en-us/api/ai-project" id="AiProjectForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-            <input name="focusId" type="hidden"/>
-            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
-            <input name="listAiProject" id="listAiProject" class="listAiProject"  value='{{ toJsonArrayStringInApostrophes(listAiProject) }}' type="hidden"/>
-          </form>
-        <div class="pageContent ">
-          <div id="site-calendar-box">
-            <div id="site-calendar"><!-- // --></div>
-          </div>
-          {% if varsFqCount > 1 %}
-          <div class="margin-block">
-            <wa-tooltip for="return-to-AiProject">back to all AI projects</wa-tooltip>
-            <wa-button id="return-to-AiProject" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all AI projects
-            </wa-button>
-          </div>
-          {% endif %}
-          <div class="wa-flank wa-align-items-baseline margin-block-start ">
-{% include en-us/search/ai-project/AiProjectPaginationButtons.htm %}
+{%- include en-us/search/ai-project/AiProjectSuggestedSearch.htm %}
+          <div>
+            <form action="/en-us/api/ai-project" id="AiProjectForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+              <input name="focusId" type="hidden"/>
+              <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+              <input name="listAiProject" id="listAiProject" class="listAiProject"  value='{{ toJsonArrayStringInApostrophes(listAiProject) }}' type="hidden"/>
+            </form>
+            <div id="site-calendar-box">
+              <div id="site-calendar"><!-- // --></div>
+            </div>
+            <div class="wa-stack wa-gap-m ">
+              <wa-tooltip for="return-to-AiProject">back to all AI projects</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-AiProject" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-regular fa-school"></i>
+                  all AI projects
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  search AI projects
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{% include en-us/search/ai-project/AiProjectSearchForm.htm %}
 {% include en-us/search/ai-project/AiProjectSearchButtons.htm %}
-          </div>
-          <div class="card-like-thing background-color-surface-border" id="site-results-grid">
-            <div>
+              <div class="wa-stack wa-gap-0 ">
+{% include en-us/search/ai-project/AiProjectPaginationButtons.htm %}
+                <div class="card-like-thing background-color-surface-border" id="site-results-grid">
+                  <div>
               <wa-dropdown id="htmDropdown-clusterName">
                 <wa-button variant="brand" slot="trigger" caret>cluster name</wa-button>
                 <wa-menu>
@@ -286,10 +280,9 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
-              <div></div>
-            </div>
-            {% for item in listAiProject%}
-            <div>
+                  </div>
+                  {% for item in listAiProject%}
+                  <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-regular fa-school"></i>
               <span>{{ item.clusterName | e }}
@@ -300,20 +293,8 @@
               <a href="{{ item.displayPage }}">
               <span class="white-space-pre-wrap ">{{ item.description | e }}
 </span>              </a>
-              <wa-button variant="brand"
-                  id="{{classApiMethodMethod}}_editPage"
-                  placeholder="[String] manage"
-                  label="manage"
-                  title="Manage this"
-                  class="button-on-left {{classApiMethodMethod}}_editPage classAiProject inputAiProject{{ result.projectId }}EditPage "
-                  name="setEditPage"
-                  href="{{ item.editPage | e }}"
-                  >
-                <i class="fa-duotone fa-regular fa-pen-to-square"></i>
-                manage
-              </wa-button>
-            </div>
-            {% endfor %}
+                  </div>
+                  {% endfor %}
               {% if getColumnClusterName is defined %}
                 <div>
                 </div>
@@ -326,12 +307,11 @@
                 <div>
                 </div>
               {% endif %}
-              {% if getColumnEditPage is defined %}
-                <div>
                 </div>
-              {% endif %}
+{% include en-us/search/ai-project/AiProjectPaginationButtons.htm %}
+              </div>
+            </div>
           </div>
-        </div>
 {% endif %}
 {%- endblock htmBodyMiddleAiProjectPage %}
 {%- endblock htmBodyMiddlePageLayout %}

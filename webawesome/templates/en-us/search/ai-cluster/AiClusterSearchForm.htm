@@ -6,6 +6,7 @@
                       readonly
                       placeholder="[Long] primary key"
                       label="primary key"
+                      type="number"
                       hint="
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
@@ -137,7 +138,7 @@ The primary key of this object in the database"
                       >archive</wa-checkbox>
   {%- else %}
                       >
-                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value=""></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
                   </wa-select>
@@ -307,6 +308,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[Integer] AI nodes total"
                       label="AI nodes total"
+                      type="number"
                       hint="
 The total number of AI nodes on this cluster. "
                       id="{{classApiMethodMethod}}_aiNodesTotal"
@@ -344,6 +346,7 @@ The total number of AI nodes on this cluster. "
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[Integer] GPU devices total"
                       label="GPU devices total"
+                      type="number"
                       hint="
 The total number of GPU devices on this cluster. "
                       id="{{classApiMethodMethod}}_gpuDevicesTotal"
@@ -583,57 +586,8 @@ The NGSILD data with @context from the context broker"
 {%- endmacro %}
 
 {%- macro htmForm_patchAiCluster() %}
-        <wa-dialog with-footer id="patchAiClusterDialog" label="Modify AI cluster">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="patchAiClusterDialog" label="Modify AI cluster">
           <form id="htmForm_patchAiCluster" class="round-row primary-smart-border-radius ">
-            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkAiClusterPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkAiClusterPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkAiClusterPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedAiClusterPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedAiClusterPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedAiClusterPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedAiClusterPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedAiClusterPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedAiClusterPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedAiClusterPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedAiClusterPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedAiClusterPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </wa-details>
             <wa-details open class="HtmRow" id="cluster-details">
               <div slot="summary">
                 <span>cluster details</span>
@@ -777,58 +731,9 @@ The NGSILD data with @context from the context broker"
 {%- endmacro %}
 
 {%- macro htmForm_postAiCluster() %}
-        <wa-dialog with-footer id="postAiClusterDialog" label="Create an AI cluster">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="postAiClusterDialog" label="Create an AI cluster">
           <form id="htmForm_postAiCluster" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
-            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkAiClusterPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkAiClusterPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkAiClusterPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedAiClusterPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedAiClusterPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedAiClusterPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedAiClusterPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedAiClusterPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedAiClusterPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedAiClusterPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedAiClusterPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedAiClusterPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </wa-details>
             <wa-details open class="HtmRow" id="cluster-details">
               <div slot="summary">
                 <span>cluster details</span>
@@ -972,7 +877,7 @@ The NGSILD data with @context from the context broker"
 {%- endmacro %}
 
 {%- macro htmForm_deleteAiCluster() %}
-        <wa-dialog with-footer id="deleteAiClusterDialog" label="Delete AI cluster">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deleteAiClusterDialog" label="Delete AI cluster">
           <form id="htmForm_deleteAiCluster" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deleteAiCluster() }}
@@ -986,7 +891,7 @@ The NGSILD data with @context from the context broker"
 {%- endmacro %}
 
 {%- macro htmForm_putimportAiCluster() %}
-        <wa-dialog with-footer id="putimportAiClusterDialog" label="Import AI clusters">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportAiClusterDialog" label="Import AI clusters">
           <form id="htmForm_putimportAiCluster" class="round-row primary-smart-border-radius ">
             <div>
               <wa-textarea
@@ -1008,7 +913,7 @@ The NGSILD data with @context from the context broker"
 {%- endmacro %}
 
 {%- macro htmForm_searchpageAiCluster() %}
-        <div with-footer id="searchpageAiClusterDialog" label="Search AI clusters">
+        <div with-header with-footer style="--width: 50vw; " id="searchpageAiClusterDialog" label="Search AI clusters">
           <div id="htmForm_searchpageAiCluster" class="round-row primary-smart-border-radius ">
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
               <div slot="summary">
@@ -1201,14 +1106,14 @@ The NGSILD data with @context from the context broker"
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterAiCluster() %}
-        <wa-dialog with-footer id="deletefilterAiClusterDialog" label="Delete AI cluster">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deletefilterAiClusterDialog" label="Delete AI cluster">
           <form id="htmForm_deletefilterAiCluster" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deletefilterAiCluster() }}
         </wa-dialog>
 {%- endmacro %}
-          <div id="htmButtonGroup">
-            <div class="flex flex-wrap round-column pill-smart-border-radius ">
+          <div id="htmSearchForm">
+            <wa-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
@@ -1230,7 +1135,9 @@ The NGSILD data with @context from the context broker"
 {% endif %}
 {%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_patchAiCluster() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
@@ -1241,7 +1148,7 @@ The NGSILD data with @context from the context broker"
   {%- endif %}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount == 1 %}
+  {%- if result is defined %}
     {{ htmButton_deleteAiCluster() }}
   {%- endif %}
 {%- endif %}
@@ -1249,12 +1156,14 @@ The NGSILD data with @context from the context broker"
   {{ htmButton_putimportAiCluster() }}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount > 1 %}
+  {%- if result is not defined %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_deletefilterAiCluster() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 
-            </div>
+            </wa-button-group>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchAiCluster() }}

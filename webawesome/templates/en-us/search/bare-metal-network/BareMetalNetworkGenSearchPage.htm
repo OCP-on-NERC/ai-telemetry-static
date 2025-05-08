@@ -186,67 +186,61 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartBareMetalNetworkPage %}
-{% if resultCount > 0 %}
-          <h1><a href="{{pageUri}}"><i class="fa-duotone fa-regular fa-network-wired"></i> <span>bare metal networks</span></a></h1>
-{%- include en-us/search/bare-metal-network/BareMetalNetworkSuggestedSearch.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/bare-metal-network/BareMetalNetworkSearchForm.htm %}
-{% endif %}
 {%- endblock htmBodyStartBareMetalNetworkPage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleBareMetalNetworkPage %}
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-BareMetalNetwork">back to all bare metal networks</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-BareMetalNetwork" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all bare metal networks
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-duotone fa-regular fa-network-wired"></i> <span>bare metal networks</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-BareMetalNetwork" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular fa-network-wired"></i>
+              all bare metal networks
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no bare metal network found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-duotone fa-regular fa-network-wired"></i>
+            </div>
+            <span class="wa-heading-m ">no bare metal network found</span>
+            <p class="wa-caption-l ">An OpenStack bare metal network</p>
 {% include en-us/search/bare-metal-network/BareMetalNetworkSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/bare-metal-network/BareMetalNetworkSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no bare metal network found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/bare-metal-network/BareMetalNetworkSidebar.htm %}
-          <form action="/en-us/api/bare-metal-network" id="BareMetalNetworkForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-            <input name="focusId" type="hidden"/>
-            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
-            <input name="listBareMetalNetwork" id="listBareMetalNetwork" class="listBareMetalNetwork"  value='{{ toJsonArrayStringInApostrophes(listBareMetalNetwork) }}' type="hidden"/>
-          </form>
-        <div class="pageContent ">
-          <div id="site-calendar-box">
-            <div id="site-calendar"><!-- // --></div>
-          </div>
-          {% if varsFqCount > 1 %}
-          <div class="margin-block">
-            <wa-tooltip for="return-to-BareMetalNetwork">back to all bare metal networks</wa-tooltip>
-            <wa-button id="return-to-BareMetalNetwork" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all bare metal networks
-            </wa-button>
-          </div>
-          {% endif %}
-          <div class="wa-flank wa-align-items-baseline margin-block-start ">
-{% include en-us/search/bare-metal-network/BareMetalNetworkPaginationButtons.htm %}
+{%- include en-us/search/bare-metal-network/BareMetalNetworkSuggestedSearch.htm %}
+          <div>
+            <form action="/en-us/api/bare-metal-network" id="BareMetalNetworkForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+              <input name="focusId" type="hidden"/>
+              <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+              <input name="listBareMetalNetwork" id="listBareMetalNetwork" class="listBareMetalNetwork"  value='{{ toJsonArrayStringInApostrophes(listBareMetalNetwork) }}' type="hidden"/>
+            </form>
+            <div id="site-calendar-box">
+              <div id="site-calendar"><!-- // --></div>
+            </div>
+            <div class="wa-stack wa-gap-m ">
+              <wa-tooltip for="return-to-BareMetalNetwork">back to all bare metal networks</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-BareMetalNetwork" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-network-wired"></i>
+                  all bare metal networks
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  search bare metal networks
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{% include en-us/search/bare-metal-network/BareMetalNetworkSearchForm.htm %}
 {% include en-us/search/bare-metal-network/BareMetalNetworkSearchButtons.htm %}
-          </div>
-          <div class="card-like-thing background-color-surface-border" id="site-results-grid">
-            <div>
+              <div class="wa-stack wa-gap-0 ">
+{% include en-us/search/bare-metal-network/BareMetalNetworkPaginationButtons.htm %}
+                <div class="card-like-thing background-color-surface-border" id="site-results-grid">
+                  <div>
               <wa-dropdown id="htmDropdown-name">
                 <wa-button variant="brand" slot="trigger" caret>network name</wa-button>
                 <wa-menu>
@@ -273,10 +267,9 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
-              <div></div>
-            </div>
-            {% for item in listBareMetalNetwork%}
-            <div>
+                  </div>
+                  {% for item in listBareMetalNetwork%}
+                  <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-duotone fa-regular fa-network-wired"></i>
               <span>{{ item.name | e }}
@@ -284,20 +277,8 @@
               <a href="{{ item.displayPage }}">
               <span>{{ item.providerSegmentationId | e }}
 </span>              </a>
-              <wa-button variant="brand"
-                  id="{{classApiMethodMethod}}_editPage"
-                  placeholder="[String] manage"
-                  label="manage"
-                  title="Manage this"
-                  class="button-on-left {{classApiMethodMethod}}_editPage classBareMetalNetwork inputBareMetalNetwork{{ result.id }}EditPage "
-                  name="setEditPage"
-                  href="{{ item.editPage | e }}"
-                  >
-                <i class="fa-duotone fa-regular fa-pen-to-square"></i>
-                manage
-              </wa-button>
-            </div>
-            {% endfor %}
+                  </div>
+                  {% endfor %}
               {% if getColumnName is defined %}
                 <div>
                 </div>
@@ -306,12 +287,11 @@
                 <div>
                 </div>
               {% endif %}
-              {% if getColumnEditPage is defined %}
-                <div>
                 </div>
-              {% endif %}
+{% include en-us/search/bare-metal-network/BareMetalNetworkPaginationButtons.htm %}
+              </div>
+            </div>
           </div>
-        </div>
 {% endif %}
 {%- endblock htmBodyMiddleBareMetalNetworkPage %}
 {%- endblock htmBodyMiddlePageLayout %}

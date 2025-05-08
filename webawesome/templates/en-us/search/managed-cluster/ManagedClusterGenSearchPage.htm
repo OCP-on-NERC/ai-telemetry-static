@@ -2,7 +2,7 @@
 
 {%- block htmTitlePageLayout %}
 {%- block htmTitleManagedClusterPage %}
-    <title>{% if resultCount == 0 %}no managed cluster found{% else %}managed clusters{% endif %}</title>
+    <title>{% if resultCount == 0 %}no tenant cluster found{% else %}tenant clusters{% endif %}</title>
 {%- endblock htmTitleManagedClusterPage %}
 {%- endblock htmTitlePageLayout %}
 
@@ -186,67 +186,61 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartManagedClusterPage %}
-{% if resultCount > 0 %}
-          <h1><a href="{{pageUri}}"><i class="fa-regular fa-server"></i> <span>managed clusters</span></a></h1>
-{%- include en-us/search/managed-cluster/ManagedClusterSuggestedSearch.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/managed-cluster/ManagedClusterSearchForm.htm %}
-{% endif %}
 {%- endblock htmBodyStartManagedClusterPage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleManagedClusterPage %}
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
-          <wa-tooltip for="return-to-ManagedCluster">back to all managed clusters</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-ManagedCluster" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all managed clusters
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-regular fa-server"></i> <span>managed clusters</span></h1>
-        </div>
+        <div class="wa-stack ">
+          <wa-tooltip for="return-to-ManagedCluster">back to all tenant clusters</wa-tooltip></wa-tooltip>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-ManagedCluster" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-regular fa-server"></i>
+              all tenant clusters
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no tenant cluster found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-regular fa-server"></i>
+            </div>
+            <span class="wa-heading-m ">no tenant cluster found</span>
+            <p class="wa-caption-l ">An OpenShift tenant cluster</p>
 {% include en-us/search/managed-cluster/ManagedClusterSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/managed-cluster/ManagedClusterSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no managed cluster found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/managed-cluster/ManagedClusterSidebar.htm %}
-          <form action="/en-us/api/managed-cluster" id="ManagedClusterForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-            <input name="focusId" type="hidden"/>
-            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
-            <input name="listManagedCluster" id="listManagedCluster" class="listManagedCluster"  value='{{ toJsonArrayStringInApostrophes(listManagedCluster) }}' type="hidden"/>
-          </form>
-        <div class="pageContent ">
-          <div id="site-calendar-box">
-            <div id="site-calendar"><!-- // --></div>
-          </div>
-          {% if varsFqCount > 1 %}
-          <div class="margin-block">
-            <wa-tooltip for="return-to-ManagedCluster">back to all managed clusters</wa-tooltip>
-            <wa-button id="return-to-ManagedCluster" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all managed clusters
-            </wa-button>
-          </div>
-          {% endif %}
-          <div class="wa-flank wa-align-items-baseline margin-block-start ">
-{% include en-us/search/managed-cluster/ManagedClusterPaginationButtons.htm %}
+{%- include en-us/search/managed-cluster/ManagedClusterSuggestedSearch.htm %}
+          <div>
+            <form action="/en-us/api/managed-cluster" id="ManagedClusterForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+              <input name="focusId" type="hidden"/>
+              <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+              <input name="listManagedCluster" id="listManagedCluster" class="listManagedCluster"  value='{{ toJsonArrayStringInApostrophes(listManagedCluster) }}' type="hidden"/>
+            </form>
+            <div id="site-calendar-box">
+              <div id="site-calendar"><!-- // --></div>
+            </div>
+            <div class="wa-stack wa-gap-m ">
+              <wa-tooltip for="return-to-ManagedCluster">back to all tenant clusters</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-ManagedCluster" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-regular fa-server"></i>
+                  all tenant clusters
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  search tenant clusters
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{% include en-us/search/managed-cluster/ManagedClusterSearchForm.htm %}
 {% include en-us/search/managed-cluster/ManagedClusterSearchButtons.htm %}
-          </div>
-          <div class="card-like-thing background-color-surface-border" id="site-results-grid">
-            <div>
+              <div class="wa-stack wa-gap-0 ">
+{% include en-us/search/managed-cluster/ManagedClusterPaginationButtons.htm %}
+                <div class="card-like-thing background-color-surface-border" id="site-results-grid">
+                  <div>
               <wa-dropdown id="htmDropdown-id">
                 <wa-button variant="brand" slot="trigger" caret>cluster ID</wa-button>
                 <wa-menu>
@@ -299,10 +293,9 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
-              <div></div>
-            </div>
-            {% for item in listManagedCluster%}
-            <div>
+                  </div>
+                  {% for item in listManagedCluster%}
+                  <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-regular fa-server"></i>
               <span>{{ item.id | e }}
@@ -316,20 +309,8 @@
               <a href="{{ item.displayPage }}">
               <span>{{ item.consoleUrl | e }}
 </span>              </a>
-              <wa-button variant="brand"
-                  id="{{classApiMethodMethod}}_editPage"
-                  placeholder="[String] manage"
-                  label="manage"
-                  title="Manage this"
-                  class="button-on-left {{classApiMethodMethod}}_editPage classManagedCluster inputManagedCluster{{ result.id }}EditPage "
-                  name="setEditPage"
-                  href="{{ item.editPage | e }}"
-                  >
-                <i class="fa-duotone fa-regular fa-pen-to-square"></i>
-                manage
-              </wa-button>
-            </div>
-            {% endfor %}
+                  </div>
+                  {% endfor %}
               {% if getColumnId is defined %}
                 <div>
                 </div>
@@ -346,12 +327,11 @@
                 <div>
                 </div>
               {% endif %}
-              {% if getColumnEditPage is defined %}
-                <div>
                 </div>
-              {% endif %}
+{% include en-us/search/managed-cluster/ManagedClusterPaginationButtons.htm %}
+              </div>
+            </div>
           </div>
-        </div>
 {% endif %}
 {%- endblock htmBodyMiddleManagedClusterPage %}
 {%- endblock htmBodyMiddlePageLayout %}

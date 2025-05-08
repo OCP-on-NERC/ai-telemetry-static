@@ -6,6 +6,7 @@
                       readonly
                       placeholder="[Long] primary key"
                       label="primary key"
+                      type="number"
                       hint="
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
@@ -137,7 +138,7 @@ The primary key of this object in the database"
                       >archive</wa-checkbox>
   {%- else %}
                       >
-                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value=""></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
                   </wa-select>
@@ -401,6 +402,7 @@ The description of this bare metal network"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[Integer] MTU"
                       label="MTU"
+                      type="number"
                       id="{{classApiMethodMethod}}_mtu"
   {%- if "Page" == classApiMethodMethod %}
                       data-id={{ result.id | tojson }}
@@ -611,6 +613,7 @@ The description of this bare metal network"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[Integer] revision number"
                       label="revision number"
+                      type="number"
                       id="{{classApiMethodMethod}}_revisionNumber"
   {%- if "Page" == classApiMethodMethod %}
                       data-id={{ result.id | tojson }}
@@ -839,7 +842,7 @@ The description of this bare metal network"
                       >is admin state up</wa-checkbox>
   {%- else %}
                       >
-                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value=""></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
                   </wa-select>
@@ -887,7 +890,7 @@ The description of this bare metal network"
                       >is default</wa-checkbox>
   {%- else %}
                       >
-                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value=""></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
                   </wa-select>
@@ -935,7 +938,7 @@ The description of this bare metal network"
                       >is port security enabled</wa-checkbox>
   {%- else %}
                       >
-                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value=""></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
                   </wa-select>
@@ -983,7 +986,7 @@ The description of this bare metal network"
                       >is router external</wa-checkbox>
   {%- else %}
                       >
-                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value=""></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
                   </wa-select>
@@ -1031,7 +1034,7 @@ The description of this bare metal network"
                       >is shared</wa-checkbox>
   {%- else %}
                       >
-                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value=""></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
                   </wa-select>
@@ -1079,7 +1082,7 @@ The description of this bare metal network"
                       >is VLAN queing</wa-checkbox>
   {%- else %}
                       >
-                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value=""></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
                   </wa-select>
@@ -1127,7 +1130,7 @@ The description of this bare metal network"
                       >is VLAN transparent</wa-checkbox>
   {%- else %}
                       >
-                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value=""></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
                   </wa-select>
@@ -1175,7 +1178,7 @@ The description of this bare metal network"
                       >l2Adjecency</wa-checkbox>
   {%- else %}
                       >
-                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value=""></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
                   </wa-select>
@@ -1441,57 +1444,8 @@ The description of this bare metal network"
 {%- endmacro %}
 
 {%- macro htmForm_patchBareMetalNetwork() %}
-        <wa-dialog with-footer id="patchBareMetalNetworkDialog" label="Modify bare metal network">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="patchBareMetalNetworkDialog" label="Modify bare metal network">
           <form id="htmForm_patchBareMetalNetwork" class="round-row primary-smart-border-radius ">
-            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkBareMetalNetworkPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkBareMetalNetworkPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkBareMetalNetworkPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedBareMetalNetworkPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedBareMetalNetworkPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedBareMetalNetworkPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedBareMetalNetworkPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedBareMetalNetworkPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedBareMetalNetworkPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedBareMetalNetworkPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedBareMetalNetworkPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedBareMetalNetworkPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </wa-details>
             <wa-details open class="HtmRow" id="bare-metal-network-details">
               <div slot="summary">
                 <span>bare metal network details</span>
@@ -1865,58 +1819,9 @@ The description of this bare metal network"
 {%- endmacro %}
 
 {%- macro htmForm_postBareMetalNetwork() %}
-        <wa-dialog with-footer id="postBareMetalNetworkDialog" label="Create a bare metal network">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="postBareMetalNetworkDialog" label="Create a bare metal network">
           <form id="htmForm_postBareMetalNetwork" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
-            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </wa-details>
             <wa-details open class="HtmRow" id="bare-metal-network-details">
               <div slot="summary">
                 <span>bare metal network details</span>
@@ -2290,7 +2195,7 @@ The description of this bare metal network"
 {%- endmacro %}
 
 {%- macro htmForm_deleteBareMetalNetwork() %}
-        <wa-dialog with-footer id="deleteBareMetalNetworkDialog" label="Delete bare metal network">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deleteBareMetalNetworkDialog" label="Delete bare metal network">
           <form id="htmForm_deleteBareMetalNetwork" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deleteBareMetalNetwork() }}
@@ -2304,7 +2209,7 @@ The description of this bare metal network"
 {%- endmacro %}
 
 {%- macro htmForm_putimportBareMetalNetwork() %}
-        <wa-dialog with-footer id="putimportBareMetalNetworkDialog" label="Import bare metal networks">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportBareMetalNetworkDialog" label="Import bare metal networks">
           <form id="htmForm_putimportBareMetalNetwork" class="round-row primary-smart-border-radius ">
             <div>
               <wa-textarea
@@ -2326,7 +2231,7 @@ The description of this bare metal network"
 {%- endmacro %}
 
 {%- macro htmForm_searchpageBareMetalNetwork() %}
-        <div with-footer id="searchpageBareMetalNetworkDialog" label="Search bare metal networks">
+        <div with-header with-footer style="--width: 50vw; " id="searchpageBareMetalNetworkDialog" label="Search bare metal networks">
           <div id="htmForm_searchpageBareMetalNetwork" class="round-row primary-smart-border-radius ">
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
               <div slot="summary">
@@ -2749,14 +2654,14 @@ The description of this bare metal network"
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterBareMetalNetwork() %}
-        <wa-dialog with-footer id="deletefilterBareMetalNetworkDialog" label="Delete bare metal network">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deletefilterBareMetalNetworkDialog" label="Delete bare metal network">
           <form id="htmForm_deletefilterBareMetalNetwork" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deletefilterBareMetalNetwork() }}
         </wa-dialog>
 {%- endmacro %}
-          <div id="htmButtonGroup">
-            <div class="flex flex-wrap round-column pill-smart-border-radius ">
+          <div id="htmSearchForm">
+            <wa-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
@@ -2778,7 +2683,9 @@ The description of this bare metal network"
 {% endif %}
 {%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_patchBareMetalNetwork() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
@@ -2789,7 +2696,7 @@ The description of this bare metal network"
   {%- endif %}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount == 1 %}
+  {%- if result is defined %}
     {{ htmButton_deleteBareMetalNetwork() }}
   {%- endif %}
 {%- endif %}
@@ -2797,12 +2704,14 @@ The description of this bare metal network"
   {{ htmButton_putimportBareMetalNetwork() }}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount > 1 %}
+  {%- if result is not defined %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_deletefilterBareMetalNetwork() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 
-            </div>
+            </wa-button-group>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchBareMetalNetwork() }}

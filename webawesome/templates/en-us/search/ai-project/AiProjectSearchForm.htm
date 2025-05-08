@@ -6,6 +6,7 @@
                       readonly
                       placeholder="[Long] primary key"
                       label="primary key"
+                      type="number"
                       hint="
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
@@ -137,7 +138,7 @@ The primary key of this object in the database"
                       >archive</wa-checkbox>
   {%- else %}
                       >
-                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value=""></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
                   </wa-select>
@@ -307,57 +308,8 @@ A description of this AI project"
 {%- endmacro %}
 
 {%- macro htmForm_patchAiProject() %}
-        <wa-dialog with-footer id="patchAiProjectDialog" label="Modify AI project">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="patchAiProjectDialog" label="Modify AI project">
           <form id="htmForm_patchAiProject" class="round-row primary-smart-border-radius ">
-            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkAiProjectPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkAiProjectPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkAiProjectPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedAiProjectPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedAiProjectPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedAiProjectPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedAiProjectPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedAiProjectPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedAiProjectPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedAiProjectPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedAiProjectPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedAiProjectPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </wa-details>
             <wa-details open class="HtmRow" id="cluster-details">
               <div slot="summary">
                 <span>cluster details</span>
@@ -417,58 +369,9 @@ A description of this AI project"
 {%- endmacro %}
 
 {%- macro htmForm_postAiProject() %}
-        <wa-dialog with-footer id="postAiProjectDialog" label="Create an AI project">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="postAiProjectDialog" label="Create an AI project">
           <form id="htmForm_postAiProject" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
-            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkAiProjectPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkAiProjectPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkAiProjectPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedAiProjectPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedAiProjectPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedAiProjectPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedAiProjectPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedAiProjectPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedAiProjectPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedAiProjectPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedAiProjectPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedAiProjectPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </wa-details>
             <wa-details open class="HtmRow" id="cluster-details">
               <div slot="summary">
                 <span>cluster details</span>
@@ -528,7 +431,7 @@ A description of this AI project"
 {%- endmacro %}
 
 {%- macro htmForm_deleteAiProject() %}
-        <wa-dialog with-footer id="deleteAiProjectDialog" label="Delete AI project">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deleteAiProjectDialog" label="Delete AI project">
           <form id="htmForm_deleteAiProject" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deleteAiProject() }}
@@ -542,7 +445,7 @@ A description of this AI project"
 {%- endmacro %}
 
 {%- macro htmForm_putimportAiProject() %}
-        <wa-dialog with-footer id="putimportAiProjectDialog" label="Import AI projects">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportAiProjectDialog" label="Import AI projects">
           <form id="htmForm_putimportAiProject" class="round-row primary-smart-border-radius ">
             <div>
               <wa-textarea
@@ -564,7 +467,7 @@ A description of this AI project"
 {%- endmacro %}
 
 {%- macro htmForm_searchpageAiProject() %}
-        <div with-footer id="searchpageAiProjectDialog" label="Search AI projects">
+        <div with-header with-footer style="--width: 50vw; " id="searchpageAiProjectDialog" label="Search AI projects">
           <div id="htmForm_searchpageAiProject" class="round-row primary-smart-border-radius ">
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
               <div slot="summary">
@@ -673,14 +576,14 @@ A description of this AI project"
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterAiProject() %}
-        <wa-dialog with-footer id="deletefilterAiProjectDialog" label="Delete AI project">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deletefilterAiProjectDialog" label="Delete AI project">
           <form id="htmForm_deletefilterAiProject" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deletefilterAiProject() }}
         </wa-dialog>
 {%- endmacro %}
-          <div id="htmButtonGroup">
-            <div class="flex flex-wrap round-column pill-smart-border-radius ">
+          <div id="htmSearchForm">
+            <wa-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
@@ -702,7 +605,9 @@ A description of this AI project"
 {% endif %}
 {%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_patchAiProject() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
@@ -713,7 +618,7 @@ A description of this AI project"
   {%- endif %}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount == 1 %}
+  {%- if result is defined %}
     {{ htmButton_deleteAiProject() }}
   {%- endif %}
 {%- endif %}
@@ -721,12 +626,14 @@ A description of this AI project"
   {{ htmButton_putimportAiProject() }}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount > 1 %}
+  {%- if result is not defined %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_deletefilterAiProject() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 
-            </div>
+            </wa-button-group>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchAiProject() }}

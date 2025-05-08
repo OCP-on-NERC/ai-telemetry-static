@@ -203,67 +203,61 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartClusterOrderPage %}
-{% if resultCount > 0 %}
-          <h1><a href="{{pageUri}}"><i class="fa-regular fa-server"></i> <span>cluster orders</span></a></h1>
-{%- include en-us/search/cluster-order/ClusterOrderSuggestedSearch.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/cluster-order/ClusterOrderSearchForm.htm %}
-{% endif %}
 {%- endblock htmBodyStartClusterOrderPage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleClusterOrderPage %}
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-ClusterOrder">back to all cluster orders</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-ClusterOrder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all cluster orders
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-regular fa-server"></i> <span>cluster orders</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-ClusterOrder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-regular fa-server"></i>
+              all cluster orders
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no cluster order found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-regular fa-server"></i>
+            </div>
+            <span class="wa-heading-m ">no cluster order found</span>
+            <p class="wa-caption-l ">Manage your own Red Hat OpenShift cluster in the cloud. </p>
 {% include en-us/search/cluster-order/ClusterOrderSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/cluster-order/ClusterOrderSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no cluster order found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/cluster-order/ClusterOrderSidebar.htm %}
-          <form action="/en-us/api/cluster-order" id="ClusterOrderForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-            <input name="focusId" type="hidden"/>
-            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
-            <input name="listClusterOrder" id="listClusterOrder" class="listClusterOrder"  value='{{ toJsonArrayStringInApostrophes(listClusterOrder) }}' type="hidden"/>
-          </form>
-        <div class="pageContent ">
-          <div id="site-calendar-box">
-            <div id="site-calendar"><!-- // --></div>
-          </div>
-          {% if varsFqCount > 1 %}
-          <div class="margin-block">
-            <wa-tooltip for="return-to-ClusterOrder">back to all cluster orders</wa-tooltip>
-            <wa-button id="return-to-ClusterOrder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all cluster orders
-            </wa-button>
-          </div>
-          {% endif %}
-          <div class="wa-flank wa-align-items-baseline margin-block-start ">
-{% include en-us/search/cluster-order/ClusterOrderPaginationButtons.htm %}
+{%- include en-us/search/cluster-order/ClusterOrderSuggestedSearch.htm %}
+          <div>
+            <form action="/en-us/api/cluster-order" id="ClusterOrderForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+              <input name="focusId" type="hidden"/>
+              <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+              <input name="listClusterOrder" id="listClusterOrder" class="listClusterOrder"  value='{{ toJsonArrayStringInApostrophes(listClusterOrder) }}' type="hidden"/>
+            </form>
+            <div id="site-calendar-box">
+              <div id="site-calendar"><!-- // --></div>
+            </div>
+            <div class="wa-stack wa-gap-m ">
+              <wa-tooltip for="return-to-ClusterOrder">back to all cluster orders</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-ClusterOrder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-regular fa-server"></i>
+                  all cluster orders
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  search cluster orders
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{% include en-us/search/cluster-order/ClusterOrderSearchForm.htm %}
 {% include en-us/search/cluster-order/ClusterOrderSearchButtons.htm %}
-          </div>
-          <div class="card-like-thing background-color-surface-border" id="site-results-grid">
-            <div>
+              <div class="wa-stack wa-gap-0 ">
+{% include en-us/search/cluster-order/ClusterOrderPaginationButtons.htm %}
+                <div class="card-like-thing background-color-surface-border" id="site-results-grid">
+                  <div>
               <wa-dropdown id="htmDropdown-id">
                 <wa-button variant="brand" slot="trigger" caret>order ID</wa-button>
                 <wa-menu>
@@ -316,10 +310,9 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
-              <div></div>
-            </div>
-            {% for item in listClusterOrder%}
-            <div>
+                  </div>
+                  {% for item in listClusterOrder%}
+                  <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-regular fa-server"></i>
               <span>{{ item.id | e }}
@@ -333,20 +326,8 @@
               <a href="{{ item.displayPage }}">
               <span>{{ item.clusterId | e }}
 </span>              </a>
-              <wa-button variant="brand"
-                  id="{{classApiMethodMethod}}_editPage"
-                  placeholder="[String] manage"
-                  label="manage"
-                  title="Manage this"
-                  class="button-on-left {{classApiMethodMethod}}_editPage classClusterOrder inputClusterOrder{{ result.id }}EditPage "
-                  name="setEditPage"
-                  href="{{ item.editPage | e }}"
-                  >
-                <i class="fa-duotone fa-regular fa-pen-to-square"></i>
-                manage
-              </wa-button>
-            </div>
-            {% endfor %}
+                  </div>
+                  {% endfor %}
               {% if getColumnId is defined %}
                 <div>
                 </div>
@@ -363,12 +344,11 @@
                 <div>
                 </div>
               {% endif %}
-              {% if getColumnEditPage is defined %}
-                <div>
                 </div>
-              {% endif %}
+{% include en-us/search/cluster-order/ClusterOrderPaginationButtons.htm %}
+              </div>
+            </div>
           </div>
-        </div>
 {% endif %}
 {%- endblock htmBodyMiddleClusterOrderPage %}
 {%- endblock htmBodyMiddlePageLayout %}

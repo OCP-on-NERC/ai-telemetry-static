@@ -208,29 +208,26 @@
 {%- block htmBodyMiddleBareMetalResourceClassPage %}
         <div>
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-BareMetalResourceClass">back to all bare metal resource classes</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-BareMetalResourceClass" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all bare metal resource classes
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-regular fa-server"></i> <span>bare metal resource classes</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-BareMetalResourceClass" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-regular fa-server"></i>
+              all bare metal resource classes
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no bare metal resource class found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-regular fa-server"></i>
+            </div>
+            <span class="wa-heading-m ">no bare metal resource class found</span>
+            <p class="wa-caption-l ">A bare metal resource class</p>
 {% include en-us/search/bare-metal-resource-class/BareMetalResourceClassSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/bare-metal-resource-class/BareMetalResourceClassSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no bare metal resource class found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/bare-metal-resource-class/BareMetalResourceClassSidebar.htm %}
 {%- include en-us/search/bare-metal-resource-class/BareMetalResourceClassSuggestedSearch.htm %}

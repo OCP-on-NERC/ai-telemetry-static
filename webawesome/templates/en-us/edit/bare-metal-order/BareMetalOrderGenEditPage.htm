@@ -225,29 +225,26 @@
 {%- block htmBodyMiddleBareMetalOrderPage %}
         <div>
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-BareMetalOrder">back to all bare metal orders</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-BareMetalOrder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all bare metal orders
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-duotone fa-regular fa-share-nodes"></i> <span>bare metal orders</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-BareMetalOrder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular fa-share-nodes"></i>
+              all bare metal orders
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no bare metal order found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-duotone fa-regular fa-share-nodes"></i>
+            </div>
+            <span class="wa-heading-m ">no bare metal order found</span>
+            <p class="wa-caption-l ">A bare metal order</p>
 {% include en-us/search/bare-metal-order/BareMetalOrderSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/bare-metal-order/BareMetalOrderSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no bare metal order found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/bare-metal-order/BareMetalOrderSidebar.htm %}
 {%- include en-us/search/bare-metal-order/BareMetalOrderSuggestedSearch.htm %}

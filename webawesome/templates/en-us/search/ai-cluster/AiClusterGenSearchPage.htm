@@ -268,67 +268,61 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartAiClusterPage %}
-{% if resultCount > 0 %}
-          <h1><a href="{{pageUri}}"><i class="fa-regular fa-server"></i> <span>AI clusters</span></a></h1>
-{%- include en-us/search/ai-cluster/AiClusterSuggestedSearch.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/ai-cluster/AiClusterSearchForm.htm %}
-{% endif %}
 {%- endblock htmBodyStartAiClusterPage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleAiClusterPage %}
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-AiCluster">back to all AI clusters</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-AiCluster" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all AI clusters
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-regular fa-server"></i> <span>AI clusters</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-AiCluster" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-regular fa-server"></i>
+              all AI clusters
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no AI cluster found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-regular fa-server"></i>
+            </div>
+            <span class="wa-heading-m ">no AI cluster found</span>
+            <p class="wa-caption-l ">A Red Hat OpenShift cluster containing GPUs</p>
 {% include en-us/search/ai-cluster/AiClusterSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/ai-cluster/AiClusterSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no AI cluster found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/ai-cluster/AiClusterSidebar.htm %}
-          <form action="/en-us/api/ai-cluster" id="AiClusterForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-            <input name="focusId" type="hidden"/>
-            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
-            <input name="listAiCluster" id="listAiCluster" class="listAiCluster"  value='{{ toJsonArrayStringInApostrophes(listAiCluster) }}' type="hidden"/>
-          </form>
-        <div class="pageContent ">
-          <div id="site-calendar-box">
-            <div id="site-calendar"><!-- // --></div>
-          </div>
-          {% if varsFqCount > 1 %}
-          <div class="margin-block">
-            <wa-tooltip for="return-to-AiCluster">back to all AI clusters</wa-tooltip>
-            <wa-button id="return-to-AiCluster" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all AI clusters
-            </wa-button>
-          </div>
-          {% endif %}
-          <div class="wa-flank wa-align-items-baseline margin-block-start ">
-{% include en-us/search/ai-cluster/AiClusterPaginationButtons.htm %}
+{%- include en-us/search/ai-cluster/AiClusterSuggestedSearch.htm %}
+          <div>
+            <form action="/en-us/api/ai-cluster" id="AiClusterForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+              <input name="focusId" type="hidden"/>
+              <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+              <input name="listAiCluster" id="listAiCluster" class="listAiCluster"  value='{{ toJsonArrayStringInApostrophes(listAiCluster) }}' type="hidden"/>
+            </form>
+            <div id="site-calendar-box">
+              <div id="site-calendar"><!-- // --></div>
+            </div>
+            <div class="wa-stack wa-gap-m ">
+              <wa-tooltip for="return-to-AiCluster">back to all AI clusters</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-AiCluster" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-regular fa-server"></i>
+                  all AI clusters
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  search AI clusters
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{% include en-us/search/ai-cluster/AiClusterSearchForm.htm %}
 {% include en-us/search/ai-cluster/AiClusterSearchButtons.htm %}
-          </div>
-          <div class="card-like-thing background-color-surface-border" id="site-results-grid">
-            <div>
+              <div class="wa-stack wa-gap-0 ">
+{% include en-us/search/ai-cluster/AiClusterPaginationButtons.htm %}
+                <div class="card-like-thing background-color-surface-border" id="site-results-grid">
+                  <div>
               <wa-dropdown id="htmDropdown-clusterName">
                 <wa-button variant="brand" slot="trigger" caret>cluster name</wa-button>
                 <wa-menu>
@@ -355,22 +349,9 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
-              <wa-dropdown id="htmDropdown-modified">
-                <wa-button variant="brand" slot="trigger" caret>modified</wa-button>
-                <wa-menu>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortAiCluster_modified'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-AiCluster').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-modified-asc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
-                    sort by modified ascending
-                  </wa-menu-item>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortAiCluster_modified'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-AiCluster').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-modified-desc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
-                    sort by modified descending
-                  </wa-menu-item>
-                </wa-menu>
-              </wa-dropdown>
-            </div>
-            {% for item in listAiCluster%}
-            <div>
+                  </div>
+                  {% for item in listAiCluster%}
+                  <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-regular fa-server"></i>
               <span>{{ item.clusterName | e }}
@@ -378,11 +359,8 @@
               <a href="{{ item.displayPage }}">
               <span class="white-space-pre-wrap ">{{ item.description | e }}
 </span>              </a>
-              <a href="{{ item.displayPage }}">
-              <span><wa-format-date weekday="short" month="short" day="numeric" year="numeric" hour="numeric" minute="numeric" second="numeric" time-zone-name="short" date="{{ formatZonedDateTime(item.modified, "yyyy-MM-dd'T'HH:mm:ss.SSSX", defaultLocaleId, "UTC") }}"></wa-format-date>
-</span>              </a>
-            </div>
-            {% endfor %}
+                  </div>
+                  {% endfor %}
               {% if getColumnClusterName is defined %}
                 <div>
                 </div>
@@ -391,12 +369,11 @@
                 <div>
                 </div>
               {% endif %}
-              {% if getColumnModified is defined %}
-                <div>
                 </div>
-              {% endif %}
+{% include en-us/search/ai-cluster/AiClusterPaginationButtons.htm %}
+              </div>
+            </div>
           </div>
-        </div>
 {% endif %}
 {%- endblock htmBodyMiddleAiClusterPage %}
 {%- endblock htmBodyMiddlePageLayout %}

@@ -193,67 +193,61 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartBareMetalOrderPage %}
-{% if resultCount > 0 %}
-          <h1><a href="{{pageUri}}"><i class="fa-duotone fa-regular fa-share-nodes"></i> <span>bare metal orders</span></a></h1>
-{%- include en-us/search/bare-metal-order/BareMetalOrderSuggestedSearch.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/bare-metal-order/BareMetalOrderSearchForm.htm %}
-{% endif %}
 {%- endblock htmBodyStartBareMetalOrderPage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleBareMetalOrderPage %}
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-BareMetalOrder">back to all bare metal orders</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-BareMetalOrder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all bare metal orders
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-duotone fa-regular fa-share-nodes"></i> <span>bare metal orders</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-BareMetalOrder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular fa-share-nodes"></i>
+              all bare metal orders
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no bare metal order found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-duotone fa-regular fa-share-nodes"></i>
+            </div>
+            <span class="wa-heading-m ">no bare metal order found</span>
+            <p class="wa-caption-l ">A bare metal order</p>
 {% include en-us/search/bare-metal-order/BareMetalOrderSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/bare-metal-order/BareMetalOrderSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no bare metal order found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/bare-metal-order/BareMetalOrderSidebar.htm %}
-          <form action="/en-us/api/bare-metal-order" id="BareMetalOrderForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-            <input name="focusId" type="hidden"/>
-            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
-            <input name="listBareMetalOrder" id="listBareMetalOrder" class="listBareMetalOrder"  value='{{ toJsonArrayStringInApostrophes(listBareMetalOrder) }}' type="hidden"/>
-          </form>
-        <div class="pageContent ">
-          <div id="site-calendar-box">
-            <div id="site-calendar"><!-- // --></div>
-          </div>
-          {% if varsFqCount > 1 %}
-          <div class="margin-block">
-            <wa-tooltip for="return-to-BareMetalOrder">back to all bare metal orders</wa-tooltip>
-            <wa-button id="return-to-BareMetalOrder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all bare metal orders
-            </wa-button>
-          </div>
-          {% endif %}
-          <div class="wa-flank wa-align-items-baseline margin-block-start ">
-{% include en-us/search/bare-metal-order/BareMetalOrderPaginationButtons.htm %}
+{%- include en-us/search/bare-metal-order/BareMetalOrderSuggestedSearch.htm %}
+          <div>
+            <form action="/en-us/api/bare-metal-order" id="BareMetalOrderForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+              <input name="focusId" type="hidden"/>
+              <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+              <input name="listBareMetalOrder" id="listBareMetalOrder" class="listBareMetalOrder"  value='{{ toJsonArrayStringInApostrophes(listBareMetalOrder) }}' type="hidden"/>
+            </form>
+            <div id="site-calendar-box">
+              <div id="site-calendar"><!-- // --></div>
+            </div>
+            <div class="wa-stack wa-gap-m ">
+              <wa-tooltip for="return-to-BareMetalOrder">back to all bare metal orders</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-BareMetalOrder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-share-nodes"></i>
+                  all bare metal orders
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  search bare metal orders
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{% include en-us/search/bare-metal-order/BareMetalOrderSearchForm.htm %}
 {% include en-us/search/bare-metal-order/BareMetalOrderSearchButtons.htm %}
-          </div>
-          <div class="card-like-thing background-color-surface-border" id="site-results-grid">
-            <div>
+              <div class="wa-stack wa-gap-0 ">
+{% include en-us/search/bare-metal-order/BareMetalOrderPaginationButtons.htm %}
+                <div class="card-like-thing background-color-surface-border" id="site-results-grid">
+                  <div>
               <wa-dropdown id="htmDropdown-pk">
                 <wa-button variant="brand" slot="trigger" caret>primary key</wa-button>
                 <wa-menu>
@@ -280,22 +274,22 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
-              <wa-dropdown id="htmDropdown-networkName">
-                <wa-button variant="brand" slot="trigger" caret>bare metal network name</wa-button>
+              <wa-dropdown id="htmDropdown-status">
+                <wa-button variant="brand" slot="trigger" caret>order status</wa-button>
                 <wa-menu>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalOrder_networkName'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalOrder').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-networkName-asc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalOrder_status'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalOrder').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-status-asc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
-                    sort by bare metal network name ascending
+                    sort by order status ascending
                   </wa-menu-item>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalOrder_networkName'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalOrder').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-networkName-desc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalOrder_status'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalOrder').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-status-desc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
-                    sort by bare metal network name descending
+                    sort by order status descending
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
-            </div>
-            {% for item in listBareMetalOrder%}
-            <div>
+                  </div>
+                  {% for item in listBareMetalOrder%}
+                  <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-duotone fa-regular fa-share-nodes"></i>
               <span>{{ item.pk | e }}
@@ -304,10 +298,10 @@
               <span class="white-space-pre-wrap ">{{ item.description | e }}
 </span>              </a>
               <a href="{{ item.displayPage }}">
-              <span>{{ item.networkName | e }}
+              <span>{{ item.status | e }}
 </span>              </a>
-            </div>
-            {% endfor %}
+                  </div>
+                  {% endfor %}
               {% if getColumnPk is defined %}
                 <div>
                 </div>
@@ -316,12 +310,15 @@
                 <div>
                 </div>
               {% endif %}
-              {% if getColumnNetworkName is defined %}
+              {% if getColumnStatus is defined %}
                 <div>
                 </div>
               {% endif %}
+                </div>
+{% include en-us/search/bare-metal-order/BareMetalOrderPaginationButtons.htm %}
+              </div>
+            </div>
           </div>
-        </div>
 {% endif %}
 {%- endblock htmBodyMiddleBareMetalOrderPage %}
 {%- endblock htmBodyMiddlePageLayout %}

@@ -220,67 +220,61 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartClusterRequestPage %}
-{% if resultCount > 0 %}
-          <h1><a href="{{pageUri}}"><i class="fa-regular fa-server"></i> <span>cluster requests</span></a></h1>
-{%- include en-us/search/cluster-request/ClusterRequestSuggestedSearch.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/cluster-request/ClusterRequestSearchForm.htm %}
-{% endif %}
 {%- endblock htmBodyStartClusterRequestPage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleClusterRequestPage %}
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-ClusterRequest">back to all cluster requests</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-ClusterRequest" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all cluster requests
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-regular fa-server"></i> <span>cluster requests</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-ClusterRequest" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-regular fa-server"></i>
+              all cluster requests
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no cluster request found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-regular fa-server"></i>
+            </div>
+            <span class="wa-heading-m ">no cluster request found</span>
+            <p class="wa-caption-l ">An OpenShift cluster request</p>
 {% include en-us/search/cluster-request/ClusterRequestSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/cluster-request/ClusterRequestSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no cluster request found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/cluster-request/ClusterRequestSidebar.htm %}
-          <form action="/en-us/api/cluster-request" id="ClusterRequestForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-            <input name="focusId" type="hidden"/>
-            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
-            <input name="listClusterRequest" id="listClusterRequest" class="listClusterRequest"  value='{{ toJsonArrayStringInApostrophes(listClusterRequest) }}' type="hidden"/>
-          </form>
-        <div class="pageContent ">
-          <div id="site-calendar-box">
-            <div id="site-calendar"><!-- // --></div>
-          </div>
-          {% if varsFqCount > 1 %}
-          <div class="margin-block">
-            <wa-tooltip for="return-to-ClusterRequest">back to all cluster requests</wa-tooltip>
-            <wa-button id="return-to-ClusterRequest" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all cluster requests
-            </wa-button>
-          </div>
-          {% endif %}
-          <div class="wa-flank wa-align-items-baseline margin-block-start ">
-{% include en-us/search/cluster-request/ClusterRequestPaginationButtons.htm %}
+{%- include en-us/search/cluster-request/ClusterRequestSuggestedSearch.htm %}
+          <div>
+            <form action="/en-us/api/cluster-request" id="ClusterRequestForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+              <input name="focusId" type="hidden"/>
+              <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+              <input name="listClusterRequest" id="listClusterRequest" class="listClusterRequest"  value='{{ toJsonArrayStringInApostrophes(listClusterRequest) }}' type="hidden"/>
+            </form>
+            <div id="site-calendar-box">
+              <div id="site-calendar"><!-- // --></div>
+            </div>
+            <div class="wa-stack wa-gap-m ">
+              <wa-tooltip for="return-to-ClusterRequest">back to all cluster requests</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-ClusterRequest" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-regular fa-server"></i>
+                  all cluster requests
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  search cluster requests
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{% include en-us/search/cluster-request/ClusterRequestSearchForm.htm %}
 {% include en-us/search/cluster-request/ClusterRequestSearchButtons.htm %}
-          </div>
-          <div class="card-like-thing background-color-surface-border" id="site-results-grid">
-            <div>
+              <div class="wa-stack wa-gap-0 ">
+{% include en-us/search/cluster-request/ClusterRequestPaginationButtons.htm %}
+                <div class="card-like-thing background-color-surface-border" id="site-results-grid">
+                  <div>
               <wa-dropdown id="htmDropdown-name">
                 <wa-button variant="brand" slot="trigger" caret>cluster name</wa-button>
                 <wa-menu>
@@ -320,10 +314,9 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
-              <div></div>
-            </div>
-            {% for item in listClusterRequest%}
-            <div>
+                  </div>
+                  {% for item in listClusterRequest%}
+                  <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-regular fa-server"></i>
               <span>{{ item.name | e }}
@@ -334,20 +327,8 @@
               <a href="{{ item.displayPage }}">
               <span>{{ item.userId | e }}
 </span>              </a>
-              <wa-button variant="brand"
-                  id="{{classApiMethodMethod}}_editPage"
-                  placeholder="[String] manage"
-                  label="manage"
-                  title="Manage this"
-                  class="button-on-left {{classApiMethodMethod}}_editPage classClusterRequest inputClusterRequest{{ result.name }}EditPage "
-                  name="setEditPage"
-                  href="{{ item.editPage | e }}"
-                  >
-                <i class="fa-duotone fa-regular fa-pen-to-square"></i>
-                manage
-              </wa-button>
-            </div>
-            {% endfor %}
+                  </div>
+                  {% endfor %}
               {% if getColumnName is defined %}
                 <div>
                 </div>
@@ -360,12 +341,11 @@
                 <div>
                 </div>
               {% endif %}
-              {% if getColumnEditPage is defined %}
-                <div>
                 </div>
-              {% endif %}
+{% include en-us/search/cluster-request/ClusterRequestPaginationButtons.htm %}
+              </div>
+            </div>
           </div>
-        </div>
 {% endif %}
 {%- endblock htmBodyMiddleClusterRequestPage %}
 {%- endblock htmBodyMiddlePageLayout %}

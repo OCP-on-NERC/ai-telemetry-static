@@ -6,6 +6,7 @@
                       readonly
                       placeholder="[Long] primary key"
                       label="primary key"
+                      type="number"
                       hint="
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
@@ -137,7 +138,7 @@ The primary key of this object in the database"
                       >archive</wa-checkbox>
   {%- else %}
                       >
-                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value=""></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
                   </wa-select>
@@ -270,6 +271,7 @@ A description of this GPU device"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[Integer] GPU device number"
                       label="GPU device number"
+                      type="number"
                       hint="
 The number of this GPU device"
                       id="{{classApiMethodMethod}}_gpuDeviceNumber"
@@ -344,6 +346,7 @@ A unique ID for this Smart Data Model"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[Integer] GPU device utilization"
                       label="GPU device utilization"
+                      type="number"
                       hint="
 Current utilization of the GPU device. "
                       id="{{classApiMethodMethod}}_gpuDeviceUtilization"
@@ -566,57 +569,8 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- endmacro %}
 
 {%- macro htmForm_patchGpuDevice() %}
-        <wa-dialog with-footer id="patchGpuDeviceDialog" label="Modify GPU device">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="patchGpuDeviceDialog" label="Modify GPU device">
           <form id="htmForm_patchGpuDevice" class="round-row primary-smart-border-radius ">
-            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </wa-details>
             <wa-details open class="HtmRow" id="gpu-device-details">
               <div slot="summary">
                 <span>GPU device details</span>
@@ -757,58 +711,9 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- endmacro %}
 
 {%- macro htmForm_postGpuDevice() %}
-        <wa-dialog with-footer id="postGpuDeviceDialog" label="Create a GPU device">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="postGpuDeviceDialog" label="Create a GPU device">
           <form id="htmForm_postGpuDevice" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
-            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </wa-details>
             <wa-details open class="HtmRow" id="gpu-device-details">
               <div slot="summary">
                 <span>GPU device details</span>
@@ -949,7 +854,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- endmacro %}
 
 {%- macro htmForm_deleteGpuDevice() %}
-        <wa-dialog with-footer id="deleteGpuDeviceDialog" label="Delete GPU device">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deleteGpuDeviceDialog" label="Delete GPU device">
           <form id="htmForm_deleteGpuDevice" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deleteGpuDevice() }}
@@ -963,7 +868,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- endmacro %}
 
 {%- macro htmForm_putimportGpuDevice() %}
-        <wa-dialog with-footer id="putimportGpuDeviceDialog" label="Import GPU devices">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportGpuDeviceDialog" label="Import GPU devices">
           <form id="htmForm_putimportGpuDevice" class="round-row primary-smart-border-radius ">
             <div>
               <wa-textarea
@@ -985,7 +890,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- endmacro %}
 
 {%- macro htmForm_searchpageGpuDevice() %}
-        <div with-footer id="searchpageGpuDeviceDialog" label="Search GPU devices">
+        <div with-header with-footer style="--width: 50vw; " id="searchpageGpuDeviceDialog" label="Search GPU devices">
           <div id="htmForm_searchpageGpuDevice" class="round-row primary-smart-border-radius ">
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
               <div slot="summary">
@@ -1175,14 +1080,14 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterGpuDevice() %}
-        <wa-dialog with-footer id="deletefilterGpuDeviceDialog" label="Delete GPU device">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deletefilterGpuDeviceDialog" label="Delete GPU device">
           <form id="htmForm_deletefilterGpuDevice" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deletefilterGpuDevice() }}
         </wa-dialog>
 {%- endmacro %}
-          <div id="htmButtonGroup">
-            <div class="flex flex-wrap round-column pill-smart-border-radius ">
+          <div id="htmSearchForm">
+            <wa-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
@@ -1204,7 +1109,9 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {% endif %}
 {%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_patchGpuDevice() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
@@ -1215,7 +1122,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
   {%- endif %}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount == 1 %}
+  {%- if result is defined %}
     {{ htmButton_deleteGpuDevice() }}
   {%- endif %}
 {%- endif %}
@@ -1223,12 +1130,14 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
   {{ htmButton_putimportGpuDevice() }}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount > 1 %}
+  {%- if result is not defined %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_deletefilterGpuDevice() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 
-            </div>
+            </wa-button-group>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchGpuDevice() }}
