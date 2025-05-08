@@ -193,7 +193,7 @@ The primary key of this object in the database"
   {%- endif %}
                   <wa-textarea resize="auto"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] network info"
+                      placeholder="[JsonArray] network info"
                       label="network info"
                       id="{{classApiMethodMethod}}_networkInfo"
   {%- if "Page" == classApiMethodMethod %}
@@ -210,7 +210,7 @@ The primary key of this object in the database"
     {%- endif %}
   {%- endif %}
 {%- if "Page" == classApiMethodMethod %}
-                      value="{{result.networkInfo | e }}"
+                      value="{{ toJsonArrayString(result.networkInfo) | e }}"
 {%- endif %}
                       >
 </wa-textarea>

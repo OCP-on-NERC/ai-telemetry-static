@@ -266,7 +266,7 @@ async function patchBareMetalNode($formFilters, $formValues, target, nodeId, suc
   var setNetworkInfo = removeNetworkInfo ? null : $formValues.querySelector('.setNetworkInfo')?.value;
   var addNetworkInfo = $formValues.querySelector('.addNetworkInfo')?.value;
   if(removeNetworkInfo || setNetworkInfo != null && setNetworkInfo !== '')
-    vals['setNetworkInfo'] = setNetworkInfo;
+    vals['setNetworkInfo'] = JSON.parse(setNetworkInfo);
   if(addNetworkInfo != null && addNetworkInfo !== '')
     vals['addNetworkInfo'] = addNetworkInfo;
   var removeNetworkInfo = $formValues.querySelector('.removeNetworkInfo')?.value;
@@ -595,7 +595,7 @@ async function postBareMetalNode($formValues, target, success, error) {
 
   var valueNetworkInfo = $formValues.querySelector('.valueNetworkInfo')?.value;
   if(valueNetworkInfo != null && valueNetworkInfo !== '')
-    vals['networkInfo'] = valueNetworkInfo;
+    vals['networkInfo'] = JSON.parse(valueNetworkInfo);
 
   var valueNodeId = $formValues.querySelector('.valueNodeId')?.value;
   if(valueNodeId != null && valueNodeId !== '')
