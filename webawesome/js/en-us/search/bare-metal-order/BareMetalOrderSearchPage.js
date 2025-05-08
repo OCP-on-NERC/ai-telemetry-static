@@ -55,6 +55,18 @@ Promise.all([
     sort('BareMetalOrder', 'numberOfLenovoSd665nv3H100', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortBareMetalOrder_image')?.addEventListener('change', (event) => {
+    sort('BareMetalOrder', 'image', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortBareMetalOrder_sshPublicKey')?.addEventListener('change', (event) => {
+    sort('BareMetalOrder', 'sshPublicKey', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortBareMetalOrder_floatingIp')?.addEventListener('change', (event) => {
+    sort('BareMetalOrder', 'floatingIp', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortBareMetalOrder_status')?.addEventListener('change', (event) => {
     sort('BareMetalOrder', 'status', event.currentTarget.value);
   });
@@ -229,6 +241,33 @@ Promise.all([
             facetFieldChange('BareMetalOrder', event.currentTarget);
           });
           document.querySelector('#pageFacetPivotBareMetalOrder_numberOfLenovoSd665nv3H100')?.addEventListener('change', (event) => {
+            facetPivotChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#fqBareMetalOrder_image')?.addEventListener('change', (event) => {
+            fqChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetBareMetalOrder_image')?.addEventListener('click', (event) => {
+            facetFieldChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotBareMetalOrder_image')?.addEventListener('change', (event) => {
+            facetPivotChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#fqBareMetalOrder_sshPublicKey')?.addEventListener('change', (event) => {
+            fqChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetBareMetalOrder_sshPublicKey')?.addEventListener('click', (event) => {
+            facetFieldChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotBareMetalOrder_sshPublicKey')?.addEventListener('change', (event) => {
+            facetPivotChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#fqBareMetalOrder_floatingIp')?.addEventListener('change', (event) => {
+            fqChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetBareMetalOrder_floatingIp')?.addEventListener('click', (event) => {
+            facetFieldChange('BareMetalOrder', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotBareMetalOrder_floatingIp')?.addEventListener('change', (event) => {
             facetPivotChange('BareMetalOrder', event.currentTarget);
           });
           document.querySelector('#fqBareMetalOrder_status')?.addEventListener('change', (event) => {

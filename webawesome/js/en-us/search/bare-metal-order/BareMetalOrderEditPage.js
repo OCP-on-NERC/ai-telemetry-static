@@ -204,6 +204,69 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
+          // PATCH image
+          document.querySelector('#Page_image')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_image');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchBareMetalOrderVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + event.currentTarget.getAttribute('data-pk') }]
+                  , 'setImage', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_image')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_image')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_image');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH sshPublicKey
+          document.querySelector('#Page_sshPublicKey')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_sshPublicKey');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchBareMetalOrderVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + event.currentTarget.getAttribute('data-pk') }]
+                  , 'setSshPublicKey', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_sshPublicKey')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_sshPublicKey')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_sshPublicKey');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH floatingIp
+          document.querySelector('#Page_floatingIp')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_floatingIp');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchBareMetalOrderVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + event.currentTarget.getAttribute('data-pk') }]
+                  , 'setFloatingIp', event.currentTarget.checked
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_floatingIp')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_floatingIp')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_floatingIp');
+            const valid = form.reportValidity();
+          });
+
           // PATCH status
           document.querySelector('#Page_status')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_status');

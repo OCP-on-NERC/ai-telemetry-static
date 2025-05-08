@@ -482,6 +482,133 @@ The number of lenovo-sd665nv3-h100 nodes to request for this order. "
 {%- macro htmNumberOfLenovoSd665nv3H100BareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false, min=0, max=100) %}
                             {{ inputNumberOfLenovoSd665nv3H100BareMetalOrderPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, min=min, max=max) }}
 {%- endmacro %}
+{%- macro inputImageBareMetalOrderPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_image">
+  {%- endif %}
+                  <wa-select
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] image"
+                      label="image"
+                      hint="
+The operating system image of a bare metal fulfillment"
+                      id="{{classApiMethodMethod}}_image"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-pk={{ result.pk | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_image setImage classBareMetalOrder inputBareMetalOrder{{ result.pk }}Image "
+                      name="setImage"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_image setImage classBareMetalOrder inputBareMetalOrder{{ result.pk }}Image "
+                      name="setImage"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_image valueImage classBareMetalOrder inputBareMetalOrder{{ result.pk }}Image "
+                      name="image"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.image | e }}"
+  {%- endif %}
+                      >
+                    <wa-option value="centos9-stream">CentOS 9 Stream Linux</wa-option>
+                    <wa-option value="fedora40">Fedora 40 Linux</wa-option>
+                    <wa-option value="ubuntu-22.04">Ubuntu 22.04 Linux</wa-option>
+                  </wa-select>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmImageBareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputImageBareMetalOrderPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputSshPublicKeyBareMetalOrderPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_sshPublicKey">
+  {%- endif %}
+                  <wa-textarea resize="auto"
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] SSH public key"
+                      label="SSH public key"
+                      hint="
+The SSH public key of the user, not the private SSH key! "
+                      id="{{classApiMethodMethod}}_sshPublicKey"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-pk={{ result.pk | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_sshPublicKey setSshPublicKey classBareMetalOrder inputBareMetalOrder{{ result.pk }}SshPublicKey "
+                      name="setSshPublicKey"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_sshPublicKey setSshPublicKey classBareMetalOrder inputBareMetalOrder{{ result.pk }}SshPublicKey "
+                      name="setSshPublicKey"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_sshPublicKey valueSshPublicKey classBareMetalOrder inputBareMetalOrder{{ result.pk }}SshPublicKey "
+                      name="sshPublicKey"
+    {%- endif %}
+  {%- endif %}
+{%- if "Page" == classApiMethodMethod %}
+                      value="{{result.sshPublicKey | e }}"
+{%- endif %}
+                      >
+</wa-textarea>
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmSshPublicKeyBareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputSshPublicKeyBareMetalOrderPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputFloatingIpBareMetalOrderPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, default=false) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_floatingIp">
+  {%- endif %}
+  {%- if 'Page' == classApiMethodMethod %}
+                  <wa-checkbox
+                      id="{{classApiMethodMethod}}_floatingIp"
+                      value="true"
+  {%- else %}
+                  <wa-select
+                      value="false"
+                      id="{{classApiMethodMethod}}_floatingIp"
+  {%- endif %}
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="floating IP"
+                      label="floating IP"
+                      hint="The floating IP of a bare metal fulfillment"
+  {%- if 'Page' == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_floatingIp classBareMetalOrder inputBareMetalOrder{{ result.pk }}FloatingIp "
+                      name="setFloatingIp"
+  {%- else %}
+    {%- if 'Page' == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_floatingIp classBareMetalOrder inputBareMetalOrder{{ result.pk }}FloatingIp "
+                      name="setFloatingIp"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_floatingIp setFloatingIp valueFloatingIp classBareMetalOrder inputBareMetalOrder{{ result.pk }}FloatingIp "
+                      name="setFloatingIp"
+    {%- endif %}
+  {%- endif %}
+  {%- if 'Page' == classApiMethodMethod %}
+    {%- if result.floatingIp == true %}
+                      checked
+    {%- endif %}
+                      data-pk={{ result.pk | tojson }}
+                      >floating IP</wa-checkbox>
+  {%- else %}
+                      >
+                    <wa-option value="true">true</wa-option>
+                    <wa-option value="false">false</wa-option>
+                  </wa-select>
+  {%- endif %}
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmFloatingIpBareMetalOrderPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false, default=false) %}
+                            {{ inputFloatingIpBareMetalOrderPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
 {%- macro inputStatusBareMetalOrderPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_status">
@@ -635,6 +762,57 @@ The order status of a bare metal fulfillment"
               {%- endif %}
               </div>
             </wa-details>
+            <wa-details open class="HtmRow" id="operating-system-image">
+              <div slot="summary">
+                <span>operating system image</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmImageBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmImageBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmImageBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="credentials">
+              <div slot="summary">
+                <span>credentials</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmSshPublicKeyBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmSshPublicKeyBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmSshPublicKeyBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="networking">
+              <div slot="summary">
+                <span>networking</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmFloatingIpBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, default=false) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmFloatingIpBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, default=false) }}
+                {%- else %}
+                  {{ htmFloatingIpBareMetalOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, default=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
           </form>
           {{ htmFormButton_patchBareMetalOrder() }}
         </wa-dialog>
@@ -753,6 +931,57 @@ The order status of a bare metal fulfillment"
                   {{ htmNumberOfLenovoSd665nv3H100BareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'lenovo-sd665nv3-h100') | list | first).count) }}
                 {%- endif %}
               {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="operating-system-image">
+              <div slot="summary">
+                <span>operating system image</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmImageBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmImageBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmImageBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="credentials">
+              <div slot="summary">
+                <span>credentials</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmSshPublicKeyBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmSshPublicKeyBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmSshPublicKeyBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="networking">
+              <div slot="summary">
+                <span>networking</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmFloatingIpBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, default=false) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmFloatingIpBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, default=false) }}
+                {%- else %}
+                  {{ htmFloatingIpBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, default=false) }}
+                {%- endif %}
               {%- endif %}
               </div>
             </wa-details>
@@ -936,6 +1165,57 @@ The order status of a bare metal fulfillment"
                   {{ htmNumberOfLenovoSd665nv3H100BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'lenovo-sd665nv3-h100') | list | first).count) }}
                 {%- endif %}
               {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="operating-system-image">
+              <div slot="summary">
+                <span>operating system image</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmImageBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmImageBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmImageBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="credentials">
+              <div slot="summary">
+                <span>credentials</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmSshPublicKeyBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmSshPublicKeyBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmSshPublicKeyBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="networking">
+              <div slot="summary">
+                <span>networking</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmFloatingIpBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, default=false) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmFloatingIpBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, default=false) }}
+                {%- else %}
+                  {{ htmFloatingIpBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, default=false) }}
+                {%- endif %}
               {%- endif %}
               </div>
             </wa-details>
