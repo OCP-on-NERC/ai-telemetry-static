@@ -103,19 +103,6 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
-              <wa-dropdown id="htmDropdown-networkInfo">
-                <wa-button variant="brand" slot="trigger" caret>network info</wa-button>
-                <wa-menu>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNode_networkInfo'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-networkInfo-asc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
-                    sort by network info ascending
-                  </wa-menu-item>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortBareMetalNode_networkInfo'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-BareMetalNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-networkInfo-desc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
-                    sort by network info descending
-                  </wa-menu-item>
-                </wa-menu>
-              </wa-dropdown>
                   </div>
                   {% for item in listBareMetalNode%}
                   <div>
@@ -132,10 +119,8 @@
                     <a href="{{ item.displayPage }}">
                     <span>{{ item.nodeProvisionState | e }}</span>
                     </a>
-                    <a href="{{ item.displayPage }}">
-                    <span class="white-space-pre-wrap ">{{ item.networkInfo | e }}</span>
-                    </a>
                   </div>
+                  {% if item.networkInfo is defined %}
                   <wa-details summary="{{ item.nodeName | e }} network info" open>
 
                     {% for network in item.networkInfo %}
@@ -169,6 +154,7 @@
                     </div>
                     {% endfor %}
                   </wa-details>
+                  {% endif %}
                   {% endfor %}
               {% if getColumnNodeName is defined %}
                 <div>
@@ -183,10 +169,6 @@
                 </div>
               {% endif %}
               {% if getColumnNodeProvisionState is defined %}
-                <div>
-                </div>
-              {% endif %}
-              {% if getColumnNetworkInfo is defined %}
                 <div>
                 </div>
               {% endif %}
