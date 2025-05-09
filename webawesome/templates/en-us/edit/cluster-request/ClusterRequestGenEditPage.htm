@@ -242,10 +242,10 @@
 {%- block htmBodyStartClusterRequestPage %}
 {% if resultCount > 0 %}
           <div class="wa-flank ">
-            <wa-tooltip for="return-to-ClusterRequest">back to all cluster requests</wa-tooltip>
+            <wa-tooltip for="return-to-ClusterRequest">back to all OpenShift cluster requests</wa-tooltip>
             <wa-button id="return-to-ClusterRequest" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
               <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all cluster requests
+              all OpenShift cluster requests
             </wa-button>
             <h1 class="Page_objectTitle"><i class="fa-regular fa-server"></i> {{ result.objectTitle | e }}</h1>
           </div>
@@ -263,21 +263,21 @@
         <div>
 {% if resultCount == 0 %}
         <div class="wa-stack ">
-          <wa-tooltip for="return-to-ClusterRequest">back to all cluster requests</wa-tooltip></wa-tooltip>
+          <wa-tooltip for="return-to-ClusterRequest">back to all OpenShift cluster requests</wa-tooltip></wa-tooltip>
           <wa-breadcrumb>
             <wa-breadcrumb-item id="return-to-ClusterRequest" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
               <i class="fa-regular fa-server"></i>
-              all cluster requests
+              all OpenShift cluster requests
             </wa-breadcrumb-item>
             <wa-breadcrumb-item>
-              no cluster request found
+              no OpenShift cluster request found
             </wa-breadcrumb-item>
           </wa-breadcrumb>
           <div class="wa-stack wa-align-items-center ">
             <div class="wa-heading-3xl ">
               <i class="fa-regular fa-server"></i>
             </div>
-            <span class="wa-heading-m ">no cluster request found</span>
+            <span class="wa-heading-m ">no OpenShift cluster request found</span>
             <p class="wa-caption-l ">An OpenShift cluster request</p>
 {% include en-us/search/cluster-request/ClusterRequestSearchForm.htm %}
           </div>

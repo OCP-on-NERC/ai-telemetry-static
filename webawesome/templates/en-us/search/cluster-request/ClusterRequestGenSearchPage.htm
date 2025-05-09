@@ -2,7 +2,7 @@
 
 {%- block htmTitlePageLayout %}
 {%- block htmTitleClusterRequestPage %}
-    <title>{% if resultCount == 0 %}no cluster request found{% else %}cluster requests{% endif %}</title>
+    <title>{% if resultCount == 0 %}no OpenShift cluster request found{% else %}OpenShift cluster requests{% endif %}</title>
 {%- endblock htmTitleClusterRequestPage %}
 {%- endblock htmTitlePageLayout %}
 
@@ -227,21 +227,21 @@
 {%- block htmBodyMiddleClusterRequestPage %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
-          <wa-tooltip for="return-to-ClusterRequest">back to all cluster requests</wa-tooltip></wa-tooltip>
+          <wa-tooltip for="return-to-ClusterRequest">back to all OpenShift cluster requests</wa-tooltip></wa-tooltip>
           <wa-breadcrumb>
             <wa-breadcrumb-item id="return-to-ClusterRequest" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
               <i class="fa-regular fa-server"></i>
-              all cluster requests
+              all OpenShift cluster requests
             </wa-breadcrumb-item>
             <wa-breadcrumb-item>
-              no cluster request found
+              no OpenShift cluster request found
             </wa-breadcrumb-item>
           </wa-breadcrumb>
           <div class="wa-stack wa-align-items-center ">
             <div class="wa-heading-3xl ">
               <i class="fa-regular fa-server"></i>
             </div>
-            <span class="wa-heading-m ">no cluster request found</span>
+            <span class="wa-heading-m ">no OpenShift cluster request found</span>
             <p class="wa-caption-l ">An OpenShift cluster request</p>
 {% include en-us/search/cluster-request/ClusterRequestSearchForm.htm %}
           </div>
@@ -259,14 +259,14 @@
               <div id="site-calendar"><!-- // --></div>
             </div>
             <div class="wa-stack wa-gap-m ">
-              <wa-tooltip for="return-to-ClusterRequest">back to all cluster requests</wa-tooltip>
+              <wa-tooltip for="return-to-ClusterRequest">back to all OpenShift cluster requests</wa-tooltip>
               <wa-breadcrumb>
                 <wa-breadcrumb-item id="return-to-ClusterRequest" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
                   <i class="fa-regular fa-server"></i>
-                  all cluster requests
+                  all OpenShift cluster requests
                 </wa-breadcrumb-item>
                 <wa-breadcrumb-item>
-                  search cluster requests
+                  search OpenShift cluster requests
                 </wa-breadcrumb-item>
               </wa-breadcrumb>
 {% include en-us/search/cluster-request/ClusterRequestSearchForm.htm %}

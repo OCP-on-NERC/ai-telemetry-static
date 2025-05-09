@@ -304,11 +304,11 @@ The parameters of this template"
 {%- macro htmButton_patchClusterTemplate() %}<wa-button variant="brand" id="htmButton_patchClusterTemplate" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchClusterTemplate() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchClusterTemplate">Modify cluster template</wa-button>
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchClusterTemplate">Modify OpenShift cluster template</wa-button>
 {%- endmacro %}
 
 {%- macro htmForm_patchClusterTemplate() %}
-        <wa-dialog with-header with-footer style="--width: 50vw; " id="patchClusterTemplateDialog" label="Modify cluster template">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="patchClusterTemplateDialog" label="Modify OpenShift cluster template">
           <form id="htmForm_patchClusterTemplate" class="round-row primary-smart-border-radius ">
             <wa-details open class="HtmRow" id="cluster-template-details">
               <div slot="summary">
@@ -365,11 +365,11 @@ The parameters of this template"
 {%- macro htmButton_postClusterTemplate() %}<wa-button variant="brand" id="htmButton_postClusterTemplate" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postClusterTemplate() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postClusterTemplate">Create a cluster template</wa-button>
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postClusterTemplate">Create an OpenShift cluster template</wa-button>
 {%- endmacro %}
 
 {%- macro htmForm_postClusterTemplate() %}
-        <wa-dialog with-header with-footer style="--width: 50vw; " id="postClusterTemplateDialog" label="Create a cluster template">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="postClusterTemplateDialog" label="Create an OpenShift cluster template">
           <form id="htmForm_postClusterTemplate" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
             <wa-details open class="HtmRow" id="cluster-template-details">
@@ -427,11 +427,11 @@ The parameters of this template"
 {%- macro htmButton_deleteClusterTemplate() %}<wa-button variant="brand" id="htmButton_deleteClusterTemplate" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteClusterTemplate() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deleteClusterTemplate">Delete cluster template</wa-button>
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deleteClusterTemplate">Delete OpenShift cluster template</wa-button>
 {%- endmacro %}
 
 {%- macro htmForm_deleteClusterTemplate() %}
-        <wa-dialog with-header with-footer style="--width: 50vw; " id="deleteClusterTemplateDialog" label="Delete cluster template">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deleteClusterTemplateDialog" label="Delete OpenShift cluster template">
           <form id="htmForm_deleteClusterTemplate" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deleteClusterTemplate() }}
@@ -441,11 +441,11 @@ The parameters of this template"
 {%- macro htmButton_putimportClusterTemplate() %}<wa-button variant="brand" id="htmButton_putimportClusterTemplate" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportClusterTemplate() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_putimportClusterTemplate">Import cluster templates</wa-button>
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_putimportClusterTemplate">Import OpenShift cluster templates</wa-button>
 {%- endmacro %}
 
 {%- macro htmForm_putimportClusterTemplate() %}
-        <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportClusterTemplateDialog" label="Import cluster templates">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportClusterTemplateDialog" label="Import OpenShift cluster templates">
           <form id="htmForm_putimportClusterTemplate" class="round-row primary-smart-border-radius ">
             <div>
               <wa-textarea
@@ -463,11 +463,11 @@ The parameters of this template"
 {%- macro htmButton_searchpageClusterTemplate() %}{%- endmacro %}
 
 {%- macro htmFormButton_searchpageClusterTemplate() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageClusterTemplate">Search cluster templates</wa-button>
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageClusterTemplate">Search OpenShift cluster templates</wa-button>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageClusterTemplate() %}
-        <div with-header with-footer style="--width: 50vw; " id="searchpageClusterTemplateDialog" label="Search cluster templates">
+        <div with-header with-footer style="--width: 50vw; " id="searchpageClusterTemplateDialog" label="Search OpenShift cluster templates">
           <div id="htmForm_searchpageClusterTemplate" class="round-row primary-smart-border-radius ">
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
               <div slot="summary">
@@ -572,11 +572,11 @@ The parameters of this template"
 {%- macro htmButton_deletefilterClusterTemplate() %}<wa-button variant="brand" id="htmButton_deletefilterClusterTemplate" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterClusterTemplate() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deletefilterClusterTemplate">Delete cluster template</wa-button>
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deletefilterClusterTemplate">Delete OpenShift cluster template</wa-button>
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterClusterTemplate() %}
-        <wa-dialog with-header with-footer style="--width: 50vw; " id="deletefilterClusterTemplateDialog" label="Delete cluster template">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deletefilterClusterTemplateDialog" label="Delete OpenShift cluster template">
           <form id="htmForm_deletefilterClusterTemplate" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deletefilterClusterTemplate() }}

@@ -215,10 +215,10 @@
 {%- block htmBodyStartClusterOrderPage %}
 {% if resultCount > 0 %}
           <div class="wa-flank ">
-            <wa-tooltip for="return-to-ClusterOrder">back to all cluster orders</wa-tooltip>
+            <wa-tooltip for="return-to-ClusterOrder">back to all OpenShift cluster orders</wa-tooltip>
             <wa-button id="return-to-ClusterOrder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
               <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all cluster orders
+              all OpenShift cluster orders
             </wa-button>
             <h1 class="Page_objectTitle"><i class="fa-regular fa-server"></i> {{ result.objectTitle | e }}</h1>
           </div>
@@ -236,21 +236,21 @@
         <div>
 {% if resultCount == 0 %}
         <div class="wa-stack ">
-          <wa-tooltip for="return-to-ClusterOrder">back to all cluster orders</wa-tooltip></wa-tooltip>
+          <wa-tooltip for="return-to-ClusterOrder">back to all OpenShift cluster orders</wa-tooltip></wa-tooltip>
           <wa-breadcrumb>
             <wa-breadcrumb-item id="return-to-ClusterOrder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
               <i class="fa-regular fa-server"></i>
-              all cluster orders
+              all OpenShift cluster orders
             </wa-breadcrumb-item>
             <wa-breadcrumb-item>
-              no cluster order found
+              no OpenShift cluster order found
             </wa-breadcrumb-item>
           </wa-breadcrumb>
           <div class="wa-stack wa-align-items-center ">
             <div class="wa-heading-3xl ">
               <i class="fa-regular fa-server"></i>
             </div>
-            <span class="wa-heading-m ">no cluster order found</span>
+            <span class="wa-heading-m ">no OpenShift cluster order found</span>
             <p class="wa-caption-l ">Manage your own Red Hat OpenShift cluster in the cloud. </p>
 {% include en-us/search/cluster-order/ClusterOrderSearchForm.htm %}
           </div>
