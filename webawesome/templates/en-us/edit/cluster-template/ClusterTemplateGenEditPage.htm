@@ -188,10 +188,10 @@
 {%- block htmBodyStartClusterTemplatePage %}
 {% if resultCount > 0 %}
           <div class="wa-flank ">
-            <wa-tooltip for="return-to-ClusterTemplate">back to all cluster templates</wa-tooltip>
+            <wa-tooltip for="return-to-ClusterTemplate">back to all OpenShift cluster templates</wa-tooltip>
             <wa-button id="return-to-ClusterTemplate" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
               <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all cluster templates
+              all OpenShift cluster templates
             </wa-button>
             <h1 class="Page_objectTitle"><i class="fa-regular fa-server"></i> {{ result.objectTitle | e }}</h1>
           </div>
@@ -209,21 +209,21 @@
         <div>
 {% if resultCount == 0 %}
         <div class="wa-stack ">
-          <wa-tooltip for="return-to-ClusterTemplate">back to all cluster templates</wa-tooltip></wa-tooltip>
+          <wa-tooltip for="return-to-ClusterTemplate">back to all OpenShift cluster templates</wa-tooltip></wa-tooltip>
           <wa-breadcrumb>
             <wa-breadcrumb-item id="return-to-ClusterTemplate" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
               <i class="fa-regular fa-server"></i>
-              all cluster templates
+              all OpenShift cluster templates
             </wa-breadcrumb-item>
             <wa-breadcrumb-item>
-              no cluster template found
+              no OpenShift cluster template found
             </wa-breadcrumb-item>
           </wa-breadcrumb>
           <div class="wa-stack wa-align-items-center ">
             <div class="wa-heading-3xl ">
               <i class="fa-regular fa-server"></i>
             </div>
-            <span class="wa-heading-m ">no cluster template found</span>
+            <span class="wa-heading-m ">no OpenShift cluster template found</span>
             <p class="wa-caption-l ">An OpenShift cluster template</p>
 {% include en-us/search/cluster-template/ClusterTemplateSearchForm.htm %}
           </div>

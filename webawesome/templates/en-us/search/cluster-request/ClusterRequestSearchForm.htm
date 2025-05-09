@@ -227,7 +227,7 @@ The name of this cluster"
                 {{ inputClusterTemplateTitleClusterRequestPage(authForWrite=authForWrite, authForRead=authForRead) }}
                 <div class="label-on-left-ul-label ">
                   <i class="{{ FONTAWESOME_STYLE }} fa-search "></i>
-                  relate a cluster template to this cluster request
+                  relate a cluster template to this OpenShift cluster request
                 </div>
                 <ul class="label-on-left-ul " id="listClusterRequestClusterTemplateTitle_{{classApiMethodMethod}}">
                 </ul>
@@ -280,7 +280,7 @@ The name of this cluster"
                 {{ inputUserIdClusterRequestPage(authForWrite=authForWrite, authForRead=authForRead) }}
                 <div class="label-on-left-ul-label ">
                   <i class="{{ FONTAWESOME_STYLE }} fa-search "></i>
-                  relate a site user to this cluster request
+                  relate a site user to this OpenShift cluster request
                 </div>
                 <ul class="label-on-left-ul " id="listClusterRequestUserId_{{classApiMethodMethod}}">
                 </ul>
@@ -299,11 +299,11 @@ The name of this cluster"
 {%- macro htmButton_patchClusterRequest() %}<wa-button variant="brand" id="htmButton_patchClusterRequest" data-name={{ result.name | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchClusterRequest() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchClusterRequest">Modify cluster request</wa-button>
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchClusterRequest">Modify OpenShift cluster request</wa-button>
 {%- endmacro %}
 
 {%- macro htmForm_patchClusterRequest() %}
-        <wa-dialog with-header with-footer style="--width: 50vw; " id="patchClusterRequestDialog" label="Modify cluster request">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="patchClusterRequestDialog" label="Modify OpenShift cluster request">
           <form id="htmForm_patchClusterRequest" class="round-row primary-smart-border-radius ">
             <wa-details open class="HtmRow" id="cluster-details">
               <div slot="summary">
@@ -350,11 +350,11 @@ The name of this cluster"
 {%- macro htmButton_postClusterRequest() %}<wa-button variant="brand" id="htmButton_postClusterRequest" data-name={{ result.name | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postClusterRequest() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postClusterRequest">Create a cluster request</wa-button>
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postClusterRequest">Create an OpenShift cluster request</wa-button>
 {%- endmacro %}
 
 {%- macro htmForm_postClusterRequest() %}
-        <wa-dialog with-header with-footer style="--width: 50vw; " id="postClusterRequestDialog" label="Create a cluster request">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="postClusterRequestDialog" label="Create an OpenShift cluster request">
           <form id="htmForm_postClusterRequest" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
             <wa-details open class="HtmRow" id="cluster-details">
@@ -402,11 +402,11 @@ The name of this cluster"
 {%- macro htmButton_deleteClusterRequest() %}<wa-button variant="brand" id="htmButton_deleteClusterRequest" data-name={{ result.name | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteClusterRequest() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deleteClusterRequest">Delete cluster request</wa-button>
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deleteClusterRequest">Delete OpenShift cluster request</wa-button>
 {%- endmacro %}
 
 {%- macro htmForm_deleteClusterRequest() %}
-        <wa-dialog with-header with-footer style="--width: 50vw; " id="deleteClusterRequestDialog" label="Delete cluster request">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deleteClusterRequestDialog" label="Delete OpenShift cluster request">
           <form id="htmForm_deleteClusterRequest" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deleteClusterRequest() }}
@@ -416,11 +416,11 @@ The name of this cluster"
 {%- macro htmButton_putimportClusterRequest() %}<wa-button variant="brand" id="htmButton_putimportClusterRequest" data-name={{ result.name | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportClusterRequest() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_putimportClusterRequest">Import cluster requests</wa-button>
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_putimportClusterRequest">Import OpenShift cluster requests</wa-button>
 {%- endmacro %}
 
 {%- macro htmForm_putimportClusterRequest() %}
-        <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportClusterRequestDialog" label="Import cluster requests">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportClusterRequestDialog" label="Import OpenShift cluster requests">
           <form id="htmForm_putimportClusterRequest" class="round-row primary-smart-border-radius ">
             <div>
               <wa-textarea
@@ -438,11 +438,11 @@ The name of this cluster"
 {%- macro htmButton_searchpageClusterRequest() %}{%- endmacro %}
 
 {%- macro htmFormButton_searchpageClusterRequest() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageClusterRequest">Search cluster requests</wa-button>
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageClusterRequest">Search OpenShift cluster requests</wa-button>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageClusterRequest() %}
-        <div with-header with-footer style="--width: 50vw; " id="searchpageClusterRequestDialog" label="Search cluster requests">
+        <div with-header with-footer style="--width: 50vw; " id="searchpageClusterRequestDialog" label="Search OpenShift cluster requests">
           <div id="htmForm_searchpageClusterRequest" class="round-row primary-smart-border-radius ">
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
               <div slot="summary">
@@ -537,11 +537,11 @@ The name of this cluster"
 {%- macro htmButton_deletefilterClusterRequest() %}<wa-button variant="brand" id="htmButton_deletefilterClusterRequest" data-name={{ result.name | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterClusterRequest() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deletefilterClusterRequest">Delete cluster request</wa-button>
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deletefilterClusterRequest">Delete OpenShift cluster request</wa-button>
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterClusterRequest() %}
-        <wa-dialog with-header with-footer style="--width: 50vw; " id="deletefilterClusterRequestDialog" label="Delete cluster request">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deletefilterClusterRequestDialog" label="Delete OpenShift cluster request">
           <form id="htmForm_deletefilterClusterRequest" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deletefilterClusterRequest() }}
