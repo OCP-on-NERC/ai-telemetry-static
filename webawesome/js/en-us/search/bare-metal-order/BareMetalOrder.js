@@ -69,6 +69,24 @@ function searchBareMetalOrderFilters($formFilters) {
     if(filterNumberOfLenovoSd665nv3H100 != null && filterNumberOfLenovoSd665nv3H100 !== '')
       filters.push({ name: 'fq', value: 'numberOfLenovoSd665nv3H100:' + filterNumberOfLenovoSd665nv3H100 });
 
+    var filterImage = $formFilters.querySelector('.valueImage')?.value;
+    if(filterImage != null && filterImage !== '')
+      filters.push({ name: 'fq', value: 'image:' + filterImage });
+
+    var filterSshPublicKey = $formFilters.querySelector('.valueSshPublicKey')?.value;
+    if(filterSshPublicKey != null && filterSshPublicKey !== '')
+      filters.push({ name: 'fq', value: 'sshPublicKey:' + filterSshPublicKey });
+
+    var $filterFloatingIpCheckbox = $formFilters.querySelector('input.valueFloatingIp[type = "checkbox"]');
+    var $filterFloatingIpSelect = $formFilters.querySelector('select.valueFloatingIp');
+    var filterFloatingIp = $filterFloatingIpSelect.length ? $filterFloatingIpSelect.value : $filterFloatingIpCheckbox.checked;
+    var filterFloatingIpSelectVal = $formFilters.querySelector('select.filterFloatingIp')?.value;
+    var filterFloatingIp = null;
+    if(filterFloatingIpSelectVal !== '')
+      filterFloatingIp = filterFloatingIpSelectVal == 'true';
+    if(filterFloatingIp != null && filterFloatingIp === true)
+      filters.push({ name: 'fq', value: 'floatingIp:' + filterFloatingIp });
+
     var filterStatus = $formFilters.querySelector('.valueStatus')?.value;
     if(filterStatus != null && filterStatus !== '')
       filters.push({ name: 'fq', value: 'status:' + filterStatus });
@@ -384,6 +402,49 @@ async function patchBareMetalOrder($formFilters, $formValues, target, pk, succes
   if(removeNumberOfLenovoSd665nv3H100 != null && removeNumberOfLenovoSd665nv3H100 !== '')
     vals['removeNumberOfLenovoSd665nv3H100'] = removeNumberOfLenovoSd665nv3H100;
 
+  var valueImage = $formValues.querySelector('.valueImage')?.value;
+  var removeImage = $formValues.querySelector('.removeImage')?.value === 'true';
+  var setImage = removeImage ? null : $formValues.querySelector('.setImage')?.value;
+  var addImage = $formValues.querySelector('.addImage')?.value;
+  if(removeImage || setImage != null && setImage !== '')
+    vals['setImage'] = setImage;
+  if(addImage != null && addImage !== '')
+    vals['addImage'] = addImage;
+  var removeImage = $formValues.querySelector('.removeImage')?.value;
+  if(removeImage != null && removeImage !== '')
+    vals['removeImage'] = removeImage;
+
+  var valueSshPublicKey = $formValues.querySelector('.valueSshPublicKey')?.value;
+  var removeSshPublicKey = $formValues.querySelector('.removeSshPublicKey')?.value === 'true';
+  var setSshPublicKey = removeSshPublicKey ? null : $formValues.querySelector('.setSshPublicKey')?.value;
+  var addSshPublicKey = $formValues.querySelector('.addSshPublicKey')?.value;
+  if(removeSshPublicKey || setSshPublicKey != null && setSshPublicKey !== '')
+    vals['setSshPublicKey'] = setSshPublicKey;
+  if(addSshPublicKey != null && addSshPublicKey !== '')
+    vals['addSshPublicKey'] = addSshPublicKey;
+  var removeSshPublicKey = $formValues.querySelector('.removeSshPublicKey')?.value;
+  if(removeSshPublicKey != null && removeSshPublicKey !== '')
+    vals['removeSshPublicKey'] = removeSshPublicKey;
+
+  var valueFloatingIp = $formValues.querySelector('.valueFloatingIp')?.value;
+  var removeFloatingIp = $formValues.querySelector('.removeFloatingIp')?.value === 'true';
+  if(valueFloatingIp != null)
+    valueFloatingIp = valueFloatingIp === 'true';
+  var valueFloatingIpSelectVal = $formValues.querySelector('select.setFloatingIp')?.value;
+  if(valueFloatingIpSelectVal != null)
+    valueFloatingIpSelectVal = valueFloatingIpSelectVal === 'true';
+  if(valueFloatingIpSelectVal != null && valueFloatingIpSelectVal !== '')
+    valueFloatingIp = valueFloatingIpSelectVal == 'true';
+  var setFloatingIp = removeFloatingIp ? null : valueFloatingIp;
+  var addFloatingIp = $formValues.querySelector('.addFloatingIp')?.checked;
+  if(removeFloatingIp || setFloatingIp != null && setFloatingIp !== '')
+    vals['setFloatingIp'] = setFloatingIp;
+  if(addFloatingIp != null && addFloatingIp !== '')
+    vals['addFloatingIp'] = addFloatingIp;
+  var removeFloatingIp = $formValues.querySelector('.removeFloatingIp')?.checked;
+  if(removeFloatingIp != null && removeFloatingIp !== '')
+    vals['removeFloatingIp'] = removeFloatingIp;
+
   var valueStatus = $formValues.querySelector('.valueStatus')?.value;
   var removeStatus = $formValues.querySelector('.removeStatus')?.value === 'true';
   var setStatus = removeStatus ? null : $formValues.querySelector('.setStatus')?.value;
@@ -505,6 +566,24 @@ function patchBareMetalOrderFilters($formFilters) {
     var filterNumberOfLenovoSd665nv3H100 = $formFilters.querySelector('.valueNumberOfLenovoSd665nv3H100')?.value;
     if(filterNumberOfLenovoSd665nv3H100 != null && filterNumberOfLenovoSd665nv3H100 !== '')
       filters.push({ name: 'fq', value: 'numberOfLenovoSd665nv3H100:' + filterNumberOfLenovoSd665nv3H100 });
+
+    var filterImage = $formFilters.querySelector('.valueImage')?.value;
+    if(filterImage != null && filterImage !== '')
+      filters.push({ name: 'fq', value: 'image:' + filterImage });
+
+    var filterSshPublicKey = $formFilters.querySelector('.valueSshPublicKey')?.value;
+    if(filterSshPublicKey != null && filterSshPublicKey !== '')
+      filters.push({ name: 'fq', value: 'sshPublicKey:' + filterSshPublicKey });
+
+    var $filterFloatingIpCheckbox = $formFilters.querySelector('input.valueFloatingIp[type = "checkbox"]');
+    var $filterFloatingIpSelect = $formFilters.querySelector('select.valueFloatingIp');
+    var filterFloatingIp = $filterFloatingIpSelect.length ? $filterFloatingIpSelect.value : $filterFloatingIpCheckbox.checked;
+    var filterFloatingIpSelectVal = $formFilters.querySelector('select.filterFloatingIp')?.value;
+    var filterFloatingIp = null;
+    if(filterFloatingIpSelectVal !== '')
+      filterFloatingIp = filterFloatingIpSelectVal == 'true';
+    if(filterFloatingIp != null && filterFloatingIp === true)
+      filters.push({ name: 'fq', value: 'floatingIp:' + filterFloatingIp });
 
     var filterStatus = $formFilters.querySelector('.valueStatus')?.value;
     if(filterStatus != null && filterStatus !== '')
@@ -659,6 +738,18 @@ async function postBareMetalOrder($formValues, target, success, error) {
   var valueNumberOfLenovoSd665nv3H100 = $formValues.querySelector('.valueNumberOfLenovoSd665nv3H100')?.value;
   if(valueNumberOfLenovoSd665nv3H100 != null && valueNumberOfLenovoSd665nv3H100 !== '')
     vals['numberOfLenovoSd665nv3H100'] = valueNumberOfLenovoSd665nv3H100;
+
+  var valueImage = $formValues.querySelector('.valueImage')?.value;
+  if(valueImage != null && valueImage !== '')
+    vals['image'] = valueImage;
+
+  var valueSshPublicKey = $formValues.querySelector('.valueSshPublicKey')?.value;
+  if(valueSshPublicKey != null && valueSshPublicKey !== '')
+    vals['sshPublicKey'] = valueSshPublicKey;
+
+  var valueFloatingIp = $formValues.querySelector('.valueFloatingIp')?.value;
+  if(valueFloatingIp != null && valueFloatingIp !== '')
+    vals['floatingIp'] = valueFloatingIp == 'true';
 
   var valueStatus = $formValues.querySelector('.valueStatus')?.value;
   if(valueStatus != null && valueStatus !== '')
@@ -879,6 +970,9 @@ async function websocketBareMetalOrderInner(apiRequest) {
         var inputNumberOfWhiteboxFlax1 = null;
         var inputNumberOfLenovoSd650nv2A100 = null;
         var inputNumberOfLenovoSd665nv3H100 = null;
+        var inputImage = null;
+        var inputSshPublicKey = null;
+        var inputFloatingIp = null;
         var inputStatus = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
@@ -919,6 +1013,12 @@ async function websocketBareMetalOrderInner(apiRequest) {
           inputNumberOfLenovoSd650nv2A100 = $response.querySelector('.Page_numberOfLenovoSd650nv2A100');
         if(vars.includes('numberOfLenovoSd665nv3H100'))
           inputNumberOfLenovoSd665nv3H100 = $response.querySelector('.Page_numberOfLenovoSd665nv3H100');
+        if(vars.includes('image'))
+          inputImage = $response.querySelector('.Page_image');
+        if(vars.includes('sshPublicKey'))
+          inputSshPublicKey = $response.querySelector('.Page_sshPublicKey');
+        if(vars.includes('floatingIp'))
+          inputFloatingIp = $response.querySelector('.Page_floatingIp');
         if(vars.includes('status'))
           inputStatus = $response.querySelector('.Page_status');
         if(vars.includes('classCanonicalName'))
@@ -1073,6 +1173,36 @@ async function websocketBareMetalOrderInner(apiRequest) {
               item.textContent = inputNumberOfLenovoSd665nv3H100.textContent;
           });
           addGlow(document.querySelector('.Page_numberOfLenovoSd665nv3H100'));
+        }
+
+        if(inputImage) {
+          document.querySelectorAll('.Page_image').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputImage.getAttribute('value');
+            else
+              item.textContent = inputImage.textContent;
+          });
+          addGlow(document.querySelector('.Page_image'));
+        }
+
+        if(inputSshPublicKey) {
+          document.querySelectorAll('.Page_sshPublicKey').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSshPublicKey.getAttribute('value');
+            else
+              item.textContent = inputSshPublicKey.textContent;
+          });
+          addGlow(document.querySelector('.Page_sshPublicKey'));
+        }
+
+        if(inputFloatingIp) {
+          document.querySelectorAll('.Page_floatingIp').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputFloatingIp.getAttribute('value');
+            else
+              item.textContent = inputFloatingIp.textContent;
+          });
+          addGlow(document.querySelector('.Page_floatingIp'));
         }
 
         if(inputStatus) {
