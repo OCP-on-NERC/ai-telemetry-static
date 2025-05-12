@@ -732,7 +732,7 @@ async function websocketClusterRequest(success) {
       var $i = iTemplate.content;
       var $headerSpan = document.createElement('span');
       $headerSpan.setAttribute('class', '');
-      $headerSpan.innerText = 'modify cluster requests in ' + json.timeRemaining;
+      $headerSpan.innerText = 'modify OpenShift cluster requests in ' + json.timeRemaining;
       var $x = document.createElement('span');
       $x.setAttribute('class', 'w3-button w3-display-topright ');
       $x.setAttribute('onclick', 'document.querySelector("#card-' + name + '");');
@@ -1114,7 +1114,7 @@ function pageGraphClusterRequest(apiRequest) {
         var data = [];
         var layout = {};
         if(range) {
-          layout['title'] = 'cluster requests';
+          layout['title'] = 'OpenShift cluster requests';
           layout['xaxis'] = {
             title: rangeVarFq.displayName
           }

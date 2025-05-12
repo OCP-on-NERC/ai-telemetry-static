@@ -2,7 +2,7 @@
 
 {%- block htmTitlePageLayout %}
 {%- block htmTitleClusterOrderPage %}
-    <title>{% if resultCount == 0 %}no cluster order found{% else %}cluster orders{% endif %}</title>
+    <title>{% if resultCount == 0 %}no OpenShift cluster order found{% else %}OpenShift cluster orders{% endif %}</title>
 {%- endblock htmTitleClusterOrderPage %}
 {%- endblock htmTitlePageLayout %}
 
@@ -210,21 +210,21 @@
 {%- block htmBodyMiddleClusterOrderPage %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
-          <wa-tooltip for="return-to-ClusterOrder">back to all cluster orders</wa-tooltip></wa-tooltip>
+          <wa-tooltip for="return-to-ClusterOrder">back to all OpenShift cluster orders</wa-tooltip></wa-tooltip>
           <wa-breadcrumb>
             <wa-breadcrumb-item id="return-to-ClusterOrder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
               <i class="fa-regular fa-server"></i>
-              all cluster orders
+              all OpenShift cluster orders
             </wa-breadcrumb-item>
             <wa-breadcrumb-item>
-              no cluster order found
+              no OpenShift cluster order found
             </wa-breadcrumb-item>
           </wa-breadcrumb>
           <div class="wa-stack wa-align-items-center ">
             <div class="wa-heading-3xl ">
               <i class="fa-regular fa-server"></i>
             </div>
-            <span class="wa-heading-m ">no cluster order found</span>
+            <span class="wa-heading-m ">no OpenShift cluster order found</span>
             <p class="wa-caption-l ">Manage your own Red Hat OpenShift cluster in the cloud. </p>
 {% include en-us/search/cluster-order/ClusterOrderSearchForm.htm %}
           </div>
@@ -242,14 +242,14 @@
               <div id="site-calendar"><!-- // --></div>
             </div>
             <div class="wa-stack wa-gap-m ">
-              <wa-tooltip for="return-to-ClusterOrder">back to all cluster orders</wa-tooltip>
+              <wa-tooltip for="return-to-ClusterOrder">back to all OpenShift cluster orders</wa-tooltip>
               <wa-breadcrumb>
                 <wa-breadcrumb-item id="return-to-ClusterOrder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
                   <i class="fa-regular fa-server"></i>
-                  all cluster orders
+                  all OpenShift cluster orders
                 </wa-breadcrumb-item>
                 <wa-breadcrumb-item>
-                  search cluster orders
+                  search OpenShift cluster orders
                 </wa-breadcrumb-item>
               </wa-breadcrumb>
 {% include en-us/search/cluster-order/ClusterOrderSearchForm.htm %}

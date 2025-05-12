@@ -227,7 +227,7 @@ The ID of this order"
                 {{ inputTemplateIdClusterOrderPage(authForWrite=authForWrite, authForRead=authForRead) }}
                 <div class="label-on-left-ul-label ">
                   <i class="{{ FONTAWESOME_STYLE }} fa-search "></i>
-                  relate a cluster template to this cluster order
+                  relate an OpenShift cluster template to this OpenShift cluster order
                 </div>
                 <ul class="label-on-left-ul " id="listClusterOrderTemplateId_{{classApiMethodMethod}}">
                 </ul>
@@ -236,8 +236,8 @@ The ID of this order"
                 <div>
                   <button
                        id="{{classApiMethodMethod}}_templateId_add"
-                       onclick="this.classList.add('w3-disabled'); this.disabled = true; this.innerHTML = 'Sending…'; postClusterTemplateVals({ id: '{{ result.id }}' }, this, function(response, target) { document.querySelector('#{{classApiMethodMethod}}_templateId_add').disabled = false; document.querySelector('#{{classApiMethodMethod}}_templateId_add').innerHTML = 'add a cluster template'; }, this, function(response, target) { addError(document.querySelector('#{{classApiMethodMethod}}templateId')); });"
-                      >add a cluster template</button>
+                       onclick="this.classList.add('w3-disabled'); this.disabled = true; this.innerHTML = 'Sending…'; postClusterTemplateVals({ id: '{{ result.id }}' }, this, function(response, target) { document.querySelector('#{{classApiMethodMethod}}_templateId_add').disabled = false; document.querySelector('#{{classApiMethodMethod}}_templateId_add').innerHTML = 'add an OpenShift cluster template'; }, this, function(response, target) { addError(document.querySelector('#{{classApiMethodMethod}}templateId')); });"
+                      >add an OpenShift cluster template</button>
                   </div>
                 {%- endif %}
                 {%- endif %}
@@ -320,27 +320,13 @@ The cluster id associated with the order"
 {%- macro htmButton_patchClusterOrder() %}<wa-button variant="brand" id="htmButton_patchClusterOrder" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchClusterOrder() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchClusterOrder">Modify cluster order</wa-button>
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchClusterOrder">Modify OpenShift cluster order</wa-button>
 {%- endmacro %}
 
 {%- macro htmForm_patchClusterOrder() %}
-        <wa-dialog with-header with-footer style="--width: 50vw; " id="patchClusterOrderDialog" label="Modify cluster order">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="patchClusterOrderDialog" label="Modify OpenShift cluster order">
           <form id="htmForm_patchClusterOrder" class="round-row primary-smart-border-radius ">
-            <wa-details open class="HtmRow" id="cluster-order-details">
-              <div slot="summary">
-                <span>cluster order details</span>
-              </div>
               <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmIdClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmIdClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmIdClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
 
               {%- if "PATCH" in scopes %}
                 {{ htmTemplateIdClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
@@ -349,26 +335,6 @@ The cluster id associated with the order"
                   {{ htmTemplateIdClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmTemplateIdClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmStateClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmStateClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmStateClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmClusterIdClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmClusterIdClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmClusterIdClusterOrderPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -381,28 +347,14 @@ The cluster id associated with the order"
 {%- macro htmButton_postClusterOrder() %}<wa-button variant="brand" id="htmButton_postClusterOrder" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postClusterOrder() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postClusterOrder">Create a cluster order</wa-button>
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postClusterOrder">Create an OpenShift cluster order</wa-button>
 {%- endmacro %}
 
 {%- macro htmForm_postClusterOrder() %}
-        <wa-dialog with-header with-footer style="--width: 50vw; " id="postClusterOrderDialog" label="Create a cluster order">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="postClusterOrderDialog" label="Create an OpenShift cluster order">
           <form id="htmForm_postClusterOrder" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
-            <wa-details open class="HtmRow" id="cluster-order-details">
-              <div slot="summary">
-                <span>cluster order details</span>
-              </div>
               <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmIdClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmIdClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmIdClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
 
               {%- if "PATCH" in scopes %}
                 {{ htmTemplateIdClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
@@ -411,26 +363,6 @@ The cluster id associated with the order"
                   {{ htmTemplateIdClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmTemplateIdClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmStateClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmStateClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmStateClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmClusterIdClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmClusterIdClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmClusterIdClusterOrderPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -443,11 +375,11 @@ The cluster id associated with the order"
 {%- macro htmButton_deleteClusterOrder() %}<wa-button variant="brand" id="htmButton_deleteClusterOrder" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteClusterOrder() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deleteClusterOrder">Delete cluster order</wa-button>
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deleteClusterOrder">Delete OpenShift cluster order</wa-button>
 {%- endmacro %}
 
 {%- macro htmForm_deleteClusterOrder() %}
-        <wa-dialog with-header with-footer style="--width: 50vw; " id="deleteClusterOrderDialog" label="Delete cluster order">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deleteClusterOrderDialog" label="Delete OpenShift cluster order">
           <form id="htmForm_deleteClusterOrder" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deleteClusterOrder() }}
@@ -457,11 +389,11 @@ The cluster id associated with the order"
 {%- macro htmButton_putimportClusterOrder() %}<wa-button variant="brand" id="htmButton_putimportClusterOrder" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportClusterOrder() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_putimportClusterOrder">Import cluster orders</wa-button>
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_putimportClusterOrder">Import OpenShift cluster orders</wa-button>
 {%- endmacro %}
 
 {%- macro htmForm_putimportClusterOrder() %}
-        <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportClusterOrderDialog" label="Import cluster orders">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportClusterOrderDialog" label="Import OpenShift cluster orders">
           <form id="htmForm_putimportClusterOrder" class="round-row primary-smart-border-radius ">
             <div>
               <wa-textarea
@@ -479,11 +411,11 @@ The cluster id associated with the order"
 {%- macro htmButton_searchpageClusterOrder() %}{%- endmacro %}
 
 {%- macro htmFormButton_searchpageClusterOrder() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageClusterOrder">Search cluster orders</wa-button>
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageClusterOrder">Search OpenShift cluster orders</wa-button>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageClusterOrder() %}
-        <div with-header with-footer style="--width: 50vw; " id="searchpageClusterOrderDialog" label="Search cluster orders">
+        <div with-header with-footer style="--width: 50vw; " id="searchpageClusterOrderDialog" label="Search OpenShift cluster orders">
           <div id="htmForm_searchpageClusterOrder" class="round-row primary-smart-border-radius ">
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
               <div slot="summary">
@@ -588,11 +520,11 @@ The cluster id associated with the order"
 {%- macro htmButton_deletefilterClusterOrder() %}<wa-button variant="brand" id="htmButton_deletefilterClusterOrder" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterClusterOrder() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deletefilterClusterOrder">Delete cluster order</wa-button>
+          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deletefilterClusterOrder">Delete OpenShift cluster order</wa-button>
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterClusterOrder() %}
-        <wa-dialog with-header with-footer style="--width: 50vw; " id="deletefilterClusterOrderDialog" label="Delete cluster order">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deletefilterClusterOrderDialog" label="Delete OpenShift cluster order">
           <form id="htmForm_deletefilterClusterOrder" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deletefilterClusterOrder() }}

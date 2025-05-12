@@ -717,7 +717,7 @@ async function websocketClusterOrder(success) {
       var $i = iTemplate.content;
       var $headerSpan = document.createElement('span');
       $headerSpan.setAttribute('class', '');
-      $headerSpan.innerText = 'modify cluster orders in ' + json.timeRemaining;
+      $headerSpan.innerText = 'modify OpenShift cluster orders in ' + json.timeRemaining;
       var $x = document.createElement('span');
       $x.setAttribute('class', 'w3-button w3-display-topright ');
       $x.setAttribute('onclick', 'document.querySelector("#card-' + id + '");');
@@ -756,7 +756,7 @@ async function websocketClusterOrder(success) {
 
     window.eventBus.registerHandler('websocketClusterTemplate', function (error, message) {
       document.querySelector('.Page_templateId').trigger('oninput');
-      document.querySelector('.Page_templateId_add').innerText = 'add a cluster template';
+      document.querySelector('.Page_templateId_add').innerText = 'add an OpenShift cluster template';
       document.querySelector('.Page_templateId_add').classList.remove('w3-disabled');
       document.querySelector('.Page_templateId_add').setAttribute('disabled', false);
     });
@@ -1105,7 +1105,7 @@ function pageGraphClusterOrder(apiRequest) {
         var data = [];
         var layout = {};
         if(range) {
-          layout['title'] = 'cluster orders';
+          layout['title'] = 'OpenShift cluster orders';
           layout['xaxis'] = {
             title: rangeVarFq.displayName
           }
