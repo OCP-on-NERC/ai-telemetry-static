@@ -756,7 +756,7 @@ async function websocketClusterOrder(success) {
 
     window.eventBus.registerHandler('websocketClusterTemplate', function (error, message) {
       document.querySelector('.Page_templateId').trigger('oninput');
-      document.querySelector('.Page_templateId_add').innerText = 'add a cluster template';
+      document.querySelector('.Page_templateId_add').innerText = 'add an OpenShift cluster template';
       document.querySelector('.Page_templateId_add').classList.remove('w3-disabled');
       document.querySelector('.Page_templateId_add').setAttribute('disabled', false);
     });
