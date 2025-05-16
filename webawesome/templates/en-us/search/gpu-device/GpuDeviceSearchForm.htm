@@ -565,7 +565,12 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- macro htmButton_patchGpuDevice() %}<wa-button variant="brand" id="htmButton_patchGpuDevice" data-gpuDeviceId={{ result.gpuDeviceId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchGpuDevice() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchGpuDevice">Modify GPU device</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_patchGpuDevice" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_patchGpuDevice"
+                >Modify GPU device</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_patchGpuDevice"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_patchGpuDevice() %}
@@ -707,7 +712,12 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- macro htmButton_postGpuDevice() %}<wa-button variant="brand" id="htmButton_postGpuDevice" data-gpuDeviceId={{ result.gpuDeviceId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postGpuDevice() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postGpuDevice">Create a GPU device</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_postGpuDevice" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_postGpuDevice"
+                >Create a GPU device</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_postGpuDevice"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_postGpuDevice() %}
@@ -720,7 +730,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmClusterNameGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -730,7 +740,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNodeNameGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -740,7 +750,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDescriptionGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -750,7 +760,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmGpuDeviceNumberGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -760,7 +770,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmIdGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -777,7 +787,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmGpuDeviceUtilizationGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -789,7 +799,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildTenantGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -799,7 +809,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildPathGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -809,7 +819,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildContextGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -819,7 +829,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildDataGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -831,7 +841,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmLocationGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -850,7 +860,12 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- macro htmButton_deleteGpuDevice() %}<wa-button variant="brand" id="htmButton_deleteGpuDevice" data-gpuDeviceId={{ result.gpuDeviceId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteGpuDevice() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deleteGpuDevice">Delete GPU device</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deleteGpuDevice" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deleteGpuDevice"
+                >Delete GPU device</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deleteGpuDevice"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deleteGpuDevice() %}
@@ -864,7 +879,12 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- macro htmButton_putimportGpuDevice() %}<wa-button variant="brand" id="htmButton_putimportGpuDevice" data-gpuDeviceId={{ result.gpuDeviceId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportGpuDevice() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_putimportGpuDevice">Import GPU devices</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_putimportGpuDevice" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_putimportGpuDevice"
+                >Import GPU devices</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_putimportGpuDevice"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_putimportGpuDevice() %}
@@ -886,7 +906,12 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- macro htmButton_searchpageGpuDevice() %}{%- endmacro %}
 
 {%- macro htmFormButton_searchpageGpuDevice() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageGpuDevice">Search GPU devices</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_searchpageGpuDevice" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_searchpageGpuDevice"
+                >Search GPU devices</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_searchpageGpuDevice"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageGpuDevice() %}
@@ -898,7 +923,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmPkGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -908,7 +933,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmCreatedGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -918,7 +943,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmModifiedGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -930,7 +955,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmArchivedGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -947,7 +972,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmClusterNameGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -957,7 +982,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNodeNameGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -967,7 +992,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmDescriptionGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -977,7 +1002,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmGpuDeviceNumberGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -987,7 +1012,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmIdGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1004,7 +1029,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmGpuDeviceUtilizationGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1016,7 +1041,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNgsildTenantGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1026,7 +1051,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNgsildPathGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1036,7 +1061,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNgsildContextGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1046,7 +1071,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNgsildDataGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1058,7 +1083,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmLocationGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1076,7 +1101,12 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- macro htmButton_deletefilterGpuDevice() %}<wa-button variant="brand" id="htmButton_deletefilterGpuDevice" data-gpuDeviceId={{ result.gpuDeviceId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterGpuDevice() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deletefilterGpuDevice">Delete GPU device</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deletefilterGpuDevice" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deletefilterGpuDevice"
+                >Delete GPU device</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deletefilterGpuDevice"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterGpuDevice() %}

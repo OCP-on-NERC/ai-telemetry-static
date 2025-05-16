@@ -582,7 +582,12 @@ The NGSILD data with @context from the context broker"
 {%- macro htmButton_patchAiCluster() %}<wa-button variant="brand" id="htmButton_patchAiCluster" data-clusterName={{ result.clusterName | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchAiCluster() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchAiCluster">Modify AI cluster</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_patchAiCluster" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_patchAiCluster"
+                >Modify AI cluster</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_patchAiCluster"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_patchAiCluster() %}
@@ -727,7 +732,12 @@ The NGSILD data with @context from the context broker"
 {%- macro htmButton_postAiCluster() %}<wa-button variant="brand" id="htmButton_postAiCluster" data-clusterName={{ result.clusterName | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postAiCluster() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postAiCluster">Create an AI cluster</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_postAiCluster" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_postAiCluster"
+                >Create an AI cluster</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_postAiCluster"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_postAiCluster() %}
@@ -740,7 +750,7 @@ The NGSILD data with @context from the context broker"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmClusterNameAiClusterPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -750,7 +760,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDescriptionAiClusterPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -760,7 +770,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmIdAiClusterPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -770,7 +780,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmLocationAiClusterPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -787,7 +797,7 @@ The NGSILD data with @context from the context broker"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmAiNodesTotalAiClusterPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -797,7 +807,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmGpuDevicesTotalAiClusterPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -807,7 +817,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmGrafanaUrlAiClusterPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -824,7 +834,7 @@ The NGSILD data with @context from the context broker"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildTenantAiClusterPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -834,7 +844,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildPathAiClusterPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -844,7 +854,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildContextAiClusterPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -854,7 +864,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildDataAiClusterPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -873,7 +883,12 @@ The NGSILD data with @context from the context broker"
 {%- macro htmButton_deleteAiCluster() %}<wa-button variant="brand" id="htmButton_deleteAiCluster" data-clusterName={{ result.clusterName | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteAiCluster() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deleteAiCluster">Delete AI cluster</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deleteAiCluster" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deleteAiCluster"
+                >Delete AI cluster</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deleteAiCluster"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deleteAiCluster() %}
@@ -887,7 +902,12 @@ The NGSILD data with @context from the context broker"
 {%- macro htmButton_putimportAiCluster() %}<wa-button variant="brand" id="htmButton_putimportAiCluster" data-clusterName={{ result.clusterName | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportAiCluster() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_putimportAiCluster">Import AI clusters</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_putimportAiCluster" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_putimportAiCluster"
+                >Import AI clusters</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_putimportAiCluster"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_putimportAiCluster() %}
@@ -909,7 +929,12 @@ The NGSILD data with @context from the context broker"
 {%- macro htmButton_searchpageAiCluster() %}{%- endmacro %}
 
 {%- macro htmFormButton_searchpageAiCluster() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageAiCluster">Search AI clusters</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_searchpageAiCluster" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_searchpageAiCluster"
+                >Search AI clusters</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_searchpageAiCluster"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageAiCluster() %}
@@ -921,7 +946,7 @@ The NGSILD data with @context from the context broker"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmPkAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -931,7 +956,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmCreatedAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -941,7 +966,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmModifiedAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -953,7 +978,7 @@ The NGSILD data with @context from the context broker"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmArchivedAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -970,7 +995,7 @@ The NGSILD data with @context from the context broker"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmClusterNameAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -980,7 +1005,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmDescriptionAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -990,7 +1015,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmIdAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1000,7 +1025,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmLocationAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1017,7 +1042,7 @@ The NGSILD data with @context from the context broker"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmAiNodesTotalAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1027,7 +1052,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmGpuDevicesTotalAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1037,7 +1062,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmGrafanaUrlAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1054,7 +1079,7 @@ The NGSILD data with @context from the context broker"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNgsildTenantAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1064,7 +1089,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNgsildPathAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1074,7 +1099,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNgsildContextAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1084,7 +1109,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNgsildDataAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1102,7 +1127,12 @@ The NGSILD data with @context from the context broker"
 {%- macro htmButton_deletefilterAiCluster() %}<wa-button variant="brand" id="htmButton_deletefilterAiCluster" data-clusterName={{ result.clusterName | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterAiCluster() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deletefilterAiCluster">Delete AI cluster</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deletefilterAiCluster" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deletefilterAiCluster"
+                >Delete AI cluster</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deletefilterAiCluster"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterAiCluster() %}

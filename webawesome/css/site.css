@@ -431,6 +431,10 @@ main, footer {
       }
     }
 
+    .popup-overview .box {
+      background: var(--wa-color-brand-fill-loud);
+      border-radius: var(--wa-border-radius-m);
+    }
 
     .footer-img {
       height: var(--footer-logo-height);

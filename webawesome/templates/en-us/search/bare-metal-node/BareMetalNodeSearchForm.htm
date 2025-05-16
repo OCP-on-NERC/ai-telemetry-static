@@ -472,7 +472,12 @@ The primary key of this object in the database"
 {%- macro htmButton_patchBareMetalNode() %}<wa-button variant="brand" id="htmButton_patchBareMetalNode" data-nodeId={{ result.nodeId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchBareMetalNode() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchBareMetalNode">Modify bare metal node</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_patchBareMetalNode" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_patchBareMetalNode"
+                >Modify bare metal node</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_patchBareMetalNode"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_patchBareMetalNode() %}
@@ -583,7 +588,12 @@ The primary key of this object in the database"
 {%- macro htmButton_postBareMetalNode() %}<wa-button variant="brand" id="htmButton_postBareMetalNode" data-nodeId={{ result.nodeId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postBareMetalNode() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postBareMetalNode">Create a bare metal node</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_postBareMetalNode" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_postBareMetalNode"
+                >Create a bare metal node</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_postBareMetalNode"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_postBareMetalNode() %}
@@ -596,7 +606,7 @@ The primary key of this object in the database"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmLeaseInfoBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -606,7 +616,7 @@ The primary key of this object in the database"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNetworkInfoBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -616,7 +626,7 @@ The primary key of this object in the database"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNodeIdBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -626,7 +636,7 @@ The primary key of this object in the database"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNodeIsMaintenanceBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -636,7 +646,7 @@ The primary key of this object in the database"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNodeLinksBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -646,7 +656,7 @@ The primary key of this object in the database"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNodeNameBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -656,7 +666,7 @@ The primary key of this object in the database"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNodePowerStateBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -666,7 +676,7 @@ The primary key of this object in the database"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNodeProvisionStateBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -676,7 +686,7 @@ The primary key of this object in the database"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNodeResourceClassBareMetalNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -695,7 +705,12 @@ The primary key of this object in the database"
 {%- macro htmButton_deleteBareMetalNode() %}<wa-button variant="brand" id="htmButton_deleteBareMetalNode" data-nodeId={{ result.nodeId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteBareMetalNode() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deleteBareMetalNode">Delete bare metal node</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deleteBareMetalNode" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deleteBareMetalNode"
+                >Delete bare metal node</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deleteBareMetalNode"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deleteBareMetalNode() %}
@@ -709,7 +724,12 @@ The primary key of this object in the database"
 {%- macro htmButton_putimportBareMetalNode() %}<wa-button variant="brand" id="htmButton_putimportBareMetalNode" data-nodeId={{ result.nodeId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportBareMetalNode() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_putimportBareMetalNode">Import bare metal nodes</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_putimportBareMetalNode" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_putimportBareMetalNode"
+                >Import bare metal nodes</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_putimportBareMetalNode"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_putimportBareMetalNode() %}
@@ -731,7 +751,12 @@ The primary key of this object in the database"
 {%- macro htmButton_searchpageBareMetalNode() %}{%- endmacro %}
 
 {%- macro htmFormButton_searchpageBareMetalNode() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageBareMetalNode">Search bare metal nodes</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_searchpageBareMetalNode" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_searchpageBareMetalNode"
+                >Search bare metal nodes</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_searchpageBareMetalNode"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageBareMetalNode() %}
@@ -743,7 +768,7 @@ The primary key of this object in the database"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmPkBareMetalNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -753,7 +778,7 @@ The primary key of this object in the database"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmCreatedBareMetalNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -763,7 +788,7 @@ The primary key of this object in the database"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmModifiedBareMetalNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -775,7 +800,7 @@ The primary key of this object in the database"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmArchivedBareMetalNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -792,7 +817,7 @@ The primary key of this object in the database"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmLeaseInfoBareMetalNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -802,7 +827,7 @@ The primary key of this object in the database"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNetworkInfoBareMetalNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -812,7 +837,7 @@ The primary key of this object in the database"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNodeIdBareMetalNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -822,7 +847,7 @@ The primary key of this object in the database"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNodeIsMaintenanceBareMetalNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -832,7 +857,7 @@ The primary key of this object in the database"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNodeLinksBareMetalNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -842,7 +867,7 @@ The primary key of this object in the database"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNodeNameBareMetalNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -852,7 +877,7 @@ The primary key of this object in the database"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNodePowerStateBareMetalNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -862,7 +887,7 @@ The primary key of this object in the database"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNodeProvisionStateBareMetalNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -872,7 +897,7 @@ The primary key of this object in the database"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNodeResourceClassBareMetalNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -890,7 +915,12 @@ The primary key of this object in the database"
 {%- macro htmButton_deletefilterBareMetalNode() %}<wa-button variant="brand" id="htmButton_deletefilterBareMetalNode" data-nodeId={{ result.nodeId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterBareMetalNode() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deletefilterBareMetalNode">Delete bare metal node</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deletefilterBareMetalNode" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deletefilterBareMetalNode"
+                >Delete bare metal node</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deletefilterBareMetalNode"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterBareMetalNode() %}

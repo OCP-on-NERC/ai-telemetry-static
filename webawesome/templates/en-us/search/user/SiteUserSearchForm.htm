@@ -294,7 +294,12 @@ The web components theme for the site. "
 {%- macro htmButton_patchSiteUser() %}<wa-button variant="brand" id="htmButton_patchSiteUser" data-userId={{ result.userId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchSiteUser() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchSiteUser">Modify site user</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_patchSiteUser" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_patchSiteUser"
+                >Modify site user</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_patchSiteUser"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_patchSiteUser() %}
@@ -345,7 +350,12 @@ The web components theme for the site. "
 {%- macro htmButton_postSiteUser() %}<wa-button variant="brand" id="htmButton_postSiteUser" data-userId={{ result.userId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postSiteUser() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postSiteUser">Create a site user</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_postSiteUser" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_postSiteUser"
+                >Create a site user</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_postSiteUser"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_postSiteUser() %}
@@ -358,7 +368,7 @@ The web components theme for the site. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmSeeArchivedSiteUserPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -368,7 +378,7 @@ The web components theme for the site. "
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmSiteThemeSiteUserPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -378,7 +388,7 @@ The web components theme for the site. "
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmWebComponentsThemeSiteUserPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -397,7 +407,12 @@ The web components theme for the site. "
 {%- macro htmButton_searchpageSiteUser() %}{%- endmacro %}
 
 {%- macro htmFormButton_searchpageSiteUser() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageSiteUser">Search site users</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_searchpageSiteUser" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_searchpageSiteUser"
+                >Search site users</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_searchpageSiteUser"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageSiteUser() %}
@@ -409,7 +424,7 @@ The web components theme for the site. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmPkSiteUserPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -419,7 +434,7 @@ The web components theme for the site. "
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmCreatedSiteUserPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -429,7 +444,7 @@ The web components theme for the site. "
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmModifiedSiteUserPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -441,7 +456,7 @@ The web components theme for the site. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmArchivedSiteUserPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -458,7 +473,7 @@ The web components theme for the site. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmSeeArchivedSiteUserPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -468,7 +483,7 @@ The web components theme for the site. "
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmSiteThemeSiteUserPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -478,7 +493,7 @@ The web components theme for the site. "
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmWebComponentsThemeSiteUserPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
