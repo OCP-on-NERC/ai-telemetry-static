@@ -452,7 +452,12 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- macro htmButton_patchGpuSlice() %}<wa-button variant="brand" id="htmButton_patchGpuSlice" data-sliceName={{ result.sliceName | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchGpuSlice() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchGpuSlice">Modify GPU slice</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_patchGpuSlice" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_patchGpuSlice"
+                >Modify GPU slice</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_patchGpuSlice"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_patchGpuSlice() %}
@@ -557,7 +562,12 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- macro htmButton_postGpuSlice() %}<wa-button variant="brand" id="htmButton_postGpuSlice" data-sliceName={{ result.sliceName | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postGpuSlice() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postGpuSlice">Create a GPU slice</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_postGpuSlice" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_postGpuSlice"
+                >Create a GPU slice</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_postGpuSlice"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_postGpuSlice() %}
@@ -570,7 +580,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmSliceNameGpuSlicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -580,7 +590,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDescriptionGpuSlicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -590,7 +600,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmIdGpuSlicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -602,7 +612,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildTenantGpuSlicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -612,7 +622,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildPathGpuSlicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -622,7 +632,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildContextGpuSlicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -632,7 +642,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildDataGpuSlicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -644,7 +654,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmLocationGpuSlicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -663,7 +673,12 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- macro htmButton_deleteGpuSlice() %}<wa-button variant="brand" id="htmButton_deleteGpuSlice" data-sliceName={{ result.sliceName | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteGpuSlice() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deleteGpuSlice">Delete GPU slice</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deleteGpuSlice" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deleteGpuSlice"
+                >Delete GPU slice</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deleteGpuSlice"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deleteGpuSlice() %}
@@ -677,7 +692,12 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- macro htmButton_putimportGpuSlice() %}<wa-button variant="brand" id="htmButton_putimportGpuSlice" data-sliceName={{ result.sliceName | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportGpuSlice() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_putimportGpuSlice">Import GPU slices</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_putimportGpuSlice" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_putimportGpuSlice"
+                >Import GPU slices</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_putimportGpuSlice"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_putimportGpuSlice() %}
@@ -699,7 +719,12 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- macro htmButton_searchpageGpuSlice() %}{%- endmacro %}
 
 {%- macro htmFormButton_searchpageGpuSlice() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageGpuSlice">Search GPU slices</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_searchpageGpuSlice" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_searchpageGpuSlice"
+                >Search GPU slices</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_searchpageGpuSlice"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageGpuSlice() %}
@@ -711,7 +736,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmPkGpuSlicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -721,7 +746,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmCreatedGpuSlicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -731,7 +756,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmModifiedGpuSlicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -743,7 +768,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmArchivedGpuSlicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -760,7 +785,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmSliceNameGpuSlicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -770,7 +795,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmDescriptionGpuSlicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -780,7 +805,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmIdGpuSlicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -792,7 +817,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNgsildTenantGpuSlicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -802,7 +827,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNgsildPathGpuSlicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -812,7 +837,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNgsildContextGpuSlicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -822,7 +847,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNgsildDataGpuSlicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -834,7 +859,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmLocationGpuSlicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -852,7 +877,12 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- macro htmButton_deletefilterGpuSlice() %}<wa-button variant="brand" id="htmButton_deletefilterGpuSlice" data-sliceName={{ result.sliceName | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterGpuSlice() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deletefilterGpuSlice">Delete GPU slice</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deletefilterGpuSlice" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deletefilterGpuSlice"
+                >Delete GPU slice</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deletefilterGpuSlice"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterGpuSlice() %}

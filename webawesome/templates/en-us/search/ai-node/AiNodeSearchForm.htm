@@ -564,7 +564,12 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- macro htmButton_patchAiNode() %}<wa-button variant="brand" id="htmButton_patchAiNode" data-nodeId={{ result.nodeId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchAiNode() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchAiNode">Modify AI node</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_patchAiNode" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_patchAiNode"
+                >Modify AI node</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_patchAiNode"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_patchAiNode() %}
@@ -699,7 +704,12 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- macro htmButton_postAiNode() %}<wa-button variant="brand" id="htmButton_postAiNode" data-nodeId={{ result.nodeId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postAiNode() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postAiNode">Create an AI node</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_postAiNode" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_postAiNode"
+                >Create an AI node</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_postAiNode"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_postAiNode() %}
@@ -712,7 +722,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmClusterNameAiNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -722,7 +732,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNodeNameAiNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -732,7 +742,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDescriptionAiNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -742,7 +752,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNodeIdAiNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -752,7 +762,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmIdAiNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -762,7 +772,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmGpuDevicesTotalAiNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -774,7 +784,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildTenantAiNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -784,7 +794,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildPathAiNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -794,7 +804,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildContextAiNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -804,7 +814,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildDataAiNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -816,7 +826,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmLocationAiNodePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -835,7 +845,12 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- macro htmButton_deleteAiNode() %}<wa-button variant="brand" id="htmButton_deleteAiNode" data-nodeId={{ result.nodeId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteAiNode() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deleteAiNode">Delete AI node</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deleteAiNode" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deleteAiNode"
+                >Delete AI node</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deleteAiNode"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deleteAiNode() %}
@@ -849,7 +864,12 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- macro htmButton_putimportAiNode() %}<wa-button variant="brand" id="htmButton_putimportAiNode" data-nodeId={{ result.nodeId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportAiNode() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_putimportAiNode">Import AI nodes</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_putimportAiNode" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_putimportAiNode"
+                >Import AI nodes</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_putimportAiNode"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_putimportAiNode() %}
@@ -871,7 +891,12 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- macro htmButton_searchpageAiNode() %}{%- endmacro %}
 
 {%- macro htmFormButton_searchpageAiNode() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageAiNode">Search AI nodes</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_searchpageAiNode" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_searchpageAiNode"
+                >Search AI nodes</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_searchpageAiNode"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageAiNode() %}
@@ -883,7 +908,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmPkAiNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -893,7 +918,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmCreatedAiNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -903,7 +928,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmModifiedAiNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -915,7 +940,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmArchivedAiNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -932,7 +957,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmClusterNameAiNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -942,7 +967,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNodeNameAiNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -952,7 +977,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmDescriptionAiNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -962,7 +987,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNodeIdAiNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -972,7 +997,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmIdAiNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -982,7 +1007,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmGpuDevicesTotalAiNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -994,7 +1019,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNgsildTenantAiNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1004,7 +1029,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNgsildPathAiNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1014,7 +1039,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNgsildContextAiNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1024,7 +1049,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNgsildDataAiNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1036,7 +1061,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmLocationAiNodePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1054,7 +1079,12 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- macro htmButton_deletefilterAiNode() %}<wa-button variant="brand" id="htmButton_deletefilterAiNode" data-nodeId={{ result.nodeId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterAiNode() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deletefilterAiNode">Delete AI node</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deletefilterAiNode" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deletefilterAiNode"
+                >Delete AI node</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deletefilterAiNode"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterAiNode() %}

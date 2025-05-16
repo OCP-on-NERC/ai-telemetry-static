@@ -6,7 +6,7 @@ async function searchAiCluster($formFilters, success, error) {
   if(success == null)
     success = function( data, textStatus, jQxhr ) {};
   if(error == null)
-    error = function( jqXhr, textStatus, errorThrown ) {};
+    error = function( jqXhr, target2 ) {};
 
   searchAiClusterVals(filters, target, success, error);
 }
@@ -184,7 +184,7 @@ function suggestAiClusterObjectSuggest($formFilters, $list, target) {
       $list.append($li);
     });
   };
-  error = function( jqXhr, textStatus, errorThrown ) {};
+  error = function( jqXhr, target2 ) {};
   searchAiClusterVals($formFilters, target, success, error);
 }
 
@@ -625,15 +625,15 @@ async function postAiCluster($formValues, target, success, error) {
   var vals = {};
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 
@@ -755,15 +755,15 @@ function postAiClusterVals(vals, target, success, error) {
 async function deleteAiCluster(target, clusterName, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 
@@ -814,15 +814,15 @@ function putimportAiClusterVals(json, target, success, error) {
 async function deletefilterAiCluster(target, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 

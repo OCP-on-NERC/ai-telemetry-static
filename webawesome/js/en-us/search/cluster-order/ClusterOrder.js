@@ -6,7 +6,7 @@ async function searchClusterOrder($formFilters, success, error) {
   if(success == null)
     success = function( data, textStatus, jQxhr ) {};
   if(error == null)
-    error = function( jqXhr, textStatus, errorThrown ) {};
+    error = function( jqXhr, target2 ) {};
 
   searchClusterOrderVals(filters, target, success, error);
 }
@@ -173,7 +173,7 @@ o['objectTitle'];
       $list.append($li);
     });
   };
-  error = function( jqXhr, textStatus, errorThrown ) {};
+  error = function( jqXhr, target2 ) {};
   searchClusterTemplateVals(filters, target, success, error);
 }
 
@@ -191,7 +191,7 @@ function suggestClusterOrderObjectSuggest($formFilters, $list, target) {
       $list.append($li);
     });
   };
-  error = function( jqXhr, textStatus, errorThrown ) {};
+  error = function( jqXhr, target2 ) {};
   searchClusterOrderVals($formFilters, target, success, error);
 }
 
@@ -500,15 +500,15 @@ async function postClusterOrder($formValues, target, success, error) {
   var vals = {};
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 
@@ -602,15 +602,15 @@ function postClusterOrderVals(vals, target, success, error) {
 async function deleteClusterOrder(target, id, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 
@@ -661,15 +661,15 @@ function putimportClusterOrderVals(json, target, success, error) {
 async function deletefilterClusterOrder(target, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 

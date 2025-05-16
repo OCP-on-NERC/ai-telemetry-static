@@ -6,7 +6,7 @@ async function searchSiteUser($formFilters, success, error) {
   if(success == null)
     success = function( data, textStatus, jQxhr ) {};
   if(error == null)
-    error = function( jqXhr, textStatus, errorThrown ) {};
+    error = function( jqXhr, target2 ) {};
 
   searchSiteUserVals(filters, target, success, error);
 }
@@ -178,7 +178,7 @@ function suggestSiteUserObjectSuggest($formFilters, $list, target) {
       $list.append($li);
     });
   };
-  error = function( jqXhr, textStatus, errorThrown ) {};
+  error = function( jqXhr, target2 ) {};
   searchSiteUserVals($formFilters, target, success, error);
 }
 
@@ -589,15 +589,15 @@ async function postSiteUser($formValues, target, success, error) {
   var vals = {};
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 

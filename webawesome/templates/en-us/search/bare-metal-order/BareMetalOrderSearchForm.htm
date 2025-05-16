@@ -650,7 +650,12 @@ The order status of a bare metal fulfillment"
 {%- macro htmButton_patchBareMetalOrder() %}<wa-button variant="brand" id="htmButton_patchBareMetalOrder" data-pk={{ result.pk | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchBareMetalOrder() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchBareMetalOrder">Modify bare metal order</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_patchBareMetalOrder" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_patchBareMetalOrder"
+                >Modify bare metal order</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_patchBareMetalOrder"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_patchBareMetalOrder() %}
@@ -821,7 +826,12 @@ The order status of a bare metal fulfillment"
 {%- macro htmButton_postBareMetalOrder() %}<wa-button variant="brand" id="htmButton_postBareMetalOrder" data-pk={{ result.pk | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postBareMetalOrder() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postBareMetalOrder">Create a bare metal order</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_postBareMetalOrder" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_postBareMetalOrder"
+                >Create a bare metal order</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_postBareMetalOrder"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_postBareMetalOrder() %}
@@ -834,7 +844,7 @@ The order status of a bare metal fulfillment"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDescriptionBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -844,7 +854,7 @@ The order status of a bare metal fulfillment"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNetworkIdBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -862,7 +872,7 @@ The order status of a bare metal fulfillment"
               <div class="grid-with-subgrid-2col ">
               {%- if resourceClasses | selectattr('name', 'equalto', 'fc430') | list | count %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNumberOfFc430BareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'fc430') | list | first).count) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -874,7 +884,7 @@ The order status of a bare metal fulfillment"
               {%- endif %}
               {%- if resourceClasses | selectattr('name', 'equalto', 'fc830') | list | count %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNumberOfFc830BareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'fc830') | list | first).count) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -886,7 +896,7 @@ The order status of a bare metal fulfillment"
               {%- endif %}
               {%- if resourceClasses | selectattr('name', 'equalto', 'r730xd') | list | count %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNumberOfR730xdBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'r730xd') | list | first).count) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -898,7 +908,7 @@ The order status of a bare metal fulfillment"
               {%- endif %}
               {%- if resourceClasses | selectattr('name', 'equalto', 'whitebox-flax-1') | list | count %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNumberOfWhiteboxFlax1BareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'whitebox-flax-1') | list | first).count) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -910,7 +920,7 @@ The order status of a bare metal fulfillment"
               {%- endif %}
               {%- if resourceClasses | selectattr('name', 'equalto', 'lenovo-sd650nv2-a100') | list | count %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNumberOfLenovoSd650nv2A100BareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'lenovo-sd650nv2-a100') | list | first).count) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -922,7 +932,7 @@ The order status of a bare metal fulfillment"
               {%- endif %}
               {%- if resourceClasses | selectattr('name', 'equalto', 'lenovo-sd665nv3-h100') | list | count %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNumberOfLenovoSd665nv3H100BareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'lenovo-sd665nv3-h100') | list | first).count) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -940,7 +950,7 @@ The order status of a bare metal fulfillment"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmImageBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -957,7 +967,7 @@ The order status of a bare metal fulfillment"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmSshPublicKeyBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -974,7 +984,7 @@ The order status of a bare metal fulfillment"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmFloatingIpBareMetalOrderPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, default=false) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -993,7 +1003,12 @@ The order status of a bare metal fulfillment"
 {%- macro htmButton_deleteBareMetalOrder() %}<wa-button variant="brand" id="htmButton_deleteBareMetalOrder" data-pk={{ result.pk | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteBareMetalOrder() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deleteBareMetalOrder">Delete bare metal order</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deleteBareMetalOrder" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deleteBareMetalOrder"
+                >Delete bare metal order</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deleteBareMetalOrder"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deleteBareMetalOrder() %}
@@ -1007,7 +1022,12 @@ The order status of a bare metal fulfillment"
 {%- macro htmButton_searchpageBareMetalOrder() %}{%- endmacro %}
 
 {%- macro htmFormButton_searchpageBareMetalOrder() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageBareMetalOrder">Search bare metal orders</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_searchpageBareMetalOrder" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_searchpageBareMetalOrder"
+                >Search bare metal orders</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_searchpageBareMetalOrder"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageBareMetalOrder() %}
@@ -1019,7 +1039,7 @@ The order status of a bare metal fulfillment"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmPkBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1029,7 +1049,7 @@ The order status of a bare metal fulfillment"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmCreatedBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1039,7 +1059,7 @@ The order status of a bare metal fulfillment"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmModifiedBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1051,7 +1071,7 @@ The order status of a bare metal fulfillment"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmArchivedBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1068,7 +1088,7 @@ The order status of a bare metal fulfillment"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmDescriptionBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1078,7 +1098,7 @@ The order status of a bare metal fulfillment"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNetworkIdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1096,7 +1116,7 @@ The order status of a bare metal fulfillment"
               <div class="grid-with-subgrid-2col ">
               {%- if resourceClasses | selectattr('name', 'equalto', 'fc430') | list | count %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNumberOfFc430BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'fc430') | list | first).count) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1108,7 +1128,7 @@ The order status of a bare metal fulfillment"
               {%- endif %}
               {%- if resourceClasses | selectattr('name', 'equalto', 'fc830') | list | count %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNumberOfFc830BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'fc830') | list | first).count) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1120,7 +1140,7 @@ The order status of a bare metal fulfillment"
               {%- endif %}
               {%- if resourceClasses | selectattr('name', 'equalto', 'r730xd') | list | count %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNumberOfR730xdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'r730xd') | list | first).count) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1132,7 +1152,7 @@ The order status of a bare metal fulfillment"
               {%- endif %}
               {%- if resourceClasses | selectattr('name', 'equalto', 'whitebox-flax-1') | list | count %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNumberOfWhiteboxFlax1BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'whitebox-flax-1') | list | first).count) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1144,7 +1164,7 @@ The order status of a bare metal fulfillment"
               {%- endif %}
               {%- if resourceClasses | selectattr('name', 'equalto', 'lenovo-sd650nv2-a100') | list | count %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNumberOfLenovoSd650nv2A100BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'lenovo-sd650nv2-a100') | list | first).count) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1156,7 +1176,7 @@ The order status of a bare metal fulfillment"
               {%- endif %}
               {%- if resourceClasses | selectattr('name', 'equalto', 'lenovo-sd665nv3-h100') | list | count %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNumberOfLenovoSd665nv3H100BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'lenovo-sd665nv3-h100') | list | first).count) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1174,7 +1194,7 @@ The order status of a bare metal fulfillment"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmImageBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1191,7 +1211,7 @@ The order status of a bare metal fulfillment"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmSshPublicKeyBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1208,7 +1228,7 @@ The order status of a bare metal fulfillment"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmFloatingIpBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, default=false) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1225,7 +1245,7 @@ The order status of a bare metal fulfillment"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmStatusBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1243,7 +1263,12 @@ The order status of a bare metal fulfillment"
 {%- macro htmButton_deletefilterBareMetalOrder() %}<wa-button variant="brand" id="htmButton_deletefilterBareMetalOrder" data-pk={{ result.pk | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterBareMetalOrder() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deletefilterBareMetalOrder">Delete bare metal order</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deletefilterBareMetalOrder" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deletefilterBareMetalOrder"
+                >Delete bare metal order</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deletefilterBareMetalOrder"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterBareMetalOrder() %}

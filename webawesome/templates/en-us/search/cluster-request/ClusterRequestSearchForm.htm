@@ -227,7 +227,7 @@ The name of this cluster"
                 {{ inputClusterTemplateTitleClusterRequestPage(authForWrite=authForWrite, authForRead=authForRead) }}
                 <div class="label-on-left-ul-label ">
                   <i class="{{ FONTAWESOME_STYLE }} fa-search "></i>
-                  relate a cluster template to this OpenShift cluster request
+                  relate an OpenShift cluster template to this OpenShift cluster request
                 </div>
                 <ul class="label-on-left-ul " id="listClusterRequestClusterTemplateTitle_{{classApiMethodMethod}}">
                 </ul>
@@ -236,8 +236,8 @@ The name of this cluster"
                 <div>
                   <button
                        id="{{classApiMethodMethod}}_clusterTemplateTitle_add"
-                       onclick="this.classList.add('w3-disabled'); this.disabled = true; this.innerHTML = 'Sending…'; postClusterTemplateVals({ title: '{{ result.name }}' }, this, function(response, target) { document.querySelector('#{{classApiMethodMethod}}_clusterTemplateTitle_add').disabled = false; document.querySelector('#{{classApiMethodMethod}}_clusterTemplateTitle_add').innerHTML = 'add a cluster template'; }, this, function(response, target) { addError(document.querySelector('#{{classApiMethodMethod}}clusterTemplateTitle')); });"
-                      >add a cluster template</button>
+                       onclick="this.classList.add('w3-disabled'); this.disabled = true; this.innerHTML = 'Sending…'; postClusterTemplateVals({ title: '{{ result.name }}' }, this, function(response, target) { document.querySelector('#{{classApiMethodMethod}}_clusterTemplateTitle_add').disabled = false; document.querySelector('#{{classApiMethodMethod}}_clusterTemplateTitle_add').innerHTML = 'add an OpenShift cluster template'; }, this, function(response, target) { addError(document.querySelector('#{{classApiMethodMethod}}clusterTemplateTitle')); });"
+                      >add an OpenShift cluster template</button>
                   </div>
                 {%- endif %}
                 {%- endif %}
@@ -299,7 +299,12 @@ The name of this cluster"
 {%- macro htmButton_patchClusterRequest() %}<wa-button variant="brand" id="htmButton_patchClusterRequest" data-name={{ result.name | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchClusterRequest() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchClusterRequest">Modify OpenShift cluster request</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_patchClusterRequest" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_patchClusterRequest"
+                >Modify OpenShift cluster request</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_patchClusterRequest"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_patchClusterRequest() %}
@@ -350,7 +355,12 @@ The name of this cluster"
 {%- macro htmButton_postClusterRequest() %}<wa-button variant="brand" id="htmButton_postClusterRequest" data-name={{ result.name | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postClusterRequest() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postClusterRequest">Create an OpenShift cluster request</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_postClusterRequest" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_postClusterRequest"
+                >Create an OpenShift cluster request</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_postClusterRequest"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_postClusterRequest() %}
@@ -402,7 +412,12 @@ The name of this cluster"
 {%- macro htmButton_deleteClusterRequest() %}<wa-button variant="brand" id="htmButton_deleteClusterRequest" data-name={{ result.name | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteClusterRequest() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deleteClusterRequest">Delete OpenShift cluster request</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deleteClusterRequest" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deleteClusterRequest"
+                >Delete OpenShift cluster request</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deleteClusterRequest"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deleteClusterRequest() %}
@@ -416,7 +431,12 @@ The name of this cluster"
 {%- macro htmButton_putimportClusterRequest() %}<wa-button variant="brand" id="htmButton_putimportClusterRequest" data-name={{ result.name | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportClusterRequest() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_putimportClusterRequest">Import OpenShift cluster requests</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_putimportClusterRequest" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_putimportClusterRequest"
+                >Import OpenShift cluster requests</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_putimportClusterRequest"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_putimportClusterRequest() %}
@@ -438,7 +458,12 @@ The name of this cluster"
 {%- macro htmButton_searchpageClusterRequest() %}{%- endmacro %}
 
 {%- macro htmFormButton_searchpageClusterRequest() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageClusterRequest">Search OpenShift cluster requests</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_searchpageClusterRequest" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_searchpageClusterRequest"
+                >Search OpenShift cluster requests</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_searchpageClusterRequest"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageClusterRequest() %}
@@ -537,7 +562,12 @@ The name of this cluster"
 {%- macro htmButton_deletefilterClusterRequest() %}<wa-button variant="brand" id="htmButton_deletefilterClusterRequest" data-name={{ result.name | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterClusterRequest() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deletefilterClusterRequest">Delete OpenShift cluster request</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deletefilterClusterRequest" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deletefilterClusterRequest"
+                >Delete OpenShift cluster request</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deletefilterClusterRequest"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterClusterRequest() %}

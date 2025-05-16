@@ -6,7 +6,7 @@ async function searchClusterRequest($formFilters, success, error) {
   if(success == null)
     success = function( data, textStatus, jQxhr ) {};
   if(error == null)
-    error = function( jqXhr, textStatus, errorThrown ) {};
+    error = function( jqXhr, target2 ) {};
 
   searchClusterRequestVals(filters, target, success, error);
 }
@@ -169,7 +169,7 @@ o['objectTitle'];
       $list.append($li);
     });
   };
-  error = function( jqXhr, textStatus, errorThrown ) {};
+  error = function( jqXhr, target2 ) {};
   searchClusterTemplateVals(filters, target, success, error);
 }
 
@@ -216,7 +216,7 @@ o['objectTitle'];
       $list.append($li);
     });
   };
-  error = function( jqXhr, textStatus, errorThrown ) {};
+  error = function( jqXhr, target2 ) {};
   searchSiteUserVals(filters, target, success, error);
 }
 
@@ -234,7 +234,7 @@ function suggestClusterRequestObjectSuggest($formFilters, $list, target) {
       $list.append($li);
     });
   };
-  error = function( jqXhr, textStatus, errorThrown ) {};
+  error = function( jqXhr, target2 ) {};
   searchClusterRequestVals($formFilters, target, success, error);
 }
 
@@ -519,15 +519,15 @@ async function postClusterRequest($formValues, target, success, error) {
   var vals = {};
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 
@@ -617,15 +617,15 @@ function postClusterRequestVals(vals, target, success, error) {
 async function deleteClusterRequest(target, name, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 
@@ -676,15 +676,15 @@ function putimportClusterRequestVals(json, target, success, error) {
 async function deletefilterClusterRequest(target, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 
@@ -771,7 +771,7 @@ async function websocketClusterRequest(success) {
 
     window.eventBus.registerHandler('websocketClusterTemplate', function (error, message) {
       document.querySelector('.Page_clusterTemplateTitle').trigger('oninput');
-      document.querySelector('.Page_clusterTemplateTitle_add').innerText = 'add a cluster template';
+      document.querySelector('.Page_clusterTemplateTitle_add').innerText = 'add an OpenShift cluster template';
       document.querySelector('.Page_clusterTemplateTitle_add').classList.remove('w3-disabled');
       document.querySelector('.Page_clusterTemplateTitle_add').setAttribute('disabled', false);
     });

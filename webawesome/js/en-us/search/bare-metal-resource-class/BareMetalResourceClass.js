@@ -6,7 +6,7 @@ async function searchBareMetalResourceClass($formFilters, success, error) {
   if(success == null)
     success = function( data, textStatus, jQxhr ) {};
   if(error == null)
-    error = function( jqXhr, textStatus, errorThrown ) {};
+    error = function( jqXhr, target2 ) {};
 
   searchBareMetalResourceClassVals(filters, target, success, error);
 }
@@ -136,7 +136,7 @@ function suggestBareMetalResourceClassObjectSuggest($formFilters, $list, target)
       $list.append($li);
     });
   };
-  error = function( jqXhr, textStatus, errorThrown ) {};
+  error = function( jqXhr, target2 ) {};
   searchBareMetalResourceClassVals($formFilters, target, success, error);
 }
 
@@ -421,15 +421,15 @@ async function postBareMetalResourceClass($formValues, target, success, error) {
   var vals = {};
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 
@@ -515,15 +515,15 @@ function postBareMetalResourceClassVals(vals, target, success, error) {
 async function deleteBareMetalResourceClass(target, name, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 
@@ -574,15 +574,15 @@ function putimportBareMetalResourceClassVals(json, target, success, error) {
 async function deletefilterBareMetalResourceClass(target, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 

@@ -304,7 +304,12 @@ A description of this AI project"
 {%- macro htmButton_patchAiProject() %}<wa-button variant="brand" id="htmButton_patchAiProject" data-projectId={{ result.projectId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchAiProject() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchAiProject">Modify AI project</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_patchAiProject" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_patchAiProject"
+                >Modify AI project</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_patchAiProject"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_patchAiProject() %}
@@ -365,7 +370,12 @@ A description of this AI project"
 {%- macro htmButton_postAiProject() %}<wa-button variant="brand" id="htmButton_postAiProject" data-projectId={{ result.projectId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postAiProject() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postAiProject">Create an AI project</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_postAiProject" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_postAiProject"
+                >Create an AI project</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_postAiProject"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_postAiProject() %}
@@ -378,7 +388,7 @@ A description of this AI project"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmClusterNameAiProjectPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -388,7 +398,7 @@ A description of this AI project"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmProjectNameAiProjectPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -398,7 +408,7 @@ A description of this AI project"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmProjectIdAiProjectPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -408,7 +418,7 @@ A description of this AI project"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDescriptionAiProjectPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -427,7 +437,12 @@ A description of this AI project"
 {%- macro htmButton_deleteAiProject() %}<wa-button variant="brand" id="htmButton_deleteAiProject" data-projectId={{ result.projectId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteAiProject() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deleteAiProject">Delete AI project</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deleteAiProject" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deleteAiProject"
+                >Delete AI project</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deleteAiProject"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deleteAiProject() %}
@@ -441,7 +456,12 @@ A description of this AI project"
 {%- macro htmButton_putimportAiProject() %}<wa-button variant="brand" id="htmButton_putimportAiProject" data-projectId={{ result.projectId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportAiProject() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_putimportAiProject">Import AI projects</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_putimportAiProject" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_putimportAiProject"
+                >Import AI projects</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_putimportAiProject"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_putimportAiProject() %}
@@ -463,7 +483,12 @@ A description of this AI project"
 {%- macro htmButton_searchpageAiProject() %}{%- endmacro %}
 
 {%- macro htmFormButton_searchpageAiProject() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageAiProject">Search AI projects</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_searchpageAiProject" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_searchpageAiProject"
+                >Search AI projects</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_searchpageAiProject"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageAiProject() %}
@@ -475,7 +500,7 @@ A description of this AI project"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmPkAiProjectPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -485,7 +510,7 @@ A description of this AI project"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmCreatedAiProjectPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -495,7 +520,7 @@ A description of this AI project"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmModifiedAiProjectPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -507,7 +532,7 @@ A description of this AI project"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmArchivedAiProjectPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -524,7 +549,7 @@ A description of this AI project"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmClusterNameAiProjectPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -534,7 +559,7 @@ A description of this AI project"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmProjectNameAiProjectPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -544,7 +569,7 @@ A description of this AI project"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmProjectIdAiProjectPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -554,7 +579,7 @@ A description of this AI project"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmDescriptionAiProjectPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -572,7 +597,12 @@ A description of this AI project"
 {%- macro htmButton_deletefilterAiProject() %}<wa-button variant="brand" id="htmButton_deletefilterAiProject" data-projectId={{ result.projectId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterAiProject() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deletefilterAiProject">Delete AI project</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deletefilterAiProject" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deletefilterAiProject"
+                >Delete AI project</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deletefilterAiProject"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterAiProject() %}

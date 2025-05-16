@@ -275,7 +275,12 @@ The ID for this page. "
 {%- macro htmButton_patchSitePage() %}<wa-button variant="brand" id="htmButton_patchSitePage" data-pageId={{ result.pageId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchSitePage() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchSitePage">Modify article</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_patchSitePage" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_patchSitePage"
+                >Modify article</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_patchSitePage"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_patchSitePage() %}
@@ -341,7 +346,12 @@ The ID for this page. "
 {%- macro htmButton_postSitePage() %}<wa-button variant="brand" id="htmButton_postSitePage" data-pageId={{ result.pageId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postSitePage() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postSitePage">Create an article</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_postSitePage" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_postSitePage"
+                >Create an article</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_postSitePage"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_postSitePage() %}
@@ -350,7 +360,7 @@ The ID for this page. "
             <div>You can override any default values below: </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmAuthorSitePagePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -362,7 +372,7 @@ The ID for this page. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmPageImageUriSitePagePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -379,7 +389,7 @@ The ID for this page. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmPageIdSitePagePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -389,7 +399,7 @@ The ID for this page. "
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDisplayPageSitePagePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -408,7 +418,12 @@ The ID for this page. "
 {%- macro htmButton_putimportSitePage() %}<wa-button variant="brand" id="htmButton_putimportSitePage" data-pageId={{ result.pageId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportSitePage() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_putimportSitePage">Import articles</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_putimportSitePage" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_putimportSitePage"
+                >Import articles</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_putimportSitePage"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_putimportSitePage() %}
@@ -430,7 +445,12 @@ The ID for this page. "
 {%- macro htmButton_searchpageSitePage() %}{%- endmacro %}
 
 {%- macro htmFormButton_searchpageSitePage() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageSitePage">Search articles</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_searchpageSitePage" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_searchpageSitePage"
+                >Search articles</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_searchpageSitePage"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageSitePage() %}
@@ -442,7 +462,7 @@ The ID for this page. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmCreatedSitePagePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -452,7 +472,7 @@ The ID for this page. "
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmModifiedSitePagePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -464,7 +484,7 @@ The ID for this page. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmArchivedSitePagePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -476,7 +496,7 @@ The ID for this page. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmAuthorSitePagePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -488,7 +508,7 @@ The ID for this page. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmPageImageUriSitePagePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -505,7 +525,7 @@ The ID for this page. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmPageIdSitePagePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -515,7 +535,7 @@ The ID for this page. "
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmDisplayPageSitePagePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}

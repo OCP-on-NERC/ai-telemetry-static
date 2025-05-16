@@ -230,7 +230,12 @@ The number of available nodes"
 {%- macro htmButton_patchBareMetalResourceClass() %}<wa-button variant="brand" id="htmButton_patchBareMetalResourceClass" data-name={{ result.name | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchBareMetalResourceClass() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchBareMetalResourceClass">Modify bare metal resource class</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_patchBareMetalResourceClass" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_patchBareMetalResourceClass"
+                >Modify bare metal resource class</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_patchBareMetalResourceClass"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_patchBareMetalResourceClass() %}
@@ -271,7 +276,12 @@ The number of available nodes"
 {%- macro htmButton_postBareMetalResourceClass() %}<wa-button variant="brand" id="htmButton_postBareMetalResourceClass" data-name={{ result.name | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postBareMetalResourceClass() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postBareMetalResourceClass">Create a bare metal resource class</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_postBareMetalResourceClass" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_postBareMetalResourceClass"
+                >Create a bare metal resource class</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_postBareMetalResourceClass"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_postBareMetalResourceClass() %}
@@ -284,7 +294,7 @@ The number of available nodes"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNameBareMetalResourceClassPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -294,7 +304,7 @@ The number of available nodes"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmCountBareMetalResourceClassPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -313,7 +323,12 @@ The number of available nodes"
 {%- macro htmButton_deleteBareMetalResourceClass() %}<wa-button variant="brand" id="htmButton_deleteBareMetalResourceClass" data-name={{ result.name | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteBareMetalResourceClass() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deleteBareMetalResourceClass">Delete bare metal resource class</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deleteBareMetalResourceClass" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deleteBareMetalResourceClass"
+                >Delete bare metal resource class</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deleteBareMetalResourceClass"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deleteBareMetalResourceClass() %}
@@ -327,7 +342,12 @@ The number of available nodes"
 {%- macro htmButton_putimportBareMetalResourceClass() %}<wa-button variant="brand" id="htmButton_putimportBareMetalResourceClass" data-name={{ result.name | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportBareMetalResourceClass() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_putimportBareMetalResourceClass">Import bare metal resource classes</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_putimportBareMetalResourceClass" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_putimportBareMetalResourceClass"
+                >Import bare metal resource classes</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_putimportBareMetalResourceClass"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_putimportBareMetalResourceClass() %}
@@ -349,7 +369,12 @@ The number of available nodes"
 {%- macro htmButton_searchpageBareMetalResourceClass() %}{%- endmacro %}
 
 {%- macro htmFormButton_searchpageBareMetalResourceClass() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageBareMetalResourceClass">Search bare metal resource classes</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_searchpageBareMetalResourceClass" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_searchpageBareMetalResourceClass"
+                >Search bare metal resource classes</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_searchpageBareMetalResourceClass"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageBareMetalResourceClass() %}
@@ -361,7 +386,7 @@ The number of available nodes"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmPkBareMetalResourceClassPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -371,7 +396,7 @@ The number of available nodes"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmCreatedBareMetalResourceClassPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -381,7 +406,7 @@ The number of available nodes"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmModifiedBareMetalResourceClassPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -393,7 +418,7 @@ The number of available nodes"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmArchivedBareMetalResourceClassPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -410,7 +435,7 @@ The number of available nodes"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNameBareMetalResourceClassPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -420,7 +445,7 @@ The number of available nodes"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmCountBareMetalResourceClassPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -438,7 +463,12 @@ The number of available nodes"
 {%- macro htmButton_deletefilterBareMetalResourceClass() %}<wa-button variant="brand" id="htmButton_deletefilterBareMetalResourceClass" data-name={{ result.name | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterBareMetalResourceClass() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deletefilterBareMetalResourceClass">Delete bare metal resource class</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deletefilterBareMetalResourceClass" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deletefilterBareMetalResourceClass"
+                >Delete bare metal resource class</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deletefilterBareMetalResourceClass"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterBareMetalResourceClass() %}

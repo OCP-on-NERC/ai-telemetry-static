@@ -1440,7 +1440,12 @@ The description of this bare metal network"
 {%- macro htmButton_patchBareMetalNetwork() %}<wa-button variant="brand" id="htmButton_patchBareMetalNetwork" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchBareMetalNetwork() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchBareMetalNetwork">Modify bare metal network</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_patchBareMetalNetwork" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_patchBareMetalNetwork"
+                >Modify bare metal network</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_patchBareMetalNetwork"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_patchBareMetalNetwork() %}
@@ -1815,7 +1820,12 @@ The description of this bare metal network"
 {%- macro htmButton_postBareMetalNetwork() %}<wa-button variant="brand" id="htmButton_postBareMetalNetwork" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postBareMetalNetwork() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postBareMetalNetwork">Create a bare metal network</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_postBareMetalNetwork" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_postBareMetalNetwork"
+                >Create a bare metal network</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_postBareMetalNetwork"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_postBareMetalNetwork() %}
@@ -1828,7 +1838,7 @@ The description of this bare metal network"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmIdBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1838,7 +1848,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNameBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1848,7 +1858,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDescriptionBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1858,7 +1868,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmAvailabilityZoneHintsBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1868,7 +1878,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmAvailabilityZonesBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1878,7 +1888,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmCreatedAtBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1888,7 +1898,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDnsDomainBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1898,7 +1908,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmMtuBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1908,7 +1918,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmProjectIdBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1918,7 +1928,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmProviderNetworkTypeBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1928,7 +1938,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmProviderPhysicalNetworkBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1938,7 +1948,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmProviderSegmentationIdBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1948,7 +1958,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmQosPolicyIdBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1958,7 +1968,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmRevisionNumberBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1968,7 +1978,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmStatusBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1978,7 +1988,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmSubnetIdsBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1988,7 +1998,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmTagsBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1998,7 +2008,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmTenantIdBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2008,7 +2018,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmUpdatedAtBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2025,7 +2035,7 @@ The description of this bare metal network"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmIsAdminStateUpBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2035,7 +2045,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmIsDefaultBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2045,7 +2055,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmIsPortSecurityEnabledBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2055,7 +2065,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmIsRouterExternalBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2065,7 +2075,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmIsSharedBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2075,7 +2085,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmIsVlanQueingBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2085,7 +2095,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmIsVlanTransparentBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2095,7 +2105,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmL2AdjacencyBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2112,7 +2122,7 @@ The description of this bare metal network"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmLocationCloudBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2122,7 +2132,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmLocationProjectDomainIdBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2132,7 +2142,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmLocationProjectDomainNameBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2142,7 +2152,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmLocationProjectIdBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2152,7 +2162,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmLocationProjectNameBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2162,7 +2172,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmLocationRegionNameBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2172,7 +2182,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmLocationZoneBareMetalNetworkPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2191,7 +2201,12 @@ The description of this bare metal network"
 {%- macro htmButton_deleteBareMetalNetwork() %}<wa-button variant="brand" id="htmButton_deleteBareMetalNetwork" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteBareMetalNetwork() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deleteBareMetalNetwork">Delete bare metal network</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deleteBareMetalNetwork" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deleteBareMetalNetwork"
+                >Delete bare metal network</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deleteBareMetalNetwork"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deleteBareMetalNetwork() %}
@@ -2205,7 +2220,12 @@ The description of this bare metal network"
 {%- macro htmButton_putimportBareMetalNetwork() %}<wa-button variant="brand" id="htmButton_putimportBareMetalNetwork" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportBareMetalNetwork() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_putimportBareMetalNetwork">Import bare metal networks</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_putimportBareMetalNetwork" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_putimportBareMetalNetwork"
+                >Import bare metal networks</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_putimportBareMetalNetwork"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_putimportBareMetalNetwork() %}
@@ -2227,7 +2247,12 @@ The description of this bare metal network"
 {%- macro htmButton_searchpageBareMetalNetwork() %}{%- endmacro %}
 
 {%- macro htmFormButton_searchpageBareMetalNetwork() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageBareMetalNetwork">Search bare metal networks</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_searchpageBareMetalNetwork" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_searchpageBareMetalNetwork"
+                >Search bare metal networks</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_searchpageBareMetalNetwork"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageBareMetalNetwork() %}
@@ -2239,7 +2264,7 @@ The description of this bare metal network"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmPkBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2249,7 +2274,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmCreatedBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2259,7 +2284,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmModifiedBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2271,7 +2296,7 @@ The description of this bare metal network"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmArchivedBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2288,7 +2313,7 @@ The description of this bare metal network"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmIdBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2298,7 +2323,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmNameBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2308,7 +2333,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmDescriptionBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2318,7 +2343,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmAvailabilityZoneHintsBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2328,7 +2353,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmAvailabilityZonesBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2338,7 +2363,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmCreatedAtBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2348,7 +2373,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmDnsDomainBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2358,7 +2383,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmMtuBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2368,7 +2393,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmProjectIdBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2378,7 +2403,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmProviderNetworkTypeBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2388,7 +2413,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmProviderPhysicalNetworkBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2398,7 +2423,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmProviderSegmentationIdBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2408,7 +2433,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmQosPolicyIdBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2418,7 +2443,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmRevisionNumberBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2428,7 +2453,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmStatusBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2438,7 +2463,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmSubnetIdsBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2448,7 +2473,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmTagsBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2458,7 +2483,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmTenantIdBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2468,7 +2493,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmUpdatedAtBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2485,7 +2510,7 @@ The description of this bare metal network"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmIsAdminStateUpBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2495,7 +2520,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmIsDefaultBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2505,7 +2530,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmIsPortSecurityEnabledBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2515,7 +2540,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmIsRouterExternalBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2525,7 +2550,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmIsSharedBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2535,7 +2560,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmIsVlanQueingBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2545,7 +2570,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmIsVlanTransparentBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2555,7 +2580,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmL2AdjacencyBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2572,7 +2597,7 @@ The description of this bare metal network"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmLocationCloudBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2582,7 +2607,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmLocationProjectDomainIdBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2592,7 +2617,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmLocationProjectDomainNameBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2602,7 +2627,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmLocationProjectIdBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2612,7 +2637,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmLocationProjectNameBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2622,7 +2647,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmLocationRegionNameBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2632,7 +2657,7 @@ The description of this bare metal network"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "Page" in scopes %}
                 {{ htmLocationZoneBareMetalNetworkPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2650,7 +2675,12 @@ The description of this bare metal network"
 {%- macro htmButton_deletefilterBareMetalNetwork() %}<wa-button variant="brand" id="htmButton_deletefilterBareMetalNetwork" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterBareMetalNetwork() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deletefilterBareMetalNetwork">Delete bare metal network</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deletefilterBareMetalNetwork" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deletefilterBareMetalNetwork"
+                >Delete bare metal network</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deletefilterBareMetalNetwork"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterBareMetalNetwork() %}
