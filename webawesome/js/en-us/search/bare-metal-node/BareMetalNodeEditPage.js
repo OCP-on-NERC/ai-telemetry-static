@@ -288,27 +288,6 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH displayPage
-          document.querySelector('#Page_displayPage')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_displayPage');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchBareMetalNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
-                  , 'setDisplayPage', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_displayPage')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_displayPage')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_displayPage');
-            const valid = form.reportValidity();
-          });
-
           // PATCH objectTitle
           document.querySelector('#Page_objectTitle')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_objectTitle');
@@ -327,6 +306,27 @@ Promise.all([
           });
           document.querySelector('#Page_objectTitle')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_objectTitle');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH displayPage
+          document.querySelector('#Page_displayPage')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_displayPage');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchBareMetalNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
+                  , 'setDisplayPage', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_displayPage')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_displayPage')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_displayPage');
             const valid = form.reportValidity();
           });
 });
