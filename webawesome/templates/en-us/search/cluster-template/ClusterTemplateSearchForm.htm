@@ -41,18 +41,19 @@ The primary key of this object in the database"
                 <form class="subgrid-2col " id="PageForm_created">
   {%- endif %}
                   <wa-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A created timestamp for this record in the database"
-                      label="created"
+                      label="created {{ formatZonedDateTime(result.created, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classClusterTemplate inputClusterTemplate{{ result.id }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
-                      value="{%- if result.created is defined %}{{ formatZonedDateTime(result.created, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.created is defined %}{{ formatZonedDateTime(result.created, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-id={{ result.id | tojson }}
+                      data-zone="{{ defaultZoneId }}"
                       >
                   </wa-input>
   {%- if 'Page' == classApiMethodMethod %}
@@ -68,18 +69,19 @@ The primary key of this object in the database"
                 <form class="subgrid-2col " id="PageForm_modified">
   {%- endif %}
                   <wa-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A modified timestamp for this record in the database"
-                      label="modified"
+                      label="modified {{ formatZonedDateTime(result.modified, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classClusterTemplate inputClusterTemplate{{ result.id }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
-                      value="{%- if result.modified is defined %}{{ formatZonedDateTime(result.modified, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.modified is defined %}{{ formatZonedDateTime(result.modified, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-id={{ result.id | tojson }}
+                      data-zone="{{ defaultZoneId }}"
                       >
                   </wa-input>
   {%- if 'Page' == classApiMethodMethod %}
@@ -500,7 +502,7 @@ The parameters of this template"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmPkClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -510,7 +512,7 @@ The parameters of this template"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmCreatedClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -520,7 +522,7 @@ The parameters of this template"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmModifiedClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -532,7 +534,7 @@ The parameters of this template"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmArchivedClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -549,7 +551,7 @@ The parameters of this template"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmIdClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -559,7 +561,7 @@ The parameters of this template"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmTitleClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -569,7 +571,7 @@ The parameters of this template"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmDescriptionClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -579,7 +581,7 @@ The parameters of this template"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmParametersClusterTemplatePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -613,23 +615,24 @@ The parameters of this template"
         </wa-dialog>
 {%- endmacro %}
           <div id="htmSearchForm">
-            <wa-button-group>
+            <wa-scroller>
+              <wa-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
-              <wa-button variant="brand" id="refreshThisClusterTemplateGenPage"
-                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'id:{{ result.id }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisClusterTemplateGenPage')); }, function() { addError(document.querySelector('#refreshThisClusterTemplateGenPage')); }); return false; ">
-                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
-                refresh
-              </wa-button>
+                <wa-button variant="brand" id="refreshThisClusterTemplateGenPage"
+                     onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'id:{{ result.id }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisClusterTemplateGenPage')); }, function() { addError(document.querySelector('#refreshThisClusterTemplateGenPage')); }); return false; ">
+                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
+                  refresh
+                </wa-button>
     {% endif %}
     {% if resultCount > 0 %}
-              <wa-button variant="brand" id="refreshAllClusterTemplateGenPage{{ result.id | e }}"
-                   onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllClusterTemplateGenPage{{ result.id | e }}')); }, function() { addError(document.querySelector('#refreshAllClusterTemplateGenPage{{ result.id | e }}')); }); "
-                  >
-                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
-                Refresh all 
-              </wa-button>
+                <wa-button variant="brand" id="refreshAllClusterTemplateGenPage{{ result.id | e }}"
+                     onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllClusterTemplateGenPage{{ result.id | e }}')); }, function() { addError(document.querySelector('#refreshAllClusterTemplateGenPage{{ result.id | e }}')); }); "
+                    >
+                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
+                  Refresh all 
+                </wa-button>
     {% endif %}
   {% endif %}
 {% endif %}
@@ -663,7 +666,8 @@ The parameters of this template"
   {%- endif %}
 {%- endif %}
 
-            </wa-button-group>
+              </wa-button-group>
+            </wa-scroller>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchClusterTemplate() }}

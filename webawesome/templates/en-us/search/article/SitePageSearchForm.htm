@@ -3,18 +3,19 @@
                 <form class="subgrid-2col " id="PageForm_created">
   {%- endif %}
                   <wa-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A created timestamp for this record in the database"
-                      label="created"
+                      label="created {{ formatZonedDateTime(result.created, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classSitePage inputSitePage{{ result.pageId }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
-                      value="{%- if result.created is defined %}{{ formatZonedDateTime(result.created, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.created is defined %}{{ formatZonedDateTime(result.created, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-pageId={{ result.pageId | tojson }}
+                      data-zone="{{ defaultZoneId }}"
                       >
                   </wa-input>
   {%- if 'Page' == classApiMethodMethod %}
@@ -30,18 +31,19 @@
                 <form class="subgrid-2col " id="PageForm_modified">
   {%- endif %}
                   <wa-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A modified timestamp for this record in the database"
-                      label="modified"
+                      label="modified {{ formatZonedDateTime(result.modified, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classSitePage inputSitePage{{ result.pageId }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
-                      value="{%- if result.modified is defined %}{{ formatZonedDateTime(result.modified, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.modified is defined %}{{ formatZonedDateTime(result.modified, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-pageId={{ result.pageId | tojson }}
+                      data-zone="{{ defaultZoneId }}"
                       >
                   </wa-input>
   {%- if 'Page' == classApiMethodMethod %}
@@ -462,7 +464,7 @@ The ID for this page. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmCreatedSitePagePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -472,7 +474,7 @@ The ID for this page. "
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmModifiedSitePagePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -484,7 +486,7 @@ The ID for this page. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmArchivedSitePagePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -496,7 +498,7 @@ The ID for this page. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmAuthorSitePagePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -508,7 +510,7 @@ The ID for this page. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmPageImageUriSitePagePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -525,7 +527,7 @@ The ID for this page. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmPageIdSitePagePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -535,7 +537,7 @@ The ID for this page. "
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmDisplayPageSitePagePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -550,23 +552,24 @@ The ID for this page. "
         </div>
 {%- endmacro %}
           <div id="htmSearchForm">
-            <wa-button-group>
+            <wa-scroller>
+              <wa-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
-              <wa-button variant="brand" id="refreshThisSitePageGenPage"
-                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'pageId:{{ result.pageId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisSitePageGenPage')); }, function() { addError(document.querySelector('#refreshThisSitePageGenPage')); }); return false; ">
-                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
-                refresh
-              </wa-button>
+                <wa-button variant="brand" id="refreshThisSitePageGenPage"
+                     onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'pageId:{{ result.pageId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisSitePageGenPage')); }, function() { addError(document.querySelector('#refreshThisSitePageGenPage')); }); return false; ">
+                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
+                  refresh
+                </wa-button>
     {% endif %}
     {% if resultCount > 0 %}
-              <wa-button variant="brand" id="refreshAllSitePageGenPage{{ result.pageId | e }}"
-                   onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllSitePageGenPage{{ result.pageId | e }}')); }, function() { addError(document.querySelector('#refreshAllSitePageGenPage{{ result.pageId | e }}')); }); "
-                  >
-                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
-                Refresh all 
-              </wa-button>
+                <wa-button variant="brand" id="refreshAllSitePageGenPage{{ result.pageId | e }}"
+                     onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllSitePageGenPage{{ result.pageId | e }}')); }, function() { addError(document.querySelector('#refreshAllSitePageGenPage{{ result.pageId | e }}')); }); "
+                    >
+                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
+                  Refresh all 
+                </wa-button>
     {% endif %}
   {% endif %}
 {% endif %}
@@ -588,7 +591,8 @@ The ID for this page. "
   {{ htmButton_putimportSitePage() }}
 {%- endif %}
 
-            </wa-button-group>
+              </wa-button-group>
+            </wa-scroller>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchSitePage() }}

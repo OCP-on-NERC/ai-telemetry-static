@@ -123,10 +123,6 @@ Promise.all([
     sort('GpuDevice', 'solrId', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortGpuDevice_gpuDeviceId')?.addEventListener('change', (event) => {
-    sort('GpuDevice', 'gpuDeviceId', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortGpuDevice_locationColors')?.addEventListener('change', (event) => {
     sort('GpuDevice', 'locationColors', event.currentTarget.value);
   });
@@ -141,6 +137,10 @@ Promise.all([
 
   document.querySelector('#pageFacetSortGpuDevice_entityShortId')?.addEventListener('change', (event) => {
     sort('GpuDevice', 'entityShortId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuDevice_gpuDeviceId')?.addEventListener('change', (event) => {
+    sort('GpuDevice', 'gpuDeviceId', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchGpuDevice')?.addEventListener('click', (event) => {

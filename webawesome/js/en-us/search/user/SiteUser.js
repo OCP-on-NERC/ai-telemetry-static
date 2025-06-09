@@ -47,6 +47,10 @@ function searchSiteUserFilters($formFilters) {
     if(filterSeeArchived != null && filterSeeArchived === true)
       filters.push({ name: 'fq', value: 'seeArchived:' + filterSeeArchived });
 
+    var filterSiteFontSize = $formFilters.querySelector('.valueSiteFontSize')?.value;
+    if(filterSiteFontSize != null && filterSiteFontSize !== '')
+      filters.push({ name: 'fq', value: 'siteFontSize:' + filterSiteFontSize });
+
     var filterSiteTheme = $formFilters.querySelector('.valueSiteTheme')?.value;
     if(filterSiteTheme != null && filterSiteTheme !== '')
       filters.push({ name: 'fq', value: 'siteTheme:' + filterSiteTheme });
@@ -168,7 +172,7 @@ function suggestSiteUserObjectSuggest($formFilters, $list, target) {
   success = function( data, textStatus, jQxhr ) {
     $list.innerHTML = '';
     data['list'].forEach((o, i) => {
-      var $i = document.querySelector('<i class="fa-duotone fa-solid fa-user-gear"></i>');
+      var $i = document.querySelector('<i class="fa-duotone fa-regular fa-user-gear"></i>');
       var $span = document.createElement('span');      $span.setAttribute('class', '');      $span.innerText = o['objectTitle'];
       var $li = document.createElement('li');
       var $a = document.createElement('a').setAttribute('href', o['editPage']);
@@ -262,6 +266,18 @@ async function patchSiteUser($formFilters, $formValues, target, userId, success,
   var removeSeeArchived = $formValues.querySelector('.removeSeeArchived')?.checked;
   if(removeSeeArchived != null && removeSeeArchived !== '')
     vals['removeSeeArchived'] = removeSeeArchived;
+
+  var valueSiteFontSize = $formValues.querySelector('.valueSiteFontSize')?.value;
+  var removeSiteFontSize = $formValues.querySelector('.removeSiteFontSize')?.value === 'true';
+  var setSiteFontSize = removeSiteFontSize ? null : $formValues.querySelector('.setSiteFontSize')?.value;
+  var addSiteFontSize = $formValues.querySelector('.addSiteFontSize')?.value;
+  if(removeSiteFontSize || setSiteFontSize != null && setSiteFontSize !== '')
+    vals['setSiteFontSize'] = setSiteFontSize;
+  if(addSiteFontSize != null && addSiteFontSize !== '')
+    vals['addSiteFontSize'] = addSiteFontSize;
+  var removeSiteFontSize = $formValues.querySelector('.removeSiteFontSize')?.value;
+  if(removeSiteFontSize != null && removeSiteFontSize !== '')
+    vals['removeSiteFontSize'] = removeSiteFontSize;
 
   var valueSiteTheme = $formValues.querySelector('.valueSiteTheme')?.value;
   var removeSiteTheme = $formValues.querySelector('.removeSiteTheme')?.value === 'true';
@@ -459,6 +475,10 @@ function patchSiteUserFilters($formFilters) {
     if(filterSeeArchived != null && filterSeeArchived === true)
       filters.push({ name: 'fq', value: 'seeArchived:' + filterSeeArchived });
 
+    var filterSiteFontSize = $formFilters.querySelector('.valueSiteFontSize')?.value;
+    if(filterSiteFontSize != null && filterSiteFontSize !== '')
+      filters.push({ name: 'fq', value: 'siteFontSize:' + filterSiteFontSize });
+
     var filterSiteTheme = $formFilters.querySelector('.valueSiteTheme')?.value;
     if(filterSiteTheme != null && filterSiteTheme !== '')
       filters.push({ name: 'fq', value: 'siteTheme:' + filterSiteTheme });
@@ -621,6 +641,10 @@ async function postSiteUser($formValues, target, success, error) {
   if(valueSeeArchived != null && valueSeeArchived !== '')
     vals['seeArchived'] = valueSeeArchived == 'true';
 
+  var valueSiteFontSize = $formValues.querySelector('.valueSiteFontSize')?.value;
+  if(valueSiteFontSize != null && valueSiteFontSize !== '')
+    vals['siteFontSize'] = valueSiteFontSize;
+
   var valueSiteTheme = $formValues.querySelector('.valueSiteTheme')?.value;
   if(valueSiteTheme != null && valueSiteTheme !== '')
     vals['siteTheme'] = valueSiteTheme;
@@ -716,7 +740,7 @@ async function websocketSiteUser(success) {
     window.eventBus.registerHandler('websocketSiteUser', function (error, message) {
       var json = JSON.parse(message['body']);
       var userId = json['id'];
-      var pks = json['pks'];
+      var solrIds = json['solrIds'];
       var empty = json['empty'];
       var numFound = parseInt(json['numFound']);
       var numPATCH = parseInt(json['numPATCH']);
@@ -735,7 +759,7 @@ async function websocketSiteUser(success) {
       $header.setAttribute('class', 'w3-container fa- ');
       $header.setAttribute('id', 'header-' + userId);
       var iTemplate = document.createElement('template');
-      iTemplate.innerHTML = '<i class="fa-duotone fa-solid fa-user-gear"></i>';
+      iTemplate.innerHTML = '<i class="fa-duotone fa-regular fa-user-gear"></i>';
       var $i = iTemplate.content;
       var $headerSpan = document.createElement('span');
       $headerSpan.setAttribute('class', '');
@@ -794,6 +818,7 @@ async function websocketSiteUserInner(apiRequest) {
         var inputModified = null;
         var inputArchived = null;
         var inputSeeArchived = null;
+        var inputSiteFontSize = null;
         var inputSiteTheme = null;
         var inputWebComponentsTheme = null;
         var inputClassCanonicalName = null;
@@ -829,6 +854,8 @@ async function websocketSiteUserInner(apiRequest) {
           inputArchived = $response.querySelector('.Page_archived');
         if(vars.includes('seeArchived'))
           inputSeeArchived = $response.querySelector('.Page_seeArchived');
+        if(vars.includes('siteFontSize'))
+          inputSiteFontSize = $response.querySelector('.Page_siteFontSize');
         if(vars.includes('siteTheme'))
           inputSiteTheme = $response.querySelector('.Page_siteTheme');
         if(vars.includes('webComponentsTheme'))
@@ -931,6 +958,16 @@ async function websocketSiteUserInner(apiRequest) {
               item.textContent = inputSeeArchived.textContent;
           });
           addGlow(document.querySelector('.Page_seeArchived'));
+        }
+
+        if(inputSiteFontSize) {
+          document.querySelectorAll('.Page_siteFontSize').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSiteFontSize.getAttribute('value');
+            else
+              item.textContent = inputSiteFontSize.textContent;
+          });
+          addGlow(document.querySelector('.Page_siteFontSize'));
         }
 
         if(inputSiteTheme) {

@@ -783,7 +783,7 @@ async function websocketGpuSlice(success) {
     window.eventBus.registerHandler('websocketGpuSlice', function (error, message) {
       var json = JSON.parse(message['body']);
       var sliceName = json['id'];
-      var pks = json['pks'];
+      var solrIds = json['solrIds'];
       var empty = json['empty'];
       var numFound = parseInt(json['numFound']);
       var numPATCH = parseInt(json['numPATCH']);
@@ -1388,14 +1388,14 @@ function pageGraphGpuSlice(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            var layer = L.geoJSON(features, {
+            var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleGpuSlice
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleGpuSlice(feature));
               }
             });
-            window.geoJSONGpuSlice.addLayer(layer);
+            window.geoJSONGpuSlice.addLayer(layerGeoJson);
           });
         }
       });
@@ -1430,7 +1430,7 @@ function pageGraphGpuSlice(apiRequest) {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(window.mapGpuSlice);
 
-      if(window.bounds && window['DEFAULT_MAP_ZOOM']) {
+      if(window.bounds && window['DEFAULT_MAP_ZOOM'] && window.bounds.getNorthEast()) {
         if(listGpuSlice.length == 1) {
           window.mapGpuSlice.setView(window.bounds.getNorthEast(), window['DEFAULT_MAP_ZOOM']);
         } else {
@@ -1461,14 +1461,14 @@ function pageGraphGpuSlice(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            var layer = L.geoJSON(features, {
+            var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleGpuSlice
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleGpuSlice(feature));
               }
             });
-            window.geoJSONGpuSlice.addLayer(layer);
+            window.geoJSONGpuSlice.addLayer(layerGeoJson);
           });
         }
       });

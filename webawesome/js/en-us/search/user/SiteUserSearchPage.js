@@ -27,6 +27,10 @@ Promise.all([
     sort('SiteUser', 'seeArchived', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortSiteUser_siteFontSize')?.addEventListener('change', (event) => {
+    sort('SiteUser', 'siteFontSize', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortSiteUser_siteTheme')?.addEventListener('change', (event) => {
     sort('SiteUser', 'siteTheme', event.currentTarget.value);
   });

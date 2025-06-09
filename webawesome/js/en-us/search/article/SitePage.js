@@ -647,7 +647,7 @@ async function websocketSitePage(success) {
     window.eventBus.registerHandler('websocketSitePage', function (error, message) {
       var json = JSON.parse(message['body']);
       var pageId = json['id'];
-      var nulls = json['nulls'];
+      var solrIds = json['solrIds'];
       var empty = json['empty'];
       var numFound = parseInt(json['numFound']);
       var numPATCH = parseInt(json['numPATCH']);

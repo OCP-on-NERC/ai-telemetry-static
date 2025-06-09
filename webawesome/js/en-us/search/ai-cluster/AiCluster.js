@@ -847,7 +847,7 @@ async function websocketAiCluster(success) {
     window.eventBus.registerHandler('websocketAiCluster', function (error, message) {
       var json = JSON.parse(message['body']);
       var clusterName = json['id'];
-      var pks = json['pks'];
+      var solrIds = json['solrIds'];
       var empty = json['empty'];
       var numFound = parseInt(json['numFound']);
       var numPATCH = parseInt(json['numPATCH']);
@@ -1478,14 +1478,14 @@ function pageGraphAiCluster(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            var layer = L.geoJSON(features, {
+            var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleAiCluster
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleAiCluster(feature));
               }
             });
-            window.geoJSONAiCluster.addLayer(layer);
+            window.geoJSONAiCluster.addLayer(layerGeoJson);
           });
         }
       });
@@ -1520,7 +1520,7 @@ function pageGraphAiCluster(apiRequest) {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(window.mapAiCluster);
 
-      if(window.bounds && window['DEFAULT_MAP_ZOOM']) {
+      if(window.bounds && window['DEFAULT_MAP_ZOOM'] && window.bounds.getNorthEast()) {
         if(listAiCluster.length == 1) {
           window.mapAiCluster.setView(window.bounds.getNorthEast(), window['DEFAULT_MAP_ZOOM']);
         } else {
@@ -1551,14 +1551,14 @@ function pageGraphAiCluster(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            var layer = L.geoJSON(features, {
+            var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleAiCluster
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleAiCluster(feature));
               }
             });
-            window.geoJSONAiCluster.addLayer(layer);
+            window.geoJSONAiCluster.addLayer(layerGeoJson);
           });
         }
       });

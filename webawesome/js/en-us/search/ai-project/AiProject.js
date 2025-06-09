@@ -663,7 +663,7 @@ async function websocketAiProject(success) {
     window.eventBus.registerHandler('websocketAiProject', function (error, message) {
       var json = JSON.parse(message['body']);
       var projectId = json['id'];
-      var pks = json['pks'];
+      var solrIds = json['solrIds'];
       var empty = json['empty'];
       var numFound = parseInt(json['numFound']);
       var numPATCH = parseInt(json['numPATCH']);

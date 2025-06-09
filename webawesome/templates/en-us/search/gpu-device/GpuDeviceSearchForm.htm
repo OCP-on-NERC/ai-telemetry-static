@@ -41,18 +41,19 @@ The primary key of this object in the database"
                 <form class="subgrid-2col " id="PageForm_created">
   {%- endif %}
                   <wa-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A created timestamp for this record in the database"
-                      label="created"
+                      label="created {{ formatZonedDateTime(result.created, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
-                      value="{%- if result.created is defined %}{{ formatZonedDateTime(result.created, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.created is defined %}{{ formatZonedDateTime(result.created, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-gpuDeviceId={{ result.gpuDeviceId | tojson }}
+                      data-zone="{{ defaultZoneId }}"
                       >
                   </wa-input>
   {%- if 'Page' == classApiMethodMethod %}
@@ -68,18 +69,19 @@ The primary key of this object in the database"
                 <form class="subgrid-2col " id="PageForm_modified">
   {%- endif %}
                   <wa-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A modified timestamp for this record in the database"
-                      label="modified"
+                      label="modified {{ formatZonedDateTime(result.modified, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
-                      value="{%- if result.modified is defined %}{{ formatZonedDateTime(result.modified, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.modified is defined %}{{ formatZonedDateTime(result.modified, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-gpuDeviceId={{ result.gpuDeviceId | tojson }}
+                      data-zone="{{ defaultZoneId }}"
                       >
                   </wa-input>
   {%- if 'Page' == classApiMethodMethod %}
@@ -923,7 +925,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmPkGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -933,7 +935,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmCreatedGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -943,7 +945,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmModifiedGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -955,7 +957,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmArchivedGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -972,7 +974,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmClusterNameGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -982,7 +984,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmNodeNameGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -992,7 +994,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmDescriptionGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1002,7 +1004,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmGpuDeviceNumberGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1012,7 +1014,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmIdGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1029,7 +1031,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmGpuDeviceUtilizationGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1041,7 +1043,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmNgsildTenantGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1051,7 +1053,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmNgsildPathGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1061,7 +1063,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmNgsildContextGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1071,7 +1073,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmNgsildDataGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1083,7 +1085,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmLocationGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1117,23 +1119,24 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
         </wa-dialog>
 {%- endmacro %}
           <div id="htmSearchForm">
-            <wa-button-group>
+            <wa-scroller>
+              <wa-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
-              <wa-button variant="brand" id="refreshThisGpuDeviceGenPage"
-                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'gpuDeviceId:{{ result.gpuDeviceId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisGpuDeviceGenPage')); }, function() { addError(document.querySelector('#refreshThisGpuDeviceGenPage')); }); return false; ">
-                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
-                refresh
-              </wa-button>
+                <wa-button variant="brand" id="refreshThisGpuDeviceGenPage"
+                     onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'gpuDeviceId:{{ result.gpuDeviceId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisGpuDeviceGenPage')); }, function() { addError(document.querySelector('#refreshThisGpuDeviceGenPage')); }); return false; ">
+                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
+                  refresh
+                </wa-button>
     {% endif %}
     {% if resultCount > 0 %}
-              <wa-button variant="brand" id="refreshAllGpuDeviceGenPage{{ result.gpuDeviceId | e }}"
-                   onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllGpuDeviceGenPage{{ result.gpuDeviceId | e }}')); }, function() { addError(document.querySelector('#refreshAllGpuDeviceGenPage{{ result.gpuDeviceId | e }}')); }); "
-                  >
-                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
-                Refresh all 
-              </wa-button>
+                <wa-button variant="brand" id="refreshAllGpuDeviceGenPage{{ result.gpuDeviceId | e }}"
+                     onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllGpuDeviceGenPage{{ result.gpuDeviceId | e }}')); }, function() { addError(document.querySelector('#refreshAllGpuDeviceGenPage{{ result.gpuDeviceId | e }}')); }); "
+                    >
+                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
+                  Refresh all 
+                </wa-button>
     {% endif %}
   {% endif %}
 {% endif %}
@@ -1167,7 +1170,8 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
   {%- endif %}
 {%- endif %}
 
-            </wa-button-group>
+              </wa-button-group>
+            </wa-scroller>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchGpuDevice() }}
