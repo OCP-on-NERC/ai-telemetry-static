@@ -41,18 +41,19 @@ The primary key of this object in the database"
                 <form class="subgrid-2col " id="PageForm_created">
   {%- endif %}
                   <wa-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A created timestamp for this record in the database"
-                      label="created"
+                      label="created {{ formatZonedDateTime(result.created, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classAiCluster inputAiCluster{{ result.clusterName }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
-                      value="{%- if result.created is defined %}{{ formatZonedDateTime(result.created, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.created is defined %}{{ formatZonedDateTime(result.created, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-clusterName={{ result.clusterName | tojson }}
+                      data-zone="{{ defaultZoneId }}"
                       >
                   </wa-input>
   {%- if 'Page' == classApiMethodMethod %}
@@ -68,18 +69,19 @@ The primary key of this object in the database"
                 <form class="subgrid-2col " id="PageForm_modified">
   {%- endif %}
                   <wa-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A modified timestamp for this record in the database"
-                      label="modified"
+                      label="modified {{ formatZonedDateTime(result.modified, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classAiCluster inputAiCluster{{ result.clusterName }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
-                      value="{%- if result.modified is defined %}{{ formatZonedDateTime(result.modified, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.modified is defined %}{{ formatZonedDateTime(result.modified, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-clusterName={{ result.clusterName | tojson }}
+                      data-zone="{{ defaultZoneId }}"
                       >
                   </wa-input>
   {%- if 'Page' == classApiMethodMethod %}
@@ -946,7 +948,7 @@ The NGSILD data with @context from the context broker"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmPkAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -956,7 +958,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmCreatedAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -966,7 +968,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmModifiedAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -978,7 +980,7 @@ The NGSILD data with @context from the context broker"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmArchivedAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -995,7 +997,7 @@ The NGSILD data with @context from the context broker"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmClusterNameAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1005,7 +1007,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmDescriptionAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1015,7 +1017,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmIdAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1025,7 +1027,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmLocationAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1042,7 +1044,7 @@ The NGSILD data with @context from the context broker"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmAiNodesTotalAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1052,7 +1054,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmGpuDevicesTotalAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1062,7 +1064,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmGrafanaUrlAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1079,7 +1081,7 @@ The NGSILD data with @context from the context broker"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmNgsildTenantAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1089,7 +1091,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmNgsildPathAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1099,7 +1101,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmNgsildContextAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1109,7 +1111,7 @@ The NGSILD data with @context from the context broker"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmNgsildDataAiClusterPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1143,23 +1145,24 @@ The NGSILD data with @context from the context broker"
         </wa-dialog>
 {%- endmacro %}
           <div id="htmSearchForm">
-            <wa-button-group>
+            <wa-scroller>
+              <wa-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
-              <wa-button variant="brand" id="refreshThisAiClusterGenPage"
-                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'clusterName:{{ result.clusterName }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisAiClusterGenPage')); }, function() { addError(document.querySelector('#refreshThisAiClusterGenPage')); }); return false; ">
-                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
-                refresh
-              </wa-button>
+                <wa-button variant="brand" id="refreshThisAiClusterGenPage"
+                     onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'clusterName:{{ result.clusterName }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisAiClusterGenPage')); }, function() { addError(document.querySelector('#refreshThisAiClusterGenPage')); }); return false; ">
+                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
+                  refresh
+                </wa-button>
     {% endif %}
     {% if resultCount > 0 %}
-              <wa-button variant="brand" id="refreshAllAiClusterGenPage{{ result.clusterName | e }}"
-                   onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllAiClusterGenPage{{ result.clusterName | e }}')); }, function() { addError(document.querySelector('#refreshAllAiClusterGenPage{{ result.clusterName | e }}')); }); "
-                  >
-                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
-                Refresh all 
-              </wa-button>
+                <wa-button variant="brand" id="refreshAllAiClusterGenPage{{ result.clusterName | e }}"
+                     onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllAiClusterGenPage{{ result.clusterName | e }}')); }, function() { addError(document.querySelector('#refreshAllAiClusterGenPage{{ result.clusterName | e }}')); }); "
+                    >
+                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
+                  Refresh all 
+                </wa-button>
     {% endif %}
   {% endif %}
 {% endif %}
@@ -1193,7 +1196,8 @@ The NGSILD data with @context from the context broker"
   {%- endif %}
 {%- endif %}
 
-            </wa-button-group>
+              </wa-button-group>
+            </wa-scroller>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchAiCluster() }}

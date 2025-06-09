@@ -41,18 +41,19 @@ The primary key of this object in the database"
                 <form class="subgrid-2col " id="PageForm_created">
   {%- endif %}
                   <wa-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A created timestamp for this record in the database"
-                      label="created"
+                      label="created {{ formatZonedDateTime(result.created, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classSiteUser inputSiteUser{{ result.userId }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
-                      value="{%- if result.created is defined %}{{ formatZonedDateTime(result.created, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.created is defined %}{{ formatZonedDateTime(result.created, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-userId={{ result.userId | tojson }}
+                      data-zone="{{ defaultZoneId }}"
                       >
                   </wa-input>
   {%- if 'Page' == classApiMethodMethod %}
@@ -68,18 +69,19 @@ The primary key of this object in the database"
                 <form class="subgrid-2col " id="PageForm_modified">
   {%- endif %}
                   <wa-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A modified timestamp for this record in the database"
-                      label="modified"
+                      label="modified {{ formatZonedDateTime(result.modified, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classSiteUser inputSiteUser{{ result.userId }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
-                      value="{%- if result.modified is defined %}{{ formatZonedDateTime(result.modified, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.modified is defined %}{{ formatZonedDateTime(result.modified, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-userId={{ result.userId | tojson }}
+                      data-zone="{{ defaultZoneId }}"
                       >
                   </wa-input>
   {%- if 'Page' == classApiMethodMethod %}
@@ -201,6 +203,47 @@ The primary key of this object in the database"
 {%- macro htmSeeArchivedSiteUserPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputSeeArchivedSiteUserPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputSiteFontSizeSiteUserPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_siteFontSize">
+  {%- endif %}
+                  <wa-radio-group
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] font size"
+                      label="font size"
+                      hint="
+The default font size for the site (small, medium, large). "
+                      id="{{classApiMethodMethod}}_siteFontSize"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-userId={{ result.userId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_siteFontSize setSiteFontSize classSiteUser inputSiteUser{{ result.userId }}SiteFontSize "
+                      name="setSiteFontSize"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_siteFontSize setSiteFontSize classSiteUser inputSiteUser{{ result.userId }}SiteFontSize "
+                      name="setSiteFontSize"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_siteFontSize valueSiteFontSize classSiteUser inputSiteUser{{ result.userId }}SiteFontSize "
+                      name="siteFontSize"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.siteFontSize | e }}"
+  {%- endif %}
+                      >
+                    <wa-radio value="s">small</wa-radio>
+                    <wa-radio value="m">medium</wa-radio>
+                    <wa-radio value="l">large</wa-radio>
+                  </wa-radio-group>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmSiteFontSizeSiteUserPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputSiteFontSizeSiteUserPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
 {%- macro inputSiteThemeSiteUserPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_siteTheme">
@@ -269,17 +312,17 @@ The web components theme for the site. "
                       value="{{result.webComponentsTheme | e }}"
   {%- endif %}
                       >
-                    <wa-radio value="default">Default&mdash;Your trusty companion, like a perfectly broken-in pair of jeans.</wa-radio>
-                    <wa-radio value="classic">Classic&mdash;Timeless elegance that never goes out of style.</wa-radio>
-                    <wa-radio value="awesome">Awesome&mdash;Punchy and vibrant, the rockstar of themes.</wa-radio>
-                    <wa-radio value="active">Active&mdash;Energetic and tactile, always in motion.</wa-radio>
-                    <wa-radio value="brutalist">Brutalist&mdash;Sharp, square, and unapologetically bold.</wa-radio>
-                    <wa-radio value="glossy">Glossy&mdash;Bustling with plenty of luster and shine.</wa-radio>
-                    <wa-radio value="matter">Matter&mdash;Digital design inspired by the real world.</wa-radio>
-                    <wa-radio value="mellow">Mellow&mdash;Soft and soothing, like a lazy Sunday morning.</wa-radio>
-                    <wa-radio value="playful">Playful&mdash;Cheerful and engaging, like a playground on screen.</wa-radio>
-                    <wa-radio value="premium">Premium&mdash;The ultimate in sophistication and style.</wa-radio>
-                    <wa-radio value="tailspin">Tailspin&mdash;Like a bird in flight, guiding you from there to here.</wa-radio>
+                    <wa-radio value="default">Default &mdash; &quot;Your trusty companion, like a perfectly broken-in pair of jeans.&quot;</wa-radio>
+                    <wa-radio value="classic">Classic &mdash; &quot;Timeless elegance that never goes out of style.&quot;</wa-radio>
+                    <wa-radio value="awesome">Awesome &mdash; &quot;Punchy and vibrant, the rockstar of themes.&quot;</wa-radio>
+                    <wa-radio value="active">Active &mdash; &quot;Energetic and tactile, always in motion.&quot;</wa-radio>
+                    <wa-radio value="brutalist">Brutalist &mdash; &quot;Sharp, square, and unapologetically bold.&quot;</wa-radio>
+                    <wa-radio value="glossy">Glossy &mdash; &quot;Bustling with plenty of luster and shine.&quot;</wa-radio>
+                    <wa-radio value="matter">Matter &mdash; &quot;Digital design inspired by the real world.&quot;</wa-radio>
+                    <wa-radio value="mellow">Mellow &mdash; &quot;Soft and soothing, like a lazy Sunday morning.&quot;</wa-radio>
+                    <wa-radio value="playful">Playful &mdash; &quot;Cheerful and engaging, like a playground on screen.&quot;</wa-radio>
+                    <wa-radio value="premium">Premium &mdash; &quot;The ultimate in sophistication and style.&quot;</wa-radio>
+                    <wa-radio value="tailspin">Tailspin &mdash; &quot;Like a bird in flight, guiding you from there to here.&quot;</wa-radio>
                   </wa-radio-group>
 
   {%- if 'Page' == classApiMethodMethod %}
@@ -318,6 +361,16 @@ The web components theme for the site. "
                   {{ htmSeeArchivedSiteUserPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmSeeArchivedSiteUserPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmSiteFontSizeSiteUserPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmSiteFontSizeSiteUserPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmSiteFontSizeSiteUserPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -379,6 +432,16 @@ The web components theme for the site. "
               {%- endif %}
 
               {%- if "POST" in scopes %}
+                {{ htmSiteFontSizeSiteUserPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmSiteFontSizeSiteUserPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmSiteFontSizeSiteUserPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
                 {{ htmSiteThemeSiteUserPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -424,7 +487,7 @@ The web components theme for the site. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmPkSiteUserPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -434,7 +497,7 @@ The web components theme for the site. "
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmCreatedSiteUserPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -444,7 +507,7 @@ The web components theme for the site. "
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmModifiedSiteUserPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -456,7 +519,7 @@ The web components theme for the site. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmArchivedSiteUserPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -473,7 +536,7 @@ The web components theme for the site. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmSeeArchivedSiteUserPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -483,7 +546,17 @@ The web components theme for the site. "
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
+                {{ htmSiteFontSizeSiteUserPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmSiteFontSizeSiteUserPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmSiteFontSizeSiteUserPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
                 {{ htmSiteThemeSiteUserPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -493,7 +566,7 @@ The web components theme for the site. "
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmWebComponentsThemeSiteUserPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -508,23 +581,24 @@ The web components theme for the site. "
         </div>
 {%- endmacro %}
           <div id="htmSearchForm">
-            <wa-button-group>
+            <wa-scroller>
+              <wa-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
-              <wa-button variant="brand" id="refreshThisSiteUserGenPage"
-                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'userId:{{ result.userId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisSiteUserGenPage')); }, function() { addError(document.querySelector('#refreshThisSiteUserGenPage')); }); return false; ">
-                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
-                refresh
-              </wa-button>
+                <wa-button variant="brand" id="refreshThisSiteUserGenPage"
+                     onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'userId:{{ result.userId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisSiteUserGenPage')); }, function() { addError(document.querySelector('#refreshThisSiteUserGenPage')); }); return false; ">
+                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
+                  refresh
+                </wa-button>
     {% endif %}
     {% if resultCount > 0 %}
-              <wa-button variant="brand" id="refreshAllSiteUserGenPage{{ result.userId | e }}"
-                   onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllSiteUserGenPage{{ result.userId | e }}')); }, function() { addError(document.querySelector('#refreshAllSiteUserGenPage{{ result.userId | e }}')); }); "
-                  >
-                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
-                Refresh all 
-              </wa-button>
+                <wa-button variant="brand" id="refreshAllSiteUserGenPage{{ result.userId | e }}"
+                     onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllSiteUserGenPage{{ result.userId | e }}')); }, function() { addError(document.querySelector('#refreshAllSiteUserGenPage{{ result.userId | e }}')); }); "
+                    >
+                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
+                  Refresh all 
+                </wa-button>
     {% endif %}
   {% endif %}
 {% endif %}
@@ -543,7 +617,8 @@ The web components theme for the site. "
   {%- endif %}
 {%- endif %}
 
-            </wa-button-group>
+              </wa-button-group>
+            </wa-scroller>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchSiteUser() }}

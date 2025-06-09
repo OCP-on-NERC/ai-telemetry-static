@@ -63,10 +63,6 @@ Promise.all([
     sort('AiProject', 'saves', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortAiProject_objectTitle')?.addEventListener('change', (event) => {
-    sort('AiProject', 'objectTitle', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortAiProject_displayPage')?.addEventListener('change', (event) => {
     sort('AiProject', 'displayPage', event.currentTarget.value);
   });
@@ -83,16 +79,20 @@ Promise.all([
     sort('AiProject', 'download', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortAiProject_objectSuggest')?.addEventListener('change', (event) => {
-    sort('AiProject', 'objectSuggest', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortAiProject_objectText')?.addEventListener('change', (event) => {
     sort('AiProject', 'objectText', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortAiProject_solrId')?.addEventListener('change', (event) => {
     sort('AiProject', 'solrId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiProject_objectTitle')?.addEventListener('change', (event) => {
+    sort('AiProject', 'objectTitle', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiProject_objectSuggest')?.addEventListener('change', (event) => {
+    sort('AiProject', 'objectSuggest', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortAiProject_projectDisplayName')?.addEventListener('change', (event) => {

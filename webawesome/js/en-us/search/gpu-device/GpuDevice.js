@@ -879,7 +879,7 @@ async function websocketGpuDevice(success) {
     window.eventBus.registerHandler('websocketGpuDevice', function (error, message) {
       var json = JSON.parse(message['body']);
       var gpuDeviceId = json['id'];
-      var pks = json['pks'];
+      var solrIds = json['solrIds'];
       var empty = json['empty'];
       var numFound = parseInt(json['numFound']);
       var numPATCH = parseInt(json['numPATCH']);
@@ -1536,14 +1536,14 @@ function pageGraphGpuDevice(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            var layer = L.geoJSON(features, {
+            var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleGpuDevice
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleGpuDevice(feature));
               }
             });
-            window.geoJSONGpuDevice.addLayer(layer);
+            window.geoJSONGpuDevice.addLayer(layerGeoJson);
           });
         }
       });
@@ -1578,7 +1578,7 @@ function pageGraphGpuDevice(apiRequest) {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(window.mapGpuDevice);
 
-      if(window.bounds && window['DEFAULT_MAP_ZOOM']) {
+      if(window.bounds && window['DEFAULT_MAP_ZOOM'] && window.bounds.getNorthEast()) {
         if(listGpuDevice.length == 1) {
           window.mapGpuDevice.setView(window.bounds.getNorthEast(), window['DEFAULT_MAP_ZOOM']);
         } else {
@@ -1609,14 +1609,14 @@ function pageGraphGpuDevice(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            var layer = L.geoJSON(features, {
+            var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleGpuDevice
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleGpuDevice(feature));
               }
             });
-            window.geoJSONGpuDevice.addLayer(layer);
+            window.geoJSONGpuDevice.addLayer(layerGeoJson);
           });
         }
       });

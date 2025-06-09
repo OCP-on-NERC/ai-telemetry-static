@@ -83,10 +83,6 @@ Promise.all([
     sort('BareMetalNode', 'saves', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalNode_objectTitle')?.addEventListener('change', (event) => {
-    sort('BareMetalNode', 'objectTitle', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortBareMetalNode_displayPage')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'displayPage', event.currentTarget.value);
   });
@@ -103,16 +99,20 @@ Promise.all([
     sort('BareMetalNode', 'download', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalNode_objectSuggest')?.addEventListener('change', (event) => {
-    sort('BareMetalNode', 'objectSuggest', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortBareMetalNode_objectText')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'objectText', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortBareMetalNode_solrId')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'solrId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortBareMetalNode_objectTitle')?.addEventListener('change', (event) => {
+    sort('BareMetalNode', 'objectTitle', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortBareMetalNode_objectSuggest')?.addEventListener('change', (event) => {
+    sort('BareMetalNode', 'objectSuggest', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchBareMetalNode')?.addEventListener('click', (event) => {

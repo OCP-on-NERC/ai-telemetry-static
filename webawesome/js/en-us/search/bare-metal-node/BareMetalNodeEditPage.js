@@ -8,9 +8,9 @@ Promise.all([
             const form = document.querySelector('#PageForm_created');
             const valid = form.checkValidity();
             if(valid) {
-              var timeZone = event.currentTarget.value.split('[').pop().split(']')[0];
-              var t1 = moment(event.currentTarget.value.split('[')[0].trim(), 'MM/DD/YYYY h:mm a');
-              var t2 = moment.tz(event.currentTarget.value.split('[')[0].trim(), 'MM/DD/YYYY h:mm a', timeZone);
+              var timeZone = event.currentTarget.getAttribute('data-zone');
+              var t1 = moment(event.currentTarget.value, "YYYY-MM-DDTHH:mm");
+              var t2 = moment.tz(event.currentTarget.value, "YYYY-MM-DDTHH:mm", timeZone);
               var t3 = new Date(t1._d);
               t3.setTime(t1.toDate().getTime() + t2.toDate().getTime() - t1.toDate().getTime());
               var t = moment(t3);
@@ -288,27 +288,6 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH objectTitle
-          document.querySelector('#Page_objectTitle')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_objectTitle');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchBareMetalNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
-                  , 'setObjectTitle', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_objectTitle')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_objectTitle')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_objectTitle');
-            const valid = form.reportValidity();
-          });
-
           // PATCH displayPage
           document.querySelector('#Page_displayPage')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_displayPage');
@@ -327,6 +306,27 @@ Promise.all([
           });
           document.querySelector('#Page_displayPage')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_displayPage');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH objectTitle
+          document.querySelector('#Page_objectTitle')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_objectTitle');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchBareMetalNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
+                  , 'setObjectTitle', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_objectTitle')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_objectTitle')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_objectTitle');
             const valid = form.reportValidity();
           });
 });

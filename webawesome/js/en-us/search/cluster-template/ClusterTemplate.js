@@ -637,7 +637,7 @@ async function websocketClusterTemplate(success) {
     window.eventBus.registerHandler('websocketClusterTemplate', function (error, message) {
       var json = JSON.parse(message['body']);
       var id = json['id'];
-      var pks = json['pks'];
+      var solrIds = json['solrIds'];
       var empty = json['empty'];
       var numFound = parseInt(json['numFound']);
       var numPATCH = parseInt(json['numPATCH']);

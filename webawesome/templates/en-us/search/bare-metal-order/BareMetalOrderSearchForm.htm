@@ -41,18 +41,19 @@ The primary key of this object in the database"
                 <form class="subgrid-2col " id="PageForm_created">
   {%- endif %}
                   <wa-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A created timestamp for this record in the database"
-                      label="created"
+                      label="created {{ formatZonedDateTime(result.created, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classBareMetalOrder inputBareMetalOrder{{ result.pk }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
-                      value="{%- if result.created is defined %}{{ formatZonedDateTime(result.created, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.created is defined %}{{ formatZonedDateTime(result.created, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-pk={{ result.pk | tojson }}
+                      data-zone="{{ defaultZoneId }}"
                       >
                   </wa-input>
   {%- if 'Page' == classApiMethodMethod %}
@@ -68,18 +69,19 @@ The primary key of this object in the database"
                 <form class="subgrid-2col " id="PageForm_modified">
   {%- endif %}
                   <wa-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A modified timestamp for this record in the database"
-                      label="modified"
+                      label="modified {{ formatZonedDateTime(result.modified, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classBareMetalOrder inputBareMetalOrder{{ result.pk }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
-                      value="{%- if result.modified is defined %}{{ formatZonedDateTime(result.modified, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.modified is defined %}{{ formatZonedDateTime(result.modified, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-pk={{ result.pk | tojson }}
+                      data-zone="{{ defaultZoneId }}"
                       >
                   </wa-input>
   {%- if 'Page' == classApiMethodMethod %}
@@ -1039,7 +1041,7 @@ The order status of a bare metal fulfillment"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmPkBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1049,7 +1051,7 @@ The order status of a bare metal fulfillment"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmCreatedBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1059,7 +1061,7 @@ The order status of a bare metal fulfillment"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmModifiedBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1071,7 +1073,7 @@ The order status of a bare metal fulfillment"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmArchivedBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1088,7 +1090,7 @@ The order status of a bare metal fulfillment"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmDescriptionBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1098,7 +1100,7 @@ The order status of a bare metal fulfillment"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmNetworkIdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1116,7 +1118,7 @@ The order status of a bare metal fulfillment"
               <div class="grid-with-subgrid-2col ">
               {%- if resourceClasses | selectattr('name', 'equalto', 'fc430') | list | count %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmNumberOfFc430BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'fc430') | list | first).count) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1128,7 +1130,7 @@ The order status of a bare metal fulfillment"
               {%- endif %}
               {%- if resourceClasses | selectattr('name', 'equalto', 'fc830') | list | count %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmNumberOfFc830BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'fc830') | list | first).count) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1140,7 +1142,7 @@ The order status of a bare metal fulfillment"
               {%- endif %}
               {%- if resourceClasses | selectattr('name', 'equalto', 'r730xd') | list | count %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmNumberOfR730xdBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'r730xd') | list | first).count) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1152,7 +1154,7 @@ The order status of a bare metal fulfillment"
               {%- endif %}
               {%- if resourceClasses | selectattr('name', 'equalto', 'whitebox-flax-1') | list | count %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmNumberOfWhiteboxFlax1BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'whitebox-flax-1') | list | first).count) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1164,7 +1166,7 @@ The order status of a bare metal fulfillment"
               {%- endif %}
               {%- if resourceClasses | selectattr('name', 'equalto', 'lenovo-sd650nv2-a100') | list | count %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmNumberOfLenovoSd650nv2A100BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'lenovo-sd650nv2-a100') | list | first).count) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1176,7 +1178,7 @@ The order status of a bare metal fulfillment"
               {%- endif %}
               {%- if resourceClasses | selectattr('name', 'equalto', 'lenovo-sd665nv3-h100') | list | count %}
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmNumberOfLenovoSd665nv3H100BareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, min=0, max=(resourceClasses | selectattr('name', 'equalto', 'lenovo-sd665nv3-h100') | list | first).count) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1194,7 +1196,7 @@ The order status of a bare metal fulfillment"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmImageBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1211,7 +1213,7 @@ The order status of a bare metal fulfillment"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmSshPublicKeyBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1228,7 +1230,7 @@ The order status of a bare metal fulfillment"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmFloatingIpBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, default=false) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1245,7 +1247,7 @@ The order status of a bare metal fulfillment"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "Page" in scopes %}
+              {%- if "PATCH" in scopes %}
                 {{ htmStatusBareMetalOrderPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1279,23 +1281,24 @@ The order status of a bare metal fulfillment"
         </wa-dialog>
 {%- endmacro %}
           <div id="htmSearchForm">
-            <wa-button-group>
+            <wa-scroller>
+              <wa-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
-              <wa-button variant="brand" id="refreshThisBareMetalOrderGenPage"
-                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'pk:{{ result.pk }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisBareMetalOrderGenPage')); }, function() { addError(document.querySelector('#refreshThisBareMetalOrderGenPage')); }); return false; ">
-                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
-                refresh
-              </wa-button>
+                <wa-button variant="brand" id="refreshThisBareMetalOrderGenPage"
+                     onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'pk:{{ result.pk }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisBareMetalOrderGenPage')); }, function() { addError(document.querySelector('#refreshThisBareMetalOrderGenPage')); }); return false; ">
+                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
+                  refresh
+                </wa-button>
     {% endif %}
     {% if resultCount > 0 %}
-              <wa-button variant="brand" id="refreshAllBareMetalOrderGenPage{{ result.pk | e }}"
-                   onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllBareMetalOrderGenPage{{ result.pk | e }}')); }, function() { addError(document.querySelector('#refreshAllBareMetalOrderGenPage{{ result.pk | e }}')); }); "
-                  >
-                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
-                Refresh all 
-              </wa-button>
+                <wa-button variant="brand" id="refreshAllBareMetalOrderGenPage{{ result.pk | e }}"
+                     onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllBareMetalOrderGenPage{{ result.pk | e }}')); }, function() { addError(document.querySelector('#refreshAllBareMetalOrderGenPage{{ result.pk | e }}')); }); "
+                    >
+                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
+                  Refresh all 
+                </wa-button>
     {% endif %}
   {% endif %}
 {% endif %}
@@ -1326,7 +1329,8 @@ The order status of a bare metal fulfillment"
   {%- endif %}
 {%- endif %}
 
-            </wa-button-group>
+              </wa-button-group>
+            </wa-scroller>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchBareMetalOrder() }}

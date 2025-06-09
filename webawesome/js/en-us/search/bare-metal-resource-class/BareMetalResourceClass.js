@@ -69,10 +69,6 @@ function searchBareMetalResourceClassFilters($formFilters) {
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
-    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
-    if(filterObjectTitle != null && filterObjectTitle !== '')
-      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
-
     var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
     if(filterDisplayPage != null && filterDisplayPage !== '')
       filters.push({ name: 'fq', value: 'displayPage:' + filterDisplayPage });
@@ -89,10 +85,6 @@ function searchBareMetalResourceClassFilters($formFilters) {
     if(filterDownload != null && filterDownload !== '')
       filters.push({ name: 'fq', value: 'download:' + filterDownload });
 
-    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
     var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
@@ -100,6 +92,14 @@ function searchBareMetalResourceClassFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
   }
   return filters;
 }
@@ -269,18 +269,6 @@ async function patchBareMetalResourceClass($formFilters, $formValues, target, na
   if(removeUserKey != null && removeUserKey !== '')
     vals['removeUserKey'] = removeUserKey;
 
-  var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
-  var removeObjectTitle = $formValues.querySelector('.removeObjectTitle')?.value === 'true';
-  var setObjectTitle = removeObjectTitle ? null : $formValues.querySelector('.setObjectTitle')?.value;
-  var addObjectTitle = $formValues.querySelector('.addObjectTitle')?.value;
-  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
-    vals['setObjectTitle'] = setObjectTitle;
-  if(addObjectTitle != null && addObjectTitle !== '')
-    vals['addObjectTitle'] = addObjectTitle;
-  var removeObjectTitle = $formValues.querySelector('.removeObjectTitle')?.value;
-  if(removeObjectTitle != null && removeObjectTitle !== '')
-    vals['removeObjectTitle'] = removeObjectTitle;
-
   var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
   var removeDisplayPage = $formValues.querySelector('.removeDisplayPage')?.value === 'true';
   var setDisplayPage = removeDisplayPage ? null : $formValues.querySelector('.setDisplayPage')?.value;
@@ -292,6 +280,18 @@ async function patchBareMetalResourceClass($formFilters, $formValues, target, na
   var removeDisplayPage = $formValues.querySelector('.removeDisplayPage')?.value;
   if(removeDisplayPage != null && removeDisplayPage !== '')
     vals['removeDisplayPage'] = removeDisplayPage;
+
+  var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
+  var removeObjectTitle = $formValues.querySelector('.removeObjectTitle')?.value === 'true';
+  var setObjectTitle = removeObjectTitle ? null : $formValues.querySelector('.setObjectTitle')?.value;
+  var addObjectTitle = $formValues.querySelector('.addObjectTitle')?.value;
+  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
+    vals['setObjectTitle'] = setObjectTitle;
+  if(addObjectTitle != null && addObjectTitle !== '')
+    vals['addObjectTitle'] = addObjectTitle;
+  var removeObjectTitle = $formValues.querySelector('.removeObjectTitle')?.value;
+  if(removeObjectTitle != null && removeObjectTitle !== '')
+    vals['removeObjectTitle'] = removeObjectTitle;
 
   patchBareMetalResourceClassVals(name == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'name:' + name}], vals, target, success, error);
 }
@@ -355,10 +355,6 @@ function patchBareMetalResourceClassFilters($formFilters) {
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
-    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
-    if(filterObjectTitle != null && filterObjectTitle !== '')
-      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
-
     var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
     if(filterDisplayPage != null && filterDisplayPage !== '')
       filters.push({ name: 'fq', value: 'displayPage:' + filterDisplayPage });
@@ -375,10 +371,6 @@ function patchBareMetalResourceClassFilters($formFilters) {
     if(filterDownload != null && filterDownload !== '')
       filters.push({ name: 'fq', value: 'download:' + filterDownload });
 
-    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
     var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
@@ -386,6 +378,14 @@ function patchBareMetalResourceClassFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
   }
   return filters;
 }
@@ -465,13 +465,13 @@ async function postBareMetalResourceClass($formValues, target, success, error) {
   if(valueUserKey != null && valueUserKey !== '')
     vals['userKey'] = valueUserKey;
 
-  var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
-  if(valueObjectTitle != null && valueObjectTitle !== '')
-    vals['objectTitle'] = valueObjectTitle;
-
   var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
   if(valueDisplayPage != null && valueDisplayPage !== '')
     vals['displayPage'] = valueDisplayPage;
+
+  var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
+  if(valueObjectTitle != null && valueObjectTitle !== '')
+    vals['objectTitle'] = valueObjectTitle;
 
   fetch(
     '/en-us/api/bare-metal-resource-class'
@@ -607,7 +607,7 @@ async function websocketBareMetalResourceClass(success) {
     window.eventBus.registerHandler('websocketBareMetalResourceClass', function (error, message) {
       var json = JSON.parse(message['body']);
       var name = json['id'];
-      var pks = json['pks'];
+      var solrIds = json['solrIds'];
       var empty = json['empty'];
       var numFound = parseInt(json['numFound']);
       var numPATCH = parseInt(json['numPATCH']);
@@ -692,14 +692,14 @@ async function websocketBareMetalResourceClassInner(apiRequest) {
         var inputSessionId = null;
         var inputUserKey = null;
         var inputSaves = null;
-        var inputObjectTitle = null;
         var inputDisplayPage = null;
         var inputEditPage = null;
         var inputUserPage = null;
         var inputDownload = null;
-        var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
+        var inputObjectTitle = null;
+        var inputObjectSuggest = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Page_pk');
@@ -725,8 +725,6 @@ async function websocketBareMetalResourceClassInner(apiRequest) {
           inputUserKey = $response.querySelector('.Page_userKey');
         if(vars.includes('saves'))
           inputSaves = $response.querySelector('.Page_saves');
-        if(vars.includes('objectTitle'))
-          inputObjectTitle = $response.querySelector('.Page_objectTitle');
         if(vars.includes('displayPage'))
           inputDisplayPage = $response.querySelector('.Page_displayPage');
         if(vars.includes('editPage'))
@@ -735,12 +733,14 @@ async function websocketBareMetalResourceClassInner(apiRequest) {
           inputUserPage = $response.querySelector('.Page_userPage');
         if(vars.includes('download'))
           inputDownload = $response.querySelector('.Page_download');
-        if(vars.includes('objectSuggest'))
-          inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
         if(vars.includes('objectText'))
           inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
+        if(vars.includes('objectTitle'))
+          inputObjectTitle = $response.querySelector('.Page_objectTitle');
+        if(vars.includes('objectSuggest'))
+          inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
 
         jsWebsocketBareMetalResourceClass(name, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -867,16 +867,6 @@ async function websocketBareMetalResourceClassInner(apiRequest) {
           addGlow(document.querySelector('.Page_saves'));
         }
 
-        if(inputObjectTitle) {
-          document.querySelectorAll('.Page_objectTitle').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputObjectTitle.getAttribute('value');
-            else
-              item.textContent = inputObjectTitle.textContent;
-          });
-          addGlow(document.querySelector('.Page_objectTitle'));
-        }
-
         if(inputDisplayPage) {
           document.querySelectorAll('.Page_displayPage').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -917,16 +907,6 @@ async function websocketBareMetalResourceClassInner(apiRequest) {
           addGlow(document.querySelector('.Page_download'));
         }
 
-        if(inputObjectSuggest) {
-          document.querySelectorAll('.Page_objectSuggest').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputObjectSuggest.getAttribute('value');
-            else
-              item.textContent = inputObjectSuggest.textContent;
-          });
-          addGlow(document.querySelector('.Page_objectSuggest'));
-        }
-
         if(inputObjectText) {
           document.querySelectorAll('.Page_objectText').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -945,6 +925,26 @@ async function websocketBareMetalResourceClassInner(apiRequest) {
               item.textContent = inputSolrId.textContent;
           });
           addGlow(document.querySelector('.Page_solrId'));
+        }
+
+        if(inputObjectTitle) {
+          document.querySelectorAll('.Page_objectTitle').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputObjectTitle.getAttribute('value');
+            else
+              item.textContent = inputObjectTitle.textContent;
+          });
+          addGlow(document.querySelector('.Page_objectTitle'));
+        }
+
+        if(inputObjectSuggest) {
+          document.querySelectorAll('.Page_objectSuggest').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputObjectSuggest.getAttribute('value');
+            else
+              item.textContent = inputObjectSuggest.textContent;
+          });
+          addGlow(document.querySelector('.Page_objectSuggest'));
         }
 
           pageGraphBareMetalResourceClass();

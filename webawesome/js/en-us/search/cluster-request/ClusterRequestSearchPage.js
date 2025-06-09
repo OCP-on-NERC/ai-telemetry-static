@@ -59,10 +59,6 @@ Promise.all([
     sort('ClusterRequest', 'saves', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortClusterRequest_objectTitle')?.addEventListener('change', (event) => {
-    sort('ClusterRequest', 'objectTitle', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortClusterRequest_displayPage')?.addEventListener('change', (event) => {
     sort('ClusterRequest', 'displayPage', event.currentTarget.value);
   });
@@ -79,16 +75,20 @@ Promise.all([
     sort('ClusterRequest', 'download', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortClusterRequest_objectSuggest')?.addEventListener('change', (event) => {
-    sort('ClusterRequest', 'objectSuggest', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortClusterRequest_objectText')?.addEventListener('change', (event) => {
     sort('ClusterRequest', 'objectText', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortClusterRequest_solrId')?.addEventListener('change', (event) => {
     sort('ClusterRequest', 'solrId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortClusterRequest_objectTitle')?.addEventListener('change', (event) => {
+    sort('ClusterRequest', 'objectTitle', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortClusterRequest_objectSuggest')?.addEventListener('change', (event) => {
+    sort('ClusterRequest', 'objectSuggest', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchClusterRequest')?.addEventListener('click', (event) => {

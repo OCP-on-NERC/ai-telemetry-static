@@ -855,7 +855,7 @@ async function websocketAiNode(success) {
     window.eventBus.registerHandler('websocketAiNode', function (error, message) {
       var json = JSON.parse(message['body']);
       var nodeId = json['id'];
-      var pks = json['pks'];
+      var solrIds = json['solrIds'];
       var empty = json['empty'];
       var numFound = parseInt(json['numFound']);
       var numPATCH = parseInt(json['numPATCH']);
@@ -1499,14 +1499,14 @@ function pageGraphAiNode(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            var layer = L.geoJSON(features, {
+            var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleAiNode
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleAiNode(feature));
               }
             });
-            window.geoJSONAiNode.addLayer(layer);
+            window.geoJSONAiNode.addLayer(layerGeoJson);
           });
         }
       });
@@ -1541,7 +1541,7 @@ function pageGraphAiNode(apiRequest) {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(window.mapAiNode);
 
-      if(window.bounds && window['DEFAULT_MAP_ZOOM']) {
+      if(window.bounds && window['DEFAULT_MAP_ZOOM'] && window.bounds.getNorthEast()) {
         if(listAiNode.length == 1) {
           window.mapAiNode.setView(window.bounds.getNorthEast(), window['DEFAULT_MAP_ZOOM']);
         } else {
@@ -1572,14 +1572,14 @@ function pageGraphAiNode(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            var layer = L.geoJSON(features, {
+            var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleAiNode
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleAiNode(feature));
               }
             });
-            window.geoJSONAiNode.addLayer(layer);
+            window.geoJSONAiNode.addLayer(layerGeoJson);
           });
         }
       });
