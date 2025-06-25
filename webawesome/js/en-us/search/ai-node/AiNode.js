@@ -1514,7 +1514,7 @@ function pageGraphAiNode(apiRequest) {
       window.mapAiNode = L.map('htmBodyGraphLocationAiNodePage', {
         position: 'topright'
         , zoomControl: true
-        , scrollWheelZoom: false
+        , scrollWheelZoom: true
         , closePopupOnClick: false
         , contextmenu: true
         , contextmenuWidth: 140
@@ -1535,7 +1535,6 @@ function pageGraphAiNode(apiRequest) {
       layout['uirevision'] = 'true';
       var legend = L.control({position: 'bottomright'});
       legend.onAdd = jsLegendAiNode;
-      legend.addTo(window.mapAiNode);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

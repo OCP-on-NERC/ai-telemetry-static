@@ -1493,7 +1493,7 @@ function pageGraphAiCluster(apiRequest) {
       window.mapAiCluster = L.map('htmBodyGraphLocationAiClusterPage', {
         position: 'topright'
         , zoomControl: true
-        , scrollWheelZoom: false
+        , scrollWheelZoom: true
         , closePopupOnClick: false
         , contextmenu: true
         , contextmenuWidth: 140
@@ -1514,7 +1514,6 @@ function pageGraphAiCluster(apiRequest) {
       layout['uirevision'] = 'true';
       var legend = L.control({position: 'bottomright'});
       legend.onAdd = jsLegendAiCluster;
-      legend.addTo(window.mapAiCluster);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
