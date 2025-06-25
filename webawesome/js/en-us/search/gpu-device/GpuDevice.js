@@ -137,6 +137,10 @@ function searchGpuDeviceFilters($formFilters) {
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
+    var filterGpuDeviceId = $formFilters.querySelector('.valueGpuDeviceId')?.value;
+    if(filterGpuDeviceId != null && filterGpuDeviceId !== '')
+      filters.push({ name: 'fq', value: 'gpuDeviceId:' + filterGpuDeviceId });
+
     var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
     if(filterLocationColors != null && filterLocationColors !== '')
       filters.push({ name: 'fq', value: 'locationColors:' + filterLocationColors });
@@ -152,10 +156,6 @@ function searchGpuDeviceFilters($formFilters) {
     var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
     if(filterEntityShortId != null && filterEntityShortId !== '')
       filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
-
-    var filterGpuDeviceId = $formFilters.querySelector('.valueGpuDeviceId')?.value;
-    if(filterGpuDeviceId != null && filterGpuDeviceId !== '')
-      filters.push({ name: 'fq', value: 'gpuDeviceId:' + filterGpuDeviceId });
   }
   return filters;
 }
@@ -599,6 +599,10 @@ function patchGpuDeviceFilters($formFilters) {
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
+    var filterGpuDeviceId = $formFilters.querySelector('.valueGpuDeviceId')?.value;
+    if(filterGpuDeviceId != null && filterGpuDeviceId !== '')
+      filters.push({ name: 'fq', value: 'gpuDeviceId:' + filterGpuDeviceId });
+
     var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
     if(filterLocationColors != null && filterLocationColors !== '')
       filters.push({ name: 'fq', value: 'locationColors:' + filterLocationColors });
@@ -614,10 +618,6 @@ function patchGpuDeviceFilters($formFilters) {
     var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
     if(filterEntityShortId != null && filterEntityShortId !== '')
       filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
-
-    var filterGpuDeviceId = $formFilters.querySelector('.valueGpuDeviceId')?.value;
-    if(filterGpuDeviceId != null && filterGpuDeviceId !== '')
-      filters.push({ name: 'fq', value: 'gpuDeviceId:' + filterGpuDeviceId });
   }
   return filters;
 }
@@ -981,11 +981,11 @@ async function websocketGpuDeviceInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
+        var inputGpuDeviceId = null;
         var inputLocationColors = null;
         var inputLocationTitles = null;
         var inputLocationLinks = null;
         var inputEntityShortId = null;
-        var inputGpuDeviceId = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Page_pk');
@@ -1045,6 +1045,8 @@ async function websocketGpuDeviceInner(apiRequest) {
           inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
+        if(vars.includes('gpuDeviceId'))
+          inputGpuDeviceId = $response.querySelector('.Page_gpuDeviceId');
         if(vars.includes('locationColors'))
           inputLocationColors = $response.querySelector('.Page_locationColors');
         if(vars.includes('locationTitles'))
@@ -1053,8 +1055,6 @@ async function websocketGpuDeviceInner(apiRequest) {
           inputLocationLinks = $response.querySelector('.Page_locationLinks');
         if(vars.includes('entityShortId'))
           inputEntityShortId = $response.querySelector('.Page_entityShortId');
-        if(vars.includes('gpuDeviceId'))
-          inputGpuDeviceId = $response.querySelector('.Page_gpuDeviceId');
 
         jsWebsocketGpuDevice(gpuDeviceId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -1351,6 +1351,16 @@ async function websocketGpuDeviceInner(apiRequest) {
           addGlow(document.querySelector('.Page_solrId'));
         }
 
+        if(inputGpuDeviceId) {
+          document.querySelectorAll('.Page_gpuDeviceId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputGpuDeviceId.getAttribute('value');
+            else
+              item.textContent = inputGpuDeviceId.textContent;
+          });
+          addGlow(document.querySelector('.Page_gpuDeviceId'));
+        }
+
         if(inputLocationColors) {
           document.querySelectorAll('.Page_locationColors').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1389,16 +1399,6 @@ async function websocketGpuDeviceInner(apiRequest) {
               item.textContent = inputEntityShortId.textContent;
           });
           addGlow(document.querySelector('.Page_entityShortId'));
-        }
-
-        if(inputGpuDeviceId) {
-          document.querySelectorAll('.Page_gpuDeviceId').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputGpuDeviceId.getAttribute('value');
-            else
-              item.textContent = inputGpuDeviceId.textContent;
-          });
-          addGlow(document.querySelector('.Page_gpuDeviceId'));
         }
 
           pageGraphGpuDevice();
@@ -1551,7 +1551,7 @@ function pageGraphGpuDevice(apiRequest) {
       window.mapGpuDevice = L.map('htmBodyGraphLocationGpuDevicePage', {
         position: 'topright'
         , zoomControl: true
-        , scrollWheelZoom: false
+        , scrollWheelZoom: true
         , closePopupOnClick: false
         , contextmenu: true
         , contextmenuWidth: 140
@@ -1572,7 +1572,6 @@ function pageGraphGpuDevice(apiRequest) {
       layout['uirevision'] = 'true';
       var legend = L.control({position: 'bottomright'});
       legend.onAdd = jsLegendGpuDevice;
-      legend.addTo(window.mapGpuDevice);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

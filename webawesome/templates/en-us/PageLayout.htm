@@ -175,61 +175,61 @@
               </div>
             </wa-details>
 {% endif %}
-{% if ENABLE_FEATURE_ORDER_CLUSTER %}
+{% if ENABLE_FEATURE_ORDER_CLUSTER or ENABLE_FEATURE_OBSERVE_CLUSTER %}
 
-            <wa-details summary="OpenShift clusters">
+            <wa-details summary="OpenShift clusters" open="true">
               <div class="wa-stack ">
+{% if ENABLE_FEATURE_ORDER_CLUSTER %}
                 <wa-button style="width: 100%; " variant="brand" id="site-aside-left-model-button-ClusterOrder" href="{{ SITE_BASE_URL }}/en-us/search/cluster-order">
                   <i class="fa-regular fa-server"></i>
                   click here to order cluster
                 </wa-button>
-                <wa-details summary="view OpenShift cluster orders">
-                  <div class="wa-stack ">
-                    <wa-button variant="brand" id="site-aside-left-model-button-ClusterTemplate" href="{{ SITE_BASE_URL }}/en-us/search/cluster-template">
-                      <i class="fa-regular fa-server"></i>
-                      view OpenShift cluster templates
-                    </wa-button>
-                    <wa-button variant="brand" id="site-aside-left-model-button-ClusterOrder" href="{{ SITE_BASE_URL }}/en-us/search/cluster-order">
-                      <i class="fa-regular fa-server"></i>
-                      view OpenShift cluster orders
-                    </wa-button>
-                    <wa-button variant="brand" id="site-aside-left-model-button-ManagedCluster" href="{{ SITE_BASE_URL }}/en-us/search/managed-cluster">
-                      <i class="fa-regular fa-server"></i>
-                      view OpenShift tenant clusters
-                    </wa-button>
-                  </div>
-                </wa-details>
+{% endif %}
+                <wa-button variant="brand" id="site-aside-left-model-button-ClusterTemplate" href="{{ SITE_BASE_URL }}/en-us/search/cluster-template">
+                  <i class="fa-regular fa-server"></i>
+                  view OpenShift cluster templates
+                </wa-button>
+{% if ENABLE_FEATURE_ORDER_CLUSTER %}
+                <wa-button variant="brand" id="site-aside-left-model-button-ClusterOrder" href="{{ SITE_BASE_URL }}/en-us/search/cluster-order">
+                  <i class="fa-regular fa-server"></i>
+                  view OpenShift cluster orders
+                </wa-button>
+{% endif %}
+                <wa-button variant="brand" id="site-aside-left-model-button-ManagedCluster" href="{{ SITE_BASE_URL }}/en-us/search/managed-cluster">
+                  <i class="fa-regular fa-server"></i>
+                  view OpenShift tenant clusters
+                </wa-button>
               </div>
             </wa-details>
 {% endif %}
-{% if ENABLE_FEATURE_ORDER_BARE_METAL %}
+{% if ENABLE_FEATURE_ORDER_BARE_METAL || ENABLE_FEATURE_OBSERVE_BARE_METAL %}
 
-            <wa-details summary="bare metal">
+            <wa-details summary="bare metal" open="true">
               <div class="wa-stack ">
+{% if ENABLE_FEATURE_ORDER_BARE_METAL %}
                 <wa-button style="width: 100%; " variant="brand" id="site-aside-left-model-button-BareMetalOrder" href="{{ SITE_BASE_URL }}/en-us/search/bare-metal-order">
                   <i class="fa-duotone fa-regular fa-share-nodes"></i>
                   click here to order bare metal
                 </wa-button>
-                <wa-details summary="view bare metal orders">
-                  <div class="wa-stack ">
-                    <wa-button variant="brand" id="site-aside-left-model-button-BareMetalResourceClass" href="{{ SITE_BASE_URL }}/en-us/search/bare-metal-resource-class">
-                      <i class="fa-regular fa-server"></i>
-                      view bare metal resource classes
-                    </wa-button>
-                    <wa-button variant="brand" id="site-aside-left-model-button-BareMetalNetwork" href="{{ SITE_BASE_URL }}/en-us/search/bare-metal-network">
-                      <i class="fa-duotone fa-regular fa-network-wired"></i>
-                      view bare metal networks
-                    </wa-button>
-                    <wa-button variant="brand" id="site-aside-left-model-button-BareMetalOrder" href="{{ SITE_BASE_URL }}/en-us/search/bare-metal-order">
-                      <i class="fa-duotone fa-regular fa-share-nodes"></i>
-                      view bare metal orders
-                    </wa-button>
-                    <wa-button variant="brand" id="site-aside-left-model-button-BareMetalNode" href="{{ SITE_BASE_URL }}/en-us/search/bare-metal-node">
-                      <i class="fa-duotone fa-regular fa-hexagon-nodes"></i>
-                      view bare metal nodes
-                    </wa-button>
-                  </div>
-                </wa-details>
+{% endif %}
+                <wa-button variant="brand" id="site-aside-left-model-button-BareMetalResourceClass" href="{{ SITE_BASE_URL }}/en-us/search/bare-metal-resource-class">
+                  <i class="fa-regular fa-server"></i>
+                  view bare metal resource classes
+                </wa-button>
+                <wa-button variant="brand" id="site-aside-left-model-button-BareMetalNetwork" href="{{ SITE_BASE_URL }}/en-us/search/bare-metal-network">
+                  <i class="fa-duotone fa-regular fa-network-wired"></i>
+                  view bare metal networks
+                </wa-button>
+{% if ENABLE_FEATURE_ORDER_BARE_METAL %}
+                <wa-button variant="brand" id="site-aside-left-model-button-BareMetalOrder" href="{{ SITE_BASE_URL }}/en-us/search/bare-metal-order">
+                  <i class="fa-duotone fa-regular fa-share-nodes"></i>
+                  view bare metal orders
+                </wa-button>
+{% endif %}
+                <wa-button variant="brand" id="site-aside-left-model-button-BareMetalNode" href="{{ SITE_BASE_URL }}/en-us/search/bare-metal-node">
+                  <i class="fa-duotone fa-regular fa-hexagon-nodes"></i>
+                  view bare metal nodes
+                </wa-button>
               </div>
             </wa-details>
 {% endif %}
