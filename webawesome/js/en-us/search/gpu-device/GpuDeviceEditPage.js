@@ -16,7 +16,7 @@ Promise.all([
               var t = moment(t3);
               if(t) {
                 var s = t.tz(timeZone).format('YYYY-MM-DDTHH:mm:ss.000') + '[' + timeZone + ']';
-                patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceId:' + event.currentTarget.getAttribute('data-gpuDeviceId') }]
+                patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceResource:' + event.currentTarget.getAttribute('data-gpuDeviceResource') }]
                     , 'setCreated', s
                     , event.currentTarget
                     , function(response, target) { addGlow(target); }
@@ -40,7 +40,7 @@ Promise.all([
             if(valid) {
               var confirmResponse = confirm('Are you sure you want to archive that?'); 
               if(confirmResponse) { 
-                patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceId:' + event.currentTarget.getAttribute('data-gpuDeviceId') }]
+                patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceResource:' + event.currentTarget.getAttribute('data-gpuDeviceResource') }]
                     , 'setArchived', !(event.currentTarget.getAttribute('data-val') === 'true')
                     , event.currentTarget
                     , function(response, target) { addGlow(target); }
@@ -57,12 +57,33 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
+          // PATCH hubId
+          document.querySelector('#Page_hubId')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_hubId');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceResource:' + event.currentTarget.getAttribute('data-gpuDeviceResource') }]
+                  , 'setHubId', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_hubId')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_hubId')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_hubId');
+            const valid = form.reportValidity();
+          });
+
           // PATCH clusterName
           document.querySelector('#Page_clusterName')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_clusterName');
             const valid = form.checkValidity();
             if(valid) {
-              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceId:' + event.currentTarget.getAttribute('data-gpuDeviceId') }]
+              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceResource:' + event.currentTarget.getAttribute('data-gpuDeviceResource') }]
                   , 'setClusterName', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -83,7 +104,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_nodeName');
             const valid = form.checkValidity();
             if(valid) {
-              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceId:' + event.currentTarget.getAttribute('data-gpuDeviceId') }]
+              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceResource:' + event.currentTarget.getAttribute('data-gpuDeviceResource') }]
                   , 'setNodeName', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -99,33 +120,12 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH description
-          document.querySelector('#Page_description')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_description');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceId:' + event.currentTarget.getAttribute('data-gpuDeviceId') }]
-                  , 'setDescription', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_description')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_description')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_description');
-            const valid = form.reportValidity();
-          });
-
           // PATCH gpuDeviceNumber
           document.querySelector('#Page_gpuDeviceNumber')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_gpuDeviceNumber');
             const valid = form.checkValidity();
             if(valid) {
-              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceId:' + event.currentTarget.getAttribute('data-gpuDeviceId') }]
+              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceResource:' + event.currentTarget.getAttribute('data-gpuDeviceResource') }]
                   , 'setGpuDeviceNumber', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -141,24 +141,24 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH id
-          document.querySelector('#Page_id')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_id');
+          // PATCH description
+          document.querySelector('#Page_description')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_description');
             const valid = form.checkValidity();
             if(valid) {
-              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceId:' + event.currentTarget.getAttribute('data-gpuDeviceId') }]
-                  , 'setId', event.currentTarget.value
+              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceResource:' + event.currentTarget.getAttribute('data-gpuDeviceResource') }]
+                  , 'setDescription', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
           });
-          document.querySelector('#Page_id')?.addEventListener('focus', (event) => {
+          document.querySelector('#Page_description')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_id')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_id');
+          document.querySelector('#Page_description')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_description');
             const valid = form.reportValidity();
           });
 
@@ -167,7 +167,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_gpuDeviceUtilization');
             const valid = form.checkValidity();
             if(valid) {
-              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceId:' + event.currentTarget.getAttribute('data-gpuDeviceId') }]
+              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceResource:' + event.currentTarget.getAttribute('data-gpuDeviceResource') }]
                   , 'setGpuDeviceUtilization', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -183,12 +183,33 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
+          // PATCH id
+          document.querySelector('#Page_id')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_id');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceResource:' + event.currentTarget.getAttribute('data-gpuDeviceResource') }]
+                  , 'setId', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_id')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_id')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_id');
+            const valid = form.reportValidity();
+          });
+
           // PATCH ngsildTenant
           document.querySelector('#Page_ngsildTenant')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_ngsildTenant');
             const valid = form.checkValidity();
             if(valid) {
-              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceId:' + event.currentTarget.getAttribute('data-gpuDeviceId') }]
+              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceResource:' + event.currentTarget.getAttribute('data-gpuDeviceResource') }]
                   , 'setNgsildTenant', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -209,7 +230,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_ngsildPath');
             const valid = form.checkValidity();
             if(valid) {
-              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceId:' + event.currentTarget.getAttribute('data-gpuDeviceId') }]
+              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceResource:' + event.currentTarget.getAttribute('data-gpuDeviceResource') }]
                   , 'setNgsildPath', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -230,7 +251,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_ngsildContext');
             const valid = form.checkValidity();
             if(valid) {
-              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceId:' + event.currentTarget.getAttribute('data-gpuDeviceId') }]
+              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceResource:' + event.currentTarget.getAttribute('data-gpuDeviceResource') }]
                   , 'setNgsildContext', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -251,7 +272,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_ngsildData');
             const valid = form.checkValidity();
             if(valid) {
-              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceId:' + event.currentTarget.getAttribute('data-gpuDeviceId') }]
+              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceResource:' + event.currentTarget.getAttribute('data-gpuDeviceResource') }]
                   , 'setNgsildData', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
                   , event.currentTarget
                   , function(response, target) { addGlow(target); }
@@ -272,7 +293,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_location');
             const valid = form.checkValidity();
             if(valid) {
-              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceId:' + event.currentTarget.getAttribute('data-gpuDeviceId') }]
+              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceResource:' + event.currentTarget.getAttribute('data-gpuDeviceResource') }]
                   , 'setLocation', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
                   , event.currentTarget
                   , function(response, target) { addGlow(target); }
@@ -288,12 +309,33 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
+          // PATCH displayPage
+          document.querySelector('#Page_displayPage')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_displayPage');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceResource:' + event.currentTarget.getAttribute('data-gpuDeviceResource') }]
+                  , 'setDisplayPage', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_displayPage')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_displayPage')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_displayPage');
+            const valid = form.reportValidity();
+          });
+
           // PATCH sessionId
           document.querySelector('#Page_sessionId')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_sessionId');
             const valid = form.checkValidity();
             if(valid) {
-              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceId:' + event.currentTarget.getAttribute('data-gpuDeviceId') }]
+              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceResource:' + event.currentTarget.getAttribute('data-gpuDeviceResource') }]
                   , 'setSessionId', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -314,7 +356,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_userKey');
             const valid = form.checkValidity();
             if(valid) {
-              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceId:' + event.currentTarget.getAttribute('data-gpuDeviceId') }]
+              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceResource:' + event.currentTarget.getAttribute('data-gpuDeviceResource') }]
                   , 'setUserKey', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -335,7 +377,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_objectTitle');
             const valid = form.checkValidity();
             if(valid) {
-              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceId:' + event.currentTarget.getAttribute('data-gpuDeviceId') }]
+              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceResource:' + event.currentTarget.getAttribute('data-gpuDeviceResource') }]
                   , 'setObjectTitle', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -351,45 +393,24 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH displayPage
-          document.querySelector('#Page_displayPage')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_displayPage');
+          // PATCH gpuDeviceResource
+          document.querySelector('#Page_gpuDeviceResource')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_gpuDeviceResource');
             const valid = form.checkValidity();
             if(valid) {
-              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceId:' + event.currentTarget.getAttribute('data-gpuDeviceId') }]
-                  , 'setDisplayPage', event.currentTarget.value
+              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceResource:' + event.currentTarget.getAttribute('data-gpuDeviceResource') }]
+                  , 'setGpuDeviceResource', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
           });
-          document.querySelector('#Page_displayPage')?.addEventListener('focus', (event) => {
+          document.querySelector('#Page_gpuDeviceResource')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_displayPage')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_displayPage');
-            const valid = form.reportValidity();
-          });
-
-          // PATCH gpuDeviceId
-          document.querySelector('#Page_gpuDeviceId')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_gpuDeviceId');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchGpuDeviceVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'gpuDeviceId:' + event.currentTarget.getAttribute('data-gpuDeviceId') }]
-                  , 'setGpuDeviceId', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_gpuDeviceId')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_gpuDeviceId')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_gpuDeviceId');
+          document.querySelector('#Page_gpuDeviceResource')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_gpuDeviceResource');
             const valid = form.reportValidity();
           });
 });

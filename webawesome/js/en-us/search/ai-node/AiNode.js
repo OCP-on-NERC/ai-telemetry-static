@@ -37,6 +37,10 @@ function searchAiNodeFilters($formFilters) {
     if(filterArchived != null && filterArchived === true)
       filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
+    var filterHubId = $formFilters.querySelector('.valueHubId')?.value;
+    if(filterHubId != null && filterHubId !== '')
+      filters.push({ name: 'fq', value: 'hubId:' + filterHubId });
+
     var filterClusterName = $formFilters.querySelector('.valueClusterName')?.value;
     if(filterClusterName != null && filterClusterName !== '')
       filters.push({ name: 'fq', value: 'clusterName:' + filterClusterName });
@@ -48,10 +52,6 @@ function searchAiNodeFilters($formFilters) {
     var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
     if(filterDescription != null && filterDescription !== '')
       filters.push({ name: 'fq', value: 'description:' + filterDescription });
-
-    var filterNodeId = $formFilters.querySelector('.valueNodeId')?.value;
-    if(filterNodeId != null && filterNodeId !== '')
-      filters.push({ name: 'fq', value: 'nodeId:' + filterNodeId });
 
     var filterId = $formFilters.querySelector('.valueId')?.value;
     if(filterId != null && filterId !== '')
@@ -81,34 +81,6 @@ function searchAiNodeFilters($formFilters) {
     if(filterLocation != null && filterLocation !== '')
       filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
-    var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
-
-    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.querySelector('.valueUserKey')?.value;
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
-    var filterSaves = $formFilters.querySelector('.valueSaves')?.value;
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
-
-    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
-    if(filterObjectTitle != null && filterObjectTitle !== '')
-      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
-
     var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
     if(filterDisplayPage != null && filterDisplayPage !== '')
       filters.push({ name: 'fq', value: 'displayPage:' + filterDisplayPage });
@@ -133,9 +105,53 @@ function searchAiNodeFilters($formFilters) {
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
+    var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.querySelector('.valueUserKey')?.value;
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
+    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterSaves = $formFilters.querySelector('.valueSaves')?.value;
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
+
+    var filterHubResource = $formFilters.querySelector('.valueHubResource')?.value;
+    if(filterHubResource != null && filterHubResource !== '')
+      filters.push({ name: 'fq', value: 'hubResource:' + filterHubResource });
+
+    var filterClusterResource = $formFilters.querySelector('.valueClusterResource')?.value;
+    if(filterClusterResource != null && filterClusterResource !== '')
+      filters.push({ name: 'fq', value: 'clusterResource:' + filterClusterResource });
+
+    var filterNodeResource = $formFilters.querySelector('.valueNodeResource')?.value;
+    if(filterNodeResource != null && filterNodeResource !== '')
+      filters.push({ name: 'fq', value: 'nodeResource:' + filterNodeResource });
+
+    var filterNodeDisplayName = $formFilters.querySelector('.valueNodeDisplayName')?.value;
+    if(filterNodeDisplayName != null && filterNodeDisplayName !== '')
+      filters.push({ name: 'fq', value: 'nodeDisplayName:' + filterNodeDisplayName });
 
     var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
     if(filterLocationColors != null && filterLocationColors !== '')
@@ -174,6 +190,100 @@ function searchAiNodeVals(filters, target, success, error) {
     .catch(response => error(response, target));
 }
 
+function suggestAiNodeHubResource(filters, $list, nodeResource = null, hubResource = null, relate=true, target) {
+  success = function( data, textStatus, jQxhr ) {
+    $list.innerHTML = '';
+    data['list'].forEach((o, i) => {
+      var iTemplate = document.createElement('template');
+      iTemplate.innerHTML = '<i class="fa-regular fa-sitemap"></i>';
+      var $i = iTemplate.content;
+      var $span = document.createElement('span');
+      $span.setAttribute('class', '');
+      $span.innerText = 
+o['objectTitle'];
+      var $a = document.createElement('a');
+      $a.setAttribute('href', o['editPage']);
+      $a.append($i);
+      $a.append($span);
+      var val = o['hubResource'];
+      var checked = val == null ? false : (Array.isArray(val) ? val.includes(nodeResource.toString()) : val == hubResource);
+      var $input = document.createElement('wa-checkbox');
+      $input.setAttribute('id', 'GET_hubResource_' + nodeResource + '_hubResource_' + o['hubResource']);
+      $input.setAttribute('name', 'hubResource');
+      $input.setAttribute('value', o['hubResource']);
+      $input.setAttribute('class', 'valueHubResource ');
+      if(nodeResource != null) {
+        $input.addEventListener('change', function(event) {
+          patchAiNodeVals([{ name: 'fq', value: 'nodeResource:' + nodeResource }], { [(event.target.checked ? 'set' : 'remove') + 'HubResource']: o['hubResource'] }
+              , target
+              , function(response, target) {
+                addGlow(target);
+                suggestAiNodeHubResource(filters, $list, nodeResource, hubResource, relate, target);
+              }
+              , function(response, target) { addError(target); }
+          );
+        });
+      }
+      if(checked)
+        $input.setAttribute('checked', 'checked');
+      var $li = document.createElement('li');
+      if(relate)
+        $li.append($input);
+      $li.append($a);
+      $list.append($li);
+    });
+  };
+  error = function( jqXhr, target2 ) {};
+  searchHubVals(filters, target, success, error);
+}
+
+function suggestAiNodeClusterResource(filters, $list, nodeResource = null, clusterResource = null, relate=true, target) {
+  success = function( data, textStatus, jQxhr ) {
+    $list.innerHTML = '';
+    data['list'].forEach((o, i) => {
+      var iTemplate = document.createElement('template');
+      iTemplate.innerHTML = '<i class="fa-regular fa-server"></i>';
+      var $i = iTemplate.content;
+      var $span = document.createElement('span');
+      $span.setAttribute('class', '');
+      $span.innerText = 
+o['objectTitle'];
+      var $a = document.createElement('a');
+      $a.setAttribute('href', o['editPage']);
+      $a.append($i);
+      $a.append($span);
+      var val = o['clusterResource'];
+      var checked = val == null ? false : (Array.isArray(val) ? val.includes(nodeResource.toString()) : val == clusterResource);
+      var $input = document.createElement('wa-checkbox');
+      $input.setAttribute('id', 'GET_clusterResource_' + nodeResource + '_clusterResource_' + o['clusterResource']);
+      $input.setAttribute('name', 'clusterResource');
+      $input.setAttribute('value', o['clusterResource']);
+      $input.setAttribute('class', 'valueClusterResource ');
+      if(nodeResource != null) {
+        $input.addEventListener('change', function(event) {
+          patchAiNodeVals([{ name: 'fq', value: 'nodeResource:' + nodeResource }], { [(event.target.checked ? 'set' : 'remove') + 'ClusterResource']: o['clusterResource'] }
+              , target
+              , function(response, target) {
+                addGlow(target);
+                suggestAiNodeClusterResource(filters, $list, nodeResource, clusterResource, relate, target);
+              }
+              , function(response, target) { addError(target); }
+          );
+        });
+      }
+      if(checked)
+        $input.setAttribute('checked', 'checked');
+      var $li = document.createElement('li');
+      if(relate)
+        $li.append($input);
+      $li.append($a);
+      $list.append($li);
+    });
+  };
+  error = function( jqXhr, target2 ) {};
+  searchClusterVals(filters, target, success, error);
+}
+
 function suggestAiNodeObjectSuggest($formFilters, $list, target) {
   success = function( data, textStatus, jQxhr ) {
     $list.innerHTML = '';
@@ -196,7 +306,7 @@ function suggestAiNodeObjectSuggest($formFilters, $list, target) {
 
 async function getAiNode(pk) {
   fetch(
-    '/en-us/api/ai-node/' + nodeId
+    '/en-us/api/ai-node/' + nodeResource
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
     }).then(response => {
@@ -213,7 +323,7 @@ async function getAiNode(pk) {
 
 // PATCH //
 
-async function patchAiNode($formFilters, $formValues, target, nodeId, success, error) {
+async function patchAiNode($formFilters, $formValues, target, nodeResource, success, error) {
   var filters = patchAiNodeFilters($formFilters);
 
   var vals = {};
@@ -273,6 +383,18 @@ async function patchAiNode($formFilters, $formValues, target, nodeId, success, e
   if(removeArchived != null && removeArchived !== '')
     vals['removeArchived'] = removeArchived;
 
+  var valueHubId = $formValues.querySelector('.valueHubId')?.value;
+  var removeHubId = $formValues.querySelector('.removeHubId')?.value === 'true';
+  var setHubId = removeHubId ? null : $formValues.querySelector('.setHubId')?.value;
+  var addHubId = $formValues.querySelector('.addHubId')?.value;
+  if(removeHubId || setHubId != null && setHubId !== '')
+    vals['setHubId'] = setHubId;
+  if(addHubId != null && addHubId !== '')
+    vals['addHubId'] = addHubId;
+  var removeHubId = $formValues.querySelector('.removeHubId')?.value;
+  if(removeHubId != null && removeHubId !== '')
+    vals['removeHubId'] = removeHubId;
+
   var valueClusterName = $formValues.querySelector('.valueClusterName')?.value;
   var removeClusterName = $formValues.querySelector('.removeClusterName')?.value === 'true';
   var setClusterName = removeClusterName ? null : $formValues.querySelector('.setClusterName')?.value;
@@ -308,18 +430,6 @@ async function patchAiNode($formFilters, $formValues, target, nodeId, success, e
   var removeDescription = $formValues.querySelector('.removeDescription')?.value;
   if(removeDescription != null && removeDescription !== '')
     vals['removeDescription'] = removeDescription;
-
-  var valueNodeId = $formValues.querySelector('.valueNodeId')?.value;
-  var removeNodeId = $formValues.querySelector('.removeNodeId')?.value === 'true';
-  var setNodeId = removeNodeId ? null : $formValues.querySelector('.setNodeId')?.value;
-  var addNodeId = $formValues.querySelector('.addNodeId')?.value;
-  if(removeNodeId || setNodeId != null && setNodeId !== '')
-    vals['setNodeId'] = setNodeId;
-  if(addNodeId != null && addNodeId !== '')
-    vals['addNodeId'] = addNodeId;
-  var removeNodeId = $formValues.querySelector('.removeNodeId')?.value;
-  if(removeNodeId != null && removeNodeId !== '')
-    vals['removeNodeId'] = removeNodeId;
 
   var valueId = $formValues.querySelector('.valueId')?.value;
   var removeId = $formValues.querySelector('.removeId')?.value === 'true';
@@ -405,6 +515,18 @@ async function patchAiNode($formFilters, $formValues, target, nodeId, success, e
   if(removeLocation != null && removeLocation !== '')
     vals['removeLocation'] = removeLocation;
 
+  var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
+  var removeDisplayPage = $formValues.querySelector('.removeDisplayPage')?.value === 'true';
+  var setDisplayPage = removeDisplayPage ? null : $formValues.querySelector('.setDisplayPage')?.value;
+  var addDisplayPage = $formValues.querySelector('.addDisplayPage')?.value;
+  if(removeDisplayPage || setDisplayPage != null && setDisplayPage !== '')
+    vals['setDisplayPage'] = setDisplayPage;
+  if(addDisplayPage != null && addDisplayPage !== '')
+    vals['addDisplayPage'] = addDisplayPage;
+  var removeDisplayPage = $formValues.querySelector('.removeDisplayPage')?.value;
+  if(removeDisplayPage != null && removeDisplayPage !== '')
+    vals['removeDisplayPage'] = removeDisplayPage;
+
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   var removeSessionId = $formValues.querySelector('.removeSessionId')?.value === 'true';
   var setSessionId = removeSessionId ? null : $formValues.querySelector('.setSessionId')?.value;
@@ -441,19 +563,27 @@ async function patchAiNode($formFilters, $formValues, target, nodeId, success, e
   if(removeObjectTitle != null && removeObjectTitle !== '')
     vals['removeObjectTitle'] = removeObjectTitle;
 
-  var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
-  var removeDisplayPage = $formValues.querySelector('.removeDisplayPage')?.value === 'true';
-  var setDisplayPage = removeDisplayPage ? null : $formValues.querySelector('.setDisplayPage')?.value;
-  var addDisplayPage = $formValues.querySelector('.addDisplayPage')?.value;
-  if(removeDisplayPage || setDisplayPage != null && setDisplayPage !== '')
-    vals['setDisplayPage'] = setDisplayPage;
-  if(addDisplayPage != null && addDisplayPage !== '')
-    vals['addDisplayPage'] = addDisplayPage;
-  var removeDisplayPage = $formValues.querySelector('.removeDisplayPage')?.value;
-  if(removeDisplayPage != null && removeDisplayPage !== '')
-    vals['removeDisplayPage'] = removeDisplayPage;
+  var valueHubResource = (Array.from($formValues.querySelectorAll('.valueHubResource')).filter(e => e.checked == true).find(() => true) ?? null)?.value;
+  if(valueHubResource != null && valueHubResource !== '')
+    vals['setHubResource'] = valueHubResource;
 
-  patchAiNodeVals(nodeId == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'nodeId:' + nodeId}], vals, target, success, error);
+  var valueClusterResource = (Array.from($formValues.querySelectorAll('.valueClusterResource')).filter(e => e.checked == true).find(() => true) ?? null)?.value;
+  if(valueClusterResource != null && valueClusterResource !== '')
+    vals['setClusterResource'] = valueClusterResource;
+
+  var valueNodeResource = $formValues.querySelector('.valueNodeResource')?.value;
+  var removeNodeResource = $formValues.querySelector('.removeNodeResource')?.value === 'true';
+  var setNodeResource = removeNodeResource ? null : $formValues.querySelector('.setNodeResource')?.value;
+  var addNodeResource = $formValues.querySelector('.addNodeResource')?.value;
+  if(removeNodeResource || setNodeResource != null && setNodeResource !== '')
+    vals['setNodeResource'] = setNodeResource;
+  if(addNodeResource != null && addNodeResource !== '')
+    vals['addNodeResource'] = addNodeResource;
+  var removeNodeResource = $formValues.querySelector('.removeNodeResource')?.value;
+  if(removeNodeResource != null && removeNodeResource !== '')
+    vals['removeNodeResource'] = removeNodeResource;
+
+  patchAiNodeVals(nodeResource == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'nodeResource:' + nodeResource}], vals, target, success, error);
 }
 
 function patchAiNodeFilters($formFilters) {
@@ -483,6 +613,10 @@ function patchAiNodeFilters($formFilters) {
     if(filterArchived != null && filterArchived === true)
       filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
+    var filterHubId = $formFilters.querySelector('.valueHubId')?.value;
+    if(filterHubId != null && filterHubId !== '')
+      filters.push({ name: 'fq', value: 'hubId:' + filterHubId });
+
     var filterClusterName = $formFilters.querySelector('.valueClusterName')?.value;
     if(filterClusterName != null && filterClusterName !== '')
       filters.push({ name: 'fq', value: 'clusterName:' + filterClusterName });
@@ -494,10 +628,6 @@ function patchAiNodeFilters($formFilters) {
     var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
     if(filterDescription != null && filterDescription !== '')
       filters.push({ name: 'fq', value: 'description:' + filterDescription });
-
-    var filterNodeId = $formFilters.querySelector('.valueNodeId')?.value;
-    if(filterNodeId != null && filterNodeId !== '')
-      filters.push({ name: 'fq', value: 'nodeId:' + filterNodeId });
 
     var filterId = $formFilters.querySelector('.valueId')?.value;
     if(filterId != null && filterId !== '')
@@ -527,34 +657,6 @@ function patchAiNodeFilters($formFilters) {
     if(filterLocation != null && filterLocation !== '')
       filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
-    var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
-
-    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.querySelector('.valueUserKey')?.value;
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
-    var filterSaves = $formFilters.querySelector('.valueSaves')?.value;
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
-
-    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
-    if(filterObjectTitle != null && filterObjectTitle !== '')
-      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
-
     var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
     if(filterDisplayPage != null && filterDisplayPage !== '')
       filters.push({ name: 'fq', value: 'displayPage:' + filterDisplayPage });
@@ -579,9 +681,53 @@ function patchAiNodeFilters($formFilters) {
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
+    var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.querySelector('.valueUserKey')?.value;
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
+    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterSaves = $formFilters.querySelector('.valueSaves')?.value;
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
+
+    var filterHubResource = $formFilters.querySelector('.valueHubResource')?.value;
+    if(filterHubResource != null && filterHubResource !== '')
+      filters.push({ name: 'fq', value: 'hubResource:' + filterHubResource });
+
+    var filterClusterResource = $formFilters.querySelector('.valueClusterResource')?.value;
+    if(filterClusterResource != null && filterClusterResource !== '')
+      filters.push({ name: 'fq', value: 'clusterResource:' + filterClusterResource });
+
+    var filterNodeResource = $formFilters.querySelector('.valueNodeResource')?.value;
+    if(filterNodeResource != null && filterNodeResource !== '')
+      filters.push({ name: 'fq', value: 'nodeResource:' + filterNodeResource });
+
+    var filterNodeDisplayName = $formFilters.querySelector('.valueNodeDisplayName')?.value;
+    if(filterNodeDisplayName != null && filterNodeDisplayName !== '')
+      filters.push({ name: 'fq', value: 'nodeDisplayName:' + filterNodeDisplayName });
 
     var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
     if(filterLocationColors != null && filterLocationColors !== '')
@@ -661,6 +807,10 @@ async function postAiNode($formValues, target, success, error) {
   if(valueArchived != null && valueArchived !== '')
     vals['archived'] = valueArchived == 'true';
 
+  var valueHubId = $formValues.querySelector('.valueHubId')?.value;
+  if(valueHubId != null && valueHubId !== '')
+    vals['hubId'] = valueHubId;
+
   var valueClusterName = $formValues.querySelector('.valueClusterName')?.value;
   if(valueClusterName != null && valueClusterName !== '')
     vals['clusterName'] = valueClusterName;
@@ -672,10 +822,6 @@ async function postAiNode($formValues, target, success, error) {
   var valueDescription = $formValues.querySelector('.valueDescription')?.value;
   if(valueDescription != null && valueDescription !== '')
     vals['description'] = valueDescription;
-
-  var valueNodeId = $formValues.querySelector('.valueNodeId')?.value;
-  if(valueNodeId != null && valueNodeId !== '')
-    vals['nodeId'] = valueNodeId;
 
   var valueId = $formValues.querySelector('.valueId')?.value;
   if(valueId != null && valueId !== '')
@@ -705,6 +851,10 @@ async function postAiNode($formValues, target, success, error) {
   if(valueLocation != null && valueLocation !== '')
     vals['location'] = JSON.parse(valueLocation);
 
+  var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
+  if(valueDisplayPage != null && valueDisplayPage !== '')
+    vals['displayPage'] = valueDisplayPage;
+
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   if(valueSessionId != null && valueSessionId !== '')
     vals['sessionId'] = valueSessionId;
@@ -717,9 +867,17 @@ async function postAiNode($formValues, target, success, error) {
   if(valueObjectTitle != null && valueObjectTitle !== '')
     vals['objectTitle'] = valueObjectTitle;
 
-  var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
-  if(valueDisplayPage != null && valueDisplayPage !== '')
-    vals['displayPage'] = valueDisplayPage;
+  var valueHubResource = (Array.from($formValues.querySelectorAll('.valueHubResource')).filter(e => e.checked == true).find(() => true) ?? null)?.value;
+  if(valueHubResource != null && valueHubResource !== '')
+    vals['hubResource'] = valueHubResource;
+
+  var valueClusterResource = (Array.from($formValues.querySelectorAll('.valueClusterResource')).filter(e => e.checked == true).find(() => true) ?? null)?.value;
+  if(valueClusterResource != null && valueClusterResource !== '')
+    vals['clusterResource'] = valueClusterResource;
+
+  var valueNodeResource = $formValues.querySelector('.valueNodeResource')?.value;
+  if(valueNodeResource != null && valueNodeResource !== '')
+    vals['nodeResource'] = valueNodeResource;
 
   fetch(
     '/en-us/api/ai-node'
@@ -760,7 +918,7 @@ function postAiNodeVals(vals, target, success, error) {
 
 // DELETE //
 
-async function deleteAiNode(target, nodeId, success, error) {
+async function deleteAiNode(target, nodeResource, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
       addGlow(target, jqXhr);
@@ -776,7 +934,7 @@ async function deleteAiNode(target, nodeId, success, error) {
   }
 
   fetch(
-    '/en-us/api/ai-node/' + encodeURIComponent(nodeId)
+    '/en-us/api/ai-node/' + encodeURIComponent(nodeResource)
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'DELETE'
@@ -792,7 +950,7 @@ async function deleteAiNode(target, nodeId, success, error) {
 
 // PUTImport //
 
-async function putimportAiNode($formValues, target, nodeId, success, error) {
+async function putimportAiNode($formValues, target, nodeResource, success, error) {
   var json = $formValues.querySelector('.PUTImport_searchList')?.value;
   if(json != null && json !== '')
     putimportAiNodeVals(JSON.parse(json), target, success, error);
@@ -854,25 +1012,25 @@ async function websocketAiNode(success) {
 
     window.eventBus.registerHandler('websocketAiNode', function (error, message) {
       var json = JSON.parse(message['body']);
-      var nodeId = json['id'];
+      var nodeResource = json['id'];
       var solrIds = json['solrIds'];
       var empty = json['empty'];
       var numFound = parseInt(json['numFound']);
       var numPATCH = parseInt(json['numPATCH']);
       var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
       var $box = document.createElement('div');
-      $box.setAttribute('class', 'w3-quarter box-' + nodeId + ' ');
-      $box.setAttribute('id', 'box-' + nodeId);
+      $box.setAttribute('class', 'w3-quarter box-' + nodeResource + ' ');
+      $box.setAttribute('id', 'box-' + nodeResource);
       $box.setAttribute('data-numPATCH', numPATCH);
       var $margin = document.createElement('div');
       $margin.setAttribute('class', 'w3-margin ');
-      $margin.setAttribute('id', 'margin-' + nodeId);
+      $margin.setAttribute('id', 'margin-' + nodeResource);
       var $card = document.createElement('div');
       $card.setAttribute('class', 'w3-card w3-white ');
-      $card.setAttribute('id', 'card-' + nodeId);
+      $card.setAttribute('id', 'card-' + nodeResource);
       var $header = document.createElement('div');
       $header.setAttribute('class', 'w3-container fa- ');
-      $header.setAttribute('id', 'header-' + nodeId);
+      $header.setAttribute('id', 'header-' + nodeResource);
       var iTemplate = document.createElement('template');
       iTemplate.innerHTML = '<i class="fa-regular fa-computer"></i>';
       var $i = iTemplate.content;
@@ -881,19 +1039,19 @@ async function websocketAiNode(success) {
       $headerSpan.innerText = 'modify AI nodes in ' + json.timeRemaining;
       var $x = document.createElement('span');
       $x.setAttribute('class', 'w3-button w3-display-topright ');
-      $x.setAttribute('onclick', 'document.querySelector("#card-' + nodeId + '");');
+      $x.setAttribute('onclick', 'document.querySelector("#card-' + nodeResource + '");');
       $x.classList.add("display-none");
-      $x.setAttribute('id', 'x-' + nodeId);
+      $x.setAttribute('id', 'x-' + nodeResource);
       var $body = document.createElement('div');
       $body.setAttribute('class', 'w3-container w3-padding ');
-      $body.setAttribute('id', 'text-' + nodeId);
+      $body.setAttribute('id', 'text-' + nodeResource);
       var $bar = document.createElement('div');
       $bar.setAttribute('class', 'w3-light-gray ');
-      $bar.setAttribute('id', 'bar-' + nodeId);
+      $bar.setAttribute('id', 'bar-' + nodeResource);
       var $progress = document.createElement('div');
       $progress.setAttribute('class', 'w3- ');
       $progress.setAttribute('style', 'height: 24px; width: ' + percent + '; ');
-      $progress.setAttribute('id', 'progress-' + nodeId);
+      $progress.setAttribute('id', 'progress-' + nodeResource);
       $progress.innerText = numPATCH + '/' + numFound;
       $card.append($header);
       $header.append($i);
@@ -905,24 +1063,38 @@ async function websocketAiNode(success) {
       $box.append($margin);
       $margin.append($card);
       if(numPATCH < numFound) {
-        var $old_box = document.querySelector('.box-' + nodeId);
+        var $old_box = document.querySelector('.box-' + nodeResource);
       } else {
-        document.querySelector('.box-' + nodeId)?.remove();
+        document.querySelector('.box-' + nodeResource)?.remove();
       }
-      if(nodeId) {
+      if(nodeResource) {
         if(success)
           success(json);
       }
     });
+
+    window.eventBus.registerHandler('websocketHub', function (error, message) {
+      document.querySelector('.Page_hubResource').trigger('oninput');
+      document.querySelector('.Page_hubResource_add').innerText = 'add a hub';
+      document.querySelector('.Page_hubResource_add').classList.remove('w3-disabled');
+      document.querySelector('.Page_hubResource_add').setAttribute('disabled', false);
+    });
+
+    window.eventBus.registerHandler('websocketCluster', function (error, message) {
+      document.querySelector('.Page_clusterResource').trigger('oninput');
+      document.querySelector('.Page_clusterResource_add').innerText = 'add an OpenShift cluster';
+      document.querySelector('.Page_clusterResource_add').classList.remove('w3-disabled');
+      document.querySelector('.Page_clusterResource_add').setAttribute('disabled', false);
+    });
   }
 }
 async function websocketAiNodeInner(apiRequest) {
-  var nodeId = apiRequest['id'];
+  var nodeResource = apiRequest['id'];
   var classes = apiRequest['classes'];
   var vars = apiRequest['vars'];
   var empty = apiRequest['empty'];
 
-  if(nodeId != null && vars.length > 0) {
+  if(nodeResource != null && vars.length > 0) {
     var queryParams = "?" + Array.from(document.querySelectorAll(".pageSearchVal")).filter(elem => elem.innerText.length > 0).map(elem => elem.innerText).join("&");
     var uri = location.pathname + queryParams;
     fetch(uri).then(response => {
@@ -932,10 +1104,10 @@ async function websocketAiNodeInner(apiRequest) {
         var inputCreated = null;
         var inputModified = null;
         var inputArchived = null;
+        var inputHubId = null;
         var inputClusterName = null;
         var inputNodeName = null;
         var inputDescription = null;
-        var inputNodeId = null;
         var inputId = null;
         var inputGpuDevicesTotal = null;
         var inputNgsildTenant = null;
@@ -943,20 +1115,24 @@ async function websocketAiNodeInner(apiRequest) {
         var inputNgsildContext = null;
         var inputNgsildData = null;
         var inputLocation = null;
-        var inputClassCanonicalName = null;
-        var inputClassSimpleName = null;
-        var inputClassCanonicalNames = null;
-        var inputSessionId = null;
-        var inputUserKey = null;
-        var inputSaves = null;
-        var inputObjectTitle = null;
         var inputDisplayPage = null;
         var inputEditPage = null;
         var inputUserPage = null;
         var inputDownload = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
+        var inputClassCanonicalName = null;
+        var inputClassSimpleName = null;
+        var inputClassCanonicalNames = null;
+        var inputSessionId = null;
+        var inputUserKey = null;
+        var inputObjectTitle = null;
         var inputSolrId = null;
+        var inputSaves = null;
+        var inputHubResource = null;
+        var inputClusterResource = null;
+        var inputNodeResource = null;
+        var inputNodeDisplayName = null;
         var inputLocationColors = null;
         var inputLocationTitles = null;
         var inputLocationLinks = null;
@@ -970,14 +1146,14 @@ async function websocketAiNodeInner(apiRequest) {
           inputModified = $response.querySelector('.Page_modified');
         if(vars.includes('archived'))
           inputArchived = $response.querySelector('.Page_archived');
+        if(vars.includes('hubId'))
+          inputHubId = $response.querySelector('.Page_hubId');
         if(vars.includes('clusterName'))
           inputClusterName = $response.querySelector('.Page_clusterName');
         if(vars.includes('nodeName'))
           inputNodeName = $response.querySelector('.Page_nodeName');
         if(vars.includes('description'))
           inputDescription = $response.querySelector('.Page_description');
-        if(vars.includes('nodeId'))
-          inputNodeId = $response.querySelector('.Page_nodeId');
         if(vars.includes('id'))
           inputId = $response.querySelector('.Page_id');
         if(vars.includes('gpuDevicesTotal'))
@@ -992,20 +1168,6 @@ async function websocketAiNodeInner(apiRequest) {
           inputNgsildData = $response.querySelector('.Page_ngsildData');
         if(vars.includes('location'))
           inputLocation = $response.querySelector('.Page_location');
-        if(vars.includes('classCanonicalName'))
-          inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
-        if(vars.includes('classSimpleName'))
-          inputClassSimpleName = $response.querySelector('.Page_classSimpleName');
-        if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.querySelector('.Page_classCanonicalNames');
-        if(vars.includes('sessionId'))
-          inputSessionId = $response.querySelector('.Page_sessionId');
-        if(vars.includes('userKey'))
-          inputUserKey = $response.querySelector('.Page_userKey');
-        if(vars.includes('saves'))
-          inputSaves = $response.querySelector('.Page_saves');
-        if(vars.includes('objectTitle'))
-          inputObjectTitle = $response.querySelector('.Page_objectTitle');
         if(vars.includes('displayPage'))
           inputDisplayPage = $response.querySelector('.Page_displayPage');
         if(vars.includes('editPage'))
@@ -1018,8 +1180,30 @@ async function websocketAiNodeInner(apiRequest) {
           inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
         if(vars.includes('objectText'))
           inputObjectText = $response.querySelector('.Page_objectText');
+        if(vars.includes('classCanonicalName'))
+          inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
+        if(vars.includes('classSimpleName'))
+          inputClassSimpleName = $response.querySelector('.Page_classSimpleName');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.querySelector('.Page_classCanonicalNames');
+        if(vars.includes('sessionId'))
+          inputSessionId = $response.querySelector('.Page_sessionId');
+        if(vars.includes('userKey'))
+          inputUserKey = $response.querySelector('.Page_userKey');
+        if(vars.includes('objectTitle'))
+          inputObjectTitle = $response.querySelector('.Page_objectTitle');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
+        if(vars.includes('saves'))
+          inputSaves = $response.querySelector('.Page_saves');
+        if(vars.includes('hubResource'))
+          inputHubResource = $response.querySelector('.Page_hubResource');
+        if(vars.includes('clusterResource'))
+          inputClusterResource = $response.querySelector('.Page_clusterResource');
+        if(vars.includes('nodeResource'))
+          inputNodeResource = $response.querySelector('.Page_nodeResource');
+        if(vars.includes('nodeDisplayName'))
+          inputNodeDisplayName = $response.querySelector('.Page_nodeDisplayName');
         if(vars.includes('locationColors'))
           inputLocationColors = $response.querySelector('.Page_locationColors');
         if(vars.includes('locationTitles'))
@@ -1029,7 +1213,7 @@ async function websocketAiNodeInner(apiRequest) {
         if(vars.includes('entityShortId'))
           inputEntityShortId = $response.querySelector('.Page_entityShortId');
 
-        jsWebsocketAiNode(nodeId, vars, $response);
+        jsWebsocketAiNode(nodeResource, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
         window.listAiNode = JSON.parse($response.querySelector('.pageForm .listAiNode')?.value);
 
@@ -1074,6 +1258,16 @@ async function websocketAiNodeInner(apiRequest) {
           addGlow(document.querySelector('.Page_archived'));
         }
 
+        if(inputHubId) {
+          document.querySelectorAll('.Page_hubId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputHubId.getAttribute('value');
+            else
+              item.textContent = inputHubId.textContent;
+          });
+          addGlow(document.querySelector('.Page_hubId'));
+        }
+
         if(inputClusterName) {
           document.querySelectorAll('.Page_clusterName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1102,16 +1296,6 @@ async function websocketAiNodeInner(apiRequest) {
               item.textContent = inputDescription.textContent;
           });
           addGlow(document.querySelector('.Page_description'));
-        }
-
-        if(inputNodeId) {
-          document.querySelectorAll('.Page_nodeId').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputNodeId.getAttribute('value');
-            else
-              item.textContent = inputNodeId.textContent;
-          });
-          addGlow(document.querySelector('.Page_nodeId'));
         }
 
         if(inputId) {
@@ -1184,76 +1368,6 @@ async function websocketAiNodeInner(apiRequest) {
           addGlow(document.querySelector('.Page_location'));
         }
 
-        if(inputClassCanonicalName) {
-          document.querySelectorAll('.Page_classCanonicalName').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputClassCanonicalName.getAttribute('value');
-            else
-              item.textContent = inputClassCanonicalName.textContent;
-          });
-          addGlow(document.querySelector('.Page_classCanonicalName'));
-        }
-
-        if(inputClassSimpleName) {
-          document.querySelectorAll('.Page_classSimpleName').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputClassSimpleName.getAttribute('value');
-            else
-              item.textContent = inputClassSimpleName.textContent;
-          });
-          addGlow(document.querySelector('.Page_classSimpleName'));
-        }
-
-        if(inputClassCanonicalNames) {
-          document.querySelectorAll('.Page_classCanonicalNames').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputClassCanonicalNames.getAttribute('value');
-            else
-              item.textContent = inputClassCanonicalNames.textContent;
-          });
-          addGlow(document.querySelector('.Page_classCanonicalNames'));
-        }
-
-        if(inputSessionId) {
-          document.querySelectorAll('.Page_sessionId').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputSessionId.getAttribute('value');
-            else
-              item.textContent = inputSessionId.textContent;
-          });
-          addGlow(document.querySelector('.Page_sessionId'));
-        }
-
-        if(inputUserKey) {
-          document.querySelectorAll('.Page_userKey').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputUserKey.getAttribute('value');
-            else
-              item.textContent = inputUserKey.textContent;
-          });
-          addGlow(document.querySelector('.Page_userKey'));
-        }
-
-        if(inputSaves) {
-          document.querySelectorAll('.Page_saves').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputSaves.getAttribute('value');
-            else
-              item.textContent = inputSaves.textContent;
-          });
-          addGlow(document.querySelector('.Page_saves'));
-        }
-
-        if(inputObjectTitle) {
-          document.querySelectorAll('.Page_objectTitle').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputObjectTitle.getAttribute('value');
-            else
-              item.textContent = inputObjectTitle.textContent;
-          });
-          addGlow(document.querySelector('.Page_objectTitle'));
-        }
-
         if(inputDisplayPage) {
           document.querySelectorAll('.Page_displayPage').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1314,6 +1428,66 @@ async function websocketAiNodeInner(apiRequest) {
           addGlow(document.querySelector('.Page_objectText'));
         }
 
+        if(inputClassCanonicalName) {
+          document.querySelectorAll('.Page_classCanonicalName').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputClassCanonicalName.getAttribute('value');
+            else
+              item.textContent = inputClassCanonicalName.textContent;
+          });
+          addGlow(document.querySelector('.Page_classCanonicalName'));
+        }
+
+        if(inputClassSimpleName) {
+          document.querySelectorAll('.Page_classSimpleName').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputClassSimpleName.getAttribute('value');
+            else
+              item.textContent = inputClassSimpleName.textContent;
+          });
+          addGlow(document.querySelector('.Page_classSimpleName'));
+        }
+
+        if(inputClassCanonicalNames) {
+          document.querySelectorAll('.Page_classCanonicalNames').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputClassCanonicalNames.getAttribute('value');
+            else
+              item.textContent = inputClassCanonicalNames.textContent;
+          });
+          addGlow(document.querySelector('.Page_classCanonicalNames'));
+        }
+
+        if(inputSessionId) {
+          document.querySelectorAll('.Page_sessionId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSessionId.getAttribute('value');
+            else
+              item.textContent = inputSessionId.textContent;
+          });
+          addGlow(document.querySelector('.Page_sessionId'));
+        }
+
+        if(inputUserKey) {
+          document.querySelectorAll('.Page_userKey').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputUserKey.getAttribute('value');
+            else
+              item.textContent = inputUserKey.textContent;
+          });
+          addGlow(document.querySelector('.Page_userKey'));
+        }
+
+        if(inputObjectTitle) {
+          document.querySelectorAll('.Page_objectTitle').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputObjectTitle.getAttribute('value');
+            else
+              item.textContent = inputObjectTitle.textContent;
+          });
+          addGlow(document.querySelector('.Page_objectTitle'));
+        }
+
         if(inputSolrId) {
           document.querySelectorAll('.Page_solrId').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1322,6 +1496,56 @@ async function websocketAiNodeInner(apiRequest) {
               item.textContent = inputSolrId.textContent;
           });
           addGlow(document.querySelector('.Page_solrId'));
+        }
+
+        if(inputSaves) {
+          document.querySelectorAll('.Page_saves').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSaves.getAttribute('value');
+            else
+              item.textContent = inputSaves.textContent;
+          });
+          addGlow(document.querySelector('.Page_saves'));
+        }
+
+        if(inputHubResource) {
+          document.querySelectorAll('.Page_hubResource').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputHubResource.getAttribute('value');
+            else
+              item.textContent = inputHubResource.textContent;
+          });
+          addGlow(document.querySelector('.Page_hubResource'));
+        }
+
+        if(inputClusterResource) {
+          document.querySelectorAll('.Page_clusterResource').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputClusterResource.getAttribute('value');
+            else
+              item.textContent = inputClusterResource.textContent;
+          });
+          addGlow(document.querySelector('.Page_clusterResource'));
+        }
+
+        if(inputNodeResource) {
+          document.querySelectorAll('.Page_nodeResource').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNodeResource.getAttribute('value');
+            else
+              item.textContent = inputNodeResource.textContent;
+          });
+          addGlow(document.querySelector('.Page_nodeResource'));
+        }
+
+        if(inputNodeDisplayName) {
+          document.querySelectorAll('.Page_nodeDisplayName').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNodeDisplayName.getAttribute('value');
+            else
+              item.textContent = inputNodeDisplayName.textContent;
+          });
+          addGlow(document.querySelector('.Page_nodeDisplayName'));
         }
 
         if(inputLocationColors) {
@@ -1624,7 +1848,7 @@ function pageGraphAiNode(apiRequest) {
   }
 }
 function patchLocation(target, location) {
-  patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + result.nodeId }]
+  patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeResource:' + result.nodeResource }]
       , 'setLocation', location
       , target
       , function(response, e) { addGlow(target); }

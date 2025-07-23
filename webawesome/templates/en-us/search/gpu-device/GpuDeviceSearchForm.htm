@@ -11,15 +11,15 @@
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
   {%- if "Page" == classApiMethodMethod %}
-                      data-gpuDeviceId={{ result.gpuDeviceId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_pk setPk classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}Pk "
+                      data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}Pk "
                       name="setPk"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_pk setPk classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}Pk "
                       name="setPk"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_pk valuePk classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk valuePk classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}Pk "
                       name="pk"
     {%- endif %}
   {%- endif %}
@@ -45,14 +45,14 @@ The primary key of this object in the database"
                       readonly
                       hint="A created timestamp for this record in the database"
                       label="created {{ formatZonedDateTime(result.created, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
-                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}Created "
+                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
                       value="{%- if "Page" == classApiMethodMethod and result.created is defined %}{{ formatZonedDateTime(result.created, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
-                      data-gpuDeviceId={{ result.gpuDeviceId | tojson }}
+                      data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}
                       data-zone="{{ defaultZoneId }}"
                       >
                   </wa-input>
@@ -73,14 +73,14 @@ The primary key of this object in the database"
                       readonly
                       hint="A modified timestamp for this record in the database"
                       label="modified {{ formatZonedDateTime(result.modified, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
-                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}Modified "
+                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
                       value="{%- if "Page" == classApiMethodMethod and result.modified is defined %}{{ formatZonedDateTime(result.modified, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
-                      data-gpuDeviceId={{ result.gpuDeviceId | tojson }}
+                      data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}
                       data-zone="{{ defaultZoneId }}"
                       >
                   </wa-input>
@@ -102,9 +102,9 @@ The primary key of this object in the database"
                       placeholder="archive"
                       label="archive"
                       hint="For archiving this record"
-                      class="label-on-left {{classApiMethodMethod}}_archived classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}Archived "
                       name="setArchived"
-                      data-gpuDeviceId={{ result.gpuDeviceId | tojson }}
+                      data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}
                       data-val="{{ result.archived | e }}"
                       >archive</wa-button>
   {%- else %}
@@ -121,14 +121,14 @@ The primary key of this object in the database"
                       label="archive"
                       hint="For archiving this record"
   {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_archived classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}Archived "
                       name="setArchived"
   {%- else %}
     {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_archived classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}Archived "
                       name="setArchived"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}Archived "
                       name="setArchived"
     {%- endif %}
   {%- endif %}
@@ -136,7 +136,7 @@ The primary key of this object in the database"
     {%- if result.archived == true %}
                       checked
     {%- endif %}
-                      data-gpuDeviceId={{ result.gpuDeviceId | tojson }}
+                      data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}
                       >archive</wa-checkbox>
   {%- else %}
                       >
@@ -154,6 +154,43 @@ The primary key of this object in the database"
 {%- macro htmArchivedGpuDevicePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputArchivedGpuDevicePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputHubIdGpuDevicePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_hubId">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] ACM Hub"
+                      label="ACM Hub"
+                      hint="
+The name of the ACM Hub for this cluster in Prometheus Keycloak Proxy. "
+                      id="{{classApiMethodMethod}}_hubId"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_hubId setHubId classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}HubId "
+                      name="setHubId"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_hubId setHubId classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}HubId "
+                      name="setHubId"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_hubId valueHubId classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}HubId "
+                      name="hubId"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.hubId | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmHubIdGpuDevicePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputHubIdGpuDevicePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
 {%- macro inputClusterNameGpuDevicePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_clusterName">
@@ -163,18 +200,18 @@ The primary key of this object in the database"
                       placeholder="[String] cluster name"
                       label="cluster name"
                       hint="
-The cluster name of this GPU device"
+The name of this cluster"
                       id="{{classApiMethodMethod}}_clusterName"
   {%- if "Page" == classApiMethodMethod %}
-                      data-gpuDeviceId={{ result.gpuDeviceId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_clusterName setClusterName classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}ClusterName "
+                      data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_clusterName setClusterName classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}ClusterName "
                       name="setClusterName"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_clusterName setClusterName classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}ClusterName "
+                      class="label-on-left {{classApiMethodMethod}}_clusterName setClusterName classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}ClusterName "
                       name="setClusterName"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_clusterName valueClusterName classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}ClusterName "
+                      class="label-on-left {{classApiMethodMethod}}_clusterName valueClusterName classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}ClusterName "
                       name="clusterName"
     {%- endif %}
   {%- endif %}
@@ -200,18 +237,18 @@ The cluster name of this GPU device"
                       placeholder="[String] node name"
                       label="node name"
                       hint="
-The node name of this GPU device"
+The name of this node"
                       id="{{classApiMethodMethod}}_nodeName"
   {%- if "Page" == classApiMethodMethod %}
-                      data-gpuDeviceId={{ result.gpuDeviceId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_nodeName setNodeName classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}NodeName "
+                      data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_nodeName setNodeName classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}NodeName "
                       name="setNodeName"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_nodeName setNodeName classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}NodeName "
+                      class="label-on-left {{classApiMethodMethod}}_nodeName setNodeName classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}NodeName "
                       name="setNodeName"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_nodeName valueNodeName classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}NodeName "
+                      class="label-on-left {{classApiMethodMethod}}_nodeName valueNodeName classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}NodeName "
                       name="nodeName"
     {%- endif %}
   {%- endif %}
@@ -228,43 +265,6 @@ The node name of this GPU device"
 {%- macro htmNodeNameGpuDevicePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputNodeNameGpuDevicePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputDescriptionGpuDevicePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
-  {%- if 'Page' == classApiMethodMethod %}
-                <form class="subgrid-2col " id="PageForm_description">
-  {%- endif %}
-                  <wa-textarea resize="auto"
-                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] description"
-                      label="description"
-                      hint="
-A description of this GPU device"
-                      id="{{classApiMethodMethod}}_description"
-  {%- if "Page" == classApiMethodMethod %}
-                      data-gpuDeviceId={{ result.gpuDeviceId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}Description "
-                      name="setDescription"
-  {%- else %}
-    {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}Description "
-                      name="setDescription"
-    {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}Description "
-                      name="description"
-    {%- endif %}
-  {%- endif %}
-{%- if "Page" == classApiMethodMethod %}
-                      value="{{result.description | e }}"
-{%- endif %}
-                      >
-</wa-textarea>
-  {%- if 'Page' == classApiMethodMethod %}
-                </form>
-  {%- endif %}
-{%- endmacro %}
-
-{%- macro htmDescriptionGpuDevicePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
-                            {{ inputDescriptionGpuDevicePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
-{%- endmacro %}
 {%- macro inputGpuDeviceNumberGpuDevicePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_gpuDeviceNumber">
@@ -278,15 +278,15 @@ A description of this GPU device"
 The number of this GPU device"
                       id="{{classApiMethodMethod}}_gpuDeviceNumber"
   {%- if "Page" == classApiMethodMethod %}
-                      data-gpuDeviceId={{ result.gpuDeviceId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_gpuDeviceNumber setGpuDeviceNumber classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}GpuDeviceNumber "
+                      data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_gpuDeviceNumber setGpuDeviceNumber classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}GpuDeviceNumber "
                       name="setGpuDeviceNumber"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_gpuDeviceNumber setGpuDeviceNumber classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}GpuDeviceNumber "
+                      class="label-on-left {{classApiMethodMethod}}_gpuDeviceNumber setGpuDeviceNumber classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}GpuDeviceNumber "
                       name="setGpuDeviceNumber"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_gpuDeviceNumber valueGpuDeviceNumber classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}GpuDeviceNumber "
+                      class="label-on-left {{classApiMethodMethod}}_gpuDeviceNumber valueGpuDeviceNumber classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}GpuDeviceNumber "
                       name="gpuDeviceNumber"
     {%- endif %}
   {%- endif %}
@@ -303,42 +303,42 @@ The number of this GPU device"
 {%- macro htmGpuDeviceNumberGpuDevicePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputGpuDeviceNumberGpuDevicePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputIdGpuDevicePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputDescriptionGpuDevicePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
-                <form class="subgrid-2col " id="PageForm_id">
+                <form class="subgrid-2col " id="PageForm_description">
   {%- endif %}
-                  <wa-input
+                  <wa-textarea resize="auto"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] entity ID"
-                      label="entity ID"
+                      placeholder="[String] description"
+                      label="description"
                       hint="
-A unique ID for this Smart Data Model"
-                      id="{{classApiMethodMethod}}_id"
+A description of this GPU device"
+                      id="{{classApiMethodMethod}}_description"
   {%- if "Page" == classApiMethodMethod %}
-                      data-gpuDeviceId={{ result.gpuDeviceId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_id setId classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}Id "
-                      name="setId"
+                      data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}Description "
+                      name="setDescription"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_id setId classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}Id "
-                      name="setId"
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}Description "
+                      name="setDescription"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_id valueId classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}Id "
-                      name="id"
+                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}Description "
+                      name="description"
     {%- endif %}
   {%- endif %}
-  {%- if "Page" == classApiMethodMethod %}
-                      value="{{result.id | e }}"
-  {%- endif %}
-                      ></wa-input>
-
+{%- if "Page" == classApiMethodMethod %}
+                      value="{{result.description | e }}"
+{%- endif %}
+                      >
+</wa-textarea>
   {%- if 'Page' == classApiMethodMethod %}
                 </form>
   {%- endif %}
 {%- endmacro %}
 
-{%- macro htmIdGpuDevicePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
-                            {{ inputIdGpuDevicePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- macro htmDescriptionGpuDevicePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputDescriptionGpuDevicePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
 {%- macro inputGpuDeviceUtilizationGpuDevicePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
@@ -353,15 +353,15 @@ A unique ID for this Smart Data Model"
 Current utilization of the GPU device. "
                       id="{{classApiMethodMethod}}_gpuDeviceUtilization"
   {%- if "Page" == classApiMethodMethod %}
-                      data-gpuDeviceId={{ result.gpuDeviceId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_gpuDeviceUtilization setGpuDeviceUtilization classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}GpuDeviceUtilization "
+                      data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_gpuDeviceUtilization setGpuDeviceUtilization classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}GpuDeviceUtilization "
                       name="setGpuDeviceUtilization"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_gpuDeviceUtilization setGpuDeviceUtilization classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}GpuDeviceUtilization "
+                      class="label-on-left {{classApiMethodMethod}}_gpuDeviceUtilization setGpuDeviceUtilization classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}GpuDeviceUtilization "
                       name="setGpuDeviceUtilization"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_gpuDeviceUtilization valueGpuDeviceUtilization classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}GpuDeviceUtilization "
+                      class="label-on-left {{classApiMethodMethod}}_gpuDeviceUtilization valueGpuDeviceUtilization classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}GpuDeviceUtilization "
                       name="gpuDeviceUtilization"
     {%- endif %}
   {%- endif %}
@@ -378,6 +378,43 @@ Current utilization of the GPU device. "
 {%- macro htmGpuDeviceUtilizationGpuDevicePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputGpuDeviceUtilizationGpuDevicePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputIdGpuDevicePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_id">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] entity ID"
+                      label="entity ID"
+                      hint="
+A unique ID for this Smart Data Model"
+                      id="{{classApiMethodMethod}}_id"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_id setId classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}Id "
+                      name="setId"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_id setId classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}Id "
+                      name="setId"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_id valueId classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}Id "
+                      name="id"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.id | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmIdGpuDevicePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputIdGpuDevicePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
 {%- macro inputNgsildTenantGpuDevicePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_ngsildTenant">
@@ -390,15 +427,15 @@ Current utilization of the GPU device. "
 The NGSILD-Tenant or Fiware-Service"
                       id="{{classApiMethodMethod}}_ngsildTenant"
   {%- if "Page" == classApiMethodMethod %}
-                      data-gpuDeviceId={{ result.gpuDeviceId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}NgsildTenant "
+                      data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}NgsildTenant "
                       name="setNgsildTenant"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}NgsildTenant "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}NgsildTenant "
                       name="setNgsildTenant"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant valueNgsildTenant classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}NgsildTenant "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant valueNgsildTenant classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}NgsildTenant "
                       name="ngsildTenant"
     {%- endif %}
   {%- endif %}
@@ -427,15 +464,15 @@ The NGSILD-Tenant or Fiware-Service"
 The NGSILD-Path or Fiware-ServicePath"
                       id="{{classApiMethodMethod}}_ngsildPath"
   {%- if "Page" == classApiMethodMethod %}
-                      data-gpuDeviceId={{ result.gpuDeviceId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}NgsildPath "
+                      data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}NgsildPath "
                       name="setNgsildPath"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}NgsildPath "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}NgsildPath "
                       name="setNgsildPath"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildPath valueNgsildPath classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}NgsildPath "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath valueNgsildPath classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}NgsildPath "
                       name="ngsildPath"
     {%- endif %}
   {%- endif %}
@@ -464,15 +501,15 @@ The NGSILD-Path or Fiware-ServicePath"
 The NGSILD context URL for @context data"
                       id="{{classApiMethodMethod}}_ngsildContext"
   {%- if "Page" == classApiMethodMethod %}
-                      data-gpuDeviceId={{ result.gpuDeviceId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}NgsildContext "
+                      data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}NgsildContext "
                       name="setNgsildContext"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}NgsildContext "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}NgsildContext "
                       name="setNgsildContext"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildContext valueNgsildContext classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}NgsildContext "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext valueNgsildContext classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}NgsildContext "
                       name="ngsildContext"
     {%- endif %}
   {%- endif %}
@@ -501,15 +538,15 @@ The NGSILD context URL for @context data"
 The NGSILD data with @context from the context broker"
                       id="{{classApiMethodMethod}}_ngsildData"
   {%- if "Page" == classApiMethodMethod %}
-                      data-gpuDeviceId={{ result.gpuDeviceId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}NgsildData "
+                      data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}NgsildData "
                       name="setNgsildData"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}NgsildData "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}NgsildData "
                       name="setNgsildData"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildData valueNgsildData classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}NgsildData "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData valueNgsildData classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}NgsildData "
                       name="ngsildData"
     {%- endif %}
   {%- endif %}
@@ -538,15 +575,15 @@ The NGSILD data with @context from the context broker"
 Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
                       id="{{classApiMethodMethod}}_location"
   {%- if "Page" == classApiMethodMethod %}
-                      data-gpuDeviceId={{ result.gpuDeviceId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_location setLocation classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}Location "
+                      data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}Location "
                       name="setLocation"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_location setLocation classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}Location "
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}Location "
                       name="setLocation"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_location valueLocation classGpuDevice inputGpuDevice{{ result.gpuDeviceId }}Location "
+                      class="label-on-left {{classApiMethodMethod}}_location valueLocation classGpuDevice inputGpuDevice{{ result.gpuDeviceResource }}Location "
                       name="location"
     {%- endif %}
   {%- endif %}
@@ -564,7 +601,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                             {{ inputLocationGpuDevicePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
 
-{%- macro htmButton_patchGpuDevice() %}<wa-button variant="brand" id="htmButton_patchGpuDevice" data-gpuDeviceId={{ result.gpuDeviceId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
+{%- macro htmButton_patchGpuDevice() %}<wa-button variant="brand" id="htmButton_patchGpuDevice" data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}><wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-edit "></wa-icon>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchGpuDevice() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_patchGpuDevice" duration="5000" closable class="wa-header-l ">
@@ -578,11 +615,21 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- macro htmForm_patchGpuDevice() %}
         <wa-dialog with-header with-footer style="--width: 50vw; " id="patchGpuDeviceDialog" label="Modify GPU device">
           <form id="htmForm_patchGpuDevice" class="round-row primary-smart-border-radius ">
-            <wa-details open class="HtmRow" id="gpu-device-details">
+            <wa-details open class="HtmRow" id="ai-node-details">
               <div slot="summary">
-                <span>GPU device details</span>
+                <span>AI node details</span>
               </div>
               <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmHubIdGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmHubIdGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmHubIdGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
 
               {%- if "PATCH" in scopes %}
                 {{ htmClusterNameGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
@@ -605,16 +652,6 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmDescriptionGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmDescriptionGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmDescriptionGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
                 {{ htmGpuDeviceNumberGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -625,12 +662,12 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmIdGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmDescriptionGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
-                  {{ htmIdGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                  {{ htmDescriptionGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
-                  {{ htmIdGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                  {{ htmDescriptionGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -651,7 +688,22 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
               </div>
+            </wa-details>
+            <wa-details class="HtmRow" id="ngsi-ld-data">
+              <div slot="summary">
+                <span>NGSI-LD data</span>
+              </div>
               <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmIdGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmIdGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmIdGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
 
               {%- if "PATCH" in scopes %}
                 {{ htmNgsildTenantGpuDevicePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
@@ -711,7 +763,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_postGpuDevice() %}<wa-button variant="brand" id="htmButton_postGpuDevice" data-gpuDeviceId={{ result.gpuDeviceId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
+{%- macro htmButton_postGpuDevice() %}<wa-button variant="brand" id="htmButton_postGpuDevice" data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}><wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></wa-icon>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postGpuDevice() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_postGpuDevice" duration="5000" closable class="wa-header-l ">
@@ -726,11 +778,21 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
         <wa-dialog with-header with-footer style="--width: 50vw; " id="postGpuDeviceDialog" label="Create a GPU device">
           <form id="htmForm_postGpuDevice" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
-            <wa-details open class="HtmRow" id="gpu-device-details">
+            <wa-details open class="HtmRow" id="ai-node-details">
               <div slot="summary">
-                <span>GPU device details</span>
+                <span>AI node details</span>
               </div>
               <div class="grid-with-subgrid-2col ">
+
+              {%- if "POST" in scopes %}
+                {{ htmHubIdGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmHubIdGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmHubIdGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
 
               {%- if "POST" in scopes %}
                 {{ htmClusterNameGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
@@ -753,16 +815,6 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               {%- endif %}
 
               {%- if "POST" in scopes %}
-                {{ htmDescriptionGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmDescriptionGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmDescriptionGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "POST" in scopes %}
                 {{ htmGpuDeviceNumberGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -773,12 +825,12 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               {%- endif %}
 
               {%- if "POST" in scopes %}
-                {{ htmIdGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmDescriptionGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
-                  {{ htmIdGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                  {{ htmDescriptionGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
-                  {{ htmIdGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                  {{ htmDescriptionGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -799,7 +851,22 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
               </div>
+            </wa-details>
+            <wa-details class="HtmRow" id="ngsi-ld-data">
+              <div slot="summary">
+                <span>NGSI-LD data</span>
+              </div>
               <div class="grid-with-subgrid-2col ">
+
+              {%- if "POST" in scopes %}
+                {{ htmIdGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmIdGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmIdGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
 
               {%- if "POST" in scopes %}
                 {{ htmNgsildTenantGpuDevicePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
@@ -859,7 +926,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_deleteGpuDevice() %}<wa-button variant="brand" id="htmButton_deleteGpuDevice" data-gpuDeviceId={{ result.gpuDeviceId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
+{%- macro htmButton_deleteGpuDevice() %}<wa-button variant="brand" id="htmButton_deleteGpuDevice" data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}><wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></wa-icon>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteGpuDevice() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_deleteGpuDevice" duration="5000" closable class="wa-header-l ">
@@ -878,7 +945,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_putimportGpuDevice() %}<wa-button variant="brand" id="htmButton_putimportGpuDevice" data-gpuDeviceId={{ result.gpuDeviceId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
+{%- macro htmButton_putimportGpuDevice() %}<wa-button variant="brand" id="htmButton_putimportGpuDevice" data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}><wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-import "></wa-icon>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportGpuDevice() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_putimportGpuDevice" duration="5000" closable class="wa-header-l ">
@@ -896,7 +963,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               <wa-textarea
                   class="PUTImport_searchList "
                   style="height: 300px; "
-                  placeholder="{ 'searchList': [ { 'gpuDeviceId': ... , 'saves': [ ... ] }, ... ] }"
+                  placeholder="{ 'searchList': [ { 'gpuDeviceResource': ... , 'saves': [ ... ] }, ... ] }"
                   >
               </wa-textarea>
             </div>
@@ -968,11 +1035,21 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               {%- endif %}
               </div>
             </wa-details>
-            <wa-details open class="HtmRow" id="gpu-device-details">
+            <wa-details open class="HtmRow" id="ai-node-details">
               <div slot="summary">
-                <span>GPU device details</span>
+                <span>AI node details</span>
               </div>
               <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmHubIdGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmHubIdGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmHubIdGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
 
               {%- if "PATCH" in scopes %}
                 {{ htmClusterNameGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
@@ -995,16 +1072,6 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmDescriptionGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmDescriptionGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmDescriptionGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
                 {{ htmGpuDeviceNumberGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1015,12 +1082,12 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmIdGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmDescriptionGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
-                  {{ htmIdGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                  {{ htmDescriptionGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
-                  {{ htmIdGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                  {{ htmDescriptionGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -1041,7 +1108,22 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                 {%- endif %}
               {%- endif %}
               </div>
+            </wa-details>
+            <wa-details class="HtmRow" id="ngsi-ld-data">
+              <div slot="summary">
+                <span>NGSI-LD data</span>
+              </div>
               <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmIdGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmIdGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmIdGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
 
               {%- if "PATCH" in scopes %}
                 {{ htmNgsildTenantGpuDevicePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
@@ -1100,7 +1182,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
         </div>
 {%- endmacro %}
 
-{%- macro htmButton_deletefilterGpuDevice() %}<wa-button variant="brand" id="htmButton_deletefilterGpuDevice" data-gpuDeviceId={{ result.gpuDeviceId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
+{%- macro htmButton_deletefilterGpuDevice() %}<wa-button variant="brand" id="htmButton_deletefilterGpuDevice" data-gpuDeviceResource={{ result.gpuDeviceResource | tojson }}><wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></wa-icon>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterGpuDevice() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_deletefilterGpuDevice" duration="5000" closable class="wa-header-l ">
@@ -1125,16 +1207,16 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
                 <wa-button variant="brand" id="refreshThisGpuDeviceGenPage"
-                     onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'gpuDeviceId:{{ result.gpuDeviceId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisGpuDeviceGenPage')); }, function() { addError(document.querySelector('#refreshThisGpuDeviceGenPage')); }); return false; ">
-                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
+                     onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'gpuDeviceResource:{{ result.gpuDeviceResource }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisGpuDeviceGenPage')); }, function() { addError(document.querySelector('#refreshThisGpuDeviceGenPage')); }); return false; ">
+                  <wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></wa-icon>
                   refresh
                 </wa-button>
     {% endif %}
     {% if resultCount > 0 %}
-                <wa-button variant="brand" id="refreshAllGpuDeviceGenPage{{ result.gpuDeviceId | e }}"
-                     onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllGpuDeviceGenPage{{ result.gpuDeviceId | e }}')); }, function() { addError(document.querySelector('#refreshAllGpuDeviceGenPage{{ result.gpuDeviceId | e }}')); }); "
+                <wa-button variant="brand" id="refreshAllGpuDeviceGenPage{{ result.gpuDeviceResource | e }}"
+                     onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllGpuDeviceGenPage{{ result.gpuDeviceResource | e }}')); }, function() { addError(document.querySelector('#refreshAllGpuDeviceGenPage{{ result.gpuDeviceResource | e }}')); }); "
                     >
-                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
+                  <wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></wa-icon>
                   Refresh all 
                 </wa-button>
     {% endif %}

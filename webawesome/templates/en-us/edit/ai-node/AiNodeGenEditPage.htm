@@ -27,6 +27,8 @@
     <script src="{{staticBaseUrl}}/js/en-us/search/ai-node/AiNode.js"></script>
     <script type="module" src="{{staticBaseUrl}}/js/en-us/search/ai-node/AiNodeSearchPage.js"></script>
     <script type="module" src="{{staticBaseUrl}}/js/en-us/search/ai-node/AiNodeEditPage.js"></script>
+    <script src="{{staticBaseUrl}}/js/en-us/search/hub/Hub.js"></script>
+    <script src="{{staticBaseUrl}}/js/en-us/search/cluster/Cluster.js"></script>
 {%- endblock htmScriptsAiNodePage %}
 {%- endblock htmScriptsPageLayout %}
 
@@ -34,7 +36,7 @@
 {%- block htmScriptAiNodePage %}
     <script>
 
-      function jsWebsocketAiNode(nodeId, vars, $response) {
+      function jsWebsocketAiNode(nodeResource, vars, $response) {
 {%- block jsWebsocketAiNodePage %}{%- endblock %}
       }
 
@@ -143,9 +145,9 @@
         , customElements.whenDefined('wa-input')
       ]).then(() => {
 
-        var nodeId = {% if result.nodeId is defined %}{{ result.nodeId | tojson }}{% else %}null{% endif %};
+        var nodeResource = {% if result.nodeResource is defined %}{{ result.nodeResource | tojson }}{% else %}null{% endif %};
 
-        if(nodeId == null) {
+        if(nodeResource == null) {
           document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
             document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
             document.querySelector('#site-results-grid').classList.add('grid-mode-details');
@@ -162,7 +164,59 @@
           var o = document.querySelector('.pageForm .result')?.value;
           if(o)
             window.result = JSON.parse(o);
-        {% if result.nodeId is defined %}
+        {% if result.nodeResource is defined %}
+          function relate_hubResource(event) {
+            suggestAiNodeHubResource(
+                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + event.target.value }
+                , { 'name': 'rows', 'value': '10' }
+                , { 'name': 'fl', 'value': 'classCanonicalName,hubResource,pk,editPage,objectTitle' } ] : [{%- if result.hubResource is defined %}{'name':'fq','value':'hubResource:{{ result.hubResource }}'}{%- else %}{%- endif %}]
+                , document.querySelector('#' + event.target.getAttribute('data-list'))
+                , window.result.nodeResource
+                , window.result.hubResource
+                , true
+                );
+          }
+          document.querySelector('#POST_hubResource')?.addEventListener('input', relate_hubResource);
+          document.querySelector('#POST_hubResource')?.addEventListener('focus', relate_hubResource);
+          document.querySelector('#PATCH_hubResource')?.addEventListener('input', relate_hubResource);
+          document.querySelector('#PATCH_hubResource')?.addEventListener('focus', relate_hubResource);
+          document.querySelector('#Page_hubResource')?.addEventListener('input', relate_hubResource);
+          document.querySelector('#Page_hubResource')?.addEventListener('focus', relate_hubResource);
+          {% if "PATCH" in scopes %}
+          suggestAiNodeHubResource([{'name':'fq','value':'hubResource:' + window.result.hubResource}], document.querySelector('#listAiNodeHubResource_Page'), window.result.nodeResource, window.result.hubResource, true);
+          {% else %}
+          {% if "GET" in scopes %}
+          suggestAiNodeHubResource([{'name':'fq','value':'hubResource:' + window.result.hubResource}], document.querySelector('#listAiNodeHubResource_Page'), window.result.nodeResource, window.result.hubResource, true);
+          {% else %}
+          suggestAiNodeHubResource([{'name':'fq','value':'hubResource:' + window.result.hubResource}], document.querySelector('#listAiNodeHubResource_Page'), window.result.nodeResource, window.result.hubResource, false);
+          {% endif %}
+          {% endif %}
+          function relate_clusterResource(event) {
+            suggestAiNodeClusterResource(
+                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + event.target.value }
+                , { 'name': 'rows', 'value': '10' }
+                , { 'name': 'fl', 'value': 'classCanonicalName,clusterResource,pk,editPage,objectTitle' } ] : [{%- if result.clusterResource is defined %}{'name':'fq','value':'clusterResource:{{ result.clusterResource }}'}{%- else %}{%- endif %}]
+                , document.querySelector('#' + event.target.getAttribute('data-list'))
+                , window.result.nodeResource
+                , window.result.clusterResource
+                , true
+                );
+          }
+          document.querySelector('#POST_clusterResource')?.addEventListener('input', relate_clusterResource);
+          document.querySelector('#POST_clusterResource')?.addEventListener('focus', relate_clusterResource);
+          document.querySelector('#PATCH_clusterResource')?.addEventListener('input', relate_clusterResource);
+          document.querySelector('#PATCH_clusterResource')?.addEventListener('focus', relate_clusterResource);
+          document.querySelector('#Page_clusterResource')?.addEventListener('input', relate_clusterResource);
+          document.querySelector('#Page_clusterResource')?.addEventListener('focus', relate_clusterResource);
+          {% if "PATCH" in scopes %}
+          suggestAiNodeClusterResource([{'name':'fq','value':'clusterResource:' + window.result.clusterResource}], document.querySelector('#listAiNodeClusterResource_Page'), window.result.nodeResource, window.result.clusterResource, true);
+          {% else %}
+          {% if "GET" in scopes %}
+          suggestAiNodeClusterResource([{'name':'fq','value':'clusterResource:' + window.result.clusterResource}], document.querySelector('#listAiNodeClusterResource_Page'), window.result.nodeResource, window.result.clusterResource, true);
+          {% else %}
+          suggestAiNodeClusterResource([{'name':'fq','value':'clusterResource:' + window.result.clusterResource}], document.querySelector('#listAiNodeClusterResource_Page'), window.result.nodeResource, window.result.clusterResource, false);
+          {% endif %}
+          {% endif %}
         {% endif %}
         }
         var l = document.querySelector('.pageForm .listAiNode')?.value;
@@ -194,7 +248,7 @@
         });
         document.querySelector('#htmFormButton_patchAiNode')?.addEventListener('click', event => {
           event.preventDefault();
-          patchAiNode(null, document.querySelector('#htmForm_patchAiNode'), document.querySelector('#htmFormButton_patchAiNode'), event.target.getAttribute('data-nodeId'));
+          patchAiNode(null, document.querySelector('#htmForm_patchAiNode'), document.querySelector('#htmFormButton_patchAiNode'), event.target.getAttribute('data-nodeResource'));
           return false;
         });
 
@@ -218,7 +272,7 @@
         });
         document.querySelector('#htmFormButton_deleteAiNode')?.addEventListener('click', event => {
           event.preventDefault();
-          deleteAiNode(event.target, event.target.getAttribute('data-nodeId'));
+          deleteAiNode(event.target, event.target.getAttribute('data-nodeResource'));
           return false;
         });
 
@@ -319,8 +373,8 @@
 {% endif %}
 {%- block htmFormAiNodePage %}
           <form action="/en-us/api/ai-node" id="AiNodeForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-{% if result.nodeId is defined %}
-            <input name="nodeId" class="valueNodeId" type="hidden" value="{{ result.nodeId }}"/>
+{% if result.nodeResource is defined %}
+            <input name="nodeResource" class="valueNodeResource" type="hidden" value="{{ result.nodeResource }}"/>
             {% endif %}
             <input name="focusId" type="hidden"/>
             <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>

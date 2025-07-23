@@ -71,6 +71,10 @@ Promise.all([
     sort('BareMetalOrder', 'status', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortBareMetalOrder_saves')?.addEventListener('change', (event) => {
+    sort('BareMetalOrder', 'saves', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortBareMetalOrder_classCanonicalName')?.addEventListener('change', (event) => {
     sort('BareMetalOrder', 'classCanonicalName', event.currentTarget.value);
   });
@@ -91,16 +95,20 @@ Promise.all([
     sort('BareMetalOrder', 'userKey', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalOrder_saves')?.addEventListener('change', (event) => {
-    sort('BareMetalOrder', 'saves', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortBareMetalOrder_objectTitle')?.addEventListener('change', (event) => {
     sort('BareMetalOrder', 'objectTitle', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortBareMetalOrder_solrId')?.addEventListener('change', (event) => {
+    sort('BareMetalOrder', 'solrId', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortBareMetalOrder_displayPage')?.addEventListener('change', (event) => {
     sort('BareMetalOrder', 'displayPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortBareMetalOrder_networkName')?.addEventListener('change', (event) => {
+    sort('BareMetalOrder', 'networkName', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortBareMetalOrder_editPage')?.addEventListener('change', (event) => {
@@ -117,14 +125,6 @@ Promise.all([
 
   document.querySelector('#pageFacetSortBareMetalOrder_objectSuggest')?.addEventListener('change', (event) => {
     sort('BareMetalOrder', 'objectSuggest', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortBareMetalOrder_objectText')?.addEventListener('change', (event) => {
-    sort('BareMetalOrder', 'objectText', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortBareMetalOrder_solrId')?.addEventListener('change', (event) => {
-    sort('BareMetalOrder', 'solrId', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchBareMetalOrder')?.addEventListener('click', (event) => {

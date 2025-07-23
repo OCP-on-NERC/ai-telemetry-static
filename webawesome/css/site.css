@@ -590,3 +590,29 @@ main, footer {
 .SearchButtons_Search, .SearchButtons_Sort, .SearchButtons_Range, .SearchButtons_Pivot, .SearchButtons_FieldList, .SearchButtons_Stats {
   display: none;
 }
+
+#site-results-grid {
+  display: grid;
+  gap: var(--site-secondary-space);
+  background-color: var(--wa-color-surface-lowered);
+  > * {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: span var(--site-results-number-of-columns);
+    align-items: center;
+    /* background-color: var(--wa-color-surface-raised); */
+    /* &:not(:first-child) {
+      padding-inline-start: var(--wa-space-m);
+    } */
+    @media (max-width:767px) {
+      grid-column: span 1;
+    }
+  }
+  a {
+    text-decoration: initial;
+    background-color: var(--wa-color-surface-raised);
+    border-radius: var(--wa-border-radius-m);
+
+    padding: var(--wa-space-xs) var(--wa-space-s);
+  }
+}

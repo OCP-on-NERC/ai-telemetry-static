@@ -27,6 +27,9 @@
 {%- block htmScriptsGpuDevicePage %}
     <script src="{{staticBaseUrl}}/js/en-us/search/gpu-device/GpuDevice.js"></script>
     <script type="module" src="{{staticBaseUrl}}/js/en-us/search/gpu-device/GpuDeviceSearchPage.js"></script>
+    <script src="{{staticBaseUrl}}/js/en-us/search/hub/Hub.js"></script>
+    <script src="{{staticBaseUrl}}/js/en-us/search/cluster/Cluster.js"></script>
+    <script src="{{staticBaseUrl}}/js/en-us/search/ai-node/AiNode.js"></script>
 {%- endblock htmScriptsGpuDevicePage %}
 {%- endblock htmScriptsPageLayout %}
 
@@ -34,7 +37,7 @@
 {%- block htmScriptGpuDevicePage %}
     <script>
 
-      function jsWebsocketGpuDevice(gpuDeviceId, vars, $response) {
+      function jsWebsocketGpuDevice(gpuDeviceResource, vars, $response) {
 {%- block jsWebsocketGpuDevicePage %}{%- endblock %}
       }
 
@@ -44,7 +47,7 @@
 
       function htmTooltipGpuDevice(feature, layer) {
         return `{%- block htmTooltipGpuDevicePage %}
-<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
+<h3><wa-icon class="{{ classIconCssClasses }}  "></wa-icon><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipGpuDevicePage %}`;
       }
 
@@ -79,7 +82,7 @@
         htm += `{%- block htmLegendGpuDevicePage %}
     <div title="${quoteattr(title)}">
     <div style="width: 20px; ">
-      <i class="{{ FONTAWESOME_STYLE }} fa-circle" style="color: ${color}; "></i>
+      <wa-icon class="{{ FONTAWESOME_STYLE }} fa-circle" style="color: ${color}; "></wa-icon>
     </div>
     <div class="text-overflow-ellipsis ">
       <span class="" data-solrId="${result.solrId}" onclick="window.mapLayers[this.getAttribute('data-solrId')].openPopup(); return false;" href="">${title}</span>
@@ -143,9 +146,57 @@
         , customElements.whenDefined('wa-input')
       ]).then(() => {
 
-        var gpuDeviceId = {% if result.gpuDeviceId is defined %}{{ result.gpuDeviceId | tojson }}{% else %}null{% endif %};
+        var gpuDeviceResource = {% if result.gpuDeviceResource is defined %}{{ result.gpuDeviceResource | tojson }}{% else %}null{% endif %};
 
-        if(gpuDeviceId == null) {
+          function relate_hubResource(event) {
+            suggestGpuDeviceHubResource(
+                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + event.target.value }
+                , { 'name': 'rows', 'value': '10' }
+                , { 'name': 'fl', 'value': 'classCanonicalName,hubResource,pk,editPage,objectTitle' } ] : [{%- if result.hubResource is defined %}{'name':'fq','value':'hubResource:{{ result.hubResource }}'}{%- else %}{%- endif %}]
+                , document.querySelector('#' + event.target.getAttribute('data-list'))
+                , null
+                , null
+                , true
+                , this
+                );
+          }
+          document.querySelector('#POST_hubResource')?.addEventListener('input', relate_hubResource);
+          document.querySelector('#POST_hubResource')?.addEventListener('focus', relate_hubResource);
+          document.querySelector('#PATCH_hubResource')?.addEventListener('input', relate_hubResource);
+          document.querySelector('#PATCH_hubResource')?.addEventListener('focus', relate_hubResource);
+          function relate_clusterResource(event) {
+            suggestGpuDeviceClusterResource(
+                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + event.target.value }
+                , { 'name': 'rows', 'value': '10' }
+                , { 'name': 'fl', 'value': 'classCanonicalName,clusterResource,pk,editPage,objectTitle' } ] : [{%- if result.clusterResource is defined %}{'name':'fq','value':'clusterResource:{{ result.clusterResource }}'}{%- else %}{%- endif %}]
+                , document.querySelector('#' + event.target.getAttribute('data-list'))
+                , null
+                , null
+                , true
+                , this
+                );
+          }
+          document.querySelector('#POST_clusterResource')?.addEventListener('input', relate_clusterResource);
+          document.querySelector('#POST_clusterResource')?.addEventListener('focus', relate_clusterResource);
+          document.querySelector('#PATCH_clusterResource')?.addEventListener('input', relate_clusterResource);
+          document.querySelector('#PATCH_clusterResource')?.addEventListener('focus', relate_clusterResource);
+          function relate_nodeResource(event) {
+            suggestGpuDeviceNodeResource(
+                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + event.target.value }
+                , { 'name': 'rows', 'value': '10' }
+                , { 'name': 'fl', 'value': 'classCanonicalName,nodeResource,pk,editPage,objectTitle' } ] : [{%- if result.nodeResource is defined %}{'name':'fq','value':'nodeResource:{{ result.nodeResource }}'}{%- else %}{%- endif %}]
+                , document.querySelector('#' + event.target.getAttribute('data-list'))
+                , null
+                , null
+                , true
+                , this
+                );
+          }
+          document.querySelector('#POST_nodeResource')?.addEventListener('input', relate_nodeResource);
+          document.querySelector('#POST_nodeResource')?.addEventListener('focus', relate_nodeResource);
+          document.querySelector('#PATCH_nodeResource')?.addEventListener('input', relate_nodeResource);
+          document.querySelector('#PATCH_nodeResource')?.addEventListener('focus', relate_nodeResource);
+        if(gpuDeviceResource == null) {
           document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
             document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
             document.querySelector('#site-results-grid').classList.add('grid-mode-details');
@@ -162,7 +213,7 @@
           var o = document.querySelector('.pageForm .result')?.value;
           if(o)
             window.result = JSON.parse(o);
-        {% if result.gpuDeviceId is defined %}
+        {% if result.gpuDeviceResource is defined %}
         {% endif %}
         }
         var l = document.querySelector('.pageForm .listGpuDevice')?.value;
@@ -194,7 +245,7 @@
         });
         document.querySelector('#htmFormButton_patchGpuDevice')?.addEventListener('click', event => {
           event.preventDefault();
-          patchGpuDevice(null, document.querySelector('#htmForm_patchGpuDevice'), document.querySelector('#htmFormButton_patchGpuDevice'), event.target.getAttribute('data-gpuDeviceId'));
+          patchGpuDevice(null, document.querySelector('#htmForm_patchGpuDevice'), document.querySelector('#htmFormButton_patchGpuDevice'), event.target.getAttribute('data-gpuDeviceResource'));
           return false;
         });
 
@@ -218,7 +269,7 @@
         });
         document.querySelector('#htmFormButton_deleteGpuDevice')?.addEventListener('click', event => {
           event.preventDefault();
-          deleteGpuDevice(event.target, event.target.getAttribute('data-gpuDeviceId'));
+          deleteGpuDevice(event.target, event.target.getAttribute('data-gpuDeviceResource'));
           return false;
         });
 
@@ -326,15 +377,28 @@
 {% include en-us/search/gpu-device/GpuDevicePaginationButtons.htm %}
                 <div class="card-like-thing background-color-surface-border" id="site-results-grid">
                   <div>
+              <wa-dropdown id="htmDropdown-hubId">
+                <wa-button variant="brand" slot="trigger" caret>ACM Hub</wa-button>
+                <wa-menu>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortGpuDevice_hubId'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-GpuDevice').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-hubId-asc">
+                    <wa-icon class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></wa-icon>
+                    sort by ACM Hub ascending
+                  </wa-menu-item>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortGpuDevice_hubId'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-GpuDevice').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-hubId-desc">
+                    <wa-icon class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></wa-icon>
+                    sort by ACM Hub descending
+                  </wa-menu-item>
+                </wa-menu>
+              </wa-dropdown>
               <wa-dropdown id="htmDropdown-clusterName">
                 <wa-button variant="brand" slot="trigger" caret>cluster name</wa-button>
                 <wa-menu>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortGpuDevice_clusterName'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-GpuDevice').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-clusterName-asc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                    <wa-icon class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></wa-icon>
                     sort by cluster name ascending
                   </wa-menu-item>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortGpuDevice_clusterName'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-GpuDevice').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-clusterName-desc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                    <wa-icon class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></wa-icon>
                     sort by cluster name descending
                   </wa-menu-item>
                 </wa-menu>
@@ -343,25 +407,12 @@
                 <wa-button variant="brand" slot="trigger" caret>node name</wa-button>
                 <wa-menu>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortGpuDevice_nodeName'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-GpuDevice').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-nodeName-asc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                    <wa-icon class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></wa-icon>
                     sort by node name ascending
                   </wa-menu-item>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortGpuDevice_nodeName'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-GpuDevice').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-nodeName-desc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                    <wa-icon class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></wa-icon>
                     sort by node name descending
-                  </wa-menu-item>
-                </wa-menu>
-              </wa-dropdown>
-              <wa-dropdown id="htmDropdown-description">
-                <wa-button variant="brand" slot="trigger" caret>description</wa-button>
-                <wa-menu>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortGpuDevice_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-GpuDevice').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-description-asc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
-                    sort by description ascending
-                  </wa-menu-item>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortGpuDevice_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-GpuDevice').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-description-desc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
-                    sort by description descending
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
@@ -369,11 +420,11 @@
                 <wa-button variant="brand" slot="trigger" caret>GPU device number</wa-button>
                 <wa-menu>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortGpuDevice_gpuDeviceNumber'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-GpuDevice').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-gpuDeviceNumber-asc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                    <wa-icon class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></wa-icon>
                     sort by GPU device number ascending
                   </wa-menu-item>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortGpuDevice_gpuDeviceNumber'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-GpuDevice').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-gpuDeviceNumber-desc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                    <wa-icon class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></wa-icon>
                     sort by GPU device number descending
                   </wa-menu-item>
                 </wa-menu>
@@ -383,28 +434,28 @@
                   <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-regular fa-memory"></i>
+              <span>{{ item.hubId | e }}
+</span>              </a>
+              <a href="{{ item.displayPage }}">
               <span>{{ item.clusterName | e }}
 </span>              </a>
               <a href="{{ item.displayPage }}">
               <span>{{ item.nodeName | e }}
 </span>              </a>
               <a href="{{ item.displayPage }}">
-              <span class="white-space-pre-wrap ">{{ item.description | e }}
-</span>              </a>
-              <a href="{{ item.displayPage }}">
               <span>{{ item.gpuDeviceNumber | e }}
 </span>              </a>
                   </div>
                   {% endfor %}
+              {% if getColumnHubId is defined %}
+                <div>
+                </div>
+              {% endif %}
               {% if getColumnClusterName is defined %}
                 <div>
                 </div>
               {% endif %}
               {% if getColumnNodeName is defined %}
-                <div>
-                </div>
-              {% endif %}
-              {% if getColumnDescription is defined %}
                 <div>
                 </div>
               {% endif %}

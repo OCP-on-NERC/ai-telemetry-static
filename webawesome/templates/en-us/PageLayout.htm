@@ -94,12 +94,13 @@
             </a>
           </div>
           <wa-tooltip for="site-aside-left-model-button-SitePage" placement="right" hoist>Read the latest articles to learn more</wa-tooltip>
-          <wa-tooltip for="site-aside-left-model-button-AiCluster" placement="right" hoist>A Red Hat OpenShift cluster containing GPUs</wa-tooltip>
+          <wa-tooltip for="site-aside-left-model-button-Cluster" placement="right" hoist>A Red Hat OpenShift cluster containing GPUs</wa-tooltip>
+          <wa-tooltip for="site-aside-left-model-button-Tenant" placement="right" hoist>A partner or tenant organization running a Red Hat ACM Hub cluster. </wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-AiNode" placement="right" hoist>A Red Hat OpenShift node containing GPUs</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-GpuDevice" placement="right" hoist>A Red Hat OpenShift GPU device containing GPUs</wa-tooltip>
-          <wa-tooltip for="site-aside-left-model-button-AiProject" placement="right" hoist>A research project using AI and GPUs</wa-tooltip>
-          <wa-tooltip for="site-aside-left-model-button-ClusterTemplate" placement="right" hoist>An OpenShift cluster template</wa-tooltip>
+          <wa-tooltip for="site-aside-left-model-button-Project" placement="right" hoist>A research project using AI and GPUs</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-ClusterOrder" placement="right" hoist>Manage your own Red Hat OpenShift cluster in the cloud. </wa-tooltip>
+          <wa-tooltip for="site-aside-left-model-button-ClusterTemplate" placement="right" hoist>An OpenShift cluster template</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-ManagedCluster" placement="right" hoist>An OpenShift tenant cluster</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-BareMetalResourceClass" placement="right" hoist>A bare metal resource class</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-ClusterRequest" placement="right" hoist>An OpenShift cluster request</wa-tooltip>
@@ -120,11 +121,11 @@
                 <wa-tooltip for="site-button-logout" placement="right">sign out</wa-tooltip>
                 <div>
                   <wa-button id="site-button-user-page" variant="brand" href="{{ SITE_BASE_URL }}/en-us/edit/user/{{ userId }}" label="see or change your user profile">
-                    <i slot="prefix" class="fa-duotone fa-regular  fa-house-user"></i>
+                    <wa-icon slot="start" class="fa-regular fa-regular  fa-house-user"></wa-icon>
                     <span>my user page</span>
                   </wa-button>
                   <wa-button id="site-button-logout" variant="brand" href="{{ logoutUrl }}" label="sign out">
-                    <i slot="prefix" class="fa-duotone fa-regular  fa-person-from-portal"></i>
+                    <wa-icon slot="start" class="fa-regular fa-regular  fa-person-from-portal"></wa-icon>
                     <span>sign out</span>
                   </wa-button>
                 </div>
@@ -143,35 +144,44 @@
               </wa-details>
 {%- else %}
               <wa-button variant="brand" href="{{ SITE_BASE_URL }}/en-us/search/user">
-                <i class="fa-duotone fa-regular  fa-person-to-portal"></i> login
+                <wa-icon class="fa-regular fa-regular  fa-person-to-portal"></wa-icon> login
               </wa-button>
 {%- endif %}
             </div>
           <div class="wa-stack ">
               <wa-button style="width: 100%; " variant="brand" id="site-aside-left-model-button-SitePage" href="{{ SITE_BASE_URL }}/en-us/search/article">
-                <i class="fa-duotone fa-solid fa-newspaper"></i>
+                <wa-icon class="fa-regular fa-newspaper"></wa-icon>
                 articles
               </wa-button>
+
+            <wa-details summary="ACM Hubs" open="true" class="wa-stack ">
+              <div class="wa-stack ">
+                <wa-button variant="brand" id="site-aside-left-model-button-Tenant" href="{{ SITE_BASE_URL }}/en-us/search/hub">
+                  <wa-icon class="fa-regular fa-sitemap"></wa-icon>
+                  ACM hubs
+                </wa-button>
+              </div>
+            </wa-details>
 {% if ENABLE_FEATURE_OBSERVABILITY %}
 
             <wa-details summary="AI Telemetry" open="true" class="wa-stack ">
               <div class="wa-stack ">
-                <wa-button variant="brand" id="site-aside-left-model-button-AiCluster" href="{{ SITE_BASE_URL }}/en-us/search/ai-cluster">
-                  <i class="fa-regular fa-server"></i>
-                  AI clusters
-                </wa-button>
+                <wa-button variant="brand" id="site-aside-left-model-button-Cluster" href="{{ SITE_BASE_URL }}/en-us/search/cluster">
+                <wa-icon class="fa-regular fa-server"></wa-icon>
+                clusters
+              </wa-button>
                   <wa-button variant="brand" id="site-aside-left-model-button-AiNode" href="{{ SITE_BASE_URL }}/en-us/search/ai-node">
-                  <i class="fa-regular fa-computer"></i>
-                  AI nodes
-                </wa-button>
+                <wa-icon class="fa-regular fa-computer"></wa-icon>
+                AI nodes
+              </wa-button>
                   <wa-button variant="brand" id="site-aside-left-model-button-GpuDevice" href="{{ SITE_BASE_URL }}/en-us/search/gpu-device">
-                  <i class="fa-regular fa-memory"></i>
-                  GPU devices
-                </wa-button>
-                <wa-button variant="brand" id="site-aside-left-model-button-AiProject" href="{{ SITE_BASE_URL }}/en-us/search/ai-project">
-                  <i class="fa-regular fa-school"></i>
-                  AI projects
-                </wa-button>
+                <wa-icon class="fa-regular fa-memory"></wa-icon>
+                GPU devices
+              </wa-button>
+                <wa-button variant="brand" id="site-aside-left-model-button-Project" href="{{ SITE_BASE_URL }}/en-us/search/project">
+                <wa-icon class="fa-regular fa-school"></wa-icon>
+                projects
+              </wa-button>
               </div>
             </wa-details>
 {% endif %}
@@ -180,25 +190,25 @@
             <wa-details summary="OpenShift clusters" open="true">
               <div class="wa-stack ">
 {% if ENABLE_FEATURE_ORDER_CLUSTER %}
-                <wa-button style="width: 100%; " variant="brand" id="site-aside-left-model-button-ClusterOrder" href="{{ SITE_BASE_URL }}/en-us/search/cluster-order">
-                  <i class="fa-regular fa-server"></i>
+              <wa-button style="width: 100%; " variant="brand" id="site-aside-left-model-button-ClusterOrder" href="{{ SITE_BASE_URL }}/en-us/search/cluster-order">
+                <wa-icon class="fa-regular fa-server"></wa-icon>
                   click here to order cluster
-                </wa-button>
+              </wa-button>
 {% endif %}
                 <wa-button variant="brand" id="site-aside-left-model-button-ClusterTemplate" href="{{ SITE_BASE_URL }}/en-us/search/cluster-template">
-                  <i class="fa-regular fa-server"></i>
+                <wa-icon class="fa-regular fa-server"></wa-icon>
                   view OpenShift cluster templates
-                </wa-button>
+              </wa-button>
 {% if ENABLE_FEATURE_ORDER_CLUSTER %}
                 <wa-button variant="brand" id="site-aside-left-model-button-ClusterOrder" href="{{ SITE_BASE_URL }}/en-us/search/cluster-order">
-                  <i class="fa-regular fa-server"></i>
+                <wa-icon class="fa-regular fa-server"></wa-icon>
                   view OpenShift cluster orders
-                </wa-button>
+              </wa-button>
 {% endif %}
                 <wa-button variant="brand" id="site-aside-left-model-button-ManagedCluster" href="{{ SITE_BASE_URL }}/en-us/search/managed-cluster">
-                  <i class="fa-regular fa-server"></i>
-                  view OpenShift tenant clusters
-                </wa-button>
+                <wa-icon class="fa-regular fa-server"></wa-icon>
+                  view ACM Hub clusters
+              </wa-button>
               </div>
             </wa-details>
 {% endif %}
@@ -208,28 +218,28 @@
               <div class="wa-stack ">
 {% if ENABLE_FEATURE_ORDER_BARE_METAL %}
                 <wa-button style="width: 100%; " variant="brand" id="site-aside-left-model-button-BareMetalOrder" href="{{ SITE_BASE_URL }}/en-us/search/bare-metal-order">
-                  <i class="fa-duotone fa-regular fa-share-nodes"></i>
+                  <wa-icon class="fa-regular fa-regular fa-share-nodes"></wa-icon>
                   click here to order bare metal
                 </wa-button>
 {% endif %}
                 <wa-button variant="brand" id="site-aside-left-model-button-BareMetalResourceClass" href="{{ SITE_BASE_URL }}/en-us/search/bare-metal-resource-class">
-                  <i class="fa-regular fa-server"></i>
+                <wa-icon class="fa-regular fa-server"></wa-icon>
                   view bare metal resource classes
-                </wa-button>
+              </wa-button>
                 <wa-button variant="brand" id="site-aside-left-model-button-BareMetalNetwork" href="{{ SITE_BASE_URL }}/en-us/search/bare-metal-network">
-                  <i class="fa-duotone fa-regular fa-network-wired"></i>
+                <wa-icon class="fa-regular fa-regular fa-network-wired"></wa-icon>
                   view bare metal networks
-                </wa-button>
+              </wa-button>
 {% if ENABLE_FEATURE_ORDER_BARE_METAL %}
                 <wa-button variant="brand" id="site-aside-left-model-button-BareMetalOrder" href="{{ SITE_BASE_URL }}/en-us/search/bare-metal-order">
-                  <i class="fa-duotone fa-regular fa-share-nodes"></i>
+                <wa-icon class="fa-regular fa-regular fa-share-nodes"></wa-icon>
                   view bare metal orders
                 </wa-button>
 {% endif %}
                 <wa-button variant="brand" id="site-aside-left-model-button-BareMetalNode" href="{{ SITE_BASE_URL }}/en-us/search/bare-metal-node">
-                  <i class="fa-duotone fa-regular fa-hexagon-nodes"></i>
+                  <wa-icon class="fa-regular fa-regular fa-hexagon-nodes"></wa-icon>
                   view bare metal nodes
-                </wa-button>
+              </wa-button>
               </div>
             </wa-details>
 {% endif %}
@@ -240,7 +250,7 @@
         <header slot="header" class="wa-flank margin-block-start ">
           <wa-icon-button data-toggle-nav name="bars" class="nav-toggle-button hide-desktop " label="open menu" appearance="text"></wa-icon-button>
           <wa-input placeholder="search" id="siteSearchInput">
-            <i slot="prefix" class="fa-duotone fa-regular  fa-magnifying-glass"></i>
+            <wa-icon slot="start" class="fa-regular fa-regular  fa-magnifying-glass"></wa-icon>
           </wa-input>
         </header>
         <wa-dropdown id="siteSearchDropdown" class="display-block ">
@@ -258,7 +268,7 @@
           {% if GITHUB_ORG is defined %}
           <a href="https://github.com/{{ GITHUB_ORG }}/{{ SITE_NAME }}/" target="_blank">
             <wa-card>
-              This site is <b><i class="fa-brands fa-github fa-xl"></i> open source</b>
+              This site is <b><wa-icon class="fa-brands fa-github fa-xl"></wa-icon> open source</b>
             </wa-card>
           </a>
           {% endif %}
@@ -270,7 +280,7 @@
           {% if SITE_POWERED_BY_URL is defined %}
           <a href="{{ SITE_POWERED_BY_URL }}" target="_blank" id="footer-powered-by">
             <wa-card>
-              Powered by <i class="fa-brands fa-redhat fa-xl" style="color: #ff0000;"></i> <b>{{ SITE_POWERED_BY_NAME | e }}</b>
+              Powered by <wa-icon class="fa-brands fa-redhat fa-xl" style="color: #ff0000;"></wa-icon> <b>{{ SITE_POWERED_BY_NAME | e }}</b>
             </wa-card>
           </a>
           {% endif %}
