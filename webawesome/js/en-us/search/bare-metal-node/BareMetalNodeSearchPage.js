@@ -59,6 +59,10 @@ Promise.all([
     sort('BareMetalNode', 'nodeResourceClass', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortBareMetalNode_saves')?.addEventListener('change', (event) => {
+    sort('BareMetalNode', 'saves', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortBareMetalNode_classCanonicalName')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'classCanonicalName', event.currentTarget.value);
   });
@@ -79,12 +83,12 @@ Promise.all([
     sort('BareMetalNode', 'userKey', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalNode_saves')?.addEventListener('change', (event) => {
-    sort('BareMetalNode', 'saves', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortBareMetalNode_objectTitle')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'objectTitle', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortBareMetalNode_solrId')?.addEventListener('change', (event) => {
+    sort('BareMetalNode', 'solrId', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortBareMetalNode_displayPage')?.addEventListener('change', (event) => {
@@ -109,10 +113,6 @@ Promise.all([
 
   document.querySelector('#pageFacetSortBareMetalNode_objectText')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'objectText', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortBareMetalNode_solrId')?.addEventListener('change', (event) => {
-    sort('BareMetalNode', 'solrId', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchBareMetalNode')?.addEventListener('click', (event) => {

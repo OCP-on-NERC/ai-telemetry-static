@@ -16,7 +16,7 @@ Promise.all([
               var t = moment(t3);
               if(t) {
                 var s = t.tz(timeZone).format('YYYY-MM-DDTHH:mm:ss.000') + '[' + timeZone + ']';
-                patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
+                patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeResource:' + event.currentTarget.getAttribute('data-nodeResource') }]
                     , 'setCreated', s
                     , event.currentTarget
                     , function(response, target) { addGlow(target); }
@@ -40,7 +40,7 @@ Promise.all([
             if(valid) {
               var confirmResponse = confirm('Are you sure you want to archive that?'); 
               if(confirmResponse) { 
-                patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
+                patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeResource:' + event.currentTarget.getAttribute('data-nodeResource') }]
                     , 'setArchived', !(event.currentTarget.getAttribute('data-val') === 'true')
                     , event.currentTarget
                     , function(response, target) { addGlow(target); }
@@ -57,12 +57,33 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
+          // PATCH hubId
+          document.querySelector('#Page_hubId')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_hubId');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeResource:' + event.currentTarget.getAttribute('data-nodeResource') }]
+                  , 'setHubId', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_hubId')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_hubId')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_hubId');
+            const valid = form.reportValidity();
+          });
+
           // PATCH clusterName
           document.querySelector('#Page_clusterName')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_clusterName');
             const valid = form.checkValidity();
             if(valid) {
-              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
+              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeResource:' + event.currentTarget.getAttribute('data-nodeResource') }]
                   , 'setClusterName', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -83,7 +104,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_nodeName');
             const valid = form.checkValidity();
             if(valid) {
-              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
+              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeResource:' + event.currentTarget.getAttribute('data-nodeResource') }]
                   , 'setNodeName', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -104,7 +125,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_description');
             const valid = form.checkValidity();
             if(valid) {
-              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
+              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeResource:' + event.currentTarget.getAttribute('data-nodeResource') }]
                   , 'setDescription', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -120,33 +141,12 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH nodeId
-          document.querySelector('#Page_nodeId')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_nodeId');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
-                  , 'setNodeId', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_nodeId')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_nodeId')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_nodeId');
-            const valid = form.reportValidity();
-          });
-
           // PATCH id
           document.querySelector('#Page_id')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_id');
             const valid = form.checkValidity();
             if(valid) {
-              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
+              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeResource:' + event.currentTarget.getAttribute('data-nodeResource') }]
                   , 'setId', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -167,7 +167,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_gpuDevicesTotal');
             const valid = form.checkValidity();
             if(valid) {
-              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
+              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeResource:' + event.currentTarget.getAttribute('data-nodeResource') }]
                   , 'setGpuDevicesTotal', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -188,7 +188,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_ngsildTenant');
             const valid = form.checkValidity();
             if(valid) {
-              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
+              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeResource:' + event.currentTarget.getAttribute('data-nodeResource') }]
                   , 'setNgsildTenant', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -209,7 +209,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_ngsildPath');
             const valid = form.checkValidity();
             if(valid) {
-              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
+              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeResource:' + event.currentTarget.getAttribute('data-nodeResource') }]
                   , 'setNgsildPath', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -230,7 +230,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_ngsildContext');
             const valid = form.checkValidity();
             if(valid) {
-              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
+              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeResource:' + event.currentTarget.getAttribute('data-nodeResource') }]
                   , 'setNgsildContext', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -251,7 +251,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_ngsildData');
             const valid = form.checkValidity();
             if(valid) {
-              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
+              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeResource:' + event.currentTarget.getAttribute('data-nodeResource') }]
                   , 'setNgsildData', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
                   , event.currentTarget
                   , function(response, target) { addGlow(target); }
@@ -272,7 +272,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_location');
             const valid = form.checkValidity();
             if(valid) {
-              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
+              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeResource:' + event.currentTarget.getAttribute('data-nodeResource') }]
                   , 'setLocation', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
                   , event.currentTarget
                   , function(response, target) { addGlow(target); }
@@ -288,12 +288,33 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
+          // PATCH displayPage
+          document.querySelector('#Page_displayPage')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_displayPage');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeResource:' + event.currentTarget.getAttribute('data-nodeResource') }]
+                  , 'setDisplayPage', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_displayPage')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_displayPage')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_displayPage');
+            const valid = form.reportValidity();
+          });
+
           // PATCH sessionId
           document.querySelector('#Page_sessionId')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_sessionId');
             const valid = form.checkValidity();
             if(valid) {
-              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
+              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeResource:' + event.currentTarget.getAttribute('data-nodeResource') }]
                   , 'setSessionId', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -314,7 +335,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_userKey');
             const valid = form.checkValidity();
             if(valid) {
-              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
+              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeResource:' + event.currentTarget.getAttribute('data-nodeResource') }]
                   , 'setUserKey', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -335,7 +356,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_objectTitle');
             const valid = form.checkValidity();
             if(valid) {
-              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
+              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeResource:' + event.currentTarget.getAttribute('data-nodeResource') }]
                   , 'setObjectTitle', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -351,24 +372,24 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH displayPage
-          document.querySelector('#Page_displayPage')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_displayPage');
+          // PATCH nodeResource
+          document.querySelector('#Page_nodeResource')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_nodeResource');
             const valid = form.checkValidity();
             if(valid) {
-              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeId:' + event.currentTarget.getAttribute('data-nodeId') }]
-                  , 'setDisplayPage', event.currentTarget.value
+              patchAiNodeVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'nodeResource:' + event.currentTarget.getAttribute('data-nodeResource') }]
+                  , 'setNodeResource', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
           });
-          document.querySelector('#Page_displayPage')?.addEventListener('focus', (event) => {
+          document.querySelector('#Page_nodeResource')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_displayPage')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_displayPage');
+          document.querySelector('#Page_nodeResource')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_nodeResource');
             const valid = form.reportValidity();
           });
 });

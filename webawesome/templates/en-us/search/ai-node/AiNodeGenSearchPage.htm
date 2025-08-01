@@ -27,6 +27,8 @@
 {%- block htmScriptsAiNodePage %}
     <script src="{{staticBaseUrl}}/js/en-us/search/ai-node/AiNode.js"></script>
     <script type="module" src="{{staticBaseUrl}}/js/en-us/search/ai-node/AiNodeSearchPage.js"></script>
+    <script src="{{staticBaseUrl}}/js/en-us/search/hub/Hub.js"></script>
+    <script src="{{staticBaseUrl}}/js/en-us/search/cluster/Cluster.js"></script>
 {%- endblock htmScriptsAiNodePage %}
 {%- endblock htmScriptsPageLayout %}
 
@@ -34,7 +36,7 @@
 {%- block htmScriptAiNodePage %}
     <script>
 
-      function jsWebsocketAiNode(nodeId, vars, $response) {
+      function jsWebsocketAiNode(nodeResource, vars, $response) {
 {%- block jsWebsocketAiNodePage %}{%- endblock %}
       }
 
@@ -143,9 +145,41 @@
         , customElements.whenDefined('wa-input')
       ]).then(() => {
 
-        var nodeId = {% if result.nodeId is defined %}{{ result.nodeId | tojson }}{% else %}null{% endif %};
+        var nodeResource = {% if result.nodeResource is defined %}{{ result.nodeResource | tojson }}{% else %}null{% endif %};
 
-        if(nodeId == null) {
+          function relate_hubResource(event) {
+            suggestAiNodeHubResource(
+                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + event.target.value }
+                , { 'name': 'rows', 'value': '10' }
+                , { 'name': 'fl', 'value': 'classCanonicalName,hubResource,pk,editPage,objectTitle' } ] : [{%- if result.hubResource is defined %}{'name':'fq','value':'hubResource:{{ result.hubResource }}'}{%- else %}{%- endif %}]
+                , document.querySelector('#' + event.target.getAttribute('data-list'))
+                , null
+                , null
+                , true
+                , this
+                );
+          }
+          document.querySelector('#POST_hubResource')?.addEventListener('input', relate_hubResource);
+          document.querySelector('#POST_hubResource')?.addEventListener('focus', relate_hubResource);
+          document.querySelector('#PATCH_hubResource')?.addEventListener('input', relate_hubResource);
+          document.querySelector('#PATCH_hubResource')?.addEventListener('focus', relate_hubResource);
+          function relate_clusterResource(event) {
+            suggestAiNodeClusterResource(
+                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + event.target.value }
+                , { 'name': 'rows', 'value': '10' }
+                , { 'name': 'fl', 'value': 'classCanonicalName,clusterResource,pk,editPage,objectTitle' } ] : [{%- if result.clusterResource is defined %}{'name':'fq','value':'clusterResource:{{ result.clusterResource }}'}{%- else %}{%- endif %}]
+                , document.querySelector('#' + event.target.getAttribute('data-list'))
+                , null
+                , null
+                , true
+                , this
+                );
+          }
+          document.querySelector('#POST_clusterResource')?.addEventListener('input', relate_clusterResource);
+          document.querySelector('#POST_clusterResource')?.addEventListener('focus', relate_clusterResource);
+          document.querySelector('#PATCH_clusterResource')?.addEventListener('input', relate_clusterResource);
+          document.querySelector('#PATCH_clusterResource')?.addEventListener('focus', relate_clusterResource);
+        if(nodeResource == null) {
           document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
             document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
             document.querySelector('#site-results-grid').classList.add('grid-mode-details');
@@ -162,7 +196,7 @@
           var o = document.querySelector('.pageForm .result')?.value;
           if(o)
             window.result = JSON.parse(o);
-        {% if result.nodeId is defined %}
+        {% if result.nodeResource is defined %}
         {% endif %}
         }
         var l = document.querySelector('.pageForm .listAiNode')?.value;
@@ -194,7 +228,7 @@
         });
         document.querySelector('#htmFormButton_patchAiNode')?.addEventListener('click', event => {
           event.preventDefault();
-          patchAiNode(null, document.querySelector('#htmForm_patchAiNode'), document.querySelector('#htmFormButton_patchAiNode'), event.target.getAttribute('data-nodeId'));
+          patchAiNode(null, document.querySelector('#htmForm_patchAiNode'), document.querySelector('#htmFormButton_patchAiNode'), event.target.getAttribute('data-nodeResource'));
           return false;
         });
 
@@ -218,7 +252,7 @@
         });
         document.querySelector('#htmFormButton_deleteAiNode')?.addEventListener('click', event => {
           event.preventDefault();
-          deleteAiNode(event.target, event.target.getAttribute('data-nodeId'));
+          deleteAiNode(event.target, event.target.getAttribute('data-nodeResource'));
           return false;
         });
 
@@ -326,6 +360,19 @@
 {% include en-us/search/ai-node/AiNodePaginationButtons.htm %}
                 <div class="card-like-thing background-color-surface-border" id="site-results-grid">
                   <div>
+              <wa-dropdown id="htmDropdown-hubId">
+                <wa-button variant="brand" slot="trigger" caret>ACM Hub</wa-button>
+                <wa-menu>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortAiNode_hubId'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-AiNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-hubId-asc">
+                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                    sort by ACM Hub ascending
+                  </wa-menu-item>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortAiNode_hubId'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-AiNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-hubId-desc">
+                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                    sort by ACM Hub descending
+                  </wa-menu-item>
+                </wa-menu>
+              </wa-dropdown>
               <wa-dropdown id="htmDropdown-clusterName">
                 <wa-button variant="brand" slot="trigger" caret>cluster name</wa-button>
                 <wa-menu>
@@ -352,43 +399,30 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
-              <wa-dropdown id="htmDropdown-description">
-                <wa-button variant="brand" slot="trigger" caret>description</wa-button>
-                <wa-menu>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortAiNode_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-AiNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-description-asc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
-                    sort by description ascending
-                  </wa-menu-item>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortAiNode_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-AiNode').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-description-desc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
-                    sort by description descending
-                  </wa-menu-item>
-                </wa-menu>
-              </wa-dropdown>
                   </div>
                   {% for item in listAiNode%}
                   <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-regular fa-computer"></i>
+              <span>{{ item.hubId | e }}
+</span>              </a>
+              <a href="{{ item.displayPage }}">
               <span>{{ item.clusterName | e }}
 </span>              </a>
               <a href="{{ item.displayPage }}">
               <span>{{ item.nodeName | e }}
 </span>              </a>
-              <a href="{{ item.displayPage }}">
-              <span class="white-space-pre-wrap ">{{ item.description | e }}
-</span>              </a>
                   </div>
                   {% endfor %}
+              {% if getColumnHubId is defined %}
+                <div>
+                </div>
+              {% endif %}
               {% if getColumnClusterName is defined %}
                 <div>
                 </div>
               {% endif %}
               {% if getColumnNodeName is defined %}
-                <div>
-                </div>
-              {% endif %}
-              {% if getColumnDescription is defined %}
                 <div>
                 </div>
               {% endif %}
