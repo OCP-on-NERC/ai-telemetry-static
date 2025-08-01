@@ -15,7 +15,7 @@
 {%- block htmBodySidebarAiNodePage %}
           <wa-drawer with-header light-dismiss placement="end" id="siteSidebarToggleSearch">
             <div slot="label">
-              <i class="{{ FONTAWESOME_STYLE }} fa-magnifying-glass "></i>
+              <wa-icon class="{{ FONTAWESOME_STYLE }} fa-magnifying-glass "></wa-icon>
               Search
             </div>
             <div>
@@ -63,7 +63,7 @@
           <wa-drawer with-header light-dismiss placement="end" id="siteSidebarToggleFilters">
             <div slot="label">
               <span>
-              <i class="{{ FONTAWESOME_STYLE }} fa-filters "></i> Filters</span>
+              <wa-icon class="{{ FONTAWESOME_STYLE }} fa-filters "></wa-icon> Filters</span>
             </div>
             <div>
               {%- block htmBodyFiltersAiNodePage %}
@@ -74,7 +74,7 @@
                     <label for="fqAiNode_{{ key }}">{{ value.displayName }}<sup> ({{ value.classSimpleName }})</sup></label>
                     <wa-tooltip for="buttonFacetAiNode_{{ key }}">see values</wa-tooltip>
                     <div class="flex round-column pill-smart-border-radius ">
-                      <wa-button variant="brand" id="buttonFacetAiNode_{{ key }}" data-var="{{ value.var }}" data-clear="{% if value.facetField is defined %}true{% else %}false{% endif %}"><i class="{{ FONTAWESOME_STYLE }} fa-list "></i></wa-button>
+                      <wa-button variant="brand" id="buttonFacetAiNode_{{ key }}" data-var="{{ value.var }}" data-clear="{% if value.facetField is defined %}true{% else %}false{% endif %}"><wa-icon class="{{ FONTAWESOME_STYLE }} fa-list "></wa-icon></wa-button>
                       <wa-input id="fqAiNode_{{ key }}" placeholder="{{ value.displayName }}" class="" onchange="fqChange('AiNode', this); " data-var="{{ value.var }}" autocomplete="off=" value="{{ value.val }}"></wa-input>
                     </div>
                     <div class="pageSearchVal " id="pageSearchVal-fqAiNode_{{ key }}">{% if value.val is defined %}fq={{ value.var }}:{{ value.val | urlencode() }}{% endif %}</div>
@@ -98,7 +98,7 @@
           </wa-drawer>
           <wa-drawer with-header light-dismiss placement="end" id="siteSidebarToggleSort">
             <div slot="label">
-              <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z "></i>
+              <wa-icon class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z "></wa-icon>
               Sort
             </div>
             <div>
@@ -125,7 +125,7 @@
           <wa-drawer with-header light-dismiss placement="end" id="siteSidebarToggleRange">
             <div slot="label">
               <span>
-              <i class="{{ FONTAWESOME_STYLE }} fa-calendar-range "></i> Range</span>
+              <wa-icon class="{{ FONTAWESOME_STYLE }} fa-calendar-range "></wa-icon> Range</span>
             </div>
             <div>
               {%- block htmBodyRangeAiNodePage %}
@@ -187,7 +187,7 @@
           <wa-drawer with-header light-dismiss placement="end" id="siteSidebarTogglePivot">
             <div slot="label">
               <span>
-              <i class="{{ FONTAWESOME_STYLE }} fa-table-pivot "></i> Pivot</span>
+              <wa-icon class="{{ FONTAWESOME_STYLE }} fa-table-pivot "></wa-icon> Pivot</span>
             </div>
             <div>
               {%- block htmBodyPivotAiNodePage %}
@@ -212,7 +212,7 @@
           <wa-drawer with-header light-dismiss placement="end" id="siteSidebarToggleFieldList">
             <div slot="label">
               <span>
-              <i class="{{ FONTAWESOME_STYLE }} fa-list-ul "></i> Field List</span>
+              <wa-icon class="{{ FONTAWESOME_STYLE }} fa-list-ul "></wa-icon> Field List</span>
             </div>
             <div>
 {%- block htmBodyFieldListAiNodePage %}
@@ -238,7 +238,7 @@
           </wa-drawer>
           <wa-drawer with-header light-dismiss placement="end" id="siteSidebarToggleStats">
             <div slot="label">
-              <i class="{{ FONTAWESOME_STYLE }} fa-chart-candlestick "></i>
+              <wa-icon class="{{ FONTAWESOME_STYLE }} fa-chart-candlestick "></wa-icon>
               Stats
             </div>
             <div>

@@ -168,6 +168,24 @@ function searchAiNodeFilters($formFilters) {
     var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
     if(filterEntityShortId != null && filterEntityShortId !== '')
       filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
+    var $filterPromKeycloakProxySslCheckbox = $formFilters.querySelector('input.valuePromKeycloakProxySsl[type = "checkbox"]');
+    var $filterPromKeycloakProxySslSelect = $formFilters.querySelector('select.valuePromKeycloakProxySsl');
+    var filterPromKeycloakProxySsl = $filterPromKeycloakProxySslSelect.length ? $filterPromKeycloakProxySslSelect.value : $filterPromKeycloakProxySslCheckbox.checked;
+    var filterPromKeycloakProxySslSelectVal = $formFilters.querySelector('select.filterPromKeycloakProxySsl')?.value;
+    var filterPromKeycloakProxySsl = null;
+    if(filterPromKeycloakProxySslSelectVal !== '')
+      filterPromKeycloakProxySsl = filterPromKeycloakProxySslSelectVal == 'true';
+    if(filterPromKeycloakProxySsl != null && filterPromKeycloakProxySsl === true)
+      filters.push({ name: 'fq', value: 'promKeycloakProxySsl:' + filterPromKeycloakProxySsl });
+
+    var filterPromKeycloakProxyPort = $formFilters.querySelector('.valuePromKeycloakProxyPort')?.value;
+    if(filterPromKeycloakProxyPort != null && filterPromKeycloakProxyPort !== '')
+      filters.push({ name: 'fq', value: 'promKeycloakProxyPort:' + filterPromKeycloakProxyPort });
+
+    var filterPromKeycloakProxyHostName = $formFilters.querySelector('.valuePromKeycloakProxyHostName')?.value;
+    if(filterPromKeycloakProxyHostName != null && filterPromKeycloakProxyHostName !== '')
+      filters.push({ name: 'fq', value: 'promKeycloakProxyHostName:' + filterPromKeycloakProxyHostName });
   }
   return filters;
 }
@@ -583,6 +601,49 @@ async function patchAiNode($formFilters, $formValues, target, nodeResource, succ
   if(removeNodeResource != null && removeNodeResource !== '')
     vals['removeNodeResource'] = removeNodeResource;
 
+  var valuePromKeycloakProxySsl = $formValues.querySelector('.valuePromKeycloakProxySsl')?.value;
+  var removePromKeycloakProxySsl = $formValues.querySelector('.removePromKeycloakProxySsl')?.value === 'true';
+  if(valuePromKeycloakProxySsl != null)
+    valuePromKeycloakProxySsl = valuePromKeycloakProxySsl === 'true';
+  var valuePromKeycloakProxySslSelectVal = $formValues.querySelector('select.setPromKeycloakProxySsl')?.value;
+  if(valuePromKeycloakProxySslSelectVal != null)
+    valuePromKeycloakProxySslSelectVal = valuePromKeycloakProxySslSelectVal === 'true';
+  if(valuePromKeycloakProxySslSelectVal != null && valuePromKeycloakProxySslSelectVal !== '')
+    valuePromKeycloakProxySsl = valuePromKeycloakProxySslSelectVal == 'true';
+  var setPromKeycloakProxySsl = removePromKeycloakProxySsl ? null : valuePromKeycloakProxySsl;
+  var addPromKeycloakProxySsl = $formValues.querySelector('.addPromKeycloakProxySsl')?.checked;
+  if(removePromKeycloakProxySsl || setPromKeycloakProxySsl != null && setPromKeycloakProxySsl !== '')
+    vals['setPromKeycloakProxySsl'] = setPromKeycloakProxySsl;
+  if(addPromKeycloakProxySsl != null && addPromKeycloakProxySsl !== '')
+    vals['addPromKeycloakProxySsl'] = addPromKeycloakProxySsl;
+  var removePromKeycloakProxySsl = $formValues.querySelector('.removePromKeycloakProxySsl')?.checked;
+  if(removePromKeycloakProxySsl != null && removePromKeycloakProxySsl !== '')
+    vals['removePromKeycloakProxySsl'] = removePromKeycloakProxySsl;
+
+  var valuePromKeycloakProxyPort = $formValues.querySelector('.valuePromKeycloakProxyPort')?.value;
+  var removePromKeycloakProxyPort = $formValues.querySelector('.removePromKeycloakProxyPort')?.value === 'true';
+  var setPromKeycloakProxyPort = removePromKeycloakProxyPort ? null : $formValues.querySelector('.setPromKeycloakProxyPort')?.value;
+  var addPromKeycloakProxyPort = $formValues.querySelector('.addPromKeycloakProxyPort')?.value;
+  if(removePromKeycloakProxyPort || setPromKeycloakProxyPort != null && setPromKeycloakProxyPort !== '')
+    vals['setPromKeycloakProxyPort'] = setPromKeycloakProxyPort;
+  if(addPromKeycloakProxyPort != null && addPromKeycloakProxyPort !== '')
+    vals['addPromKeycloakProxyPort'] = addPromKeycloakProxyPort;
+  var removePromKeycloakProxyPort = $formValues.querySelector('.removePromKeycloakProxyPort')?.value;
+  if(removePromKeycloakProxyPort != null && removePromKeycloakProxyPort !== '')
+    vals['removePromKeycloakProxyPort'] = removePromKeycloakProxyPort;
+
+  var valuePromKeycloakProxyHostName = $formValues.querySelector('.valuePromKeycloakProxyHostName')?.value;
+  var removePromKeycloakProxyHostName = $formValues.querySelector('.removePromKeycloakProxyHostName')?.value === 'true';
+  var setPromKeycloakProxyHostName = removePromKeycloakProxyHostName ? null : $formValues.querySelector('.setPromKeycloakProxyHostName')?.value;
+  var addPromKeycloakProxyHostName = $formValues.querySelector('.addPromKeycloakProxyHostName')?.value;
+  if(removePromKeycloakProxyHostName || setPromKeycloakProxyHostName != null && setPromKeycloakProxyHostName !== '')
+    vals['setPromKeycloakProxyHostName'] = setPromKeycloakProxyHostName;
+  if(addPromKeycloakProxyHostName != null && addPromKeycloakProxyHostName !== '')
+    vals['addPromKeycloakProxyHostName'] = addPromKeycloakProxyHostName;
+  var removePromKeycloakProxyHostName = $formValues.querySelector('.removePromKeycloakProxyHostName')?.value;
+  if(removePromKeycloakProxyHostName != null && removePromKeycloakProxyHostName !== '')
+    vals['removePromKeycloakProxyHostName'] = removePromKeycloakProxyHostName;
+
   patchAiNodeVals(nodeResource == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'nodeResource:' + nodeResource}], vals, target, success, error);
 }
 
@@ -744,6 +805,24 @@ function patchAiNodeFilters($formFilters) {
     var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
     if(filterEntityShortId != null && filterEntityShortId !== '')
       filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
+    var $filterPromKeycloakProxySslCheckbox = $formFilters.querySelector('input.valuePromKeycloakProxySsl[type = "checkbox"]');
+    var $filterPromKeycloakProxySslSelect = $formFilters.querySelector('select.valuePromKeycloakProxySsl');
+    var filterPromKeycloakProxySsl = $filterPromKeycloakProxySslSelect.length ? $filterPromKeycloakProxySslSelect.value : $filterPromKeycloakProxySslCheckbox.checked;
+    var filterPromKeycloakProxySslSelectVal = $formFilters.querySelector('select.filterPromKeycloakProxySsl')?.value;
+    var filterPromKeycloakProxySsl = null;
+    if(filterPromKeycloakProxySslSelectVal !== '')
+      filterPromKeycloakProxySsl = filterPromKeycloakProxySslSelectVal == 'true';
+    if(filterPromKeycloakProxySsl != null && filterPromKeycloakProxySsl === true)
+      filters.push({ name: 'fq', value: 'promKeycloakProxySsl:' + filterPromKeycloakProxySsl });
+
+    var filterPromKeycloakProxyPort = $formFilters.querySelector('.valuePromKeycloakProxyPort')?.value;
+    if(filterPromKeycloakProxyPort != null && filterPromKeycloakProxyPort !== '')
+      filters.push({ name: 'fq', value: 'promKeycloakProxyPort:' + filterPromKeycloakProxyPort });
+
+    var filterPromKeycloakProxyHostName = $formFilters.querySelector('.valuePromKeycloakProxyHostName')?.value;
+    if(filterPromKeycloakProxyHostName != null && filterPromKeycloakProxyHostName !== '')
+      filters.push({ name: 'fq', value: 'promKeycloakProxyHostName:' + filterPromKeycloakProxyHostName });
   }
   return filters;
 }
@@ -878,6 +957,18 @@ async function postAiNode($formValues, target, success, error) {
   var valueNodeResource = $formValues.querySelector('.valueNodeResource')?.value;
   if(valueNodeResource != null && valueNodeResource !== '')
     vals['nodeResource'] = valueNodeResource;
+
+  var valuePromKeycloakProxySsl = $formValues.querySelector('.valuePromKeycloakProxySsl')?.value;
+  if(valuePromKeycloakProxySsl != null && valuePromKeycloakProxySsl !== '')
+    vals['promKeycloakProxySsl'] = valuePromKeycloakProxySsl == 'true';
+
+  var valuePromKeycloakProxyPort = $formValues.querySelector('.valuePromKeycloakProxyPort')?.value;
+  if(valuePromKeycloakProxyPort != null && valuePromKeycloakProxyPort !== '')
+    vals['promKeycloakProxyPort'] = valuePromKeycloakProxyPort;
+
+  var valuePromKeycloakProxyHostName = $formValues.querySelector('.valuePromKeycloakProxyHostName')?.value;
+  if(valuePromKeycloakProxyHostName != null && valuePromKeycloakProxyHostName !== '')
+    vals['promKeycloakProxyHostName'] = valuePromKeycloakProxyHostName;
 
   fetch(
     '/en-us/api/ai-node'
@@ -1137,6 +1228,9 @@ async function websocketAiNodeInner(apiRequest) {
         var inputLocationTitles = null;
         var inputLocationLinks = null;
         var inputEntityShortId = null;
+        var inputPromKeycloakProxySsl = null;
+        var inputPromKeycloakProxyPort = null;
+        var inputPromKeycloakProxyHostName = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Page_pk');
@@ -1212,6 +1306,12 @@ async function websocketAiNodeInner(apiRequest) {
           inputLocationLinks = $response.querySelector('.Page_locationLinks');
         if(vars.includes('entityShortId'))
           inputEntityShortId = $response.querySelector('.Page_entityShortId');
+        if(vars.includes('promKeycloakProxySsl'))
+          inputPromKeycloakProxySsl = $response.querySelector('.Page_promKeycloakProxySsl');
+        if(vars.includes('promKeycloakProxyPort'))
+          inputPromKeycloakProxyPort = $response.querySelector('.Page_promKeycloakProxyPort');
+        if(vars.includes('promKeycloakProxyHostName'))
+          inputPromKeycloakProxyHostName = $response.querySelector('.Page_promKeycloakProxyHostName');
 
         jsWebsocketAiNode(nodeResource, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -1586,6 +1686,36 @@ async function websocketAiNodeInner(apiRequest) {
               item.textContent = inputEntityShortId.textContent;
           });
           addGlow(document.querySelector('.Page_entityShortId'));
+        }
+
+        if(inputPromKeycloakProxySsl) {
+          document.querySelectorAll('.Page_promKeycloakProxySsl').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputPromKeycloakProxySsl.getAttribute('value');
+            else
+              item.textContent = inputPromKeycloakProxySsl.textContent;
+          });
+          addGlow(document.querySelector('.Page_promKeycloakProxySsl'));
+        }
+
+        if(inputPromKeycloakProxyPort) {
+          document.querySelectorAll('.Page_promKeycloakProxyPort').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputPromKeycloakProxyPort.getAttribute('value');
+            else
+              item.textContent = inputPromKeycloakProxyPort.textContent;
+          });
+          addGlow(document.querySelector('.Page_promKeycloakProxyPort'));
+        }
+
+        if(inputPromKeycloakProxyHostName) {
+          document.querySelectorAll('.Page_promKeycloakProxyHostName').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputPromKeycloakProxyHostName.getAttribute('value');
+            else
+              item.textContent = inputPromKeycloakProxyHostName.textContent;
+          });
+          addGlow(document.querySelector('.Page_promKeycloakProxyHostName'));
         }
 
           pageGraphAiNode();

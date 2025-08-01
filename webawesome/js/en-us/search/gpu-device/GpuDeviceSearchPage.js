@@ -135,10 +135,6 @@ Promise.all([
     sort('GpuDevice', 'clusterResource', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortGpuDevice_nodeResource')?.addEventListener('change', (event) => {
-    sort('GpuDevice', 'nodeResource', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortGpuDevice_gpuDeviceResource')?.addEventListener('change', (event) => {
     sort('GpuDevice', 'gpuDeviceResource', event.currentTarget.value);
   });
@@ -155,12 +151,28 @@ Promise.all([
     sort('GpuDevice', 'locationTitles', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortGpuDevice_locationLinks')?.addEventListener('change', (event) => {
-    sort('GpuDevice', 'locationLinks', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortGpuDevice_entityShortId')?.addEventListener('change', (event) => {
     sort('GpuDevice', 'entityShortId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuDevice_promKeycloakProxySsl')?.addEventListener('change', (event) => {
+    sort('GpuDevice', 'promKeycloakProxySsl', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuDevice_promKeycloakProxyPort')?.addEventListener('change', (event) => {
+    sort('GpuDevice', 'promKeycloakProxyPort', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuDevice_promKeycloakProxyHostName')?.addEventListener('change', (event) => {
+    sort('GpuDevice', 'promKeycloakProxyHostName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuDevice_nodeResource')?.addEventListener('change', (event) => {
+    sort('GpuDevice', 'nodeResource', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuDevice_locationLinks')?.addEventListener('change', (event) => {
+    sort('GpuDevice', 'locationLinks', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchGpuDevice')?.addEventListener('click', (event) => {
@@ -344,6 +356,33 @@ Promise.all([
             facetFieldChange('GpuDevice', event.currentTarget);
           });
           document.querySelector('#pageFacetPivotGpuDevice_gpuDeviceResource')?.addEventListener('change', (event) => {
+            facetPivotChange('GpuDevice', event.currentTarget);
+          });
+          document.querySelector('#fqGpuDevice_promKeycloakProxySsl')?.addEventListener('change', (event) => {
+            fqChange('GpuDevice', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetGpuDevice_promKeycloakProxySsl')?.addEventListener('click', (event) => {
+            facetFieldChange('GpuDevice', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotGpuDevice_promKeycloakProxySsl')?.addEventListener('change', (event) => {
+            facetPivotChange('GpuDevice', event.currentTarget);
+          });
+          document.querySelector('#fqGpuDevice_promKeycloakProxyPort')?.addEventListener('change', (event) => {
+            fqChange('GpuDevice', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetGpuDevice_promKeycloakProxyPort')?.addEventListener('click', (event) => {
+            facetFieldChange('GpuDevice', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotGpuDevice_promKeycloakProxyPort')?.addEventListener('change', (event) => {
+            facetPivotChange('GpuDevice', event.currentTarget);
+          });
+          document.querySelector('#fqGpuDevice_promKeycloakProxyHostName')?.addEventListener('change', (event) => {
+            fqChange('GpuDevice', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetGpuDevice_promKeycloakProxyHostName')?.addEventListener('click', (event) => {
+            facetFieldChange('GpuDevice', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotGpuDevice_promKeycloakProxyHostName')?.addEventListener('change', (event) => {
             facetPivotChange('GpuDevice', event.currentTarget);
           });
 });

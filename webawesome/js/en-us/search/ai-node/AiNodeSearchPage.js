@@ -155,6 +155,18 @@ Promise.all([
     sort('AiNode', 'entityShortId', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortAiNode_promKeycloakProxySsl')?.addEventListener('change', (event) => {
+    sort('AiNode', 'promKeycloakProxySsl', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_promKeycloakProxyPort')?.addEventListener('change', (event) => {
+    sort('AiNode', 'promKeycloakProxyPort', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortAiNode_promKeycloakProxyHostName')?.addEventListener('change', (event) => {
+    sort('AiNode', 'promKeycloakProxyHostName', event.currentTarget.value);
+  });
+
   document.querySelector('#htmButton_patchAiNode')?.addEventListener('click', (event) => {
     document.querySelector('#patchAiNodeDialog').open = true;
   });
@@ -318,6 +330,33 @@ Promise.all([
             facetFieldChange('AiNode', event.currentTarget);
           });
           document.querySelector('#pageFacetPivotAiNode_nodeResource')?.addEventListener('change', (event) => {
+            facetPivotChange('AiNode', event.currentTarget);
+          });
+          document.querySelector('#fqAiNode_promKeycloakProxySsl')?.addEventListener('change', (event) => {
+            fqChange('AiNode', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetAiNode_promKeycloakProxySsl')?.addEventListener('click', (event) => {
+            facetFieldChange('AiNode', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotAiNode_promKeycloakProxySsl')?.addEventListener('change', (event) => {
+            facetPivotChange('AiNode', event.currentTarget);
+          });
+          document.querySelector('#fqAiNode_promKeycloakProxyPort')?.addEventListener('change', (event) => {
+            fqChange('AiNode', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetAiNode_promKeycloakProxyPort')?.addEventListener('click', (event) => {
+            facetFieldChange('AiNode', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotAiNode_promKeycloakProxyPort')?.addEventListener('change', (event) => {
+            facetPivotChange('AiNode', event.currentTarget);
+          });
+          document.querySelector('#fqAiNode_promKeycloakProxyHostName')?.addEventListener('change', (event) => {
+            fqChange('AiNode', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetAiNode_promKeycloakProxyHostName')?.addEventListener('click', (event) => {
+            facetFieldChange('AiNode', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotAiNode_promKeycloakProxyHostName')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
           });
 });

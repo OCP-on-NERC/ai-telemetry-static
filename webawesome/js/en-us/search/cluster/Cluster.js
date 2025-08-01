@@ -69,6 +69,14 @@ function searchClusterFilters($formFilters) {
     if(filterGrafanaUrl != null && filterGrafanaUrl !== '')
       filters.push({ name: 'fq', value: 'grafanaUrl:' + filterGrafanaUrl });
 
+    var filterCpuCoresTotal = $formFilters.querySelector('.valueCpuCoresTotal')?.value;
+    if(filterCpuCoresTotal != null && filterCpuCoresTotal !== '')
+      filters.push({ name: 'fq', value: 'cpuCoresTotal:' + filterCpuCoresTotal });
+
+    var filterMemoryBytesTotal = $formFilters.querySelector('.valueMemoryBytesTotal')?.value;
+    if(filterMemoryBytesTotal != null && filterMemoryBytesTotal !== '')
+      filters.push({ name: 'fq', value: 'memoryBytesTotal:' + filterMemoryBytesTotal });
+
     var filterId = $formFilters.querySelector('.valueId')?.value;
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
@@ -88,34 +96,6 @@ function searchClusterFilters($formFilters) {
     var filterNgsildData = $formFilters.querySelector('.valueNgsildData')?.value;
     if(filterNgsildData != null && filterNgsildData !== '')
       filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
-
-    var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
-
-    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.querySelector('.valueUserKey')?.value;
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
-    var filterSaves = $formFilters.querySelector('.valueSaves')?.value;
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
-
-    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
-    if(filterObjectTitle != null && filterObjectTitle !== '')
-      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
     var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
     if(filterDisplayPage != null && filterDisplayPage !== '')
@@ -141,9 +121,37 @@ function searchClusterFilters($formFilters) {
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
+    var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.querySelector('.valueUserKey')?.value;
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
+    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterSaves = $formFilters.querySelector('.valueSaves')?.value;
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
     var filterHubResource = $formFilters.querySelector('.valueHubResource')?.value;
     if(filterHubResource != null && filterHubResource !== '')
@@ -164,6 +172,24 @@ function searchClusterFilters($formFilters) {
     var filterLocationLinks = $formFilters.querySelector('.valueLocationLinks')?.value;
     if(filterLocationLinks != null && filterLocationLinks !== '')
       filters.push({ name: 'fq', value: 'locationLinks:' + filterLocationLinks });
+
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
+    var $filterPromKeycloakProxySslCheckbox = $formFilters.querySelector('input.valuePromKeycloakProxySsl[type = "checkbox"]');
+    var $filterPromKeycloakProxySslSelect = $formFilters.querySelector('select.valuePromKeycloakProxySsl');
+    var filterPromKeycloakProxySsl = $filterPromKeycloakProxySslSelect.length ? $filterPromKeycloakProxySslSelect.value : $filterPromKeycloakProxySslCheckbox.checked;
+    var filterPromKeycloakProxySslSelectVal = $formFilters.querySelector('select.filterPromKeycloakProxySsl')?.value;
+    var filterPromKeycloakProxySsl = null;
+    if(filterPromKeycloakProxySslSelectVal !== '')
+      filterPromKeycloakProxySsl = filterPromKeycloakProxySslSelectVal == 'true';
+    if(filterPromKeycloakProxySsl != null && filterPromKeycloakProxySsl === true)
+      filters.push({ name: 'fq', value: 'promKeycloakProxySsl:' + filterPromKeycloakProxySsl });
+
+    var filterPromKeycloakProxyPort = $formFilters.querySelector('.valuePromKeycloakProxyPort')?.value;
+    if(filterPromKeycloakProxyPort != null && filterPromKeycloakProxyPort !== '')
+      filters.push({ name: 'fq', value: 'promKeycloakProxyPort:' + filterPromKeycloakProxyPort });
   }
   return filters;
 }
@@ -429,6 +455,30 @@ async function patchCluster($formFilters, $formValues, target, clusterResource, 
   if(removeGrafanaUrl != null && removeGrafanaUrl !== '')
     vals['removeGrafanaUrl'] = removeGrafanaUrl;
 
+  var valueCpuCoresTotal = $formValues.querySelector('.valueCpuCoresTotal')?.value;
+  var removeCpuCoresTotal = $formValues.querySelector('.removeCpuCoresTotal')?.value === 'true';
+  var setCpuCoresTotal = removeCpuCoresTotal ? null : $formValues.querySelector('.setCpuCoresTotal')?.value;
+  var addCpuCoresTotal = $formValues.querySelector('.addCpuCoresTotal')?.value;
+  if(removeCpuCoresTotal || setCpuCoresTotal != null && setCpuCoresTotal !== '')
+    vals['setCpuCoresTotal'] = setCpuCoresTotal;
+  if(addCpuCoresTotal != null && addCpuCoresTotal !== '')
+    vals['addCpuCoresTotal'] = addCpuCoresTotal;
+  var removeCpuCoresTotal = $formValues.querySelector('.removeCpuCoresTotal')?.value;
+  if(removeCpuCoresTotal != null && removeCpuCoresTotal !== '')
+    vals['removeCpuCoresTotal'] = removeCpuCoresTotal;
+
+  var valueMemoryBytesTotal = $formValues.querySelector('.valueMemoryBytesTotal')?.value;
+  var removeMemoryBytesTotal = $formValues.querySelector('.removeMemoryBytesTotal')?.value === 'true';
+  var setMemoryBytesTotal = removeMemoryBytesTotal ? null : $formValues.querySelector('.setMemoryBytesTotal')?.value;
+  var addMemoryBytesTotal = $formValues.querySelector('.addMemoryBytesTotal')?.value;
+  if(removeMemoryBytesTotal || setMemoryBytesTotal != null && setMemoryBytesTotal !== '')
+    vals['setMemoryBytesTotal'] = setMemoryBytesTotal;
+  if(addMemoryBytesTotal != null && addMemoryBytesTotal !== '')
+    vals['addMemoryBytesTotal'] = addMemoryBytesTotal;
+  var removeMemoryBytesTotal = $formValues.querySelector('.removeMemoryBytesTotal')?.value;
+  if(removeMemoryBytesTotal != null && removeMemoryBytesTotal !== '')
+    vals['removeMemoryBytesTotal'] = removeMemoryBytesTotal;
+
   var valueId = $formValues.querySelector('.valueId')?.value;
   var removeId = $formValues.querySelector('.removeId')?.value === 'true';
   var setId = removeId ? null : $formValues.querySelector('.setId')?.value;
@@ -489,6 +539,18 @@ async function patchCluster($formFilters, $formValues, target, clusterResource, 
   if(removeNgsildData != null && removeNgsildData !== '')
     vals['removeNgsildData'] = removeNgsildData;
 
+  var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
+  var removeDisplayPage = $formValues.querySelector('.removeDisplayPage')?.value === 'true';
+  var setDisplayPage = removeDisplayPage ? null : $formValues.querySelector('.setDisplayPage')?.value;
+  var addDisplayPage = $formValues.querySelector('.addDisplayPage')?.value;
+  if(removeDisplayPage || setDisplayPage != null && setDisplayPage !== '')
+    vals['setDisplayPage'] = setDisplayPage;
+  if(addDisplayPage != null && addDisplayPage !== '')
+    vals['addDisplayPage'] = addDisplayPage;
+  var removeDisplayPage = $formValues.querySelector('.removeDisplayPage')?.value;
+  if(removeDisplayPage != null && removeDisplayPage !== '')
+    vals['removeDisplayPage'] = removeDisplayPage;
+
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   var removeSessionId = $formValues.querySelector('.removeSessionId')?.value === 'true';
   var setSessionId = removeSessionId ? null : $formValues.querySelector('.setSessionId')?.value;
@@ -525,18 +587,6 @@ async function patchCluster($formFilters, $formValues, target, clusterResource, 
   if(removeObjectTitle != null && removeObjectTitle !== '')
     vals['removeObjectTitle'] = removeObjectTitle;
 
-  var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
-  var removeDisplayPage = $formValues.querySelector('.removeDisplayPage')?.value === 'true';
-  var setDisplayPage = removeDisplayPage ? null : $formValues.querySelector('.setDisplayPage')?.value;
-  var addDisplayPage = $formValues.querySelector('.addDisplayPage')?.value;
-  if(removeDisplayPage || setDisplayPage != null && setDisplayPage !== '')
-    vals['setDisplayPage'] = setDisplayPage;
-  if(addDisplayPage != null && addDisplayPage !== '')
-    vals['addDisplayPage'] = addDisplayPage;
-  var removeDisplayPage = $formValues.querySelector('.removeDisplayPage')?.value;
-  if(removeDisplayPage != null && removeDisplayPage !== '')
-    vals['removeDisplayPage'] = removeDisplayPage;
-
   var valueHubResource = (Array.from($formValues.querySelectorAll('.valueHubResource')).filter(e => e.checked == true).find(() => true) ?? null)?.value;
   if(valueHubResource != null && valueHubResource !== '')
     vals['setHubResource'] = valueHubResource;
@@ -552,6 +602,37 @@ async function patchCluster($formFilters, $formValues, target, clusterResource, 
   var removeClusterResource = $formValues.querySelector('.removeClusterResource')?.value;
   if(removeClusterResource != null && removeClusterResource !== '')
     vals['removeClusterResource'] = removeClusterResource;
+
+  var valuePromKeycloakProxySsl = $formValues.querySelector('.valuePromKeycloakProxySsl')?.value;
+  var removePromKeycloakProxySsl = $formValues.querySelector('.removePromKeycloakProxySsl')?.value === 'true';
+  if(valuePromKeycloakProxySsl != null)
+    valuePromKeycloakProxySsl = valuePromKeycloakProxySsl === 'true';
+  var valuePromKeycloakProxySslSelectVal = $formValues.querySelector('select.setPromKeycloakProxySsl')?.value;
+  if(valuePromKeycloakProxySslSelectVal != null)
+    valuePromKeycloakProxySslSelectVal = valuePromKeycloakProxySslSelectVal === 'true';
+  if(valuePromKeycloakProxySslSelectVal != null && valuePromKeycloakProxySslSelectVal !== '')
+    valuePromKeycloakProxySsl = valuePromKeycloakProxySslSelectVal == 'true';
+  var setPromKeycloakProxySsl = removePromKeycloakProxySsl ? null : valuePromKeycloakProxySsl;
+  var addPromKeycloakProxySsl = $formValues.querySelector('.addPromKeycloakProxySsl')?.checked;
+  if(removePromKeycloakProxySsl || setPromKeycloakProxySsl != null && setPromKeycloakProxySsl !== '')
+    vals['setPromKeycloakProxySsl'] = setPromKeycloakProxySsl;
+  if(addPromKeycloakProxySsl != null && addPromKeycloakProxySsl !== '')
+    vals['addPromKeycloakProxySsl'] = addPromKeycloakProxySsl;
+  var removePromKeycloakProxySsl = $formValues.querySelector('.removePromKeycloakProxySsl')?.checked;
+  if(removePromKeycloakProxySsl != null && removePromKeycloakProxySsl !== '')
+    vals['removePromKeycloakProxySsl'] = removePromKeycloakProxySsl;
+
+  var valuePromKeycloakProxyPort = $formValues.querySelector('.valuePromKeycloakProxyPort')?.value;
+  var removePromKeycloakProxyPort = $formValues.querySelector('.removePromKeycloakProxyPort')?.value === 'true';
+  var setPromKeycloakProxyPort = removePromKeycloakProxyPort ? null : $formValues.querySelector('.setPromKeycloakProxyPort')?.value;
+  var addPromKeycloakProxyPort = $formValues.querySelector('.addPromKeycloakProxyPort')?.value;
+  if(removePromKeycloakProxyPort || setPromKeycloakProxyPort != null && setPromKeycloakProxyPort !== '')
+    vals['setPromKeycloakProxyPort'] = setPromKeycloakProxyPort;
+  if(addPromKeycloakProxyPort != null && addPromKeycloakProxyPort !== '')
+    vals['addPromKeycloakProxyPort'] = addPromKeycloakProxyPort;
+  var removePromKeycloakProxyPort = $formValues.querySelector('.removePromKeycloakProxyPort')?.value;
+  if(removePromKeycloakProxyPort != null && removePromKeycloakProxyPort !== '')
+    vals['removePromKeycloakProxyPort'] = removePromKeycloakProxyPort;
 
   patchClusterVals(clusterResource == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'clusterResource:' + clusterResource}], vals, target, success, error);
 }
@@ -615,6 +696,14 @@ function patchClusterFilters($formFilters) {
     if(filterGrafanaUrl != null && filterGrafanaUrl !== '')
       filters.push({ name: 'fq', value: 'grafanaUrl:' + filterGrafanaUrl });
 
+    var filterCpuCoresTotal = $formFilters.querySelector('.valueCpuCoresTotal')?.value;
+    if(filterCpuCoresTotal != null && filterCpuCoresTotal !== '')
+      filters.push({ name: 'fq', value: 'cpuCoresTotal:' + filterCpuCoresTotal });
+
+    var filterMemoryBytesTotal = $formFilters.querySelector('.valueMemoryBytesTotal')?.value;
+    if(filterMemoryBytesTotal != null && filterMemoryBytesTotal !== '')
+      filters.push({ name: 'fq', value: 'memoryBytesTotal:' + filterMemoryBytesTotal });
+
     var filterId = $formFilters.querySelector('.valueId')?.value;
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
@@ -634,34 +723,6 @@ function patchClusterFilters($formFilters) {
     var filterNgsildData = $formFilters.querySelector('.valueNgsildData')?.value;
     if(filterNgsildData != null && filterNgsildData !== '')
       filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
-
-    var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
-
-    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.querySelector('.valueUserKey')?.value;
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
-    var filterSaves = $formFilters.querySelector('.valueSaves')?.value;
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
-
-    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
-    if(filterObjectTitle != null && filterObjectTitle !== '')
-      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
     var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
     if(filterDisplayPage != null && filterDisplayPage !== '')
@@ -687,9 +748,37 @@ function patchClusterFilters($formFilters) {
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
+    var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.querySelector('.valueUserKey')?.value;
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
+    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterSaves = $formFilters.querySelector('.valueSaves')?.value;
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
     var filterHubResource = $formFilters.querySelector('.valueHubResource')?.value;
     if(filterHubResource != null && filterHubResource !== '')
@@ -710,6 +799,24 @@ function patchClusterFilters($formFilters) {
     var filterLocationLinks = $formFilters.querySelector('.valueLocationLinks')?.value;
     if(filterLocationLinks != null && filterLocationLinks !== '')
       filters.push({ name: 'fq', value: 'locationLinks:' + filterLocationLinks });
+
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
+    var $filterPromKeycloakProxySslCheckbox = $formFilters.querySelector('input.valuePromKeycloakProxySsl[type = "checkbox"]');
+    var $filterPromKeycloakProxySslSelect = $formFilters.querySelector('select.valuePromKeycloakProxySsl');
+    var filterPromKeycloakProxySsl = $filterPromKeycloakProxySslSelect.length ? $filterPromKeycloakProxySslSelect.value : $filterPromKeycloakProxySslCheckbox.checked;
+    var filterPromKeycloakProxySslSelectVal = $formFilters.querySelector('select.filterPromKeycloakProxySsl')?.value;
+    var filterPromKeycloakProxySsl = null;
+    if(filterPromKeycloakProxySslSelectVal !== '')
+      filterPromKeycloakProxySsl = filterPromKeycloakProxySslSelectVal == 'true';
+    if(filterPromKeycloakProxySsl != null && filterPromKeycloakProxySsl === true)
+      filters.push({ name: 'fq', value: 'promKeycloakProxySsl:' + filterPromKeycloakProxySsl });
+
+    var filterPromKeycloakProxyPort = $formFilters.querySelector('.valuePromKeycloakProxyPort')?.value;
+    if(filterPromKeycloakProxyPort != null && filterPromKeycloakProxyPort !== '')
+      filters.push({ name: 'fq', value: 'promKeycloakProxyPort:' + filterPromKeycloakProxyPort });
   }
   return filters;
 }
@@ -805,6 +912,14 @@ async function postCluster($formValues, target, success, error) {
   if(valueGrafanaUrl != null && valueGrafanaUrl !== '')
     vals['grafanaUrl'] = valueGrafanaUrl;
 
+  var valueCpuCoresTotal = $formValues.querySelector('.valueCpuCoresTotal')?.value;
+  if(valueCpuCoresTotal != null && valueCpuCoresTotal !== '')
+    vals['cpuCoresTotal'] = valueCpuCoresTotal;
+
+  var valueMemoryBytesTotal = $formValues.querySelector('.valueMemoryBytesTotal')?.value;
+  if(valueMemoryBytesTotal != null && valueMemoryBytesTotal !== '')
+    vals['memoryBytesTotal'] = valueMemoryBytesTotal;
+
   var valueId = $formValues.querySelector('.valueId')?.value;
   if(valueId != null && valueId !== '')
     vals['id'] = valueId;
@@ -825,6 +940,10 @@ async function postCluster($formValues, target, success, error) {
   if(valueNgsildData != null && valueNgsildData !== '')
     vals['ngsildData'] = JSON.parse(valueNgsildData);
 
+  var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
+  if(valueDisplayPage != null && valueDisplayPage !== '')
+    vals['displayPage'] = valueDisplayPage;
+
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   if(valueSessionId != null && valueSessionId !== '')
     vals['sessionId'] = valueSessionId;
@@ -837,10 +956,6 @@ async function postCluster($formValues, target, success, error) {
   if(valueObjectTitle != null && valueObjectTitle !== '')
     vals['objectTitle'] = valueObjectTitle;
 
-  var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
-  if(valueDisplayPage != null && valueDisplayPage !== '')
-    vals['displayPage'] = valueDisplayPage;
-
   var valueHubResource = (Array.from($formValues.querySelectorAll('.valueHubResource')).filter(e => e.checked == true).find(() => true) ?? null)?.value;
   if(valueHubResource != null && valueHubResource !== '')
     vals['hubResource'] = valueHubResource;
@@ -848,6 +963,14 @@ async function postCluster($formValues, target, success, error) {
   var valueClusterResource = $formValues.querySelector('.valueClusterResource')?.value;
   if(valueClusterResource != null && valueClusterResource !== '')
     vals['clusterResource'] = valueClusterResource;
+
+  var valuePromKeycloakProxySsl = $formValues.querySelector('.valuePromKeycloakProxySsl')?.value;
+  if(valuePromKeycloakProxySsl != null && valuePromKeycloakProxySsl !== '')
+    vals['promKeycloakProxySsl'] = valuePromKeycloakProxySsl == 'true';
+
+  var valuePromKeycloakProxyPort = $formValues.querySelector('.valuePromKeycloakProxyPort')?.value;
+  if(valuePromKeycloakProxyPort != null && valuePromKeycloakProxyPort !== '')
+    vals['promKeycloakProxyPort'] = valuePromKeycloakProxyPort;
 
   fetch(
     '/en-us/api/cluster'
@@ -1075,30 +1198,35 @@ async function websocketClusterInner(apiRequest) {
         var inputAiNodesTotal = null;
         var inputGpuDevicesTotal = null;
         var inputGrafanaUrl = null;
+        var inputCpuCoresTotal = null;
+        var inputMemoryBytesTotal = null;
         var inputId = null;
         var inputNgsildTenant = null;
         var inputNgsildPath = null;
         var inputNgsildContext = null;
         var inputNgsildData = null;
-        var inputClassCanonicalName = null;
-        var inputClassSimpleName = null;
-        var inputClassCanonicalNames = null;
-        var inputSessionId = null;
-        var inputUserKey = null;
-        var inputSaves = null;
-        var inputObjectTitle = null;
         var inputDisplayPage = null;
         var inputEditPage = null;
         var inputUserPage = null;
         var inputDownload = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
+        var inputClassCanonicalName = null;
+        var inputClassSimpleName = null;
+        var inputClassCanonicalNames = null;
+        var inputSessionId = null;
+        var inputUserKey = null;
+        var inputObjectTitle = null;
         var inputSolrId = null;
+        var inputSaves = null;
         var inputHubResource = null;
         var inputClusterResource = null;
         var inputLocationColors = null;
         var inputLocationTitles = null;
         var inputLocationLinks = null;
+        var inputEntityShortId = null;
+        var inputPromKeycloakProxySsl = null;
+        var inputPromKeycloakProxyPort = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Page_pk');
@@ -1124,6 +1252,10 @@ async function websocketClusterInner(apiRequest) {
           inputGpuDevicesTotal = $response.querySelector('.Page_gpuDevicesTotal');
         if(vars.includes('grafanaUrl'))
           inputGrafanaUrl = $response.querySelector('.Page_grafanaUrl');
+        if(vars.includes('cpuCoresTotal'))
+          inputCpuCoresTotal = $response.querySelector('.Page_cpuCoresTotal');
+        if(vars.includes('memoryBytesTotal'))
+          inputMemoryBytesTotal = $response.querySelector('.Page_memoryBytesTotal');
         if(vars.includes('id'))
           inputId = $response.querySelector('.Page_id');
         if(vars.includes('ngsildTenant'))
@@ -1134,20 +1266,6 @@ async function websocketClusterInner(apiRequest) {
           inputNgsildContext = $response.querySelector('.Page_ngsildContext');
         if(vars.includes('ngsildData'))
           inputNgsildData = $response.querySelector('.Page_ngsildData');
-        if(vars.includes('classCanonicalName'))
-          inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
-        if(vars.includes('classSimpleName'))
-          inputClassSimpleName = $response.querySelector('.Page_classSimpleName');
-        if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.querySelector('.Page_classCanonicalNames');
-        if(vars.includes('sessionId'))
-          inputSessionId = $response.querySelector('.Page_sessionId');
-        if(vars.includes('userKey'))
-          inputUserKey = $response.querySelector('.Page_userKey');
-        if(vars.includes('saves'))
-          inputSaves = $response.querySelector('.Page_saves');
-        if(vars.includes('objectTitle'))
-          inputObjectTitle = $response.querySelector('.Page_objectTitle');
         if(vars.includes('displayPage'))
           inputDisplayPage = $response.querySelector('.Page_displayPage');
         if(vars.includes('editPage'))
@@ -1160,8 +1278,22 @@ async function websocketClusterInner(apiRequest) {
           inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
         if(vars.includes('objectText'))
           inputObjectText = $response.querySelector('.Page_objectText');
+        if(vars.includes('classCanonicalName'))
+          inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
+        if(vars.includes('classSimpleName'))
+          inputClassSimpleName = $response.querySelector('.Page_classSimpleName');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.querySelector('.Page_classCanonicalNames');
+        if(vars.includes('sessionId'))
+          inputSessionId = $response.querySelector('.Page_sessionId');
+        if(vars.includes('userKey'))
+          inputUserKey = $response.querySelector('.Page_userKey');
+        if(vars.includes('objectTitle'))
+          inputObjectTitle = $response.querySelector('.Page_objectTitle');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
+        if(vars.includes('saves'))
+          inputSaves = $response.querySelector('.Page_saves');
         if(vars.includes('hubResource'))
           inputHubResource = $response.querySelector('.Page_hubResource');
         if(vars.includes('clusterResource'))
@@ -1172,6 +1304,12 @@ async function websocketClusterInner(apiRequest) {
           inputLocationTitles = $response.querySelector('.Page_locationTitles');
         if(vars.includes('locationLinks'))
           inputLocationLinks = $response.querySelector('.Page_locationLinks');
+        if(vars.includes('entityShortId'))
+          inputEntityShortId = $response.querySelector('.Page_entityShortId');
+        if(vars.includes('promKeycloakProxySsl'))
+          inputPromKeycloakProxySsl = $response.querySelector('.Page_promKeycloakProxySsl');
+        if(vars.includes('promKeycloakProxyPort'))
+          inputPromKeycloakProxyPort = $response.querySelector('.Page_promKeycloakProxyPort');
 
         jsWebsocketCluster(clusterResource, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -1298,6 +1436,26 @@ async function websocketClusterInner(apiRequest) {
           addGlow(document.querySelector('.Page_grafanaUrl'));
         }
 
+        if(inputCpuCoresTotal) {
+          document.querySelectorAll('.Page_cpuCoresTotal').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputCpuCoresTotal.getAttribute('value');
+            else
+              item.textContent = inputCpuCoresTotal.textContent;
+          });
+          addGlow(document.querySelector('.Page_cpuCoresTotal'));
+        }
+
+        if(inputMemoryBytesTotal) {
+          document.querySelectorAll('.Page_memoryBytesTotal').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputMemoryBytesTotal.getAttribute('value');
+            else
+              item.textContent = inputMemoryBytesTotal.textContent;
+          });
+          addGlow(document.querySelector('.Page_memoryBytesTotal'));
+        }
+
         if(inputId) {
           document.querySelectorAll('.Page_id').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1346,76 +1504,6 @@ async function websocketClusterInner(apiRequest) {
               item.textContent = inputNgsildData.textContent;
           });
           addGlow(document.querySelector('.Page_ngsildData'));
-        }
-
-        if(inputClassCanonicalName) {
-          document.querySelectorAll('.Page_classCanonicalName').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputClassCanonicalName.getAttribute('value');
-            else
-              item.textContent = inputClassCanonicalName.textContent;
-          });
-          addGlow(document.querySelector('.Page_classCanonicalName'));
-        }
-
-        if(inputClassSimpleName) {
-          document.querySelectorAll('.Page_classSimpleName').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputClassSimpleName.getAttribute('value');
-            else
-              item.textContent = inputClassSimpleName.textContent;
-          });
-          addGlow(document.querySelector('.Page_classSimpleName'));
-        }
-
-        if(inputClassCanonicalNames) {
-          document.querySelectorAll('.Page_classCanonicalNames').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputClassCanonicalNames.getAttribute('value');
-            else
-              item.textContent = inputClassCanonicalNames.textContent;
-          });
-          addGlow(document.querySelector('.Page_classCanonicalNames'));
-        }
-
-        if(inputSessionId) {
-          document.querySelectorAll('.Page_sessionId').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputSessionId.getAttribute('value');
-            else
-              item.textContent = inputSessionId.textContent;
-          });
-          addGlow(document.querySelector('.Page_sessionId'));
-        }
-
-        if(inputUserKey) {
-          document.querySelectorAll('.Page_userKey').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputUserKey.getAttribute('value');
-            else
-              item.textContent = inputUserKey.textContent;
-          });
-          addGlow(document.querySelector('.Page_userKey'));
-        }
-
-        if(inputSaves) {
-          document.querySelectorAll('.Page_saves').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputSaves.getAttribute('value');
-            else
-              item.textContent = inputSaves.textContent;
-          });
-          addGlow(document.querySelector('.Page_saves'));
-        }
-
-        if(inputObjectTitle) {
-          document.querySelectorAll('.Page_objectTitle').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputObjectTitle.getAttribute('value');
-            else
-              item.textContent = inputObjectTitle.textContent;
-          });
-          addGlow(document.querySelector('.Page_objectTitle'));
         }
 
         if(inputDisplayPage) {
@@ -1478,6 +1566,66 @@ async function websocketClusterInner(apiRequest) {
           addGlow(document.querySelector('.Page_objectText'));
         }
 
+        if(inputClassCanonicalName) {
+          document.querySelectorAll('.Page_classCanonicalName').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputClassCanonicalName.getAttribute('value');
+            else
+              item.textContent = inputClassCanonicalName.textContent;
+          });
+          addGlow(document.querySelector('.Page_classCanonicalName'));
+        }
+
+        if(inputClassSimpleName) {
+          document.querySelectorAll('.Page_classSimpleName').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputClassSimpleName.getAttribute('value');
+            else
+              item.textContent = inputClassSimpleName.textContent;
+          });
+          addGlow(document.querySelector('.Page_classSimpleName'));
+        }
+
+        if(inputClassCanonicalNames) {
+          document.querySelectorAll('.Page_classCanonicalNames').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputClassCanonicalNames.getAttribute('value');
+            else
+              item.textContent = inputClassCanonicalNames.textContent;
+          });
+          addGlow(document.querySelector('.Page_classCanonicalNames'));
+        }
+
+        if(inputSessionId) {
+          document.querySelectorAll('.Page_sessionId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSessionId.getAttribute('value');
+            else
+              item.textContent = inputSessionId.textContent;
+          });
+          addGlow(document.querySelector('.Page_sessionId'));
+        }
+
+        if(inputUserKey) {
+          document.querySelectorAll('.Page_userKey').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputUserKey.getAttribute('value');
+            else
+              item.textContent = inputUserKey.textContent;
+          });
+          addGlow(document.querySelector('.Page_userKey'));
+        }
+
+        if(inputObjectTitle) {
+          document.querySelectorAll('.Page_objectTitle').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputObjectTitle.getAttribute('value');
+            else
+              item.textContent = inputObjectTitle.textContent;
+          });
+          addGlow(document.querySelector('.Page_objectTitle'));
+        }
+
         if(inputSolrId) {
           document.querySelectorAll('.Page_solrId').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1486,6 +1634,16 @@ async function websocketClusterInner(apiRequest) {
               item.textContent = inputSolrId.textContent;
           });
           addGlow(document.querySelector('.Page_solrId'));
+        }
+
+        if(inputSaves) {
+          document.querySelectorAll('.Page_saves').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSaves.getAttribute('value');
+            else
+              item.textContent = inputSaves.textContent;
+          });
+          addGlow(document.querySelector('.Page_saves'));
         }
 
         if(inputHubResource) {
@@ -1536,6 +1694,36 @@ async function websocketClusterInner(apiRequest) {
               item.textContent = inputLocationLinks.textContent;
           });
           addGlow(document.querySelector('.Page_locationLinks'));
+        }
+
+        if(inputEntityShortId) {
+          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEntityShortId.getAttribute('value');
+            else
+              item.textContent = inputEntityShortId.textContent;
+          });
+          addGlow(document.querySelector('.Page_entityShortId'));
+        }
+
+        if(inputPromKeycloakProxySsl) {
+          document.querySelectorAll('.Page_promKeycloakProxySsl').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputPromKeycloakProxySsl.getAttribute('value');
+            else
+              item.textContent = inputPromKeycloakProxySsl.textContent;
+          });
+          addGlow(document.querySelector('.Page_promKeycloakProxySsl'));
+        }
+
+        if(inputPromKeycloakProxyPort) {
+          document.querySelectorAll('.Page_promKeycloakProxyPort').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputPromKeycloakProxyPort.getAttribute('value');
+            else
+              item.textContent = inputPromKeycloakProxyPort.textContent;
+          });
+          addGlow(document.querySelector('.Page_promKeycloakProxyPort'));
         }
 
           pageGraphCluster();
