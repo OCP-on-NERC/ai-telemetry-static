@@ -135,6 +135,10 @@ Promise.all([
     sort('GpuDevice', 'clusterResource', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortGpuDevice_nodeResource')?.addEventListener('change', (event) => {
+    sort('GpuDevice', 'nodeResource', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortGpuDevice_gpuDeviceResource')?.addEventListener('change', (event) => {
     sort('GpuDevice', 'gpuDeviceResource', event.currentTarget.value);
   });
@@ -151,28 +155,12 @@ Promise.all([
     sort('GpuDevice', 'locationTitles', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortGpuDevice_entityShortId')?.addEventListener('change', (event) => {
-    sort('GpuDevice', 'entityShortId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortGpuDevice_promKeycloakProxySsl')?.addEventListener('change', (event) => {
-    sort('GpuDevice', 'promKeycloakProxySsl', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortGpuDevice_promKeycloakProxyPort')?.addEventListener('change', (event) => {
-    sort('GpuDevice', 'promKeycloakProxyPort', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortGpuDevice_promKeycloakProxyHostName')?.addEventListener('change', (event) => {
-    sort('GpuDevice', 'promKeycloakProxyHostName', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortGpuDevice_nodeResource')?.addEventListener('change', (event) => {
-    sort('GpuDevice', 'nodeResource', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortGpuDevice_locationLinks')?.addEventListener('change', (event) => {
     sort('GpuDevice', 'locationLinks', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortGpuDevice_entityShortId')?.addEventListener('change', (event) => {
+    sort('GpuDevice', 'entityShortId', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchGpuDevice')?.addEventListener('click', (event) => {
@@ -223,6 +211,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotGpuDevice_created')?.addEventListener('change', (event) => {
             facetPivotChange('GpuDevice', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapGpuDevice_created')?.addEventListener('change', (event) => {
+            facetRangeGapChange('GpuDevice', event.currentTarget);
+          });
           document.querySelector('#fqGpuDevice_archived')?.addEventListener('change', (event) => {
             fqChange('GpuDevice', event.currentTarget);
           });
@@ -231,6 +222,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotGpuDevice_archived')?.addEventListener('change', (event) => {
             facetPivotChange('GpuDevice', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapGpuDevice_archived')?.addEventListener('change', (event) => {
+            facetRangeGapChange('GpuDevice', event.currentTarget);
           });
           document.querySelector('#fqGpuDevice_hubId')?.addEventListener('change', (event) => {
             fqChange('GpuDevice', event.currentTarget);
@@ -241,6 +235,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotGpuDevice_hubId')?.addEventListener('change', (event) => {
             facetPivotChange('GpuDevice', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapGpuDevice_hubId')?.addEventListener('change', (event) => {
+            facetRangeGapChange('GpuDevice', event.currentTarget);
+          });
           document.querySelector('#fqGpuDevice_clusterName')?.addEventListener('change', (event) => {
             fqChange('GpuDevice', event.currentTarget);
           });
@@ -249,6 +246,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotGpuDevice_clusterName')?.addEventListener('change', (event) => {
             facetPivotChange('GpuDevice', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapGpuDevice_clusterName')?.addEventListener('change', (event) => {
+            facetRangeGapChange('GpuDevice', event.currentTarget);
           });
           document.querySelector('#fqGpuDevice_nodeName')?.addEventListener('change', (event) => {
             fqChange('GpuDevice', event.currentTarget);
@@ -259,6 +259,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotGpuDevice_nodeName')?.addEventListener('change', (event) => {
             facetPivotChange('GpuDevice', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapGpuDevice_nodeName')?.addEventListener('change', (event) => {
+            facetRangeGapChange('GpuDevice', event.currentTarget);
+          });
           document.querySelector('#fqGpuDevice_gpuDeviceNumber')?.addEventListener('change', (event) => {
             fqChange('GpuDevice', event.currentTarget);
           });
@@ -267,6 +270,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotGpuDevice_gpuDeviceNumber')?.addEventListener('change', (event) => {
             facetPivotChange('GpuDevice', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapGpuDevice_gpuDeviceNumber')?.addEventListener('change', (event) => {
+            facetRangeGapChange('GpuDevice', event.currentTarget);
           });
           document.querySelector('#fqGpuDevice_description')?.addEventListener('change', (event) => {
             fqChange('GpuDevice', event.currentTarget);
@@ -277,6 +283,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotGpuDevice_description')?.addEventListener('change', (event) => {
             facetPivotChange('GpuDevice', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapGpuDevice_description')?.addEventListener('change', (event) => {
+            facetRangeGapChange('GpuDevice', event.currentTarget);
+          });
           document.querySelector('#fqGpuDevice_gpuDeviceUtilization')?.addEventListener('change', (event) => {
             fqChange('GpuDevice', event.currentTarget);
           });
@@ -285,6 +294,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotGpuDevice_gpuDeviceUtilization')?.addEventListener('change', (event) => {
             facetPivotChange('GpuDevice', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapGpuDevice_gpuDeviceUtilization')?.addEventListener('change', (event) => {
+            facetRangeGapChange('GpuDevice', event.currentTarget);
           });
           document.querySelector('#fqGpuDevice_id')?.addEventListener('change', (event) => {
             fqChange('GpuDevice', event.currentTarget);
@@ -295,6 +307,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotGpuDevice_id')?.addEventListener('change', (event) => {
             facetPivotChange('GpuDevice', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapGpuDevice_id')?.addEventListener('change', (event) => {
+            facetRangeGapChange('GpuDevice', event.currentTarget);
+          });
           document.querySelector('#fqGpuDevice_ngsildTenant')?.addEventListener('change', (event) => {
             fqChange('GpuDevice', event.currentTarget);
           });
@@ -303,6 +318,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotGpuDevice_ngsildTenant')?.addEventListener('change', (event) => {
             facetPivotChange('GpuDevice', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapGpuDevice_ngsildTenant')?.addEventListener('change', (event) => {
+            facetRangeGapChange('GpuDevice', event.currentTarget);
           });
           document.querySelector('#fqGpuDevice_ngsildPath')?.addEventListener('change', (event) => {
             fqChange('GpuDevice', event.currentTarget);
@@ -313,6 +331,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotGpuDevice_ngsildPath')?.addEventListener('change', (event) => {
             facetPivotChange('GpuDevice', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapGpuDevice_ngsildPath')?.addEventListener('change', (event) => {
+            facetRangeGapChange('GpuDevice', event.currentTarget);
+          });
           document.querySelector('#fqGpuDevice_ngsildContext')?.addEventListener('change', (event) => {
             fqChange('GpuDevice', event.currentTarget);
           });
@@ -321,6 +342,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotGpuDevice_ngsildContext')?.addEventListener('change', (event) => {
             facetPivotChange('GpuDevice', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapGpuDevice_ngsildContext')?.addEventListener('change', (event) => {
+            facetRangeGapChange('GpuDevice', event.currentTarget);
           });
           document.querySelector('#fqGpuDevice_ngsildData')?.addEventListener('change', (event) => {
             fqChange('GpuDevice', event.currentTarget);
@@ -331,6 +355,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotGpuDevice_ngsildData')?.addEventListener('change', (event) => {
             facetPivotChange('GpuDevice', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapGpuDevice_ngsildData')?.addEventListener('change', (event) => {
+            facetRangeGapChange('GpuDevice', event.currentTarget);
+          });
           document.querySelector('#fqGpuDevice_location')?.addEventListener('change', (event) => {
             fqChange('GpuDevice', event.currentTarget);
           });
@@ -339,6 +366,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotGpuDevice_location')?.addEventListener('change', (event) => {
             facetPivotChange('GpuDevice', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapGpuDevice_location')?.addEventListener('change', (event) => {
+            facetRangeGapChange('GpuDevice', event.currentTarget);
           });
           document.querySelector('#fqGpuDevice_displayPage')?.addEventListener('change', (event) => {
             fqChange('GpuDevice', event.currentTarget);
@@ -349,6 +379,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotGpuDevice_displayPage')?.addEventListener('change', (event) => {
             facetPivotChange('GpuDevice', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapGpuDevice_displayPage')?.addEventListener('change', (event) => {
+            facetRangeGapChange('GpuDevice', event.currentTarget);
+          });
           document.querySelector('#fqGpuDevice_gpuDeviceResource')?.addEventListener('change', (event) => {
             fqChange('GpuDevice', event.currentTarget);
           });
@@ -358,31 +391,7 @@ Promise.all([
           document.querySelector('#pageFacetPivotGpuDevice_gpuDeviceResource')?.addEventListener('change', (event) => {
             facetPivotChange('GpuDevice', event.currentTarget);
           });
-          document.querySelector('#fqGpuDevice_promKeycloakProxySsl')?.addEventListener('change', (event) => {
-            fqChange('GpuDevice', event.currentTarget);
-          });
-          document.querySelector('#buttonFacetGpuDevice_promKeycloakProxySsl')?.addEventListener('click', (event) => {
-            facetFieldChange('GpuDevice', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotGpuDevice_promKeycloakProxySsl')?.addEventListener('change', (event) => {
-            facetPivotChange('GpuDevice', event.currentTarget);
-          });
-          document.querySelector('#fqGpuDevice_promKeycloakProxyPort')?.addEventListener('change', (event) => {
-            fqChange('GpuDevice', event.currentTarget);
-          });
-          document.querySelector('#buttonFacetGpuDevice_promKeycloakProxyPort')?.addEventListener('click', (event) => {
-            facetFieldChange('GpuDevice', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotGpuDevice_promKeycloakProxyPort')?.addEventListener('change', (event) => {
-            facetPivotChange('GpuDevice', event.currentTarget);
-          });
-          document.querySelector('#fqGpuDevice_promKeycloakProxyHostName')?.addEventListener('change', (event) => {
-            fqChange('GpuDevice', event.currentTarget);
-          });
-          document.querySelector('#buttonFacetGpuDevice_promKeycloakProxyHostName')?.addEventListener('click', (event) => {
-            facetFieldChange('GpuDevice', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotGpuDevice_promKeycloakProxyHostName')?.addEventListener('change', (event) => {
-            facetPivotChange('GpuDevice', event.currentTarget);
+          document.querySelector('#pageFacetRangeGapGpuDevice_gpuDeviceResource')?.addEventListener('change', (event) => {
+            facetRangeGapChange('GpuDevice', event.currentTarget);
           });
 });

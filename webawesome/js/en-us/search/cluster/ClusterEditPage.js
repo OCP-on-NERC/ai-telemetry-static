@@ -434,46 +434,4 @@ Promise.all([
             const form = document.querySelector('#PageForm_clusterResource');
             const valid = form.reportValidity();
           });
-
-          // PATCH promKeycloakProxySsl
-          document.querySelector('#Page_promKeycloakProxySsl')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_promKeycloakProxySsl');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchClusterVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'clusterResource:' + event.currentTarget.getAttribute('data-clusterResource') }]
-                  , 'setPromKeycloakProxySsl', event.currentTarget.checked
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_promKeycloakProxySsl')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_promKeycloakProxySsl')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_promKeycloakProxySsl');
-            const valid = form.reportValidity();
-          });
-
-          // PATCH promKeycloakProxyPort
-          document.querySelector('#Page_promKeycloakProxyPort')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_promKeycloakProxyPort');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchClusterVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'clusterResource:' + event.currentTarget.getAttribute('data-clusterResource') }]
-                  , 'setPromKeycloakProxyPort', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_promKeycloakProxyPort')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_promKeycloakProxyPort')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_promKeycloakProxyPort');
-            const valid = form.reportValidity();
-          });
 });
