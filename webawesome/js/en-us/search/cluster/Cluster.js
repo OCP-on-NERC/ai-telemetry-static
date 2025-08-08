@@ -172,24 +172,6 @@ function searchClusterFilters($formFilters) {
     var filterLocationLinks = $formFilters.querySelector('.valueLocationLinks')?.value;
     if(filterLocationLinks != null && filterLocationLinks !== '')
       filters.push({ name: 'fq', value: 'locationLinks:' + filterLocationLinks });
-
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
-
-    var $filterPromKeycloakProxySslCheckbox = $formFilters.querySelector('input.valuePromKeycloakProxySsl[type = "checkbox"]');
-    var $filterPromKeycloakProxySslSelect = $formFilters.querySelector('select.valuePromKeycloakProxySsl');
-    var filterPromKeycloakProxySsl = $filterPromKeycloakProxySslSelect.length ? $filterPromKeycloakProxySslSelect.value : $filterPromKeycloakProxySslCheckbox.checked;
-    var filterPromKeycloakProxySslSelectVal = $formFilters.querySelector('select.filterPromKeycloakProxySsl')?.value;
-    var filterPromKeycloakProxySsl = null;
-    if(filterPromKeycloakProxySslSelectVal !== '')
-      filterPromKeycloakProxySsl = filterPromKeycloakProxySslSelectVal == 'true';
-    if(filterPromKeycloakProxySsl != null && filterPromKeycloakProxySsl === true)
-      filters.push({ name: 'fq', value: 'promKeycloakProxySsl:' + filterPromKeycloakProxySsl });
-
-    var filterPromKeycloakProxyPort = $formFilters.querySelector('.valuePromKeycloakProxyPort')?.value;
-    if(filterPromKeycloakProxyPort != null && filterPromKeycloakProxyPort !== '')
-      filters.push({ name: 'fq', value: 'promKeycloakProxyPort:' + filterPromKeycloakProxyPort });
   }
   return filters;
 }
@@ -215,46 +197,48 @@ function searchClusterVals(filters, target, success, error) {
 
 function suggestClusterHubResource(filters, $list, clusterResource = null, hubResource = null, relate=true, target) {
   success = function( data, textStatus, jQxhr ) {
-    $list.innerHTML = '';
-    data['list'].forEach((o, i) => {
-      var iTemplate = document.createElement('template');
-      iTemplate.innerHTML = '<i class="fa-regular fa-sitemap"></i>';
-      var $i = iTemplate.content;
-      var $span = document.createElement('span');
-      $span.setAttribute('class', '');
-      $span.innerText = 
+    if($list) {
+      $list.innerHTML = '';
+      data['list'].forEach((o, i) => {
+        var iTemplate = document.createElement('template');
+        iTemplate.innerHTML = '<i class="fa-regular fa-sitemap"></i>';
+        var $i = iTemplate.content;
+        var $span = document.createElement('span');
+        $span.setAttribute('class', '');
+        $span.innerText = 
 o['objectTitle'];
-      var $a = document.createElement('a');
-      $a.setAttribute('href', o['editPage']);
-      $a.append($i);
-      $a.append($span);
-      var val = o['hubResource'];
-      var checked = val == null ? false : (Array.isArray(val) ? val.includes(clusterResource.toString()) : val == hubResource);
-      var $input = document.createElement('wa-checkbox');
-      $input.setAttribute('id', 'GET_hubResource_' + clusterResource + '_hubResource_' + o['hubResource']);
-      $input.setAttribute('name', 'hubResource');
-      $input.setAttribute('value', o['hubResource']);
-      $input.setAttribute('class', 'valueHubResource ');
-      if(clusterResource != null) {
-        $input.addEventListener('change', function(event) {
-          patchClusterVals([{ name: 'fq', value: 'clusterResource:' + clusterResource }], { [(event.target.checked ? 'set' : 'remove') + 'HubResource']: o['hubResource'] }
-              , target
-              , function(response, target) {
-                addGlow(target);
-                suggestClusterHubResource(filters, $list, clusterResource, hubResource, relate, target);
-              }
-              , function(response, target) { addError(target); }
-          );
-        });
-      }
-      if(checked)
-        $input.setAttribute('checked', 'checked');
-      var $li = document.createElement('li');
-      if(relate)
-        $li.append($input);
-      $li.append($a);
-      $list.append($li);
-    });
+        var $a = document.createElement('a');
+        $a.setAttribute('href', o['editPage']);
+        $a.append($i);
+        $a.append($span);
+        var val = o['hubResource'];
+        var checked = val == null ? false : (Array.isArray(val) ? val.includes(clusterResource.toString()) : val == hubResource);
+        var $input = document.createElement('wa-checkbox');
+        $input.setAttribute('id', 'GET_hubResource_' + clusterResource + '_hubResource_' + o['hubResource']);
+        $input.setAttribute('name', 'hubResource');
+        $input.setAttribute('value', o['hubResource']);
+        $input.setAttribute('class', 'valueHubResource ');
+        if(clusterResource != null) {
+          $input.addEventListener('change', function(event) {
+            patchClusterVals([{ name: 'fq', value: 'clusterResource:' + clusterResource }], { [(event.target.checked ? 'set' : 'remove') + 'HubResource']: o['hubResource'] }
+                , target
+                , function(response, target) {
+                  addGlow(target);
+                  suggestClusterHubResource(filters, $list, clusterResource, hubResource, relate, target);
+                }
+                , function(response, target) { addError(target); }
+            );
+          });
+        }
+        if(checked)
+          $input.setAttribute('checked', 'checked');
+        var $li = document.createElement('li');
+        if(relate)
+          $li.append($input);
+        $li.append($a);
+        $list.append($li);
+      });
+    }
   };
   error = function( jqXhr, target2 ) {};
   searchHubVals(filters, target, success, error);
@@ -262,17 +246,19 @@ o['objectTitle'];
 
 function suggestClusterObjectSuggest($formFilters, $list, target) {
   success = function( data, textStatus, jQxhr ) {
-    $list.innerHTML = '';
-    data['list'].forEach((o, i) => {
-      var $i = document.querySelector('<i class="fa-regular fa-server"></i>');
-      var $span = document.createElement('span');      $span.setAttribute('class', '');      $span.innerText = o['objectTitle'];
-      var $li = document.createElement('li');
-      var $a = document.createElement('a').setAttribute('href', o['editPage']);
-      $a.append($i);
-      $a.append($span);
-      $li.append($a);
-      $list.append($li);
-    });
+    if($list) {
+      $list.innerHTML = '';
+      data['list'].forEach((o, i) => {
+        var $i = document.querySelector('<i class="fa-regular fa-server"></i>');
+        var $span = document.createElement('span');        $span.setAttribute('class', '');        $span.innerText = o['objectTitle'];
+        var $li = document.createElement('li');
+        var $a = document.createElement('a').setAttribute('href', o['editPage']);
+        $a.append($i);
+        $a.append($span);
+        $li.append($a);
+        $list.append($li);
+      });
+    }
   };
   error = function( jqXhr, target2 ) {};
   searchClusterVals($formFilters, target, success, error);
@@ -603,37 +589,6 @@ async function patchCluster($formFilters, $formValues, target, clusterResource, 
   if(removeClusterResource != null && removeClusterResource !== '')
     vals['removeClusterResource'] = removeClusterResource;
 
-  var valuePromKeycloakProxySsl = $formValues.querySelector('.valuePromKeycloakProxySsl')?.value;
-  var removePromKeycloakProxySsl = $formValues.querySelector('.removePromKeycloakProxySsl')?.value === 'true';
-  if(valuePromKeycloakProxySsl != null)
-    valuePromKeycloakProxySsl = valuePromKeycloakProxySsl === 'true';
-  var valuePromKeycloakProxySslSelectVal = $formValues.querySelector('select.setPromKeycloakProxySsl')?.value;
-  if(valuePromKeycloakProxySslSelectVal != null)
-    valuePromKeycloakProxySslSelectVal = valuePromKeycloakProxySslSelectVal === 'true';
-  if(valuePromKeycloakProxySslSelectVal != null && valuePromKeycloakProxySslSelectVal !== '')
-    valuePromKeycloakProxySsl = valuePromKeycloakProxySslSelectVal == 'true';
-  var setPromKeycloakProxySsl = removePromKeycloakProxySsl ? null : valuePromKeycloakProxySsl;
-  var addPromKeycloakProxySsl = $formValues.querySelector('.addPromKeycloakProxySsl')?.checked;
-  if(removePromKeycloakProxySsl || setPromKeycloakProxySsl != null && setPromKeycloakProxySsl !== '')
-    vals['setPromKeycloakProxySsl'] = setPromKeycloakProxySsl;
-  if(addPromKeycloakProxySsl != null && addPromKeycloakProxySsl !== '')
-    vals['addPromKeycloakProxySsl'] = addPromKeycloakProxySsl;
-  var removePromKeycloakProxySsl = $formValues.querySelector('.removePromKeycloakProxySsl')?.checked;
-  if(removePromKeycloakProxySsl != null && removePromKeycloakProxySsl !== '')
-    vals['removePromKeycloakProxySsl'] = removePromKeycloakProxySsl;
-
-  var valuePromKeycloakProxyPort = $formValues.querySelector('.valuePromKeycloakProxyPort')?.value;
-  var removePromKeycloakProxyPort = $formValues.querySelector('.removePromKeycloakProxyPort')?.value === 'true';
-  var setPromKeycloakProxyPort = removePromKeycloakProxyPort ? null : $formValues.querySelector('.setPromKeycloakProxyPort')?.value;
-  var addPromKeycloakProxyPort = $formValues.querySelector('.addPromKeycloakProxyPort')?.value;
-  if(removePromKeycloakProxyPort || setPromKeycloakProxyPort != null && setPromKeycloakProxyPort !== '')
-    vals['setPromKeycloakProxyPort'] = setPromKeycloakProxyPort;
-  if(addPromKeycloakProxyPort != null && addPromKeycloakProxyPort !== '')
-    vals['addPromKeycloakProxyPort'] = addPromKeycloakProxyPort;
-  var removePromKeycloakProxyPort = $formValues.querySelector('.removePromKeycloakProxyPort')?.value;
-  if(removePromKeycloakProxyPort != null && removePromKeycloakProxyPort !== '')
-    vals['removePromKeycloakProxyPort'] = removePromKeycloakProxyPort;
-
   patchClusterVals(clusterResource == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'clusterResource:' + clusterResource}], vals, target, success, error);
 }
 
@@ -799,24 +754,6 @@ function patchClusterFilters($formFilters) {
     var filterLocationLinks = $formFilters.querySelector('.valueLocationLinks')?.value;
     if(filterLocationLinks != null && filterLocationLinks !== '')
       filters.push({ name: 'fq', value: 'locationLinks:' + filterLocationLinks });
-
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
-
-    var $filterPromKeycloakProxySslCheckbox = $formFilters.querySelector('input.valuePromKeycloakProxySsl[type = "checkbox"]');
-    var $filterPromKeycloakProxySslSelect = $formFilters.querySelector('select.valuePromKeycloakProxySsl');
-    var filterPromKeycloakProxySsl = $filterPromKeycloakProxySslSelect.length ? $filterPromKeycloakProxySslSelect.value : $filterPromKeycloakProxySslCheckbox.checked;
-    var filterPromKeycloakProxySslSelectVal = $formFilters.querySelector('select.filterPromKeycloakProxySsl')?.value;
-    var filterPromKeycloakProxySsl = null;
-    if(filterPromKeycloakProxySslSelectVal !== '')
-      filterPromKeycloakProxySsl = filterPromKeycloakProxySslSelectVal == 'true';
-    if(filterPromKeycloakProxySsl != null && filterPromKeycloakProxySsl === true)
-      filters.push({ name: 'fq', value: 'promKeycloakProxySsl:' + filterPromKeycloakProxySsl });
-
-    var filterPromKeycloakProxyPort = $formFilters.querySelector('.valuePromKeycloakProxyPort')?.value;
-    if(filterPromKeycloakProxyPort != null && filterPromKeycloakProxyPort !== '')
-      filters.push({ name: 'fq', value: 'promKeycloakProxyPort:' + filterPromKeycloakProxyPort });
   }
   return filters;
 }
@@ -963,14 +900,6 @@ async function postCluster($formValues, target, success, error) {
   var valueClusterResource = $formValues.querySelector('.valueClusterResource')?.value;
   if(valueClusterResource != null && valueClusterResource !== '')
     vals['clusterResource'] = valueClusterResource;
-
-  var valuePromKeycloakProxySsl = $formValues.querySelector('.valuePromKeycloakProxySsl')?.value;
-  if(valuePromKeycloakProxySsl != null && valuePromKeycloakProxySsl !== '')
-    vals['promKeycloakProxySsl'] = valuePromKeycloakProxySsl == 'true';
-
-  var valuePromKeycloakProxyPort = $formValues.querySelector('.valuePromKeycloakProxyPort')?.value;
-  if(valuePromKeycloakProxyPort != null && valuePromKeycloakProxyPort !== '')
-    vals['promKeycloakProxyPort'] = valuePromKeycloakProxyPort;
 
   fetch(
     '/en-us/api/cluster'
@@ -1224,9 +1153,6 @@ async function websocketClusterInner(apiRequest) {
         var inputLocationColors = null;
         var inputLocationTitles = null;
         var inputLocationLinks = null;
-        var inputEntityShortId = null;
-        var inputPromKeycloakProxySsl = null;
-        var inputPromKeycloakProxyPort = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Page_pk');
@@ -1304,12 +1230,6 @@ async function websocketClusterInner(apiRequest) {
           inputLocationTitles = $response.querySelector('.Page_locationTitles');
         if(vars.includes('locationLinks'))
           inputLocationLinks = $response.querySelector('.Page_locationLinks');
-        if(vars.includes('entityShortId'))
-          inputEntityShortId = $response.querySelector('.Page_entityShortId');
-        if(vars.includes('promKeycloakProxySsl'))
-          inputPromKeycloakProxySsl = $response.querySelector('.Page_promKeycloakProxySsl');
-        if(vars.includes('promKeycloakProxyPort'))
-          inputPromKeycloakProxyPort = $response.querySelector('.Page_promKeycloakProxyPort');
 
         jsWebsocketCluster(clusterResource, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -1694,36 +1614,6 @@ async function websocketClusterInner(apiRequest) {
               item.textContent = inputLocationLinks.textContent;
           });
           addGlow(document.querySelector('.Page_locationLinks'));
-        }
-
-        if(inputEntityShortId) {
-          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputEntityShortId.getAttribute('value');
-            else
-              item.textContent = inputEntityShortId.textContent;
-          });
-          addGlow(document.querySelector('.Page_entityShortId'));
-        }
-
-        if(inputPromKeycloakProxySsl) {
-          document.querySelectorAll('.Page_promKeycloakProxySsl').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputPromKeycloakProxySsl.getAttribute('value');
-            else
-              item.textContent = inputPromKeycloakProxySsl.textContent;
-          });
-          addGlow(document.querySelector('.Page_promKeycloakProxySsl'));
-        }
-
-        if(inputPromKeycloakProxyPort) {
-          document.querySelectorAll('.Page_promKeycloakProxyPort').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputPromKeycloakProxyPort.getAttribute('value');
-            else
-              item.textContent = inputPromKeycloakProxyPort.textContent;
-          });
-          addGlow(document.querySelector('.Page_promKeycloakProxyPort'));
         }
 
           pageGraphCluster();

@@ -149,8 +149,8 @@
                       <wa-option value="+1YEAR"{% if defaultRangeGap == '+1YEAR' %} selected="selected"{% else %}{% endif %}>Year</wa-option>
                       <wa-option value="+1MONTH"{% if defaultRangeGap == '+1MONTH' %} selected="selected"{% else %}{% endif %}>Month</wa-option>
                       <wa-option value="+1WEEK"{% if defaultRangeGap == '+1WEEK' %} selected="selected"{% else %}{% endif %}>Week</wa-option>
-                      <wa-option value="+1DAY"{% if defaultRangeGap == '+1DAY' %} selected="selected"{% else %}{% if defaultRangeGap is defined %}{% else %} selected="selected"{% endif %}{% endif %}>Day</wa-option>
-                      <wa-option value="+1HOUR"{% if defaultRangeGap == '+1HOUR' %} selected="selected"{% else %}{% endif %}>Hour</wa-option>
+                      <wa-option value="+1DAY"{% if defaultRangeGap == '+1DAY' %} selected="selected"{% else %}{% endif %}>Day</wa-option>
+                      <wa-option value="+1HOUR"{% if defaultRangeGap == '+1HOUR' %} selected="selected"{% else %}{% if defaultRangeGap is defined %}{% else %} selected="selected"{% endif %}{% endif %}>Hour</wa-option>
                       <wa-option value="+1MINUTE"{% if defaultRangeGap == '+1MINUTE' %} selected="selected"{% else %}{% endif %}>Minute</wa-option>
                       <wa-option value="+1SECOND"{% if defaultRangeGap == '+1SECOND' %} selected="selected"{% else %}{% endif %}>Second</wa-option>
                     </wa-select>
@@ -158,22 +158,22 @@
                 </tr>
                 <tr class="">
                   <td class="" colspan="2">
-                    <span>Range Start</span>
+                    <span>Range Start ({{ formatZonedDateTime(defaultRangeStart, "VV", defaultLocaleId, defaultZoneId) }})</span>
                   </td>
                 </tr>
                 <tr class="">
                   <td class="" colspan="2">
-                    <span><wa-input type="datetime-local" name="facetRangeStart" id="pageFacetRangeStart-Cluster" value="{{ formatZonedDateTime(defaultRangeStart, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) }}" onclick="facetRangeStartChange('Cluster', this); "></wa-input></span>
+                    <span><wa-input type="datetime-local" name="facetRangeStart" id="pageSearchVal-pageFacetRangeStart-Cluster-input" value="{{ formatZonedDateTime(defaultRangeStart, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) }}" onchange="facetRangeStartChange('Cluster', this, '{{ defaultZoneId }}'); "></wa-input></span>
                   </td>
                 </tr>
                 <tr class="">
                   <td class="" colspan="2">
-                    <span>Range End</span>
+                    <span>Range End ({{ formatZonedDateTime(defaultRangeStart, "VV", defaultLocaleId, defaultZoneId) }})</span>
                   </td>
                 </tr>
                 <tr class="">
                   <td class="" colspan="2">
-                    <span><wa-input type="datetime-local" name="facetRangeEnd" id="pageFacetRangeEnd-Cluster" value="{{ formatZonedDateTime(defaultRangeEnd, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) }}" onclick="facetRangeEndChange('Cluster', this); "></wa-input></span>
+                    <span><wa-input type="datetime-local" name="facetRangeEnd" id="pageSearchVal-pageFacetRangeEnd-Cluster-input" value="{{ formatZonedDateTime(defaultRangeEnd, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) }}" onchange="facetRangeEndChange('Cluster', this, '{{ defaultZoneId }}'); "></wa-input></span>
                   </td>
                 </tr>
               </table>

@@ -111,18 +111,6 @@ Promise.all([
     sort('Project', 'projectDisplayName', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortProject_promKeycloakProxySsl')?.addEventListener('change', (event) => {
-    sort('Project', 'promKeycloakProxySsl', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortProject_promKeycloakProxyPort')?.addEventListener('change', (event) => {
-    sort('Project', 'promKeycloakProxyPort', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortProject_promKeycloakProxyHostName')?.addEventListener('change', (event) => {
-    sort('Project', 'promKeycloakProxyHostName', event.currentTarget.value);
-  });
-
   document.querySelector('#htmButton_patchProject')?.addEventListener('click', (event) => {
     document.querySelector('#patchProjectDialog').open = true;
   });
@@ -171,6 +159,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotProject_created')?.addEventListener('change', (event) => {
             facetPivotChange('Project', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapProject_created')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Project', event.currentTarget);
+          });
           document.querySelector('#fqProject_archived')?.addEventListener('change', (event) => {
             fqChange('Project', event.currentTarget);
           });
@@ -179,6 +170,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotProject_archived')?.addEventListener('change', (event) => {
             facetPivotChange('Project', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapProject_archived')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Project', event.currentTarget);
           });
           document.querySelector('#fqProject_hubId')?.addEventListener('change', (event) => {
             fqChange('Project', event.currentTarget);
@@ -189,6 +183,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotProject_hubId')?.addEventListener('change', (event) => {
             facetPivotChange('Project', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapProject_hubId')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Project', event.currentTarget);
+          });
           document.querySelector('#fqProject_clusterName')?.addEventListener('change', (event) => {
             fqChange('Project', event.currentTarget);
           });
@@ -197,6 +194,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotProject_clusterName')?.addEventListener('change', (event) => {
             facetPivotChange('Project', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapProject_clusterName')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Project', event.currentTarget);
           });
           document.querySelector('#fqProject_projectName')?.addEventListener('change', (event) => {
             fqChange('Project', event.currentTarget);
@@ -207,6 +207,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotProject_projectName')?.addEventListener('change', (event) => {
             facetPivotChange('Project', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapProject_projectName')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Project', event.currentTarget);
+          });
           document.querySelector('#fqProject_description')?.addEventListener('change', (event) => {
             fqChange('Project', event.currentTarget);
           });
@@ -215,6 +218,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotProject_description')?.addEventListener('change', (event) => {
             facetPivotChange('Project', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapProject_description')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Project', event.currentTarget);
           });
           document.querySelector('#fqProject_displayPage')?.addEventListener('change', (event) => {
             fqChange('Project', event.currentTarget);
@@ -225,6 +231,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotProject_displayPage')?.addEventListener('change', (event) => {
             facetPivotChange('Project', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapProject_displayPage')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Project', event.currentTarget);
+          });
           document.querySelector('#fqProject_projectResource')?.addEventListener('change', (event) => {
             fqChange('Project', event.currentTarget);
           });
@@ -234,31 +243,7 @@ Promise.all([
           document.querySelector('#pageFacetPivotProject_projectResource')?.addEventListener('change', (event) => {
             facetPivotChange('Project', event.currentTarget);
           });
-          document.querySelector('#fqProject_promKeycloakProxySsl')?.addEventListener('change', (event) => {
-            fqChange('Project', event.currentTarget);
-          });
-          document.querySelector('#buttonFacetProject_promKeycloakProxySsl')?.addEventListener('click', (event) => {
-            facetFieldChange('Project', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotProject_promKeycloakProxySsl')?.addEventListener('change', (event) => {
-            facetPivotChange('Project', event.currentTarget);
-          });
-          document.querySelector('#fqProject_promKeycloakProxyPort')?.addEventListener('change', (event) => {
-            fqChange('Project', event.currentTarget);
-          });
-          document.querySelector('#buttonFacetProject_promKeycloakProxyPort')?.addEventListener('click', (event) => {
-            facetFieldChange('Project', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotProject_promKeycloakProxyPort')?.addEventListener('change', (event) => {
-            facetPivotChange('Project', event.currentTarget);
-          });
-          document.querySelector('#fqProject_promKeycloakProxyHostName')?.addEventListener('change', (event) => {
-            fqChange('Project', event.currentTarget);
-          });
-          document.querySelector('#buttonFacetProject_promKeycloakProxyHostName')?.addEventListener('click', (event) => {
-            facetFieldChange('Project', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotProject_promKeycloakProxyHostName')?.addEventListener('change', (event) => {
-            facetPivotChange('Project', event.currentTarget);
+          document.querySelector('#pageFacetRangeGapProject_projectResource')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Project', event.currentTarget);
           });
 });
