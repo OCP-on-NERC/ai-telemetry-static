@@ -174,6 +174,7 @@ function searchAiNodeFilters($formFilters) {
 
 function searchAiNodeVals(filters, target, success, error) {
 
+
   fetch(
     '/en-us/api/ai-node?' + filters.map(function(m) { return m.name + '=' + encodeURIComponent(m.value) }).join('&')
     , {
@@ -192,46 +193,48 @@ function searchAiNodeVals(filters, target, success, error) {
 
 function suggestAiNodeHubResource(filters, $list, nodeResource = null, hubResource = null, relate=true, target) {
   success = function( data, textStatus, jQxhr ) {
-    $list.innerHTML = '';
-    data['list'].forEach((o, i) => {
-      var iTemplate = document.createElement('template');
-      iTemplate.innerHTML = '<i class="fa-regular fa-sitemap"></i>';
-      var $i = iTemplate.content;
-      var $span = document.createElement('span');
-      $span.setAttribute('class', '');
-      $span.innerText = 
+    if($list) {
+      $list.innerHTML = '';
+      data['list'].forEach((o, i) => {
+        var iTemplate = document.createElement('template');
+        iTemplate.innerHTML = '<i class="fa-regular fa-sitemap"></i>';
+        var $i = iTemplate.content;
+        var $span = document.createElement('span');
+        $span.setAttribute('class', '');
+        $span.innerText = 
 o['objectTitle'];
-      var $a = document.createElement('a');
-      $a.setAttribute('href', o['editPage']);
-      $a.append($i);
-      $a.append($span);
-      var val = o['hubResource'];
-      var checked = val == null ? false : (Array.isArray(val) ? val.includes(nodeResource.toString()) : val == hubResource);
-      var $input = document.createElement('wa-checkbox');
-      $input.setAttribute('id', 'GET_hubResource_' + nodeResource + '_hubResource_' + o['hubResource']);
-      $input.setAttribute('name', 'hubResource');
-      $input.setAttribute('value', o['hubResource']);
-      $input.setAttribute('class', 'valueHubResource ');
-      if(nodeResource != null) {
-        $input.addEventListener('change', function(event) {
-          patchAiNodeVals([{ name: 'fq', value: 'nodeResource:' + nodeResource }], { [(event.target.checked ? 'set' : 'remove') + 'HubResource']: o['hubResource'] }
-              , target
-              , function(response, target) {
-                addGlow(target);
-                suggestAiNodeHubResource(filters, $list, nodeResource, hubResource, relate, target);
-              }
-              , function(response, target) { addError(target); }
-          );
-        });
-      }
-      if(checked)
-        $input.setAttribute('checked', 'checked');
-      var $li = document.createElement('li');
-      if(relate)
-        $li.append($input);
-      $li.append($a);
-      $list.append($li);
-    });
+        var $a = document.createElement('a');
+        $a.setAttribute('href', o['editPage']);
+        $a.append($i);
+        $a.append($span);
+        var val = o['hubResource'];
+        var checked = val == null ? false : (Array.isArray(val) ? val.includes(nodeResource.toString()) : val == hubResource);
+        var $input = document.createElement('wa-checkbox');
+        $input.setAttribute('id', 'GET_hubResource_' + nodeResource + '_hubResource_' + o['hubResource']);
+        $input.setAttribute('name', 'hubResource');
+        $input.setAttribute('value', o['hubResource']);
+        $input.setAttribute('class', 'valueHubResource ');
+        if(nodeResource != null) {
+          $input.addEventListener('change', function(event) {
+            patchAiNodeVals([{ name: 'fq', value: 'nodeResource:' + nodeResource }], { [(event.target.checked ? 'set' : 'remove') + 'HubResource']: o['hubResource'] }
+                , target
+                , function(response, target) {
+                  addGlow(target);
+                  suggestAiNodeHubResource(filters, $list, nodeResource, hubResource, relate, target);
+                }
+                , function(response, target) { addError(target); }
+            );
+          });
+        }
+        if(checked)
+          $input.setAttribute('checked', 'checked');
+        var $li = document.createElement('li');
+        if(relate)
+          $li.append($input);
+        $li.append($a);
+        $list.append($li);
+      });
+    }
   };
   error = function( jqXhr, target2 ) {};
   searchHubVals(filters, target, success, error);
@@ -239,46 +242,48 @@ o['objectTitle'];
 
 function suggestAiNodeClusterResource(filters, $list, nodeResource = null, clusterResource = null, relate=true, target) {
   success = function( data, textStatus, jQxhr ) {
-    $list.innerHTML = '';
-    data['list'].forEach((o, i) => {
-      var iTemplate = document.createElement('template');
-      iTemplate.innerHTML = '<i class="fa-regular fa-server"></i>';
-      var $i = iTemplate.content;
-      var $span = document.createElement('span');
-      $span.setAttribute('class', '');
-      $span.innerText = 
+    if($list) {
+      $list.innerHTML = '';
+      data['list'].forEach((o, i) => {
+        var iTemplate = document.createElement('template');
+        iTemplate.innerHTML = '<i class="fa-regular fa-server"></i>';
+        var $i = iTemplate.content;
+        var $span = document.createElement('span');
+        $span.setAttribute('class', '');
+        $span.innerText = 
 o['objectTitle'];
-      var $a = document.createElement('a');
-      $a.setAttribute('href', o['editPage']);
-      $a.append($i);
-      $a.append($span);
-      var val = o['clusterResource'];
-      var checked = val == null ? false : (Array.isArray(val) ? val.includes(nodeResource.toString()) : val == clusterResource);
-      var $input = document.createElement('wa-checkbox');
-      $input.setAttribute('id', 'GET_clusterResource_' + nodeResource + '_clusterResource_' + o['clusterResource']);
-      $input.setAttribute('name', 'clusterResource');
-      $input.setAttribute('value', o['clusterResource']);
-      $input.setAttribute('class', 'valueClusterResource ');
-      if(nodeResource != null) {
-        $input.addEventListener('change', function(event) {
-          patchAiNodeVals([{ name: 'fq', value: 'nodeResource:' + nodeResource }], { [(event.target.checked ? 'set' : 'remove') + 'ClusterResource']: o['clusterResource'] }
-              , target
-              , function(response, target) {
-                addGlow(target);
-                suggestAiNodeClusterResource(filters, $list, nodeResource, clusterResource, relate, target);
-              }
-              , function(response, target) { addError(target); }
-          );
-        });
-      }
-      if(checked)
-        $input.setAttribute('checked', 'checked');
-      var $li = document.createElement('li');
-      if(relate)
-        $li.append($input);
-      $li.append($a);
-      $list.append($li);
-    });
+        var $a = document.createElement('a');
+        $a.setAttribute('href', o['editPage']);
+        $a.append($i);
+        $a.append($span);
+        var val = o['clusterResource'];
+        var checked = val == null ? false : (Array.isArray(val) ? val.includes(nodeResource.toString()) : val == clusterResource);
+        var $input = document.createElement('wa-checkbox');
+        $input.setAttribute('id', 'GET_clusterResource_' + nodeResource + '_clusterResource_' + o['clusterResource']);
+        $input.setAttribute('name', 'clusterResource');
+        $input.setAttribute('value', o['clusterResource']);
+        $input.setAttribute('class', 'valueClusterResource ');
+        if(nodeResource != null) {
+          $input.addEventListener('change', function(event) {
+            patchAiNodeVals([{ name: 'fq', value: 'nodeResource:' + nodeResource }], { [(event.target.checked ? 'set' : 'remove') + 'ClusterResource']: o['clusterResource'] }
+                , target
+                , function(response, target) {
+                  addGlow(target);
+                  suggestAiNodeClusterResource(filters, $list, nodeResource, clusterResource, relate, target);
+                }
+                , function(response, target) { addError(target); }
+            );
+          });
+        }
+        if(checked)
+          $input.setAttribute('checked', 'checked');
+        var $li = document.createElement('li');
+        if(relate)
+          $li.append($input);
+        $li.append($a);
+        $list.append($li);
+      });
+    }
   };
   error = function( jqXhr, target2 ) {};
   searchClusterVals(filters, target, success, error);
@@ -286,17 +291,19 @@ o['objectTitle'];
 
 function suggestAiNodeObjectSuggest($formFilters, $list, target) {
   success = function( data, textStatus, jQxhr ) {
-    $list.innerHTML = '';
-    data['list'].forEach((o, i) => {
-      var $i = document.querySelector('<i class="fa-regular fa-computer"></i>');
-      var $span = document.createElement('span');      $span.setAttribute('class', '');      $span.innerText = o['objectTitle'];
-      var $li = document.createElement('li');
-      var $a = document.createElement('a').setAttribute('href', o['editPage']);
-      $a.append($i);
-      $a.append($span);
-      $li.append($a);
-      $list.append($li);
-    });
+    if($list) {
+      $list.innerHTML = '';
+      data['list'].forEach((o, i) => {
+        var $i = document.querySelector('<i class="fa-regular fa-computer"></i>');
+        var $span = document.createElement('span');        $span.setAttribute('class', '');        $span.innerText = o['objectTitle'];
+        var $li = document.createElement('li');
+        var $a = document.createElement('a').setAttribute('href', o['editPage']);
+        $a.append($i);
+        $a.append($span);
+        $li.append($a);
+        $list.append($li);
+      });
+    }
   };
   error = function( jqXhr, target2 ) {};
   searchAiNodeVals($formFilters, target, success, error);

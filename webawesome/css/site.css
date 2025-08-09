@@ -587,7 +587,7 @@ main, footer {
   border-radius: var(--wa-border-radius-l);
 } */
 
-.SearchButtons_Search, .SearchButtons_Sort, .SearchButtons_Range, .SearchButtons_Pivot, .SearchButtons_FieldList, .SearchButtons_Stats {
+.SearchButtons_Search, .SearchButtons_Sort, .SearchButtons_Pivot, .SearchButtons_FieldList, .SearchButtons_Stats {
   display: none;
 }
 

@@ -4,26 +4,32 @@
 //////////
 
 function addGlow($input, jqXhr) {
-  $input.classList.add('glowSuccess');
-  $input.classList.remove('glowError');
+  if($input) {
+    $input.classList.add('glowSuccess');
+    $input.classList.remove('glowError');
+  }
 }
 
 function removeGlow($input, jqXhr) {
-  $input.classList.remove('glowSuccess');
-  $input.classList.remove('glowError');
+  if($input) {
+    $input.classList.remove('glowSuccess');
+    $input.classList.remove('glowError');
+  }
 }
 
 function addError($input, jqXhr) {
-  $input.classList.remove('glowSuccess');
-  $input.classList.add('glowError');
+  if($input) {
+    $input.classList.remove('glowSuccess');
+    $input.classList.add('glowError');
 
-  if(jqXhr) {
-    $input.parentNode.querySelector('.alertPopup').setAttribute('variant', 'danger');
-    $input.parentNode.querySelector('.alertPopup').innerText = jqXhr.status + ' ' + jqXhr.statusText;
-    $input.parentNode.active = true;
-    jqXhr.json().then((json) => {
-      $input.parentNode.querySelector('.alertPopup').innerText += " " + JSON.stringify(json);
-    })
+    if(jqXhr) {
+      $input.parentNode.querySelector('.alertPopup').setAttribute('variant', 'danger');
+      $input.parentNode.querySelector('.alertPopup').innerText = jqXhr.status + ' ' + jqXhr.statusText;
+      $input.parentNode.active = true;
+      jqXhr.json().then((json) => {
+        $input.parentNode.querySelector('.alertPopup').innerText += " " + JSON.stringify(json);
+      })
+    }
   }
 }
 
@@ -53,8 +59,8 @@ function fqChange(classSimpleName, elem) {
 
 function fqReplace(classSimpleName, elem) {
 	var $fq = document.querySelector('#fq' + elem.getAttribute('data-class') + '_' + elem.getAttribute('data-var'));
-	$fq.value = elem.getAttribute('data-val');
-	fqChange(classSimpleName, $fq);
+	$fq.val(elem.getAttribute('data-val'));
+	fqChange(classSimpleName, $fq[0]);
 }
 
 function facetFieldChange(classSimpleName, elem) {
@@ -82,9 +88,9 @@ function sort(classSimpleName, sortVar, sortOrder) {
 	searchPage(classSimpleName);
 }
 
-function facetRangeGapChange(classSimpleName, elem, classSimpleName) {
-	facetRangeVal = document.querySelector("#pageSearchVal-pageFacetRangeGap-" + classSimpleName + "-input").value;
-	if(facetRangeVal) {
+function facetRangeGapChange(classSimpleName, elem) {
+	var facetRangeGapVal = document.querySelector("#pageSearchVal-pageFacetRangeGap-" + classSimpleName + "-input").value;
+	if(facetRangeGapVal) {
 		var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 		document.querySelector("#pageSearchVal-pageFacetRangeGap-" + classSimpleName).innerText = "facet.range.gap=" + encodeURIComponent(document.querySelector("#pageSearchVal-pageFacetRangeGap-" + classSimpleName + "-input").value);
 	} else {
@@ -93,22 +99,20 @@ function facetRangeGapChange(classSimpleName, elem, classSimpleName) {
 	searchPage(classSimpleName);
 }
 
-function facetRangeStartChange(classSimpleName, elem, classSimpleName) {
-	facetRangeVal = document.querySelector("input[name='pageFacetRange']:checked").value;
-	if(facetRangeVal) {
-		var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-		document.querySelector("#pageSearchVal-pageFacetRangeStart-" + classSimpleName).innerText = "facet.range.start=" + encodeURIComponent(document.querySelector("#pageFacetRangeStart-" + classSimpleName).value + ":00.000[" + timeZone + "]");
+function facetRangeStartChange(classSimpleName, elem, timeZone) {
+	var facetRangeStartVal = document.querySelector("#pageSearchVal-pageFacetRangeStart-" + classSimpleName + "-input").value;
+	if(facetRangeStartVal) {
+		document.querySelector("#pageSearchVal-pageFacetRangeStart-" + classSimpleName).innerText = "facet.range.start=" + encodeURIComponent(facetRangeStartVal + ":00.000[" + timeZone + "]");
 	} else {
 		document.querySelector("#pageSearchVal-pageFacetRangeStart-" + classSimpleName).innerText = "";
 	}
 	searchPage(classSimpleName);
 }
 
-function facetRangeEndChange(classSimpleName, elem, classSimpleName) {
-	facetRangeVal = document.querySelector("input[name='pageFacetRange']:checked").value;
-	if(facetRangeVal) {
-		var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-		document.querySelector("#pageSearchVal-pageFacetRangeEnd-" + classSimpleName).innerText = "facet.range.end=" + encodeURIComponent(document.querySelector("#pageFacetRangeEnd-" + classSimpleName).value + ":00.000[" + timeZone + "]");
+function facetRangeEndChange(classSimpleName, elem, timeZone) {
+	var facetRangeEndVal = document.querySelector("#pageSearchVal-pageFacetRangeEnd-" + classSimpleName + "-input").value;
+	if(facetRangeEndVal) {
+		document.querySelector("#pageSearchVal-pageFacetRangeEnd-" + classSimpleName).innerText = "facet.range.end=" + encodeURIComponent(facetRangeEndVal + ":00.000[" + timeZone + "]");
 	} else {
 		document.querySelector("#pageSearchVal-pageFacetRangeEnd-" + classSimpleName).innerText = "";
 	}
@@ -127,7 +131,7 @@ function facetRangeChange(classSimpleName, facetRangeVal) {
 
 function facetPivotChange(classSimpleName, elem) {
 	var $listHidden = document.querySelector("#pageSearchVal-Pivot" + classSimpleName + "Hidden");
-	if(elem.checked) {
+	if(elem.is(":checked")) {
 		var div = document.createElement("div");
 		div.setAttribute("id", "pageSearchVal-Pivot" + classSimpleName + "Hidden_" + elem.value);
 		div.setAttribute("class", "pageSearchVal-Pivot" + classSimpleName + "Hidden ");
@@ -136,12 +140,12 @@ function facetPivotChange(classSimpleName, elem) {
 	} else {
 		document.querySelector("#pageSearchVal-Pivot" + classSimpleName + "Hidden_" + elem.value).remove();
 	}
-	document.querySelector("#pageSearchVal-Pivot" + classSimpleName + "_1")?.remove();
+	document.querySelector("#pageSearchVal-Pivot" + classSimpleName + "_1").remove();
 	var $list = document.querySelector("#pageSearchVal-Pivot" + classSimpleName);
 	var $listHidden = document.querySelector("#pageSearchVal-Pivot" + classSimpleName + "Hidden");
-	if($listHidden.hasChildNodes()) {
+	if($listHidden.children().length > 0) {
 		var pivotVal = '';
-		Array.from($listHidden.children).forEach((index, pivotElem) => {
+		$listHidden.children().each(function(index, pivotElem) {
 			if(pivotVal)
 				pivotVal += ",";
 			pivotVal += pivotElem.innerText;
@@ -157,7 +161,7 @@ function facetPivotChange(classSimpleName, elem) {
 
 function facetFieldListChange(classSimpleName, elem) {
 	var $listHidden = document.querySelector("#pageSearchVal-FieldList" + classSimpleName + "Hidden");
-	if(elem.checked) {
+	if(elem.is(":checked")) {
 		var div = document.createElement("div");
 		div.setAttribute("id", "pageSearchVal-FieldList" + classSimpleName + "Hidden_" + elem.value);
 		div.setAttribute("class", "pageSearchVal-FieldList" + classSimpleName + "Hidden ");
@@ -181,7 +185,7 @@ function facetFieldListChange(classSimpleName, elem) {
 
 function facetStatsChange(classSimpleName, elem) {
 	var $list = document.querySelector("#pageSearchVal-Stats" + classSimpleName);
-	if(elem.checked) {
+	if(elem.is(":checked")) {
 		var div = document.createElement("div");
 		div.setAttribute("id", "pageSearchVal-Stats" + classSimpleName + "_" + elem.value);
 		div.setAttribute("class", "pageSearchVal pageSearchVal-Stats" + classSimpleName + "_" + elem.value + " ");
@@ -200,25 +204,23 @@ function searchPage(classSimpleName, success, error) {
 		error = function( jqXhr, textStatus, errorThrown ) {};
 	var queryParams = "?" + Array.from(document.querySelectorAll(".pageSearchVal")).filter(elem => elem.innerText.length > 0).map(elem => elem.innerText).join("&");
 	var uri = location.pathname + queryParams;
-	fetch(uri).then(response => {
-		response.text().then((body) => {
-			//var template = document.createElement("template");
-			//template.innerHTML = body.substring(body.indexOf("<body"), body.indexOf("</html>"));
-			var templateStr = body.substring(body);
-			var template = new DOMParser().parseFromString(body, "text/html");
-			//var template = document.createElement("<template>" + body.substring(body.indexOf("<body"), body.indexOf("</html>")) + "</template>");
-			document.querySelectorAll('.pageFacetField').forEach((facetField, index) => {
-				facetField.replaceWith(template.querySelector("." + facetField.getAttribute("id")));
-			});
-			document.querySelectorAll('.pageStatsField').forEach((statsField, index) => {
-				statsField.replaceWith(template.querySelector("." + statsField.getAttribute("id")));
-			});
-			document.querySelector(".pageContent").replaceWith(template.querySelector(".pageContent"));
-			window['pageGraph' + classSimpleName](classSimpleName)
-			success(document.querySelector(".pageContent"));
-		});
-	});
-	window.history.replaceState('', '', uri);
+	window.location.href = uri;
+	//fetch(uri).then(response => {
+	//	response.text().then((body) => {
+	//		var templateStr = body.substring(body);
+	//		var template = new DOMParser().parseFromString(body, "text/html");
+	//		document.querySelectorAll('.pageFacetField').forEach((facetField, index) => {
+	//			facetField.replaceWith(template.querySelector("." + facetField.getAttribute("id")));
+	//		});
+	//		document.querySelectorAll('.pageStatsField').forEach((statsField, index) => {
+	//			statsField.replaceWith(template.querySelector("." + statsField.getAttribute("id")));
+	//		});
+	//		document.querySelector("body main").replaceWith(template.querySelector("body main"));
+	//		window['pageGraph' + classSimpleName](classSimpleName)
+	//		success(document.querySelector("body main"));
+	//	});
+	//});
+	//window.history.replaceState('', '', uri);
 }
 
 function searchEscapeQueryChars(s) {
@@ -308,3 +310,42 @@ function quoteattr(s, preserveCR) {
 //    return rows.map(function(row) { return row[key]; });
 //}
 //
+
+function imgToDialog(target) {
+  var h = this.previousElementSibling;
+  var dialog = document.createElement('wa-dialog');
+  dialog.setAttribute('label', target.getAttribute('alt'));
+  dialog.setAttribute('style', '--width: 80vw; --height: 80vh; ');
+  dialog.setAttribute('open', 'true');
+  dialog.setAttribute('light-dismiss', 'true');
+  var stack = document.createElement('div');
+  stack.classList.add('wa-stack');
+  stack.classList.add('wa-align-items-center');
+  dialog.append(stack);
+  var img = document.createElement('img');
+  img.setAttribute('src', target.getAttribute('src'));
+  stack.append(img);
+  dialog.addEventListener('wa-after-hide', event => {
+		event.target.remove();
+  });
+	target.after(dialog);
+}
+
+function error(response, target, message='') {
+	const warningsDrawer = document.getElementById('warnings-drawer');
+	const warningsDrawerStack = document.getElementById('warnings-drawer-stack');
+	var callout = document.createElement('wa-callout');
+	callout.setAttribute('variant', 'danger');
+	var icon = document.createElement('wa-icon');
+	icon.setAttribute('slot', 'icon');
+	icon.setAttribute('class', 'fa-regular fa-circle-exclamation ');
+	callout.append(icon);
+	var strong = document.createElement('strong');
+	strong.innerText = `${response.status} ${response.statusText}`;
+	if(message)
+		strong.innerText = `${response.status} ${response.statusText}: ${message}`;
+	callout.append(strong);
+	warningsDrawerStack.prepend(callout);
+
+	warningsDrawer.open = true;
+}

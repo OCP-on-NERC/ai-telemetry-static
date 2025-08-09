@@ -203,6 +203,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotAiNode_created')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapAiNode_created')?.addEventListener('change', (event) => {
+            facetRangeGapChange('AiNode', event.currentTarget);
+          });
           document.querySelector('#fqAiNode_archived')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
           });
@@ -211,6 +214,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotAiNode_archived')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapAiNode_archived')?.addEventListener('change', (event) => {
+            facetRangeGapChange('AiNode', event.currentTarget);
           });
           document.querySelector('#fqAiNode_hubId')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
@@ -221,6 +227,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotAiNode_hubId')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapAiNode_hubId')?.addEventListener('change', (event) => {
+            facetRangeGapChange('AiNode', event.currentTarget);
+          });
           document.querySelector('#fqAiNode_clusterName')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
           });
@@ -229,6 +238,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotAiNode_clusterName')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapAiNode_clusterName')?.addEventListener('change', (event) => {
+            facetRangeGapChange('AiNode', event.currentTarget);
           });
           document.querySelector('#fqAiNode_nodeName')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
@@ -239,6 +251,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotAiNode_nodeName')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapAiNode_nodeName')?.addEventListener('change', (event) => {
+            facetRangeGapChange('AiNode', event.currentTarget);
+          });
           document.querySelector('#fqAiNode_id')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
           });
@@ -247,6 +262,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotAiNode_id')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapAiNode_id')?.addEventListener('change', (event) => {
+            facetRangeGapChange('AiNode', event.currentTarget);
           });
           document.querySelector('#fqAiNode_gpuDevicesTotal')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
@@ -257,6 +275,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotAiNode_gpuDevicesTotal')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapAiNode_gpuDevicesTotal')?.addEventListener('change', (event) => {
+            facetRangeGapChange('AiNode', event.currentTarget);
+          });
           document.querySelector('#fqAiNode_ngsildTenant')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
           });
@@ -265,6 +286,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotAiNode_ngsildTenant')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapAiNode_ngsildTenant')?.addEventListener('change', (event) => {
+            facetRangeGapChange('AiNode', event.currentTarget);
           });
           document.querySelector('#fqAiNode_ngsildPath')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
@@ -275,6 +299,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotAiNode_ngsildPath')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapAiNode_ngsildPath')?.addEventListener('change', (event) => {
+            facetRangeGapChange('AiNode', event.currentTarget);
+          });
           document.querySelector('#fqAiNode_ngsildContext')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
           });
@@ -283,6 +310,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotAiNode_ngsildContext')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapAiNode_ngsildContext')?.addEventListener('change', (event) => {
+            facetRangeGapChange('AiNode', event.currentTarget);
           });
           document.querySelector('#fqAiNode_ngsildData')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
@@ -293,6 +323,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotAiNode_ngsildData')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapAiNode_ngsildData')?.addEventListener('change', (event) => {
+            facetRangeGapChange('AiNode', event.currentTarget);
+          });
           document.querySelector('#fqAiNode_location')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
           });
@@ -301,6 +334,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotAiNode_location')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapAiNode_location')?.addEventListener('change', (event) => {
+            facetRangeGapChange('AiNode', event.currentTarget);
           });
           document.querySelector('#fqAiNode_displayPage')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
@@ -311,6 +347,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotAiNode_displayPage')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapAiNode_displayPage')?.addEventListener('change', (event) => {
+            facetRangeGapChange('AiNode', event.currentTarget);
+          });
           document.querySelector('#fqAiNode_nodeResource')?.addEventListener('change', (event) => {
             fqChange('AiNode', event.currentTarget);
           });
@@ -319,5 +358,8 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotAiNode_nodeResource')?.addEventListener('change', (event) => {
             facetPivotChange('AiNode', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapAiNode_nodeResource')?.addEventListener('change', (event) => {
+            facetRangeGapChange('AiNode', event.currentTarget);
           });
 });

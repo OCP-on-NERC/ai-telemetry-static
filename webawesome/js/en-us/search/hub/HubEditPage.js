@@ -141,6 +141,27 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
+          // PATCH displayPage
+          document.querySelector('#Page_displayPage')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_displayPage');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchHubVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'hubResource:' + event.currentTarget.getAttribute('data-hubResource') }]
+                  , 'setDisplayPage', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_displayPage')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_displayPage')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_displayPage');
+            const valid = form.reportValidity();
+          });
+
           // PATCH sessionId
           document.querySelector('#Page_sessionId')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_sessionId');
@@ -204,27 +225,6 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH displayPage
-          document.querySelector('#Page_displayPage')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_displayPage');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchHubVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'hubResource:' + event.currentTarget.getAttribute('data-hubResource') }]
-                  , 'setDisplayPage', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_displayPage')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_displayPage')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_displayPage');
-            const valid = form.reportValidity();
-          });
-
           // PATCH hubResource
           document.querySelector('#Page_hubResource')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_hubResource');
@@ -243,6 +243,27 @@ Promise.all([
           });
           document.querySelector('#Page_hubResource')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_hubResource');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH localClusterName
+          document.querySelector('#Page_localClusterName')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_localClusterName');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchHubVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'hubResource:' + event.currentTarget.getAttribute('data-hubResource') }]
+                  , 'setLocalClusterName', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_localClusterName')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_localClusterName')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_localClusterName');
             const valid = form.reportValidity();
           });
 });

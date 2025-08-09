@@ -129,6 +129,15 @@
                     <span>sign out</span>
                   </wa-button>
                 </div>
+                <wa-details summary="User groups" open="true">
+                  <div class="wa-stack ">
+                    <div>
+                      {% for group in userGroups %}
+                      <wa-badge variant="success">{{ group }}</wa-badge>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </wa-details>
                 <wa-details summary="Current scopes" open="true">
                   <div class="wa-stack ">
                     <div>
@@ -154,6 +163,8 @@
                 articles
               </wa-button>
 
+{% if ENABLE_FEATURE_OBSERVABILITY %}
+{% if userGroups is defined and ("/HUB" in userGroups or "/Admin" in userGroups or "/SuperAdmin" in userGroups) %}
             <wa-details summary="ACM Hubs" open="true" class="wa-stack ">
               <div class="wa-stack ">
                 <wa-button variant="brand" id="site-aside-left-model-button-Tenant" href="{{ SITE_BASE_URL }}/en-us/search/hub">
@@ -162,23 +173,23 @@
                 </wa-button>
               </div>
             </wa-details>
-{% if ENABLE_FEATURE_OBSERVABILITY %}
+{% endif %}
 
             <wa-details summary="AI Telemetry" open="true" class="wa-stack ">
               <div class="wa-stack ">
-                <wa-button variant="brand" id="site-aside-left-model-button-Cluster" href="{{ SITE_BASE_URL }}/en-us/search/cluster">
+                <wa-button variant="brand" id="site-aside-left-model-button-Cluster" href="{{ SITE_BASE_URL }}/en-us/search/cluster?facet.field=hubId">
                 <wa-icon class="fa-regular fa-server"></wa-icon>
                 clusters
               </wa-button>
-                  <wa-button variant="brand" id="site-aside-left-model-button-AiNode" href="{{ SITE_BASE_URL }}/en-us/search/ai-node">
+                  <wa-button variant="brand" id="site-aside-left-model-button-AiNode" href="{{ SITE_BASE_URL }}/en-us/search/ai-node?facet.field=hubId">
                 <wa-icon class="fa-regular fa-computer"></wa-icon>
                 AI nodes
               </wa-button>
-                  <wa-button variant="brand" id="site-aside-left-model-button-GpuDevice" href="{{ SITE_BASE_URL }}/en-us/search/gpu-device">
+                  <wa-button variant="brand" id="site-aside-left-model-button-GpuDevice" href="{{ SITE_BASE_URL }}/en-us/search/gpu-device?facet.field=hubId">
                 <wa-icon class="fa-regular fa-memory"></wa-icon>
                 GPU devices
               </wa-button>
-                <wa-button variant="brand" id="site-aside-left-model-button-Project" href="{{ SITE_BASE_URL }}/en-us/search/project">
+                <wa-button variant="brand" id="site-aside-left-model-button-Project" href="{{ SITE_BASE_URL }}/en-us/search/project?facet.field=hubId">
                 <wa-icon class="fa-regular fa-school"></wa-icon>
                 projects
               </wa-button>
@@ -247,8 +258,14 @@
             </div>
       </nav>
       <main>
+        <wa-drawer id="warnings-drawer" label="Warnings">
+          <div id="warnings-drawer-stack" class="wa-stack ">
+          </div>
+        </wa-drawer>
         <header slot="header" class="wa-flank margin-block-start ">
-          <wa-icon-button data-toggle-nav name="bars" class="nav-toggle-button hide-desktop " label="open menu" appearance="text"></wa-icon-button>
+          <wa-button data-toggle-nav name="bars" class="nav-toggle-button hide-desktop " label="open menu" appearance="text">
+            <wa-icon name="bars"></wa-icon>
+          </wa-button>
           <wa-input placeholder="search" id="siteSearchInput">
             <wa-icon slot="start" class="fa-regular fa-regular  fa-magnifying-glass"></wa-icon>
           </wa-input>
