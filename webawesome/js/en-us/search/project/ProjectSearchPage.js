@@ -39,6 +39,34 @@ Promise.all([
     sort('Project', 'description', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortProject_classCanonicalName')?.addEventListener('change', (event) => {
+    sort('Project', 'classCanonicalName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortProject_classSimpleName')?.addEventListener('change', (event) => {
+    sort('Project', 'classSimpleName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortProject_classCanonicalNames')?.addEventListener('change', (event) => {
+    sort('Project', 'classCanonicalNames', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortProject_sessionId')?.addEventListener('change', (event) => {
+    sort('Project', 'sessionId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortProject_userKey')?.addEventListener('change', (event) => {
+    sort('Project', 'userKey', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortProject_saves')?.addEventListener('change', (event) => {
+    sort('Project', 'saves', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortProject_objectTitle')?.addEventListener('change', (event) => {
+    sort('Project', 'objectTitle', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortProject_displayPage')?.addEventListener('change', (event) => {
     sort('Project', 'displayPage', event.currentTarget.value);
   });
@@ -63,36 +91,8 @@ Promise.all([
     sort('Project', 'objectText', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortProject_classCanonicalName')?.addEventListener('change', (event) => {
-    sort('Project', 'classCanonicalName', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortProject_classSimpleName')?.addEventListener('change', (event) => {
-    sort('Project', 'classSimpleName', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortProject_classCanonicalNames')?.addEventListener('change', (event) => {
-    sort('Project', 'classCanonicalNames', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortProject_sessionId')?.addEventListener('change', (event) => {
-    sort('Project', 'sessionId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortProject_userKey')?.addEventListener('change', (event) => {
-    sort('Project', 'userKey', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortProject_objectTitle')?.addEventListener('change', (event) => {
-    sort('Project', 'objectTitle', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortProject_solrId')?.addEventListener('change', (event) => {
     sort('Project', 'solrId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortProject_saves')?.addEventListener('change', (event) => {
-    sort('Project', 'saves', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortProject_hubResource')?.addEventListener('change', (event) => {

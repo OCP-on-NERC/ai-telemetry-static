@@ -1,16 +1,3 @@
-        <wa-details open>
-          <div slot="summary">Map of GPU devices</div>
-
-{%- block htmBodyGraphLocationGpuDevicePage %}
-{% if resultCount > 0 %}
-        <div id="htmBodyGraphLocationGpuDevicePage" class="htmBodyGraphLocation "></div>
-{% endif %}
-{%- endblock htmBodyGraphLocationGpuDevicePage %}
-
-{%- block htmBodyGraphGpuDevicePage %}
-        <div id="htmBodyGraphGpuDevicePage" class="htmBodyGraph "></div>
-{%- endblock htmBodyGraphGpuDevicePage %}
-        </wa-details>
           <div class="htmBodySidebarGpuDevicePage ">
 {%- block htmBodySidebarGpuDevicePage %}
           <wa-drawer with-header light-dismiss placement="end" id="siteSidebarToggleSearch">
@@ -257,7 +244,7 @@
               </div>
               <table>
                 {% for key, value in varsFq.items() %}
-                  {% if enableStats is defined %}
+                  {% if value.enableStats is defined %}
                     <tr class="">
                       <td class="">
                         <span><wa-checkbox name="pageStats" class="pageStats " id="pageStatsGpuDevice_{{ key }}" value="{{ value.var }}"{% if value.stats is defined %} checked="checked"{% endif %} onclick="facetStatsChange('GpuDevice', value); ">{{ value.displayName }}</wa-checkbox></span>

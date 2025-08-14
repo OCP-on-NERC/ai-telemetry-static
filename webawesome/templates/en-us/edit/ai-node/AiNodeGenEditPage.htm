@@ -393,7 +393,8 @@
 {%- endblock htmBodyMiddlePageLayout %}
 
 {%- block htmBodyEndPageLayout %}
-      {{ super() }}
 {%- block htmBodyEndAiNodePage %}
+{%- include en-us/search/ai-node/AiNodeLocation.htm %}
 {%- endblock htmBodyEndAiNodePage %}
+      {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

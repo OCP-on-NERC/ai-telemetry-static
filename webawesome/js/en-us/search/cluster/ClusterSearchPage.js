@@ -83,6 +83,18 @@ Promise.all([
     sort('Cluster', 'ngsildData', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortCluster_userKey')?.addEventListener('change', (event) => {
+    sort('Cluster', 'userKey', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortCluster_saves')?.addEventListener('change', (event) => {
+    sort('Cluster', 'saves', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortCluster_objectTitle')?.addEventListener('change', (event) => {
+    sort('Cluster', 'objectTitle', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortCluster_displayPage')?.addEventListener('change', (event) => {
     sort('Cluster', 'displayPage', event.currentTarget.value);
   });
@@ -107,6 +119,10 @@ Promise.all([
     sort('Cluster', 'objectText', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortCluster_solrId')?.addEventListener('change', (event) => {
+    sort('Cluster', 'solrId', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortCluster_classCanonicalName')?.addEventListener('change', (event) => {
     sort('Cluster', 'classCanonicalName', event.currentTarget.value);
   });
@@ -121,22 +137,6 @@ Promise.all([
 
   document.querySelector('#pageFacetSortCluster_sessionId')?.addEventListener('change', (event) => {
     sort('Cluster', 'sessionId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortCluster_userKey')?.addEventListener('change', (event) => {
-    sort('Cluster', 'userKey', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortCluster_objectTitle')?.addEventListener('change', (event) => {
-    sort('Cluster', 'objectTitle', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortCluster_solrId')?.addEventListener('change', (event) => {
-    sort('Cluster', 'solrId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortCluster_saves')?.addEventListener('change', (event) => {
-    sort('Cluster', 'saves', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortCluster_hubResource')?.addEventListener('change', (event) => {

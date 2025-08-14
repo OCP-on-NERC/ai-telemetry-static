@@ -324,11 +324,6 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartGpuDevicePage %}
-{%- endblock htmBodyStartGpuDevicePage %}
-{%- endblock htmBodyStartPageLayout %}
-
-{%- block htmBodyMiddlePageLayout %}
-{%- block htmBodyMiddleGpuDevicePage %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-GpuDevice">back to all GPU devices</wa-tooltip></wa-tooltip>
@@ -375,6 +370,13 @@
               </wa-breadcrumb>
 {% include en-us/search/gpu-device/GpuDeviceSearchForm.htm %}
 {% include en-us/search/gpu-device/GpuDeviceSearchButtons.htm %}
+{% endif %}
+{%- endblock htmBodyStartGpuDevicePage %}
+{%- endblock htmBodyStartPageLayout %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleGpuDevicePage %}
+{% if resultCount > 0 %}
               <div class="wa-stack wa-gap-0 ">
 {% include en-us/search/gpu-device/GpuDevicePaginationButtons.htm %}
                 <div class="card-like-thing background-color-surface-border" id="site-results-grid">
@@ -475,7 +477,8 @@
 {%- endblock htmBodyMiddlePageLayout %}
 
 {%- block htmBodyEndPageLayout %}
-  {{ super() }}
 {%- block htmBodyEndGpuDevicePage %}
+{%- include en-us/search/gpu-device/GpuDeviceLocation.htm %}
 {%- endblock htmBodyEndGpuDevicePage %}
+  {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

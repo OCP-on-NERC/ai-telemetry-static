@@ -225,11 +225,6 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartProjectPage %}
-{%- endblock htmBodyStartProjectPage %}
-{%- endblock htmBodyStartPageLayout %}
-
-{%- block htmBodyMiddlePageLayout %}
-{%- block htmBodyMiddleProjectPage %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-Project">back to all projects</wa-tooltip></wa-tooltip>
@@ -276,6 +271,13 @@
               </wa-breadcrumb>
 {% include en-us/search/project/ProjectSearchForm.htm %}
 {% include en-us/search/project/ProjectSearchButtons.htm %}
+{% endif %}
+{%- endblock htmBodyStartProjectPage %}
+{%- endblock htmBodyStartPageLayout %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleProjectPage %}
+{% if resultCount > 0 %}
               <div class="wa-stack wa-gap-0 ">
 {% include en-us/search/project/ProjectPaginationButtons.htm %}
                 <div class="card-like-thing background-color-surface-border" id="site-results-grid">
@@ -356,7 +358,8 @@
 {%- endblock htmBodyMiddlePageLayout %}
 
 {%- block htmBodyEndPageLayout %}
-  {{ super() }}
 {%- block htmBodyEndProjectPage %}
+{%- include en-us/search/project/ProjectLocation.htm %}
 {%- endblock htmBodyEndProjectPage %}
+  {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

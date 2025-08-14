@@ -420,7 +420,8 @@
 {%- endblock htmBodyMiddlePageLayout %}
 
 {%- block htmBodyEndPageLayout %}
-      {{ super() }}
 {%- block htmBodyEndGpuDevicePage %}
+{%- include en-us/search/gpu-device/GpuDeviceLocation.htm %}
 {%- endblock htmBodyEndGpuDevicePage %}
+      {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

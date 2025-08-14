@@ -47,16 +47,8 @@ Promise.all([
     sort('SitePage', 'classSimpleName', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortSitePage_classCanonicalNames')?.addEventListener('change', (event) => {
-    sort('SitePage', 'classCanonicalNames', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortSitePage_saves')?.addEventListener('change', (event) => {
     sort('SitePage', 'saves', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortSitePage_objectTitle')?.addEventListener('change', (event) => {
-    sort('SitePage', 'objectTitle', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortSitePage_editPage')?.addEventListener('change', (event) => {
@@ -81,6 +73,14 @@ Promise.all([
 
   document.querySelector('#pageFacetSortSitePage_solrId')?.addEventListener('change', (event) => {
     sort('SitePage', 'solrId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortSitePage_classCanonicalNames')?.addEventListener('change', (event) => {
+    sort('SitePage', 'classCanonicalNames', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortSitePage_objectTitle')?.addEventListener('change', (event) => {
+    sort('SitePage', 'objectTitle', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortSitePage_courseNum')?.addEventListener('change', (event) => {

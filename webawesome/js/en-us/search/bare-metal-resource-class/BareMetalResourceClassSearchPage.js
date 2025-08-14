@@ -31,22 +31,6 @@ Promise.all([
     sort('BareMetalResourceClass', 'count', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalResourceClass_classCanonicalName')?.addEventListener('change', (event) => {
-    sort('BareMetalResourceClass', 'classCanonicalName', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortBareMetalResourceClass_classSimpleName')?.addEventListener('change', (event) => {
-    sort('BareMetalResourceClass', 'classSimpleName', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortBareMetalResourceClass_classCanonicalNames')?.addEventListener('change', (event) => {
-    sort('BareMetalResourceClass', 'classCanonicalNames', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortBareMetalResourceClass_sessionId')?.addEventListener('change', (event) => {
-    sort('BareMetalResourceClass', 'sessionId', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortBareMetalResourceClass_userKey')?.addEventListener('change', (event) => {
     sort('BareMetalResourceClass', 'userKey', event.currentTarget.value);
   });
@@ -85,6 +69,22 @@ Promise.all([
 
   document.querySelector('#pageFacetSortBareMetalResourceClass_solrId')?.addEventListener('change', (event) => {
     sort('BareMetalResourceClass', 'solrId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortBareMetalResourceClass_classCanonicalName')?.addEventListener('change', (event) => {
+    sort('BareMetalResourceClass', 'classCanonicalName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortBareMetalResourceClass_classSimpleName')?.addEventListener('change', (event) => {
+    sort('BareMetalResourceClass', 'classSimpleName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortBareMetalResourceClass_classCanonicalNames')?.addEventListener('change', (event) => {
+    sort('BareMetalResourceClass', 'classCanonicalNames', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortBareMetalResourceClass_sessionId')?.addEventListener('change', (event) => {
+    sort('BareMetalResourceClass', 'sessionId', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchBareMetalResourceClass')?.addEventListener('click', (event) => {
@@ -135,6 +135,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotBareMetalResourceClass_created')?.addEventListener('change', (event) => {
             facetPivotChange('BareMetalResourceClass', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapBareMetalResourceClass_created')?.addEventListener('change', (event) => {
+            facetRangeGapChange('BareMetalResourceClass', event.currentTarget);
+          });
           document.querySelector('#fqBareMetalResourceClass_archived')?.addEventListener('change', (event) => {
             fqChange('BareMetalResourceClass', event.currentTarget);
           });
@@ -143,6 +146,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotBareMetalResourceClass_archived')?.addEventListener('change', (event) => {
             facetPivotChange('BareMetalResourceClass', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapBareMetalResourceClass_archived')?.addEventListener('change', (event) => {
+            facetRangeGapChange('BareMetalResourceClass', event.currentTarget);
           });
           document.querySelector('#fqBareMetalResourceClass_name')?.addEventListener('change', (event) => {
             fqChange('BareMetalResourceClass', event.currentTarget);
@@ -153,6 +159,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotBareMetalResourceClass_name')?.addEventListener('change', (event) => {
             facetPivotChange('BareMetalResourceClass', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapBareMetalResourceClass_name')?.addEventListener('change', (event) => {
+            facetRangeGapChange('BareMetalResourceClass', event.currentTarget);
+          });
           document.querySelector('#fqBareMetalResourceClass_count')?.addEventListener('change', (event) => {
             fqChange('BareMetalResourceClass', event.currentTarget);
           });
@@ -162,6 +171,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotBareMetalResourceClass_count')?.addEventListener('change', (event) => {
             facetPivotChange('BareMetalResourceClass', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapBareMetalResourceClass_count')?.addEventListener('change', (event) => {
+            facetRangeGapChange('BareMetalResourceClass', event.currentTarget);
+          });
           document.querySelector('#fqBareMetalResourceClass_displayPage')?.addEventListener('change', (event) => {
             fqChange('BareMetalResourceClass', event.currentTarget);
           });
@@ -170,5 +182,8 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotBareMetalResourceClass_displayPage')?.addEventListener('change', (event) => {
             facetPivotChange('BareMetalResourceClass', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapBareMetalResourceClass_displayPage')?.addEventListener('change', (event) => {
+            facetRangeGapChange('BareMetalResourceClass', event.currentTarget);
           });
 });

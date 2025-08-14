@@ -257,7 +257,8 @@
 {%- endblock htmBodyMiddlePageLayout %}
 
 {%- block htmBodyEndPageLayout %}
-      {{ super() }}
 {%- block htmBodyEndHubPage %}
+{%- include en-us/search/hub/HubLocation.htm %}
 {%- endblock htmBodyEndHubPage %}
+      {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

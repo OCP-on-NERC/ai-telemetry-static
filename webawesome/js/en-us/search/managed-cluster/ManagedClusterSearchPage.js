@@ -39,22 +39,6 @@ Promise.all([
     sort('ManagedCluster', 'consoleUrl', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortManagedCluster_classCanonicalName')?.addEventListener('change', (event) => {
-    sort('ManagedCluster', 'classCanonicalName', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortManagedCluster_classSimpleName')?.addEventListener('change', (event) => {
-    sort('ManagedCluster', 'classSimpleName', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortManagedCluster_classCanonicalNames')?.addEventListener('change', (event) => {
-    sort('ManagedCluster', 'classCanonicalNames', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortManagedCluster_sessionId')?.addEventListener('change', (event) => {
-    sort('ManagedCluster', 'sessionId', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortManagedCluster_userKey')?.addEventListener('change', (event) => {
     sort('ManagedCluster', 'userKey', event.currentTarget.value);
   });
@@ -93,6 +77,22 @@ Promise.all([
 
   document.querySelector('#pageFacetSortManagedCluster_solrId')?.addEventListener('change', (event) => {
     sort('ManagedCluster', 'solrId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortManagedCluster_classCanonicalName')?.addEventListener('change', (event) => {
+    sort('ManagedCluster', 'classCanonicalName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortManagedCluster_classSimpleName')?.addEventListener('change', (event) => {
+    sort('ManagedCluster', 'classSimpleName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortManagedCluster_classCanonicalNames')?.addEventListener('change', (event) => {
+    sort('ManagedCluster', 'classCanonicalNames', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortManagedCluster_sessionId')?.addEventListener('change', (event) => {
+    sort('ManagedCluster', 'sessionId', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchManagedCluster')?.addEventListener('click', (event) => {
@@ -143,6 +143,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotManagedCluster_created')?.addEventListener('change', (event) => {
             facetPivotChange('ManagedCluster', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapManagedCluster_created')?.addEventListener('change', (event) => {
+            facetRangeGapChange('ManagedCluster', event.currentTarget);
+          });
           document.querySelector('#fqManagedCluster_archived')?.addEventListener('change', (event) => {
             fqChange('ManagedCluster', event.currentTarget);
           });
@@ -151,6 +154,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotManagedCluster_archived')?.addEventListener('change', (event) => {
             facetPivotChange('ManagedCluster', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapManagedCluster_archived')?.addEventListener('change', (event) => {
+            facetRangeGapChange('ManagedCluster', event.currentTarget);
           });
           document.querySelector('#fqManagedCluster_id')?.addEventListener('change', (event) => {
             fqChange('ManagedCluster', event.currentTarget);
@@ -161,6 +167,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotManagedCluster_id')?.addEventListener('change', (event) => {
             facetPivotChange('ManagedCluster', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapManagedCluster_id')?.addEventListener('change', (event) => {
+            facetRangeGapChange('ManagedCluster', event.currentTarget);
+          });
           document.querySelector('#fqManagedCluster_state')?.addEventListener('change', (event) => {
             fqChange('ManagedCluster', event.currentTarget);
           });
@@ -169,6 +178,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotManagedCluster_state')?.addEventListener('change', (event) => {
             facetPivotChange('ManagedCluster', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapManagedCluster_state')?.addEventListener('change', (event) => {
+            facetRangeGapChange('ManagedCluster', event.currentTarget);
           });
           document.querySelector('#fqManagedCluster_apiUrl')?.addEventListener('change', (event) => {
             fqChange('ManagedCluster', event.currentTarget);
@@ -179,6 +191,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotManagedCluster_apiUrl')?.addEventListener('change', (event) => {
             facetPivotChange('ManagedCluster', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapManagedCluster_apiUrl')?.addEventListener('change', (event) => {
+            facetRangeGapChange('ManagedCluster', event.currentTarget);
+          });
           document.querySelector('#fqManagedCluster_consoleUrl')?.addEventListener('change', (event) => {
             fqChange('ManagedCluster', event.currentTarget);
           });
@@ -188,6 +203,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotManagedCluster_consoleUrl')?.addEventListener('change', (event) => {
             facetPivotChange('ManagedCluster', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapManagedCluster_consoleUrl')?.addEventListener('change', (event) => {
+            facetRangeGapChange('ManagedCluster', event.currentTarget);
+          });
           document.querySelector('#fqManagedCluster_displayPage')?.addEventListener('change', (event) => {
             fqChange('ManagedCluster', event.currentTarget);
           });
@@ -196,5 +214,8 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotManagedCluster_displayPage')?.addEventListener('change', (event) => {
             facetPivotChange('ManagedCluster', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapManagedCluster_displayPage')?.addEventListener('change', (event) => {
+            facetRangeGapChange('ManagedCluster', event.currentTarget);
           });
 });

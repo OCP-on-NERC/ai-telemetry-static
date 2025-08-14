@@ -307,11 +307,6 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartAiNodePage %}
-{%- endblock htmBodyStartAiNodePage %}
-{%- endblock htmBodyStartPageLayout %}
-
-{%- block htmBodyMiddlePageLayout %}
-{%- block htmBodyMiddleAiNodePage %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-AiNode">back to all AI nodes</wa-tooltip></wa-tooltip>
@@ -358,6 +353,13 @@
               </wa-breadcrumb>
 {% include en-us/search/ai-node/AiNodeSearchForm.htm %}
 {% include en-us/search/ai-node/AiNodeSearchButtons.htm %}
+{% endif %}
+{%- endblock htmBodyStartAiNodePage %}
+{%- endblock htmBodyStartPageLayout %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleAiNodePage %}
+{% if resultCount > 0 %}
               <div class="wa-stack wa-gap-0 ">
 {% include en-us/search/ai-node/AiNodePaginationButtons.htm %}
                 <div class="card-like-thing background-color-surface-border" id="site-results-grid">
@@ -438,7 +440,8 @@
 {%- endblock htmBodyMiddlePageLayout %}
 
 {%- block htmBodyEndPageLayout %}
-  {{ super() }}
 {%- block htmBodyEndAiNodePage %}
+{%- include en-us/search/ai-node/AiNodeLocation.htm %}
 {%- endblock htmBodyEndAiNodePage %}
+  {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

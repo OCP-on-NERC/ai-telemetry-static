@@ -257,7 +257,8 @@
 {%- endblock htmBodyMiddlePageLayout %}
 
 {%- block htmBodyEndPageLayout %}
-      {{ super() }}
 {%- block htmBodyEndClusterTemplatePage %}
+{%- include en-us/search/cluster-template/ClusterTemplateLocation.htm %}
 {%- endblock htmBodyEndClusterTemplatePage %}
+      {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

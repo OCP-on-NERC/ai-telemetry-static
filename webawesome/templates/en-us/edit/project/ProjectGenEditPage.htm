@@ -311,7 +311,8 @@
 {%- endblock htmBodyMiddlePageLayout %}
 
 {%- block htmBodyEndPageLayout %}
-      {{ super() }}
 {%- block htmBodyEndProjectPage %}
+{%- include en-us/search/project/ProjectLocation.htm %}
 {%- endblock htmBodyEndProjectPage %}
+      {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

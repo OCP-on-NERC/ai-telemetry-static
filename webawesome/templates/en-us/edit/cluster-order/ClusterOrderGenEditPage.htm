@@ -284,7 +284,8 @@
 {%- endblock htmBodyMiddlePageLayout %}
 
 {%- block htmBodyEndPageLayout %}
-      {{ super() }}
 {%- block htmBodyEndClusterOrderPage %}
+{%- include en-us/search/cluster-order/ClusterOrderLocation.htm %}
 {%- endblock htmBodyEndClusterOrderPage %}
+      {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

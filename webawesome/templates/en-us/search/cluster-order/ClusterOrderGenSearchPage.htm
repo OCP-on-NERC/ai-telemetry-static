@@ -208,11 +208,6 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartClusterOrderPage %}
-{%- endblock htmBodyStartClusterOrderPage %}
-{%- endblock htmBodyStartPageLayout %}
-
-{%- block htmBodyMiddlePageLayout %}
-{%- block htmBodyMiddleClusterOrderPage %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-ClusterOrder">back to all OpenShift cluster orders</wa-tooltip></wa-tooltip>
@@ -259,6 +254,13 @@
               </wa-breadcrumb>
 {% include en-us/search/cluster-order/ClusterOrderSearchForm.htm %}
 {% include en-us/search/cluster-order/ClusterOrderSearchButtons.htm %}
+{% endif %}
+{%- endblock htmBodyStartClusterOrderPage %}
+{%- endblock htmBodyStartPageLayout %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleClusterOrderPage %}
+{% if resultCount > 0 %}
               <div class="wa-stack wa-gap-0 ">
 {% include en-us/search/cluster-order/ClusterOrderPaginationButtons.htm %}
                 <div class="card-like-thing background-color-surface-border" id="site-results-grid">
@@ -359,7 +361,8 @@
 {%- endblock htmBodyMiddlePageLayout %}
 
 {%- block htmBodyEndPageLayout %}
-  {{ super() }}
 {%- block htmBodyEndClusterOrderPage %}
+{%- include en-us/search/cluster-order/ClusterOrderLocation.htm %}
 {%- endblock htmBodyEndClusterOrderPage %}
+  {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

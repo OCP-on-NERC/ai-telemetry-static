@@ -244,7 +244,7 @@
               </div>
               <table>
                 {% for key, value in varsFq.items() %}
-                  {% if enableStats is defined %}
+                  {% if value.enableStats is defined %}
                     <tr class="">
                       <td class="">
                         <span><wa-checkbox name="pageStats" class="pageStats " id="pageStatsClusterTemplate_{{ key }}" value="{{ value.var }}"{% if value.stats is defined %} checked="checked"{% endif %} onclick="facetStatsChange('ClusterTemplate', value); ">{{ value.displayName }}</wa-checkbox></span>

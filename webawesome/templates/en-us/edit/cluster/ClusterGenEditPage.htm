@@ -366,7 +366,8 @@
 {%- endblock htmBodyMiddlePageLayout %}
 
 {%- block htmBodyEndPageLayout %}
-      {{ super() }}
 {%- block htmBodyEndClusterPage %}
+{%- include en-us/search/cluster/ClusterLocation.htm %}
 {%- endblock htmBodyEndClusterPage %}
+      {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

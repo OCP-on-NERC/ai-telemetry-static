@@ -290,11 +290,6 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartClusterPage %}
-{%- endblock htmBodyStartClusterPage %}
-{%- endblock htmBodyStartPageLayout %}
-
-{%- block htmBodyMiddlePageLayout %}
-{%- block htmBodyMiddleClusterPage %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-Cluster">back to all OpenShift clusters</wa-tooltip></wa-tooltip>
@@ -341,6 +336,13 @@
               </wa-breadcrumb>
 {% include en-us/search/cluster/ClusterSearchForm.htm %}
 {% include en-us/search/cluster/ClusterSearchButtons.htm %}
+{% endif %}
+{%- endblock htmBodyStartClusterPage %}
+{%- endblock htmBodyStartPageLayout %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleClusterPage %}
+{% if resultCount > 0 %}
               <div class="wa-stack wa-gap-0 ">
 {% include en-us/search/cluster/ClusterPaginationButtons.htm %}
                 <div class="card-like-thing background-color-surface-border" id="site-results-grid">
@@ -401,7 +403,8 @@
 {%- endblock htmBodyMiddlePageLayout %}
 
 {%- block htmBodyEndPageLayout %}
-  {{ super() }}
 {%- block htmBodyEndClusterPage %}
+{%- include en-us/search/cluster/ClusterLocation.htm %}
 {%- endblock htmBodyEndClusterPage %}
+  {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

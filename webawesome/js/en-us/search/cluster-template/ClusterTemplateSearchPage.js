@@ -39,6 +39,34 @@ Promise.all([
     sort('ClusterTemplate', 'parameters', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortClusterTemplate_classCanonicalName')?.addEventListener('change', (event) => {
+    sort('ClusterTemplate', 'classCanonicalName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortClusterTemplate_classSimpleName')?.addEventListener('change', (event) => {
+    sort('ClusterTemplate', 'classSimpleName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortClusterTemplate_classCanonicalNames')?.addEventListener('change', (event) => {
+    sort('ClusterTemplate', 'classCanonicalNames', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortClusterTemplate_sessionId')?.addEventListener('change', (event) => {
+    sort('ClusterTemplate', 'sessionId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortClusterTemplate_userKey')?.addEventListener('change', (event) => {
+    sort('ClusterTemplate', 'userKey', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortClusterTemplate_saves')?.addEventListener('change', (event) => {
+    sort('ClusterTemplate', 'saves', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortClusterTemplate_objectTitle')?.addEventListener('change', (event) => {
+    sort('ClusterTemplate', 'objectTitle', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortClusterTemplate_displayPage')?.addEventListener('change', (event) => {
     sort('ClusterTemplate', 'displayPage', event.currentTarget.value);
   });
@@ -63,36 +91,8 @@ Promise.all([
     sort('ClusterTemplate', 'objectText', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortClusterTemplate_classCanonicalName')?.addEventListener('change', (event) => {
-    sort('ClusterTemplate', 'classCanonicalName', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortClusterTemplate_classSimpleName')?.addEventListener('change', (event) => {
-    sort('ClusterTemplate', 'classSimpleName', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortClusterTemplate_classCanonicalNames')?.addEventListener('change', (event) => {
-    sort('ClusterTemplate', 'classCanonicalNames', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortClusterTemplate_sessionId')?.addEventListener('change', (event) => {
-    sort('ClusterTemplate', 'sessionId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortClusterTemplate_userKey')?.addEventListener('change', (event) => {
-    sort('ClusterTemplate', 'userKey', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortClusterTemplate_objectTitle')?.addEventListener('change', (event) => {
-    sort('ClusterTemplate', 'objectTitle', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortClusterTemplate_solrId')?.addEventListener('change', (event) => {
     sort('ClusterTemplate', 'solrId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortClusterTemplate_saves')?.addEventListener('change', (event) => {
-    sort('ClusterTemplate', 'saves', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchClusterTemplate')?.addEventListener('click', (event) => {

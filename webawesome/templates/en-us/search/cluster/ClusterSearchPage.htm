@@ -1,6 +1,5 @@
 {% extends "en-us/search/cluster/ClusterGenSearchPage.htm" %}
-{%- block htmBodyStartClusterPage %}
-{{ super() }}
+{%- block htmBodyEndClusterPage %}
 {% if resultCount > 0 %}
 <wa-details open class="HtmRow" id="observability-dashboard">
   <div slot="summary">
@@ -50,7 +49,8 @@
   </div>
 </wa-details>
 {% endif %}
-{%- endblock htmBodyStartClusterPage %}
+{{ super() }}
+{%- endblock htmBodyEndClusterPage %}
 {%- block htmStyleClusterPage %}
 #visualization-cluster-memory-bytes-total, #visualization-cluster-cpu-bytes-total, #visualization-cluster-gpu-nodes, #visualization-cluster-gpu-devices {
   wa-avatar {

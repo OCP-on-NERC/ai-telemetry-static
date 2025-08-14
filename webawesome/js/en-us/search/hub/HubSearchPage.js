@@ -39,6 +39,18 @@ Promise.all([
     sort('Hub', 'pageId', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortHub_userKey')?.addEventListener('change', (event) => {
+    sort('Hub', 'userKey', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortHub_saves')?.addEventListener('change', (event) => {
+    sort('Hub', 'saves', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortHub_objectTitle')?.addEventListener('change', (event) => {
+    sort('Hub', 'objectTitle', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortHub_displayPage')?.addEventListener('change', (event) => {
     sort('Hub', 'displayPage', event.currentTarget.value);
   });
@@ -63,6 +75,10 @@ Promise.all([
     sort('Hub', 'objectText', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortHub_solrId')?.addEventListener('change', (event) => {
+    sort('Hub', 'solrId', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortHub_classCanonicalName')?.addEventListener('change', (event) => {
     sort('Hub', 'classCanonicalName', event.currentTarget.value);
   });
@@ -77,22 +93,6 @@ Promise.all([
 
   document.querySelector('#pageFacetSortHub_sessionId')?.addEventListener('change', (event) => {
     sort('Hub', 'sessionId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortHub_userKey')?.addEventListener('change', (event) => {
-    sort('Hub', 'userKey', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortHub_objectTitle')?.addEventListener('change', (event) => {
-    sort('Hub', 'objectTitle', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortHub_solrId')?.addEventListener('change', (event) => {
-    sort('Hub', 'solrId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortHub_saves')?.addEventListener('change', (event) => {
-    sort('Hub', 'saves', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortHub_hubResource')?.addEventListener('change', (event) => {
