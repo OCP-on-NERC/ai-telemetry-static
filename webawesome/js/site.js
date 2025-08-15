@@ -75,10 +75,15 @@ function facetFieldChange(classSimpleName, elem) {
 }
 
 function sort(classSimpleName, sortVar, sortOrder) {
-	if(sortOrder == '') {
-		document.querySelector(".pageSearchVal-pageSort-" + classSimpleName)?.remove();
+	var $listHidden = document.querySelector("#pageSearchVal-pageSort-" + classSimpleName);
+	if(sortOrder == '' || !sortOrder) {
+		$listHidden.querySelectorAll('#pageSearchVal-pageSort-' + classSimpleName + "-" + sortVar).forEach(child => {
+		  $listHidden.removeChild(child); 
+		});
 	} else {
-		var $listHidden = document.querySelector("#pageSearchVal-pageSort-" + classSimpleName);
+		$listHidden.querySelectorAll('#pageSearchVal-pageSort-' + classSimpleName + "-" + sortVar).forEach(child => {
+		  $listHidden.removeChild(child); 
+		});
 		var div = document.createElement("div");
 		div.setAttribute("id", "pageSearchVal-pageSort-" + classSimpleName + "-" + sortVar);
 		div.setAttribute("class", "pageSearchVal pageSearchVal-pageSort-" + classSimpleName);
@@ -140,7 +145,7 @@ function facetPivotChange(classSimpleName, elem) {
 		div.innerText = elem.value;
 		$listHidden.appendChild(div);
 	} else {
-		document.querySelector("#pageSearchVal-Pivot" + classSimpleName + "Hidden_" + elem.value).remove();
+		document.querySelector("#pageSearchVal-Pivot" + classSimpleName + "Hidden_" + elem.value)?.remove();
 	}
 	document.querySelector("#pageSearchVal-Pivot" + classSimpleName + "_1")?.remove();
 	var $list = document.querySelector("#pageSearchVal-Pivot" + classSimpleName);
@@ -170,7 +175,7 @@ function facetFieldListChange(classSimpleName, elem) {
 		div.innerText = elem.value;
 		$listHidden.appendChild(div);
 	} else {
-		document.querySelector("#pageSearchVal-FieldList" + classSimpleName + "Hidden_" + elem.value).remove();
+		document.querySelector("#pageSearchVal-FieldList" + classSimpleName + "Hidden_" + elem.value)?.remove();
 	}
 	document.querySelector("#pageSearchVal-FieldList" + classSimpleName + "_1").remove();
 	var $list = document.querySelector("#pageSearchVal-FieldList" + classSimpleName);
@@ -185,16 +190,16 @@ function facetFieldListChange(classSimpleName, elem) {
 	searchPage(classSimpleName);
 }
 
-function facetStatsChange(classSimpleName, elem) {
+function facetStatsChange(classSimpleName, value, show) {
 	var $list = document.querySelector("#pageSearchVal-Stats" + classSimpleName);
-	if(elem.checked) {
+	if(show) {
 		var div = document.createElement("div");
-		div.setAttribute("id", "pageSearchVal-Stats" + classSimpleName + "_" + elem.value);
-		div.setAttribute("class", "pageSearchVal pageSearchVal-Stats" + classSimpleName + "_" + elem.value + " ");
-		div.innerText = "stats.field=" + elem.value;
+		div.setAttribute("id", "pageSearchVal-Stats" + classSimpleName + "_" + value);
+		div.setAttribute("class", "pageSearchVal pageSearchVal-Stats" + classSimpleName + "_" + value + " ");
+		div.innerText = "stats.field=" + value;
 		$list.append(div);
 	} else {
-		document.querySelector("#pageSearchVal-Stats" + classSimpleName + "_" + elem.value).remove();
+		document.querySelector("#pageSearchVal-Stats" + classSimpleName + "_" + value)?.remove();
 	}
 	searchPage(classSimpleName);
 }

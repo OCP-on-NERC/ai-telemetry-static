@@ -7,112 +7,301 @@ Promise.all([
     facetRangeChange('BareMetalNode', event.target.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalNode_pk')?.addEventListener('change', (event) => {
+  document.querySelector('#pageSelectSortBareMetalNode_pk')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'pk', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalNode_created')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsBareMetalNode_pk')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'pk', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_pk')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'pk', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_created')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'created', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalNode_modified')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsBareMetalNode_created')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'created', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_created')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'created', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_modified')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'modified', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalNode_archived')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsBareMetalNode_modified')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'modified', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_modified')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'modified', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_archived')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'archived', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalNode_leaseInfo')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsBareMetalNode_archived')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'archived', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_archived')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'archived', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_leaseInfo')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'leaseInfo', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalNode_networkInfo')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsBareMetalNode_leaseInfo')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'leaseInfo', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_leaseInfo')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'leaseInfo', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_networkInfo')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'networkInfo', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalNode_nodeId')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsBareMetalNode_networkInfo')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'networkInfo', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_networkInfo')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'networkInfo', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_nodeId')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'nodeId', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalNode_nodeIsMaintenance')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsBareMetalNode_nodeId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'nodeId', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_nodeId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'nodeId', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_nodeIsMaintenance')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'nodeIsMaintenance', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalNode_nodeLinks')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsBareMetalNode_nodeIsMaintenance')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'nodeIsMaintenance', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_nodeIsMaintenance')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'nodeIsMaintenance', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_nodeLinks')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'nodeLinks', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalNode_nodeName')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsBareMetalNode_nodeLinks')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'nodeLinks', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_nodeLinks')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'nodeLinks', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_nodeName')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'nodeName', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalNode_nodePowerState')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsBareMetalNode_nodeName')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'nodeName', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_nodeName')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'nodeName', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_nodePowerState')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'nodePowerState', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalNode_nodeProvisionState')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsBareMetalNode_nodePowerState')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'nodePowerState', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_nodePowerState')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'nodePowerState', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_nodeProvisionState')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'nodeProvisionState', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalNode_nodeResourceClass')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsBareMetalNode_nodeProvisionState')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'nodeProvisionState', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_nodeProvisionState')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'nodeProvisionState', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_nodeResourceClass')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'nodeResourceClass', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalNode_userKey')?.addEventListener('change', (event) => {
-    sort('BareMetalNode', 'userKey', event.currentTarget.value);
+  document.querySelector('#pageStatsBareMetalNode_nodeResourceClass')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'nodeResourceClass', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_nodeResourceClass')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'nodeResourceClass', false);
   });
 
-  document.querySelector('#pageFacetSortBareMetalNode_saves')?.addEventListener('change', (event) => {
-    sort('BareMetalNode', 'saves', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortBareMetalNode_objectTitle')?.addEventListener('change', (event) => {
-    sort('BareMetalNode', 'objectTitle', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortBareMetalNode_displayPage')?.addEventListener('change', (event) => {
-    sort('BareMetalNode', 'displayPage', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortBareMetalNode_editPage')?.addEventListener('change', (event) => {
-    sort('BareMetalNode', 'editPage', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortBareMetalNode_userPage')?.addEventListener('change', (event) => {
-    sort('BareMetalNode', 'userPage', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortBareMetalNode_download')?.addEventListener('change', (event) => {
-    sort('BareMetalNode', 'download', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortBareMetalNode_objectSuggest')?.addEventListener('change', (event) => {
-    sort('BareMetalNode', 'objectSuggest', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortBareMetalNode_objectText')?.addEventListener('change', (event) => {
-    sort('BareMetalNode', 'objectText', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortBareMetalNode_solrId')?.addEventListener('change', (event) => {
-    sort('BareMetalNode', 'solrId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortBareMetalNode_classCanonicalName')?.addEventListener('change', (event) => {
+  document.querySelector('#pageSelectSortBareMetalNode_classCanonicalName')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'classCanonicalName', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalNode_classSimpleName')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsBareMetalNode_classCanonicalName')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'classCanonicalName', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_classCanonicalName')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'classCanonicalName', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_classSimpleName')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'classSimpleName', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalNode_classCanonicalNames')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsBareMetalNode_classSimpleName')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'classSimpleName', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_classSimpleName')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'classSimpleName', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_classCanonicalNames')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'classCanonicalNames', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortBareMetalNode_sessionId')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsBareMetalNode_classCanonicalNames')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'classCanonicalNames', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_classCanonicalNames')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'classCanonicalNames', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_sessionId')?.addEventListener('change', (event) => {
     sort('BareMetalNode', 'sessionId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsBareMetalNode_sessionId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'sessionId', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_sessionId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'sessionId', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_userKey')?.addEventListener('change', (event) => {
+    sort('BareMetalNode', 'userKey', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsBareMetalNode_userKey')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'userKey', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_userKey')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'userKey', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_saves')?.addEventListener('change', (event) => {
+    sort('BareMetalNode', 'saves', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsBareMetalNode_saves')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'saves', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_saves')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'saves', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_objectTitle')?.addEventListener('change', (event) => {
+    sort('BareMetalNode', 'objectTitle', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsBareMetalNode_objectTitle')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'objectTitle', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_objectTitle')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'objectTitle', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_displayPage')?.addEventListener('change', (event) => {
+    sort('BareMetalNode', 'displayPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsBareMetalNode_displayPage')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'displayPage', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_displayPage')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'displayPage', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_editPage')?.addEventListener('change', (event) => {
+    sort('BareMetalNode', 'editPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsBareMetalNode_editPage')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'editPage', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_editPage')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'editPage', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_userPage')?.addEventListener('change', (event) => {
+    sort('BareMetalNode', 'userPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsBareMetalNode_userPage')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'userPage', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_userPage')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'userPage', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_download')?.addEventListener('change', (event) => {
+    sort('BareMetalNode', 'download', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsBareMetalNode_download')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'download', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_download')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'download', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_objectSuggest')?.addEventListener('change', (event) => {
+    sort('BareMetalNode', 'objectSuggest', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsBareMetalNode_objectSuggest')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'objectSuggest', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_objectSuggest')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'objectSuggest', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_objectText')?.addEventListener('change', (event) => {
+    sort('BareMetalNode', 'objectText', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsBareMetalNode_objectText')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'objectText', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_objectText')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'objectText', false);
+  });
+
+  document.querySelector('#pageSelectSortBareMetalNode_solrId')?.addEventListener('change', (event) => {
+    sort('BareMetalNode', 'solrId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsBareMetalNode_solrId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('BareMetalNode', 'solrId', true);
+  });
+  document.querySelector('#pageStatsBareMetalNode_solrId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('BareMetalNode', 'solrId', false);
   });
 
   document.querySelector('#htmButton_patchBareMetalNode')?.addEventListener('click', (event) => {

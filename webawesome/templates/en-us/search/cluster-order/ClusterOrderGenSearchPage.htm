@@ -232,7 +232,7 @@
 {% else %}
 {%- include en-us/search/cluster-order/ClusterOrderSidebar.htm %}
 {%- include en-us/search/cluster-order/ClusterOrderSuggestedSearch.htm %}
-          <div>
+          <div class="pageContent ">
             <form action="/en-us/api/cluster-order" id="ClusterOrderForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
               <input name="focusId" type="hidden"/>
               <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>

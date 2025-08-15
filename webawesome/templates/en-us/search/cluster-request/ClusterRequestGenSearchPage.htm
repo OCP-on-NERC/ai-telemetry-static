@@ -249,7 +249,7 @@
 {% else %}
 {%- include en-us/search/cluster-request/ClusterRequestSidebar.htm %}
 {%- include en-us/search/cluster-request/ClusterRequestSuggestedSearch.htm %}
-          <div>
+          <div class="pageContent ">
             <form action="/en-us/api/cluster-request" id="ClusterRequestForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
               <input name="focusId" type="hidden"/>
               <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>

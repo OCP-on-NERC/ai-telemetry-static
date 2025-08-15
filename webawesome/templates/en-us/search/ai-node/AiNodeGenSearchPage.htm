@@ -331,7 +331,7 @@
 {% else %}
 {%- include en-us/search/ai-node/AiNodeSidebar.htm %}
 {%- include en-us/search/ai-node/AiNodeSuggestedSearch.htm %}
-          <div>
+          <div class="pageContent ">
             <form action="/en-us/api/ai-node" id="AiNodeForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
               <input name="focusId" type="hidden"/>
               <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>

@@ -536,6 +536,6 @@ main, footer {
   }
 }
 
-.SearchButtons_Search, .SearchButtons_Sort, .SearchButtons_Pivot, .SearchButtons_FieldList {
+.SearchButtons_Pivot {
   display: none;
 }

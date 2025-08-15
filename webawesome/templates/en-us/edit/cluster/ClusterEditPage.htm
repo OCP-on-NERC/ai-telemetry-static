@@ -33,6 +33,10 @@
           <header slot="header" class="wa-heading-m ">GPU Nodes in not ready state in cluster {{ result.clusterName }}</header>
           <div id="visualization-gpu-nodes-not-ready" class="wa-grid "></div>
         </wa-card>
+        <wa-card with-header>
+          <header slot="header" class="wa-heading-m ">GPU Nodes without GPU product taint in cluster {{ result.clusterName }}</header>
+          <div id="visualization-gpu-nodes-without-taint" class="wa-grid "></div>
+        </wa-card>
       </div>
       <wa-card with-header>
         <header slot="header" class="wa-heading-l ">Number of GPU devices per node in cluster {{ result.clusterName }}</header>
@@ -116,6 +120,7 @@
           , queryGpuDevicesByNode()
           , queryGpuDevicesTotal()
           , queryGpuNodesNotReady()
+          , queryGpuNodesWithoutTaint()
           , queryGpuTemperature()
           , queryGpuUtilization()
           , queryGpuUtilizationPerProject()
@@ -223,11 +228,13 @@
       if(response.ok) {
         response.json().then(function(responseJson) {
 
-          var avatar = document.createElement('wa-avatar');
-          avatar.setAttribute('initials', responseJson.data.result[0].value[1])
-          avatar.setAttribute('class', 'wa-accent wa-brand wa-heading-3xl ');
-          avatar.setAttribute('slot', 'icon');
-          document.querySelector('#visualization-cluster-gpu-nodes').append(avatar);
+          if(responseJson.data.result.length > 0) {
+            var avatar = document.createElement('wa-avatar');
+            avatar.setAttribute('initials', responseJson.data.result[0].value[1])
+            avatar.setAttribute('class', 'wa-accent wa-brand wa-heading-3xl ');
+            avatar.setAttribute('slot', 'icon');
+            document.querySelector('#visualization-cluster-gpu-nodes').append(avatar);
+          }
         });
       } else {
         throw new Error(`Failed to query GPU nodes total: ${response.status}`);
@@ -284,11 +291,13 @@
       if(response.ok) {
         response.json().then(function(responseJson) {
 
-          var avatar = document.createElement('wa-avatar');
-          avatar.setAttribute('initials', responseJson.data.result[0].value[1])
-          avatar.setAttribute('class', 'wa-accent wa-brand wa-heading-3xl ');
-          avatar.setAttribute('slot', 'icon');
-          document.querySelector('#visualization-cluster-gpu-devices').append(avatar);
+          if(responseJson.data.result.length > 0) {
+            var avatar = document.createElement('wa-avatar');
+            avatar.setAttribute('initials', responseJson.data.result[0].value[1])
+            avatar.setAttribute('class', 'wa-accent wa-brand wa-heading-3xl ');
+            avatar.setAttribute('slot', 'icon');
+            document.querySelector('#visualization-cluster-gpu-devices').append(avatar);
+          }
         });
       } else {
         throw new Error(`Failed to query GPU nodes total: ${response.status}`);
@@ -296,7 +305,7 @@
     }
 
     async function queryGpuNodesNotReady() {
-      var query = Object.assign({ query: 'kube_node_status_condition{cluster="{{ result.clusterName }}", status="unknown", condition="Ready"} * on (cluster, node) group_left(label_nvidia_com_gpu_present) kube_node_labels{label_nvidia_com_gpu_present="true"} == 1' });
+      var query = Object.assign({ query: 'kube_node_status_condition{cluster="{{ result.clusterName }}", status="unknown", condition="Ready"} * on (cluster, node) group_left(label_nvidia_com_gpu_present) (sum by (cluster, node, label_nvidia_com_gpu_present) (kube_node_labels{label_nvidia_com_gpu_present="true"})) == 1' });
       var response = await fetch( '/prom-keycloak-proxy/' + encodeURIComponent('{{ result.hubId }}') + '/api/v1/query?' + new URLSearchParams(query).toString(), { method: 'GET' });
       if(response.ok) {
         response.json().then(function(responseJson) {
@@ -312,6 +321,50 @@
             callout.setAttribute('id', elemId);
             callout.setAttribute('appearance', 'accent outlined');
             callout.setAttribute('variant', 'danger');
+            callout.setAttribute('class', 'pill');
+            a.append(callout);
+
+            var icon = document.createElement('wa-icon');
+            icon.setAttribute('slot', 'icon')
+            icon.setAttribute('name', 'triangle-exclamation')
+            icon.setAttribute('variant', 'solid')
+            callout.append(icon);
+
+            var stack = document.createElement('div');
+            stack.setAttribute('class', 'wa-stack wa-gap-s ')
+            callout.append(stack);
+
+            var elem0 = document.createElement('div');
+            elem0.innerText = result.metric.cluster;
+            stack.append(elem0);
+
+            var elem1 = document.createElement('div');
+            elem1.innerText = result.metric.node;
+            stack.append(elem1);
+          });
+        });
+      } else {
+        throw new Error(`Failed to query nodes not ready: ${response.status}`);
+      }
+    }
+
+    async function queryGpuNodesWithoutTaint() {
+      var query = Object.assign({ query: '(sum by (cluster, node, label_nvidia_com_gpu_present) (kube_node_labels{cluster="{{ result.clusterName }}", label_nvidia_com_gpu_present="true"})) > 0 unless on(cluster, node) kube_node_spec_taint{key="nvidia.com/gpu.product"}' });
+      var response = await fetch( '/prom-keycloak-proxy/' + encodeURIComponent('{{ result.hubId }}') + '/api/v1/query?' + new URLSearchParams(query).toString(), { method: 'GET' });
+      if(response.ok) {
+        response.json().then(function(responseJson) {
+          var panelId = 'visualization-gpu-nodes-without-taint';
+          responseJson.data.result.forEach((result, i) => {
+            var elemId = 'visualization-gpu-nodes-without-taint-' + result.metric.cluster + '-' + result.metric.node;
+
+            var a = document.createElement('a');
+            a.setAttribute('href', '/en-us/edit/ai-node/' + result.metric.cluster + '-' + result.metric.node);
+            document.querySelector('#' + panelId).append(a);
+
+            var callout = document.createElement('wa-callout');
+            callout.setAttribute('id', elemId);
+            callout.setAttribute('appearance', 'accent outlined');
+            callout.setAttribute('variant', 'brand');
             callout.setAttribute('class', 'pill');
             a.append(callout);
 
@@ -410,6 +463,43 @@
         });
       } else {
         throw new Error(`Failed to query nodes not ready: ${response.status}`);
+      }
+    }
+
+    async function queryGpuUtilizationPerProject() {
+      var end = new Date();
+      var start = new Date(new Date().setHours(end.getHours() - 24));
+      var timeQuery = {
+        start: start.toISOString()
+        , end: end.toISOString()
+        , step: '100'
+      };
+      var query = Object.assign(Object.assign({ query: 'sum(DCGM_FI_DEV_GPU_UTIL{cluster="{{ result.clusterName }}"}) by (cluster,exported_namespace)' }, timeQuery));
+      var response = await fetch( '/prom-keycloak-proxy/' + encodeURIComponent('{{ result.hubId }}') + '/api/v1/query_range?' + new URLSearchParams(query).toString(), { method: 'GET' });
+      if(response.ok) {
+        response.json().then(function(responseJson) {
+          var end = new Date();
+          var start = new Date(new Date().setHours(end.getHours() - 1));
+
+          var panelId = 'visualization-project-gpu-utilization';
+          var traces = [];
+          var results = responseJson.data.result;
+          results.forEach((result, i) => {
+            traces.push({
+              x: result.values.map(values => new Date(values[0] * 1000))
+              , y: result.values.map(values => parseFloat(values[1]))
+              , mode: 'lines+markers'
+              , name: result.metric.cluster + ' ' + result.metric.exported_namespace
+              , text: result.values.map(values => '<a href="/en-us/edit/ai-node/' + result.metric.cluster + '-' + result.metric.exported_namespace + '">' + result.metric.cluster + ' ' + result.metric.exported_namespace + '</a>')
+            });
+          });
+
+          var layout = {
+          };
+          Plotly.newPlot(panelId, traces, layout);
+        });
+      } else {
+        throw new Error(`Failed to query projects not ready: ${response.status}`);
       }
     }
 

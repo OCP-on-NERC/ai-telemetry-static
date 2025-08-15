@@ -40,6 +40,10 @@
           <header slot="header" class="wa-heading-m ">GPU Nodes in not ready state</header>
           <div id="visualization-gpu-nodes-not-ready" class="wa-grid "></div>
         </wa-card>
+        <wa-card with-header>
+          <header slot="header" class="wa-heading-m ">GPU Nodes without GPU product taint</header>
+          <div id="visualization-gpu-nodes-without-taint" class="wa-grid "></div>
+        </wa-card>
       </div>
       <wa-card with-header>
         <header slot="header" class="wa-heading-m ">Number of GPU devices per node</header>
@@ -111,6 +115,7 @@
           , queryGpuDevicesByCluster(timeQuery)
           , queryGpuDevicesByNode(timeQuery)
           , queryGpuNodesNotReady(timeQuery)
+          , queryGpuNodesWithoutTaint(timeQuery)
           , queryGpuUtilization(timeQuery)
           ]);
 {%- endblock htmScriptInitClusterPage %}
@@ -160,6 +165,11 @@
             title: {
               text: 'Clusters'
             }
+            , xanchor: 'center'
+            , x: 0.5
+            , yanchor: 'top'
+            , y: -1.0
+            , orientation: 'h'
           }
         };
         Plotly.newPlot(panelId, traces, layout);
@@ -208,6 +218,11 @@
             title: {
               text: 'Clusters'
             }
+            , xanchor: 'center'
+            , x: 0.5
+            , yanchor: 'top'
+            , y: -1.0
+            , orientation: 'h'
           }
         };
         Plotly.newPlot(panelId, traces, layout);
@@ -219,7 +234,9 @@
       if(window.varsFq.hubId.facetField) {
         const hubIds = Object.keys(window.varsFq.hubId.facetField.counts);
         hubIds.forEach((hubId, i) => {
-          urls.push('/prom-keycloak-proxy/' + encodeURIComponent(hubId) + '/api/v1/query_range?' + new URLSearchParams(Object.assign({ query: 'sum(DCGM_FI_DEV_GPU_UTIL) by (cluster)' }, timeQuery)).toString());
+          urls.push('/prom-keycloak-proxy/' + encodeURIComponent(hubId) + '/api/v1/query_range?' + new URLSearchParams(Object.assign({ 
+            query: 'sum(DCGM_FI_DEV_GPU_UTIL) by (cluster)' 
+          }, timeQuery)).toString());
         });
         const responses = await Promise.all(urls.map(url => fetch(url)));
         const dataPromises = responses.map(response => response.json());
@@ -243,6 +260,23 @@
         });
 
         var layout = {
+          xaxis: {
+            title: 'Time in {{ defaultZoneId }}'
+          }
+          , yaxis: {
+            title: '% GPU utilization in a cycle'
+            , tickformat: '.0%'
+          }
+          , legend: {
+            title: {
+              text: 'Clusters'
+            }
+            , xanchor: 'center'
+            , x: 0.5
+            , yanchor: 'top'
+            , y: -1.0
+            , orientation: 'h'
+          }
         };
         Plotly.newPlot(panelId, traces, layout);
       }
@@ -409,7 +443,7 @@
         const hubIds = Object.keys(window.varsFq.hubId.facetField.counts);
         hubIds.forEach((hubId, i) => {
           urls.push('/prom-keycloak-proxy/' + encodeURIComponent(hubId) + '/api/v1/query?' + new URLSearchParams(Object.assign({ 
-              query: 'kube_node_status_condition{status="unknown", condition="Ready"} * on (cluster, node) group_left(label_nvidia_com_gpu_present) kube_node_labels{label_nvidia_com_gpu_present="true"} == 1' 
+              query: 'kube_node_status_condition{status="unknown", condition="Ready"} * on (cluster, node) group_left(label_nvidia_com_gpu_present) (sum by (cluster, node, label_nvidia_com_gpu_present) (kube_node_labels{label_nvidia_com_gpu_present="true"})) > 0' 
               }, timeQuery)).toString());
         });
         const responses = await Promise.all(urls.map(url => fetch(url)));
@@ -433,6 +467,61 @@
             callout.setAttribute('id', elemId);
             callout.setAttribute('appearance', 'accent outlined');
             callout.setAttribute('variant', 'danger');
+            callout.setAttribute('class', 'pill');
+            a.append(callout);
+
+            var icon = document.createElement('wa-icon');
+            icon.setAttribute('slot', 'icon')
+            icon.setAttribute('name', 'triangle-exclamation')
+            icon.setAttribute('variant', 'solid')
+            callout.append(icon);
+
+            var stack = document.createElement('div');
+            stack.setAttribute('class', 'wa-stack wa-gap-s ')
+            callout.append(stack);
+
+            var elem0 = document.createElement('div');
+            elem0.innerText = clusterName;
+            stack.append(elem0);
+
+            var elem1 = document.createElement('div');
+            elem1.innerText = result.metric.node;
+            stack.append(elem1);
+          });
+        });
+      }
+    }
+
+    async function queryGpuNodesWithoutTaint(timeQuery) {
+      const urls = [];
+      if(window.varsFq.hubId.facetField) {
+        const hubIds = Object.keys(window.varsFq.hubId.facetField.counts);
+        hubIds.forEach((hubId, i) => {
+          urls.push('/prom-keycloak-proxy/' + encodeURIComponent(hubId) + '/api/v1/query?' + new URLSearchParams(Object.assign({ 
+              query: '(sum by (cluster, node, label_nvidia_com_gpu_present) (kube_node_labels{label_nvidia_com_gpu_present="true"})) > 0 unless on(cluster, node) kube_node_spec_taint{key="nvidia.com/gpu.product"}' 
+              }, timeQuery)).toString());
+        });
+        const responses = await Promise.all(urls.map(url => fetch(url)));
+        const dataPromises = responses.map(response => response.json());
+        const responseJsons = await Promise.all(dataPromises);
+        const panelId = 'visualization-gpu-nodes-without-taint';
+
+        responseJsons.forEach((responseJson, i) => {
+          responseJson.data.result.forEach((result, j) => {
+            var hubId = hubIds[i];
+            var clusterName = result.metric.cluster + ' in ' + hubId;
+            var clusterId = 'HUB-' + hubId + '-CLUSTER-' + result.metric.cluster;
+            var nodeId = 'HUB-' + hubId + '-CLUSTER-' + result.metric.cluster + '-NODE-' + result.metric.node;
+            var elemId = 'visualization-gpu-nodes-without-taint-' + clusterId + '-' + result.metric.node;
+
+            var a = document.createElement('a');
+            a.setAttribute('href', '/en-us/edit/ai-node/' + nodeId);
+            document.querySelector('#' + panelId).append(a);
+
+            var callout = document.createElement('wa-callout');
+            callout.setAttribute('id', elemId);
+            callout.setAttribute('appearance', 'accent outlined');
+            callout.setAttribute('variant', 'brand');
             callout.setAttribute('class', 'pill');
             a.append(callout);
 

@@ -249,7 +249,7 @@
 {% else %}
 {%- include en-us/search/project/ProjectSidebar.htm %}
 {%- include en-us/search/project/ProjectSuggestedSearch.htm %}
-          <div>
+          <div class="pageContent ">
             <form action="/en-us/api/project" id="ProjectForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
               <input name="focusId" type="hidden"/>
               <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>

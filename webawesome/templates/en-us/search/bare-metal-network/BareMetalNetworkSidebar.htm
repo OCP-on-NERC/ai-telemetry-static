@@ -97,15 +97,29 @@
               {% endif %}
               {% endfor %}
               </div>
-              {% for key, value in varsFq.items() %}
               <div>
-                <wa-radio-group orientation="horizontal" name="pageFacetSort" class="pageFacetSort " id="pageFacetSortBareMetalNetwork_{{ key }}" value="{% if (key + ' asc') in defaultSortVars %}asc{% else %}{% if (key + ' desc') in defaultSortVars %}desc{% endif %}{% endif %}"{% if pivot is defined %} checked="checked"{% endif %} label={{ value.displayName | tojson }} size="small">
-                  <wa-radio-button value="" pill>none</wa-radio-button>
-                  <wa-radio-button value="asc" pill>ascending</wa-radio-button>
-                  <wa-radio-button value="desc" pill>descending</wa-radio-button>
-                </wa-radio-group>
+                {% for key, value in varsFq.items() %}
+                <wa-details
+                    summary="{{ value.displayName | e }}"
+                    class="pageDetailsSort "
+                    id="pageDetailsSortBareMetalNetwork_{{ key }}"
+                        data-value="{{ value.var | e }}"
+                        {% if value.sort is defined %}open{% endif %}
+                    >
+                  <wa-select with-clear
+                      orientation="horizontal"
+                      class="pageSelectSort "
+                      id="pageSelectSortBareMetalNetwork_{{ key }}"
+                      {% if value.sort is defined %}value="{{ value.sort | e }}"{% endif %}
+                      label={{ value.displayName | tojson }}
+                      size="small"
+                      >
+                    <wa-option value="asc">ascending</wa-option>
+                    <wa-option value="desc">descending</wa-option>
+                  </wa-select>
+                </wa-details>
+                {% endfor %}
               </div>
-              {% endfor %}
               {%- endblock htmBodySortBareMetalNetworkPage %}
             </div>
           </wa-drawer>
@@ -242,44 +256,37 @@
                   {% endfor %}
                 {% endif %}
               </div>
-              <table>
+              <div>
                 {% for key, value in varsFq.items() %}
                   {% if value.enableStats is defined %}
-                    <tr class="">
-                      <td class="">
-                        <span><wa-checkbox name="pageStats" class="pageStats " id="pageStatsBareMetalNetwork_{{ key }}" value="{{ value.var }}"{% if value.stats is defined %} checked="checked"{% endif %} onclick="facetStatsChange('BareMetalNetwork', value); ">{{ value.displayName }}</wa-checkbox></span>
-                      </td>
-                      <td>
-                        <div>
-                          <label for="pageStatsBareMetalNetwork_{{ key }}">{{ value.displayName }}</label>
-                        </div>
-                        <div class="pageStatsField pageStatsFieldBareMetalNetwork_{{ key }} " id="pageStatsFieldBareMetalNetwork_{{ key }}">
-                          {% if value.stats is defined %}
-                            {% for item in value.stats %}
-                              {% if item.key == 'name' %}{% else %}
-                                <div data-class="BareMetalNetwork" data-var="{{ item.var }}" data-val="{{ item.key }}">{{ item.key }}: {{ item }}</div>
-                              {% endif %}
-                            {% endfor %}
-                            {% if value.stats.max is defined %}
-                              <div>
-                                <span> step </span>
-                                <wa-input id="animateStatsStep" placeholder="step" value="1" style="width: 4em; "></wa-input>
-                                <span> min </span>
-                                <wa-input id="animateStatsMin" placeholder="min" value="{{ value.stats.min }}" style="width: 4em; "></wa-input>
-                                <span> max </span>
-                                <wa-input id="animateStatsMax" placeholder="max" value="{{ value.stats.max }}" style="width: 4em; "></wa-input>
-                                <span> speed in seconds </span>
-                                <wa-input id="animateStatsSpeed" placeholder="speed" value="1" style="width: 4em; "></wa-input>
-                                <wa-button variant="brand" onclick="animateStats(); ">animate</wa-button>
+                    <wa-details
+                        summary="{{ value.displayName | e }}"
+                        class="pageStats "
+                        id="pageStatsBareMetalNetwork_{{ key }}"
+                        data-value="{{ value.var | e }}"
+                        {% if value.stats is defined %}open{% endif %}
+                        >
+                      <div class="wa-stack pageStatsField pageStatsFieldBareMetalNetwork_{{ key }} " id="pageStatsFieldBareMetalNetwork_{{ key }}">
+                        {% if value.stats is defined %}
+                          {% for itemKey, itemValue in value.stats.items() %}
+                            {% if itemKey == 'name' %}{% else %}
+                              <div
+                                   class="wa-split "
+                                   data-class="BareMetalNetwork"
+                                   data-var="{{ itemKey }}"
+                                   data-val="{{ itemValue }}"
+                                  >
+                                <span>{{ itemKey | e }}</span>
+                                <span>{{ itemValue | e }}</span>
                               </div>
                             {% endif %}
-                          {% endif %}
-                        </div>
-                      </td>
-                    </tr>
+                          {% endfor %}
+                        {% endif %}
+                      </div>
+                    </wa-details>
                   {% endif %}
                 {% endfor %}
-              </table>
+              </div>
 {%- endblock htmBodyStatsBareMetalNetworkPage %}
             </div>
           </wa-drawer>

@@ -215,7 +215,7 @@
 {% else %}
 {%- include en-us/search/managed-cluster/ManagedClusterSidebar.htm %}
 {%- include en-us/search/managed-cluster/ManagedClusterSuggestedSearch.htm %}
-          <div>
+          <div class="pageContent ">
             <form action="/en-us/api/managed-cluster" id="ManagedClusterForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
               <input name="focusId" type="hidden"/>
               <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>

@@ -348,7 +348,7 @@
 {% else %}
 {%- include en-us/search/gpu-device/GpuDeviceSidebar.htm %}
 {%- include en-us/search/gpu-device/GpuDeviceSuggestedSearch.htm %}
-          <div>
+          <div class="pageContent ">
             <form action="/en-us/api/gpu-device" id="GpuDeviceForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
               <input name="focusId" type="hidden"/>
               <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
